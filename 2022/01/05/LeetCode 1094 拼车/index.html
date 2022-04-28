@@ -9,7 +9,7 @@
     
     <title>
         
-            Unicode与UTF-8编码介绍 |
+            LeetCode 1094. 拼车（median） |
         
         Splendid
     </title>
@@ -281,7 +281,7 @@ mjx-container[display="true"] + br {
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Unicode与UTF-8编码介绍</span>
+            <span class="title-hover-animation">LeetCode 1094. 拼车（median）</span>
         </div>
 
         
@@ -300,8 +300,8 @@ mjx-container[display="true"] + br {
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-04-27 23:12:00</span>
-        <span class="mobile">2022-04-27 23:12</span>
+        <span class="pc">2022-01-05 22:00:00</span>
+        <span class="mobile">2022-01-05 22:00</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -309,7 +309,7 @@ mjx-container[display="true"] + br {
             <ul>
                 
                     <li>
-                        <a href="/categories/C/">C++</a>&nbsp;
+                        <a href="/categories/LeetCode/">LeetCode</a>&nbsp;
                     </li>
                 
             </ul>
@@ -321,19 +321,15 @@ mjx-container[display="true"] + br {
             <ul>
                 
                     <li>
-                        <a href="/tags/C/">C++</a>&nbsp;
+                        <a href="/tags/LeetCode/">LeetCode</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
+                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/JSON/">JSON</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E8%AE%A1%E7%BB%84/">计组</a>&nbsp;
+                        | <a href="/tags/C/">C++</a>&nbsp;
                     </li>
                 
             </ul>
@@ -352,99 +348,40 @@ mjx-container[display="true"] + br {
         
 
         <div class="article-content markdown-body">
-            <h1 id="Unicode与UTF-8编码介绍"><a href="#Unicode与UTF-8编码介绍" class="headerlink" title="Unicode与UTF-8编码介绍"></a>Unicode与UTF-8编码介绍</h1><h2 id="1-Unicode"><a href="#1-Unicode" class="headerlink" title="1. Unicode"></a>1. Unicode</h2><p>读者应该知道 ASCII，它是一种字符编码，把 128 个字符映射至整数 0 ~ 127。例如，<code>1</code> → 49，<code>A</code> → 65，<code>B</code> → 66 等等。这种 7-bit 字符编码系统非常简单，在计算机中以一个字节存储一个字符。然而，它仅适合美国英语，甚至一些英语中常用的标点符号、重音符号都不能表示，无法表示各国语言，特别是中日韩语等表意文字。</p>
-<p>在 Unicode 出现之前，各地区制定了不同的编码系统，如中文主要用 GB 2312 和大五码、日文主要用 JIS 等。这样会造成很多不便，例如一个文本信息很难混合各种语言的文字。</p>
-<p>因此，在上世纪80年代末，Xerox、Apple 等公司开始研究，是否能制定一套多语言的统一编码系统。后来，多个机构成立了 Unicode 联盟，在 1991 年释出 Unicode 1.0，收录了 24 种语言共 7161 个字符。在四分之一个世纪后的 2016年，Unicode 已释出 9.0 版本，收录 135 种语言共 128237 个字符。</p>
-<p>这些字符被收录为统一字符集（Universal Coded Character Set, UCS），每个字符映射至一个整数码点（code point），码点的范围是 0 至 0x10FFFF，码点又通常记作 U+XXXX，当中 XXXX 为 16 进位数字。例如 <code>劲</code> → U+52B2、<code>峰</code> → U+5CF0。很明显，UCS 中的字符无法像 ASCII 般以一个字节存储。</p>
-<p>因此，Unicode 还制定了各种储存码点的方式，这些方式称为  Unicode 转换格式（Uniform Transformation Format, UTF）。现时流行的 UTF 为 UTF-8、UTF-16 和 UTF-32。每种 UTF 会把一个码点储存为一至多个编码单元（code unit）。例如 UTF-8 的编码单元是 8 位的字节、UTF-16 为 16 位、UTF-32 为 32 位。除 UTF-32 外，UTF-8 和 UTF-16 都是可变长度编码。</p>
-<p>UTF-8 成为现时互联网上最流行的格式，有几个原因：</p>
-<ol>
-<li>它采用字节为编码单元，不会有字节序（endianness）的问题。</li>
-<li>每个 ASCII 字符只需一个字节去储存。</li>
-<li>如果程序原来是以字节方式储存字符，理论上不需要特别改动就能处理 UTF-8 的数据。</li>
-</ol>
-<h2 id="2-需求"><a href="#2-需求" class="headerlink" title="2. 需求"></a>2. 需求</h2><p>由于 UTF-8 的普及性，大部分的 JSON 也通常会以 UTF-8 存储。我们的 JSON 库也会只支持 UTF-8。（RapidJSON 同时支持 UTF-8、UTF-16LE/BE、UTF-32LE/BE、ASCII。）</p>
-<p>C 标准库没有关于 Unicode 的处理功能（C++11 有），我们会实现 JSON 库所需的字符编码处理功能。</p>
-<p>对于非转义（unescaped）的字符，只要它们不少于 32（0 ~ 31 是不合法的编码单元），我们可以直接复制至结果，这一点我们稍后再说明。我们假设输入是以合法 UTF-8 编码。</p>
-<p>而对于 JSON字符串中的 <code>\uXXXX</code> 是以 16 进制表示码点 U+0000 至 U+FFFF，我们需要：</p>
-<ol>
-<li>解析 4 位十六进制整数为码点；</li>
-<li>由于字符串是以 UTF-8 存储，我们要把这个码点编码成 UTF-8。</li>
-</ol>
-<p>同学可能会发现，4 位的 16 进制数字只能表示 0 至 0xFFFF，但之前我们说 UCS 的码点是从 0 至 0x10FFFF，那怎么能表示多出来的码点？</p>
-<p>其实，U+0000 至 U+FFFF 这组 Unicode 字符称为基本多文种平面（basic multilingual plane, BMP），还有另外 16 个平面。那么 BMP 以外的字符，JSON 会使用代理对（surrogate pair）表示 <code>\uXXXX\uYYYY</code>。在 BMP 中，保留了 2048 个代理码点。如果第一个码点是 U+D800 至 U+DBFF，我们便知道它的代码对的高代理项（high surrogate），之后应该伴随一个 U+DC00 至 U+DFFF 的低代理项（low surrogate）。然后，我们用下列公式把代理对 (H, L) 变换成真实的码点：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codepoint = 0x10000 + (H − 0xD800) × 0x400 + (L − 0xDC00)</span><br></pre></td></tr></table></figure>
-<p>举个例子，高音谱号字符 <code>𝄞</code> → U+1D11E 不是 BMP 之内的字符。在 JSON 中可写成转义序列 <code>\uD834\uDD1E</code>，我们解析第一个 <code>\uD834</code> 得到码点 U+D834，我们发现它是 U+D800 至 U+DBFF 内的码点，所以它是高代理项。然后我们解析下一个转义序列 <code>\uDD1E</code> 得到码点 U+DD1E，它在 U+DC00 至 U+DFFF 之内，是合法的低代理项。我们计算其码点：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">H = 0xD834, L = 0xDD1E</span><br><span class="line">codepoint = 0x10000 + (H − 0xD800) × 0x400 + (L − 0xDC00)</span><br><span class="line">          = 0x10000 + (0xD834 - 0xD800) × 0x400 + (0xDD1E − 0xDC00)</span><br><span class="line">          = 0x10000 + 0x34 × 0x400 + 0x11E</span><br><span class="line">          = 0x10000 + 0xD000 + 0x11E</span><br><span class="line">          = 0x1D11E</span><br></pre></td></tr></table></figure>
-<p>这样就得出这转义序列的码点，然后我们再把它编码成 UTF-8。如果只有高代理项而欠缺低代理项，或是低代理项不在合法码点范围，我们都返回 <code>LEPT_PARSE_INVALID_UNICODE_SURROGATE</code> 错误。如果 <code>\u</code> 后不是 4 位十六进位数字，则返回 <code>LEPT_PARSE_INVALID_UNICODE_HEX</code> 错误。</p>
-<h2 id="3-UTF-8-编码"><a href="#3-UTF-8-编码" class="headerlink" title="3. UTF-8 编码"></a>3. UTF-8 编码</h2><p>UTF-8 在网页上的使用率势无可挡：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/Utf8webgrowth.1qx2yjktetds.webp" alt="Utf8webgrowth"></p>
-<p>（图片来自 <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Utf8webgrowth.svg">Wikipedia Common<i class="fas fa-external-link-alt"></i></a>，数据来自 Google 对网页字符编码的统计。）</p>
-<p>由于我们的 JSON 库也只支持 UTF-8，我们需要把码点编码成 UTF-8。这里简单介绍一下 UTF-8 的编码方式。</p>
-<p>UTF-8 的编码单元为 8 位（1 字节），每个码点编码成 1 至 4 个字节。它的编码方式很简单，按照码点的范围，把码点的二进位分拆成 1 至最多 4 个字节：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">码点范围</th>
-<th style="text-align:center">码点位数</th>
-<th style="text-align:center">字节1</th>
-<th style="text-align:center">字节2</th>
-<th style="text-align:center">字节3</th>
-<th style="text-align:center">字节4</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">U+0000 ~ U+007F</td>
-<td style="text-align:center">7</td>
-<td style="text-align:center">0xxxxxxx</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">U+0080 ~ U+07FF</td>
-<td style="text-align:center">11</td>
-<td style="text-align:center">110xxxxx</td>
-<td style="text-align:center">10xxxxxx</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">U+0800 ~ U+FFFF</td>
-<td style="text-align:center">16</td>
-<td style="text-align:center">1110xxxx</td>
-<td style="text-align:center">10xxxxxx</td>
-<td style="text-align:center">10xxxxxx</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">U+10000 ~ U+10FFFF</td>
-<td style="text-align:center">21</td>
-<td style="text-align:center">11110xxx</td>
-<td style="text-align:center">10xxxxxx</td>
-<td style="text-align:center">10xxxxxx</td>
-<td style="text-align:center">10xxxxxx</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>这个编码方法的好处之一是，码点范围 U+0000 ~ U+007F 编码为一个字节，与 ASCII 编码兼容。这范围的 Unicode 码点也是和 ASCII 字符相同的。因此，一个 ASCII 文本也是一个 UTF-8 文本。</p>
-<p>我们举一个例子解析多字节的情况，欧元符号 <code>€</code> → U+20AC：</p>
-<ol>
-<li>U+20AC 在 U+0800 ~ U+FFFF 的范围内，应编码成 3 个字节。</li>
-<li>U+20AC 的二进位为 10000010101100</li>
-<li>3 个字节的情况我们要 16 位的码点，所以在前面补两个 0，成为 0010000010101100</li>
-<li>按上表把二进位分成 3 组：0010, 000010, 101100</li>
-<li>加上每个字节的前缀：11100010, 10000010, 10101100</li>
-<li>用十六进位表示即：0xE2, 0x82, 0xAC</li>
-</ol>
-<p>对于这例子的范围，对应的 C 代码是这样的：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (u &gt;= <span class="number">0x0800</span> &amp;&amp; u &lt;= <span class="number">0xFFFF</span>) {</span><br><span class="line">    OutputByte(<span class="number">0xE0</span> | ((u &gt;&gt; <span class="number">12</span>) &amp; <span class="number">0xFF</span>)); <span class="comment">/* 0xE0 = 11100000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ((u &gt;&gt;  <span class="number">6</span>) &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x80 = 10000000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ( u        &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x3F = 00111111 */</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>UTF-8 的解码稍复杂一点，但我们的 JSON 库不会校验 JSON 文本是否符合 UTF-8，所以这里也不展开了。</p>
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a class="link" target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/car-pooling/">题目<i class="fas fa-external-link-alt"></i></a></h2><h4 id="LeetCode-1094-拼车（median）"><a href="#LeetCode-1094-拼车（median）" class="headerlink" title="LeetCode 1094. 拼车（median）"></a>LeetCode 1094. 拼车（median）</h4><p>车上最初有 <code>capacity</code> 个空座位。车<strong>只能</strong>向一个方向行驶（也就是说，<strong>不允许掉头或改变方向</strong>）</p>
+<p>给定整数 <code>capacity</code> 和一个数组<code>`trips</code>, <code>trip[i] = [numPassengers_i, from_i, to_i]</code> 表示第 <code>i</code> 次旅行有 <code>numPassengers_i</code> 乘客，接他们和放他们的位置分别是 <code>from_i</code> 和 <code>to_i</code> 。这些位置是从汽车的初始位置向东的公里数。</p>
+<p>当且仅当你可以在所有给定的行程中接送所有乘客时，返回 <code>true</code>，否则请返回 <code>false</code>。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：trips = [[2,1,5],[3,3,7]], capacity = 4</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：trips = [[2,1,5],[3,3,7]], capacity = 5</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= trips.length &lt;= 1000</code></li>
+<li><code>trips[i].length == 3</code></li>
+<li><code>1 &lt;= numPassengersi &lt;= 100</code></li>
+<li><code>0 &lt;= fromi &lt; toi &lt;= 1000</code></li>
+<li><code>1 &lt;= capacity &lt;= 105</code></li>
+</ul>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ul>
+<li><p>这里只要保证整个行车过程中不会超载就可以啦~</p>
+</li>
+<li><p>使用一个<code>map&lt;int, int&gt;</code>保存每个时间点对应的人数变化量，由于map自动排序，故第二次遍历时就是按照时间由小到大进行的</p>
+</li>
+<li><p>再次遍历map的过程中，每次让capacity（剩余容量）根据所保存的信息进行变化，如果出现<code>capacity &lt; 0</code>（即超载），那么返回false</p>
+</li>
+</ul>
+<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><ul>
+<li><p>不满足条件的情况<br><img src="https://pic.leetcode-cn.com/1641347302-fMsqVA-1904_1.png" alt="1904_1.png"></p>
+</li>
+<li><p>满足条件的情况<br><img src="https://pic.leetcode-cn.com/1641347315-dqzufY-1904_2.png" alt="1904_2.png"></p>
+</li>
+</ul>
+<h3 id="代码（C-实现）"><a href="#代码（C-实现）" class="headerlink" title="代码（C++实现）"></a>代码（C++实现）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">carPooling</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; trips, <span class="type">int</span> capacity)</span> </span>{</span><br><span class="line">        map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; mp;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; vec : trips) {</span><br><span class="line">            mp[vec[<span class="number">1</span>]] -= vec[<span class="number">0</span>];</span><br><span class="line">            mp[vec[<span class="number">2</span>]] += vec[<span class="number">0</span>];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; p : mp) {</span><br><span class="line">            capacity += p.second;</span><br><span class="line">            <span class="keyword">if</span> (capacity &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
 <hr>
-<p>转载自Milo Yip大佬的<a class="link" target="_blank" rel="noopener" href="https://github.com/miloyip/json-tutorial">lept_JSON项目<i class="fas fa-external-link-alt"></i></a></p>
+<p>有收获的话，求个赞~ <a class="link" target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/car-pooling/solution/chai-fen-map-by-airhao-han-g8fg/">Click Here<i class="fas fa-external-link-alt"></i></a></p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a class="link" target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/car-pooling/">https://leetcode-cn.com/problems/car-pooling/<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
@@ -454,19 +391,15 @@ mjx-container[display="true"] + br {
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
+                        <a href="/tags/LeetCode/">#LeetCode</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
                         <a href="/tags/C/">#C++</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/%E8%BD%AC%E8%BD%BD/">#转载</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/JSON/">#JSON</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/%E8%AE%A1%E7%BB%84/">#计组</a>&nbsp;
                     </li>
                 
             </ul>
@@ -475,14 +408,29 @@ mjx-container[display="true"] + br {
         
             <div class="article-nav">
                 
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/01/09/LeetCode%202134%20%E6%9C%80%E5%B0%91%E4%BA%A4%E6%8D%A2%E6%AC%A1%E6%95%B0%E6%9D%A5%E7%BB%84%E5%90%88%E6%89%80%E6%9C%89%E7%9A%84%201%20II/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">LeetCode 2134 最少交换次数来组合所有的 1 II（median）</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/04/27/%E7%AC%AC8%E7%AB%A0%E7%AC%94%E8%AE%B0/"
+                           href="/2021/11/27/LeetCode%20314%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9E%82%E7%9B%B4%E9%81%8D%E5%8E%86/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">计算理论基础 第8章 不可判定性</span>
+                                <span class="post-nav-title-item">LeetCode 314. 二叉树的垂直遍历（median）</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -593,7 +541,7 @@ mjx-container[display="true"] + br {
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Unicode%E4%B8%8EUTF-8%E7%BC%96%E7%A0%81%E4%BB%8B%E7%BB%8D"><span class="nav-text">Unicode与UTF-8编码介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Unicode"><span class="nav-text">1. Unicode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%9C%80%E6%B1%82"><span class="nav-text">2. 需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-UTF-8-%E7%BC%96%E7%A0%81"><span class="nav-text">3. UTF-8 编码</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LeetCode-1094-%E6%8B%BC%E8%BD%A6%EF%BC%88median%EF%BC%89"><span class="nav-text">LeetCode 1094. 拼车（median）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%A4%BA"><span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88C-%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-text">代码（C++实现）</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
