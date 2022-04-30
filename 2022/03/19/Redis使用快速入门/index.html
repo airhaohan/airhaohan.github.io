@@ -351,41 +351,41 @@ mjx-container[display="true"] + br {
             <h1 id="Redis使用快速入门"><a href="#Redis使用快速入门" class="headerlink" title="Redis使用快速入门"></a>Redis使用快速入门</h1><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>string（字符串），hash（哈希），list（列表），set（集合）及zset（sorted set：有序集合）</p>
 <h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/redis-1.nsr20rughwg.webp" alt="redis-1" style="zoom:60%;"></p>
 <h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>string 类型是二进制安全的。意思是 redis 的 string 可以包含任何数据。比如jpg图片或者序列化的对象</p>
-<h4 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h4><p>set get del </p>
+<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><p>set get del </p>
 <p>getrange setrange getset append</p>
 <p>setex psetex setnx getbit setbit</p>
 <p>mget mset msetnx(所有的key都不存在)</p>
 <p>incr incrby incrbyfloat decr decrby</p>
 <p><strong>注意</strong>：range指令都是左闭右闭的</p>
 <h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>string类型的字段（field）和值（value）的映射表，适用于储存对象</p>
-<h4 id="命令：-1"><a href="#命令：-1" class="headerlink" title="命令："></a>命令：</h4><p>hset hmset hsetnx hexits hdel del</p>
+<h4 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h4><p>hset hmset hsetnx hexits hdel del</p>
 <p>hget hmget hgetall hkeys(只有字段没有值) hvals((只有值没有字段) hlen</p>
 <p>hincrby hincrbyfloat hscan</p>
 <h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p>双向链表实现，字符串列表，按照插入顺序排序</p>
-<h4 id="命令：-2"><a href="#命令：-2" class="headerlink" title="命令："></a>命令：</h4><p>blpop brpop brpoplpush rpoplpush (带b开头的是阻塞行为)</p>
+<h4 id="命令-2"><a href="#命令-2" class="headerlink" title="命令"></a>命令</h4><p>blpop brpop brpoplpush rpoplpush (带b开头的是阻塞行为)</p>
 <p>lpush rpush lpushx rpushx lrange rrange lpop rpop</p>
 <p>lindex linsert(before/after) lset llen </p>
 <p>lrem ltrim</p>
 <h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>string类型的无序集合，集合成员唯一，通过哈希表实现</p>
-<h4 id="命令：-3"><a href="#命令：-3" class="headerlink" title="命令："></a>命令：</h4><p>sadd scard sscan</p>
+<h4 id="命令-3"><a href="#命令-3" class="headerlink" title="命令"></a>命令</h4><p>sadd scard sscan</p>
 <p>sdiff sdiffstore sinsert sinsertstore sunion sunionstore(集合的差、交、并)</p>
 <p>smembers sismember srandmember</p>
 <p>smove spop(随机移除并返回) srem</p>
 <h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><p>Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。成员不能重复，但是分数可以重复。通过哈希表实现.</p>
-<h4 id="命令：-4"><a href="#命令：-4" class="headerlink" title="命令："></a>命令：</h4><p>zadd zincrby zscan zunionstore</p>
+<h4 id="命令-4"><a href="#命令-4" class="headerlink" title="命令"></a>命令</h4><p>zadd zincrby zscan zunionstore</p>
 <p>zcard zcount zlexcount</p>
 <p>zrange zrangebyscore zrangebylex </p>
 <p>zrem zremrangebylex zremrangebyscore zremrangebyrank</p>
 <p>zrevrange(是bylex) zrevrangebyscore(返回的时候分数从高到低)</p>
 <p>zrank(返回索引) zrevrank(返回排名) zscore(返回分数)</p>
 <h3 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h3><p>基数统计的算法，用于计算大量数据的基数；但不会储存输入元素本身</p>
-<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><p>pfadd pfcount pfmerge</p>
+<h4 id="命令-5"><a href="#命令-5" class="headerlink" title="命令"></a>命令</h4><p>pfadd pfcount pfmerge</p>
 <h3 id="连接到Redis"><a href="#连接到Redis" class="headerlink" title="连接到Redis"></a>连接到Redis</h3><p>本地Redis连接：redis-cli (—raw)</p>
 <p>远程服务：redis-cli -h host -p port -a password</p>
 <p>中文乱码以及显示UTF-8源码问题：只需要你在启动redis-cli时在其后面加上—raw参数即可启动后，再显示就正常了</p>
-<h4 id="命令：-5"><a href="#命令：-5" class="headerlink" title="命令："></a>命令：</h4><p>auth(验证密码)  echo(打印字符串)<br>ping(查看服务是否运行)  quit(关闭当前连接)  select(切换到指定数据库)</p>
-<h3 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h3><h4 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h4><p>psubscribe punsunscribe subscribe unsubscribe<br>publih pubsub</p>
-<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="命令：-6"><a href="#命令：-6" class="headerlink" title="命令："></a>命令：</h4><p>开启：multi；触发：exec<br>discard watch unwatch</p>
+<h4 id="命令-6"><a href="#命令-6" class="headerlink" title="命令"></a>命令</h4><p>auth(验证密码)  echo(打印字符串)<br>ping(查看服务是否运行)  quit(关闭当前连接)  select(切换到指定数据库)</p>
+<h3 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h3><h4 id="命令-7"><a href="#命令-7" class="headerlink" title="命令"></a>命令</h4><p>psubscribe punsunscribe subscribe unsubscribe<br>publih pubsub</p>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="命令-8"><a href="#命令-8" class="headerlink" title="命令"></a>命令</h4><p>开启：multi；触发：exec<br>discard watch unwatch</p>
 <p>Redis的事务不是原子性的，执行失败不能回滚，而且之后的语句还会继续执行，只是一个打包的作用</p>
 <hr>
 
@@ -549,7 +549,7 @@ mjx-container[display="true"] + br {
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis%E4%BD%BF%E7%94%A8%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-text">Redis使用快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-text">string</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-text">命令：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hash"><span class="nav-text">hash</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9A-1"><span class="nav-text">命令：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-text">list</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9A-2"><span class="nav-text">命令：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-text">set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9A-3"><span class="nav-text">命令：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zset"><span class="nav-text">zset</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9A-4"><span class="nav-text">命令：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HyperLogLog"><span class="nav-text">HyperLogLog</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%88%B0Redis"><span class="nav-text">连接到Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9A-5"><span class="nav-text">命令：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A2%E9%98%85"><span class="nav-text">订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-1"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9A-6"><span class="nav-text">命令：</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis%E4%BD%BF%E7%94%A8%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-text">Redis使用快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-text">string</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hash"><span class="nav-text">hash</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-1"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-text">list</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-2"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-text">set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-3"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zset"><span class="nav-text">zset</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-4"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HyperLogLog"><span class="nav-text">HyperLogLog</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-5"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%88%B0Redis"><span class="nav-text">连接到Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-6"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A2%E9%98%85"><span class="nav-text">订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-7"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-8"><span class="nav-text">命令</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
