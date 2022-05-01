@@ -263,7 +263,7 @@
 <p>这样就得出这转义序列的码点，然后我们再把它编码成 UTF-8。如果只有高代理项而欠缺低代理项，或是低代理项不在合法码点范围，我们都返回 <code>LEPT_PARSE_INVALID_UNICODE_SURROGATE</code> 错误。如果 <code>\u</code> 后不是 4 位十六进位数字，则返回 <code>LEPT_PARSE_INVALID_UNICODE_HEX</code> 错误。</p>
 <h2 id="3-UTF-8-编码"><a href="#3-UTF-8-编码" class="headerlink" title="3. UTF-8 编码"></a>3. UTF-8 编码</h2><p>UTF-8 在网页上的使用率势无可挡：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/Utf8webgrowth.1qx2yjktetds.webp" alt="Utf8webgrowth"></p>
-<p>（图片来自 <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Utf8webgrowth.svg">Wikipedia Common<i class="fas fa-external-link-alt"></i></a>，数据来自 Google 对网页字符编码的统计。）</p>
+<p>（图片来自 <a class="link"   target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Utf8webgrowth.svg" >Wikipedia Common<i class="fas fa-external-link-alt"></i></a>，数据来自 Google 对网页字符编码的统计。）</p>
 <p>由于我们的 JSON 库也只支持 UTF-8，我们需要把码点编码成 UTF-8。这里简单介绍一下 UTF-8 的编码方式。</p>
 <p>UTF-8 的编码单元为 8 位（1 字节），每个码点编码成 1 至 4 个字节。它的编码方式很简单，按照码点的范围，把码点的二进位分拆成 1 至最多 4 个字节：</p>
 <table style="text-align:center">
@@ -299,10 +299,10 @@
 <li>用十六进位表示即：0xE2, 0x82, 0xAC</li>
 </ol>
 <p>对于这例子的范围，对应的 C 代码是这样的：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (u &gt;= <span class="number">0x0800</span> &amp;&amp; u &lt;= <span class="number">0xFFFF</span>) {</span><br><span class="line">    OutputByte(<span class="number">0xE0</span> | ((u &gt;&gt; <span class="number">12</span>) &amp; <span class="number">0xFF</span>)); <span class="comment">/* 0xE0 = 11100000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ((u &gt;&gt;  <span class="number">6</span>) &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x80 = 10000000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ( u        &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x3F = 00111111 */</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (u &gt;= <span class="number">0x0800</span> &amp;&amp; u &lt;= <span class="number">0xFFFF</span>) &#123;</span><br><span class="line">    OutputByte(<span class="number">0xE0</span> | ((u &gt;&gt; <span class="number">12</span>) &amp; <span class="number">0xFF</span>)); <span class="comment">/* 0xE0 = 11100000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ((u &gt;&gt;  <span class="number">6</span>) &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x80 = 10000000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ( u        &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x3F = 00111111 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>UTF-8 的解码稍复杂一点，但我们的 JSON 库不会校验 JSON 文本是否符合 UTF-8，所以这里也不展开了。</p>
 <hr>
-<p>转载自Milo Yip大佬的<a class="link" target="_blank" rel="noopener" href="https://github.com/miloyip/json-tutorial">lept_JSON项目<i class="fas fa-external-link-alt"></i></a></p>
+<p>转载自Milo Yip大佬的<a class="link"   target="_blank" rel="noopener" href="https://github.com/miloyip/json-tutorial" >lept_JSON项目<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
@@ -552,5 +552,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

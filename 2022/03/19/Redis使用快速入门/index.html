@@ -233,7 +233,7 @@
 
         <div class="article-content markdown-body">
             <h1 id="Redis使用快速入门"><a href="#Redis使用快速入门" class="headerlink" title="Redis使用快速入门"></a>Redis使用快速入门</h1><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>string（字符串），hash（哈希），list（列表），set（集合）及zset（sorted set：有序集合）</p>
-<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/redis-1.nsr20rughwg.webp" alt="redis-1" style="zoom:60%;"></p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/redis-1.nsr20rughwg.webp" alt="redis-1" style="zoom:60%;" /></p>
 <h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>string 类型是二进制安全的。意思是 redis 的 string 可以包含任何数据。比如jpg图片或者序列化的对象</p>
 <h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><p>set get del </p>
 <p>getrange setrange getset append</p>
@@ -271,9 +271,9 @@
 <h3 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h3><h4 id="命令-7"><a href="#命令-7" class="headerlink" title="命令"></a>命令</h4><p>psubscribe punsunscribe subscribe unsubscribe<br>publih pubsub</p>
 <h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="命令-8"><a href="#命令-8" class="headerlink" title="命令"></a>命令</h4><p>开启：multi；触发：exec<br>discard watch unwatch</p>
 <p>Redis的事务不是原子性的，执行失败不能回滚，而且之后的语句还会继续执行，只是一个打包的作用</p>
-<hr>
+<hr />
 
-<p>转载自 <a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/redis/redis-tutorial.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
+<p>转载自 <a class="link"   target="_blank" rel="noopener" href="https://www.runoob.com/redis/redis-tutorial.html" >菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
@@ -519,5 +519,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
