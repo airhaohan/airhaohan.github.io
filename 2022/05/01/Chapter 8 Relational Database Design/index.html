@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            数据库概论 第8章 设计关系数据库 |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcome to airhaohan's secret place !"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">数据库概论 第8章 设计关系数据库</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-05-01 22:15:00</span>
+        <span class="mobile">2022-05-01 22:15</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Chapter-8-Relational-Database-Design"><a href="#Chapter-8-Relational-Database-Design" class="headerlink" title="Chapter 8: Relational Database Design"></a><strong>Chapter 8: Relational Database Design</strong></h1><h2 id="8-1-好的关系设计的特点（Features-of-Good-Relational-Design）"><a href="#8-1-好的关系设计的特点（Features-of-Good-Relational-Design）" class="headerlink" title="8.1 好的关系设计的特点（Features of Good Relational Design）"></a><strong>8.1 </strong>好的关系设计的特点（Features of Good Relational Design）</h2><h3 id="设计选择（Design-Alternative）"><a href="#设计选择（Design-Alternative）" class="headerlink" title="设计选择（Design Alternative）:"></a>设计选择（Design Alternative）:</h3><ul>
+<li>Larger Schemas（更大的模式）</li>
+<li>Smaller Schemas（更小的模式）</li>
+</ul>
+<h3 id="存储异常（Storage-Anomaly）"><a href="#存储异常（Storage-Anomaly）" class="headerlink" title="存储异常（Storage Anomaly）"></a>存储异常（Storage Anomaly）</h3><p>（以图书管理系统中，个人信息是否应当与书本信息合并：不应该）</p>
+<ul>
+<li><strong>Data redundancy（数据冗余）</strong>：当某人借书超过一本，其所在部门的信息被重复</li>
+<li><strong>Update anomaly（更新异常）/ Potential inconsistency（潜在的不一致性）</strong>：当某个借书人所在部门需要更新时，由于数据冗余，可能发生更新不一致的情况</li>
+<li><strong>Insert anomaly（插入异常）</strong>：如某个部门无人借书，则该部门信息无法存入</li>
+<li><strong>Delete anomaly（删除异常）</strong>：如某个部门的人将书全部还清，则该部门信息被全部删除</li>
+</ul>
+<h3 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h3><p><strong>Def</strong>：由五部分组成，是一个五元组：$R(U, D, DOM, F)$</p>
+<ul>
+<li><p>关系名 $R$ 是符号化的元组语义</p>
+</li>
+<li><p>$U$ 为一组属性</p>
+</li>
+<li><p>$D$ 为属性组 $U$ 中的属性所来自的域</p>
+</li>
+<li><p>$DOM$ 为属性到域的映射</p>
+</li>
+<li><p>$F$ 为属性组 $U$ 上的一组数据依赖</p>
+</li>
+</ul>
+<p>由于 $D$ 、$DOM$ 与模式设计关系不大，因此在本章中把关系模式看作一个三元组：$R{\lt}U,F{\gt}$</p>
+<p><strong>第一范式：</strong> 作为二维表，关系要符合一个最基本的条件：每个分量必须是不可分开的数据项。满足了这个条件的关系模式就属于第一范式（1NF）</p>
+<h3 id="数据依赖"><a href="#数据依赖" class="headerlink" title="数据依赖"></a>数据依赖</h3><h4 id="多值依赖（MVD，Multi-Valued-Dependency）（将在8-6节介绍）"><a href="#多值依赖（MVD，Multi-Valued-Dependency）（将在8-6节介绍）" class="headerlink" title="多值依赖（MVD，Multi-Valued Dependency）（将在8.6节介绍） "></a><strong>多值依赖（MVD，Multi-Valued Dependency）</strong>（将在8.6节介绍）<span id="fd"> </span></h4><h4 id="函数依赖（FD，Functional-Dependency）"><a href="#函数依赖（FD，Functional-Dependency）" class="headerlink" title="函数依赖（FD，Functional Dependency）"></a><strong>函数依赖（FD，Functional Dependency）</strong></h4><p><strong>Def</strong>：设 $R(U)$ 是一个属性集 $U$ 上的关系模式，$X$ 和 $Y$ 是 $U$ 的子集。若对于 $R(U)$ 的关系实例的任意两个可能的元组 $r1$ 、$r2$ ，若 $r1[X]=r2[X]$ ，则 $r1[Y]=r2[Y]$ ；或者，若 $r1[Y]$ 不等于 $r2[Y]$ ，则 $r1[X]$ 不等于 $r2[X]$ ；称 $X$ 决定 $Y$， 或者 $Y$ 依赖 $X$ ，记为 $X{\rightarrow}Y$。其中 $X$ 称为这个函数依赖的决定因素。</p>
+<p>（相互依赖记为 $X{\leftrightarrow}Y$ ，$Y$ 不依赖于 $X$ 记为 $X{\nrightarrow}Y$ ）</p>
+<p>（就是有种 $X$ 对于 $Y$ 来说是主键的感觉，这个箭头可以看作是数理逻辑中的“蕴含“，元组再某个属性组上取值相同时为真，不同时为假，则 $X{\rightarrow}Y$ 的意义与函数依赖相同）</p>
+<p><strong>Attention</strong>：函数依赖不是某个关系实例应当满足的条件，而是所有关系模式 $R$ 下所有关系实例均要满足的约束条件，即一个关系 $r$ 满足 $X{\rightarrow}Y$ 和在一个关系模式 $R$ 上 $X{\rightarrow}Y$ 成立是不同的</p>
+<p><strong>平凡函数依赖</strong>：当 $Y{\subseteq}X$ 时，显然 $X{\rightarrow}Y$ ，称为平凡函数依赖；反之，若 $Y{\nsubseteq}X$ 时且 $X{\rightarrow}Y$ ，则称为<strong>非平凡函数依赖</strong></p>
+<p>（平凡函数依赖没有什么特别的语义，我们所要求的语义都是非平凡函数依赖）</p>
+<p><strong>完全函数依赖</strong>：在 $R(U)$ 中，若 $X{\rightarrow}Y$ ，且对于 $X$ 的任意一个真子集 $X’{\subset}X$ ，都有 $X’{\nrightarrow}Y$ ，则称 $Y$ 对 $X$ 完全函数依赖；反之称为<strong>部分函数依赖</strong></p>
+<p>（部分依赖就是说 $X$ 作为 $Y$ 的“主码”有点冗余，其实不用那么多字段就可以决定$Y$ 的不同）</p>
+<p>（部分函数依赖是产生储存异常的内在原因）</p>
+<p><strong>传递函数依赖：</strong> $X$ 、$Y$、$Z$ 是关系 $R$ 中互不相同的属性集合，若有 $X{\rightarrow}Y$ ， $Y{\rightarrow}Z$，（$Y{\nrightarrow}X$）则称 $Z$ 传递函数依赖于 $X$ 。（若同时又$Y{\rightarrow}X$，则 $Z$ 实际上是直接依赖于 $X$）</p>
+<p>（<strong>注意</strong>：每个部份函数依赖都是传递函数依赖）</p>
+<h4 id="码"><a href="#码" class="headerlink" title="码"></a>码</h4><p><strong>超码</strong>：对于$R{\lt}U,F{\gt}$，$X{\subseteq}U$，若$FD$ 上成立 $X{\rightarrow}U$，则称 $X$ 是 $R$ 的一个超码</p>
+<p><strong>候选码</strong>：对超码 $X$ ，若不存在 $X$ 的真子集 $X’{\subset}X$ ，使得 $X’{\rightarrow}U$，则称 $X$ 是 $R$ 的一个候选码</p>
+<p>（候选码就是最小的超码，适合用来做主键，候选码中的属性称作<strong>主属性</strong>，其他称为非主属性）</p>
+<p><strong>全码</strong>：整个属性集 $U$ 是候选码，称为全码（all-key）</p>
+<p><strong>外码</strong>：定义关系模式 $R$ 中属性或属性组 $X$ 并非 $R$ 的码，但 $X$ 是另一个关系模式的码，则称 $X$ 是 $R$ 的外部码</p>
+<p><strong>有损分解</strong>（<strong>A Lossy Decomposition</strong>）：</p>
+<table id="lossydecomp">
+    <tr>
+        <td>
+            Suppose we decompose<br/>
+ employee(ID, name, street, city, salary)<br/> into<br/>
+ employee1 (ID, name)<br/>
+ employee2 (name, street, city, salary)
+        </td>
+        <td>
+            <img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-1.5jl16wp1d0w0.webp" alt="image" style="zoom:40%;" />
+        </td>
+    </tr>
+</table>
+
+
+<p><strong>无损分解</strong>（<strong>A Lossles Decomposition</strong>）：</p>
+<p><a href="#ll-j-d">无损分解</a></p>
+<p>关系 $R{\lt}U,F{\gt}$ 分解为 $R_1$ 和 $R_2$ ，当且仅当 $R_1{\cap}R_2{\to}R_1$ 或 $R_1{\cap}R_2{\to}R_2{\,}{\in}{\,}F^+$ </p>
+<h2 id="8-2-原子域和第一范式（Atomic-Domains-and-First-Normal-Form）"><a href="#8-2-原子域和第一范式（Atomic-Domains-and-First-Normal-Form）" class="headerlink" title="8.2 原子域和第一范式（Atomic Domains and First Normal Form）"></a><strong>8.2 原子域和第一范式</strong>（Atomic Domains and First Normal Form）</h2><p><strong>范式（Normal Form，NF）</strong>：是符合某一种级别的关系模式的集合</p>
+<table>
+    <tr>
+        <td>
+            范式的种类：
+            <ul>
+                <li>第一范式（1NF）</li>
+                <li>第二范式（2NF）</li>
+                <li>第三范式（3NF）</li>
+                <li>BC范式（BCNF）</li>
+                <li>第四范式（4NF）</li>
+                <li>第五范式（5NF）</li>
+            </ul>
+        </td>
+        <td style="text-align:center">
+            <img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-2-r-nf.4tudzbjhk800.webp" style="zoom:65%;"/>
+        </td>
+    </tr>
+</table>
+
+
+<h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p><strong>Def</strong>：作为二维表，关系要符合一个最基本的条件：每个分量必须是不可分开的数据项。满足了这个条件的关系模式就属于第一范式（1NF）</p>
+<p>（相对应的情况是多值属性、组合属性，例如 “CS101”可以被拆分为院系CS和课程号101）</p>
+<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p><strong>Def</strong>：若 $R{\subseteq}1NF$，且每一个非主键属性都完全函数依赖于 $R$ 的主键，则  $R{\subseteq}2NF$</p>
+<p>（或者说，$R$ 中任何一个非主属性都完全函数依赖于 $R$ 的每一个候选码（因为任何一个候选码都可以作为主键）） </p>
+<p><strong>反例</strong>：图书馆借阅登记的关系模式 $Borrow(\underline{LCNO}, Name, Dept, \underline{BNO}, Date)$ = {借书证号，借书人姓名，所在部门，图书登录号，借书日期}，但是借书人姓名只依赖于借书证号，而不用同时依赖于图书登录号（属于第一范式而不属于第二范式）</p>
+<p>（第一范式会出现的问题在于，关系模式中一个或一些（但不是候选码中的全部）主属性就可以直接决定一些属性，并能与他们一起拆分开来形成一张新的表；第二范式解决了这个问题）</p>
+<p><strong>Example</strong>：不属于第二范式会产生的异常：（以 $S-L-C(\underline{Sno},Sdept,Sloc,\underline{Cno},Grade)$ 为例）</p>
+<ul>
+<li><p>插入异常：如果插入一个还没选课的新学生，则主属性 $Cno$ 就会为空，插入失败</p>
+</li>
+<li><p>删除异常：如果有个学生只选了一门课，现在他不选了，则这个学生的信息就丢失了</p>
+</li>
+<li><p>修改复杂：比如一个学生转专业，就会重复修改很多的元组</p>
+</li>
+</ul>
+<p>出现原因：例子中有两类非主属性：</p>
+<ul>
+<li>$Grade$：它对码完全函数依赖</li>
+<li>$Sdept$、$Sloc$：它们对码不是完全函数依赖，而是 $Sdept$、$Sloc{\,}{\rightarrow}Sno$</li>
+</ul>
+<p>解决方法：用投影分解把关系模式 $S-L-C$ 分解成两个关系模式</p>
+<ul>
+<li><p>$SC(Sno,Cno,Grade)$</p>
+</li>
+<li><p>$S-L(Sno,Sdept,Sloc)$</p>
+</li>
+</ul>
+<p>总结：当关系模式 $R$ 不是 “good form” 的时候，将其进行分解，从而：</p>
+<ul>
+<li>每个分解成的子关系模式 $R_i$ 都是 “good form”</li>
+<li>每个分解成的子关系模式 $R_i$ 可以无损连接分解（有损连接分解例子参考上面的<a href="#lossydecomp">表格</a>）</li>
+</ul>
+<h2 id="8-3-使用函数依赖进行分解（Decomposition-Using-Functional-Dependencies）"><a href="#8-3-使用函数依赖进行分解（Decomposition-Using-Functional-Dependencies）" class="headerlink" title="8.3 使用函数依赖进行分解（Decomposition Using Functional Dependencies）"></a>8.3 使用函数依赖进行分解（Decomposition Using Functional Dependencies）</h2><p><a href="#fd">函数依赖</a></p>
+<p>（第二范式会出现的问题在于，某些非主属性虽然依赖于某个候选码，但这种依赖不是直接的，而是通过传递依赖得到的，因此仍然会出现冗余）</p>
+<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p><strong>Def</strong>：设 $R$ 是一个关系模式，如果 $R{\in}1NF$ ，并且 $R$ 中不存在任何非主属性传递函数依赖于 $R$ 的某个候选关键字（即候选码），则称 $R$ 是第三范式的</p>
+<p>数学描述：设关系模式 $R{\lt}U,F{\gt}∈1NF$ ，若 $R$ 中不存在这样的码 $X$ 、属性组 $Y$ 及非主属性 $Z$（$Z ⊇ Y$）, 使得 $X→Y$，$Y→Z$成立，$Y{\nrightarrow}X$不成立，则称 $R{\lt}U,F{\gt} ∈ 3NF$</p>
+<p><strong>Th</strong>：设 $R$ 是一个关系模式，如果 $R{\in}3NF$，则必有 $R{\in}2NF$</p>
+<p><strong>反例</strong>：设关系模式 $R=$（账号，姓名，储蓄额，收储员，储蓄所名），”储蓄所名” 通过 “收储员” 依赖于 “账号”；（属于第二范式而不属于第三范式）</p>
+<p><strong>正例</strong>：图书馆借阅登记的关系模式 $Borrow(\underline{LCNO}, Name, Dept, \underline{BNO}, Date)$ = {借书证号，借书人姓名，所在部门，图书登录号，借书日期} 的一种分解方案：$CARD(LCNO, Name, Dept)$ 和 $LOANS(LCNO, BNO, Date)$ 是 $3NF$ </p>
+<p>（第三范式解决了第二范式的问题，但是还有新的问题，即主属性对码可能存在部分函数依赖和传递函数依赖）</p>
+<h3 id="BCNF"><a href="#BCNF" class="headerlink" title="BCNF"></a>BCNF</h3><p><strong>Def 1</strong>：设 $F$ 是关系模式 $R$ 上的 $FD$ 集，如果 $R{\,}{\in}{\,}1NF$，并且在 $R$ 中无任何属性传递函数依赖于 $R$ 中的任何一个码，则称关系模式 $R$ 是属于 $BCNF$ 的</p>
+<p><strong>Def 2</strong>：设 $F$ 是关系模式 $R$ 上的 $FD$ 集，如果对于任一属性集 $Y{\subset}R$ 和任一属性 $A{\,}{\in}{\,}R-Y$。只要 $Y{\to}A$ 成立，$Y$ 必定是 $R$ 的某个超码，则称关系模式 $R$ 是属于 $BCNF$ 的</p>
+<p>（Def 2 比较好，说明任何一条函数依赖的左部都可以作为超码）</p>
+<p><strong>Th</strong>：设 $R$ 是一个关系模式，如果 $R{\in}BCNF$，则必有 $R{\in}3NF$</p>
+<p><strong>性质</strong>：</p>
+<ul>
+<li>所有非主属性都完全函数依赖于每个候选码</li>
+<li>所有主属性都完全函数依赖于每个不包含它的候选码</li>
+<li>没有任何属性完全函数依赖于非码的任何一组属性</li>
+</ul>
+<p>（$BCNF$ 消除了第三范式的问题，实际上已经消除了插入异常和删除异常，即消除了所有基于函数依赖能够发现的冗余，实现了模式的彻底分解，达到了最高的规范化程度）</p>
+<p>（也就是说，看起来没啥问题、不能再拆的一般就是 $BCNF$ ）</p>
+<p><strong>反例</strong>：邮政编码关系模式 $R(City,Street,Zip)$， $FD$ 集 $\{ \{City,Street\}{\to} Zip,{\,}Zip{\to}City\}$ ，显然 $R$ 中不存在非主属性，因为 $\{City,Street\}$ 和 $\{Zip, Street\}$ 都是 $R$ 的候选码，因此 $R{\,}{\in}{\,}3NF$，然而 $City$ 部分函数依赖于 $\{Zip, Street\}$ ，因此也是传递函数依赖于 $\{Zip, Street\}$ ，因而 $R{\,}{\notin}{\,}BCNF$ （属于第三范式而不属于 $BCNF$）</p>
+<p><strong>正例 1</strong>：关系模式 $C(Cno,Cname,Pcno)$ ，只有一个码 $Cno$ ，显然它是唯一的决定因素，因此 $C{\,}{\in}{\,}BCNF$ </p>
+<p><strong>正例 2</strong>：关系模式 $SJP(S,J,P)$, 中，$S$ 是学生，$J$ 表示课程，$P$ 表示名次，假设不存在并列名次，则 $(S,J)$ 和 $(J,P)$ 都可以作为候选码，且没有其他决定因素，因此 $SJP{\,}{\in}{\,}BCNF$ </p>
+<h3 id="函数依赖的保持、等价与覆盖"><a href="#函数依赖的保持、等价与覆盖" class="headerlink" title="函数依赖的保持、等价与覆盖"></a>函数依赖的保持、等价与覆盖</h3><p><strong>Def</strong>：设 ${\rho}={R_1,R_2,…R_k}$ 是关系模式 $R={\lt}W,F{\gt}$ 的一个分解；把 ${\pi}_{R_i}(F)=\{X{\to}Y:{\,}X{\to}Y{\,}{\in}{\,}F^+$ 且 $X{\cup}Y{\,}{\subseteq}{\,}R_i\}$ 称为 $F$ 到 $R_i$ 上的投影。如果所有的投影的并集再去闭包还是原来的函数依赖，即 $({\pi}_{R_1}{\cup}{\pi}_{R_2}{\cup}…{\cup}{\pi}_{R_k})^+=F^+$ ，则称 ${\rho}$ 是<strong>保持 $FD$ 集</strong> $F$ 的</p>
+<p>（简单来说，就是把一个关系模式拆开来以后，原来的所有依赖是不是都还在（可能分散在各个拆开后的关系中），如果都在就叫保持 $FD$ 集；有点像等价类的拆分？）</p>
+<p><strong>Def</strong>：若关系模式 $R$ 上的两个两个 $FD$ 集合$F$ 和 $G$  有 $F^+=G^+$ ，则称 $F$ 和 $G$ 是<strong>等价</strong>的，记为 $F{\equiv}G$</p>
+<p><strong>Def</strong>：若 $FD$ 集 $F{\equiv}G$ ，则称 $G$ 是 $F$ 的一个覆盖</p>
+<h2 id="8-4-函数依赖理论（Functional-Dependency-Theory）"><a href="#8-4-函数依赖理论（Functional-Dependency-Theory）" class="headerlink" title="8.4 函数依赖理论（Functional-Dependency Theory）"></a>8.4 函数依赖理论（Functional-Dependency Theory）</h2><h3 id="函数依赖的闭包"><a href="#函数依赖的闭包" class="headerlink" title="函数依赖的闭包"></a>函数依赖的闭包</h3><p><strong>Def</strong>：关系模式 $R{\lt}U,F{\gt}$ 中任意一个关系 $r$ ，若函数依赖 $X{\to}Y$ 都成立，则称 $F$ <strong>逻辑蕴含</strong> $X{\to}Y$ </p>
+<p><strong>Def</strong>：设 $F$ 是一个函数依赖集，$F$ 的 <strong>闭包</strong> 是被 $F$ 逻辑蕴含的所有函数依赖的集合，记作 $F^+$ </p>
+<h4 id="Armstrong-公理系统"><a href="#Armstrong-公理系统" class="headerlink" title="Armstrong 公理系统"></a>Armstrong 公理系统</h4><ul>
+<li><strong>自反</strong>（<strong>reflexivity</strong>）：如果 ${\beta}{\subseteq}{\alpha}$，则 ${\alpha}{\to}{\beta}$ </li>
+<li><strong>增补</strong>（<strong>augmentation</strong>）：如果 ${\alpha}{\to}{\beta}$ ，则 ${\gamma}{\alpha}{\to}{\gamma}{\beta}$ </li>
+<li><strong>传递</strong>（<strong>transitivity</strong>）：如果 ${\alpha}{\to}{\beta}$ 且  ${\beta}{\to}{\gamma}$ ，则  ${\alpha}{\to}{\gamma}$ </li>
+</ul>
+<p>（Armstrong公理系统是有效且完善的，反复使用可以得到闭包 $F^+$ ）</p>
+<p>由上面三条基本公理，还可以得到一些推论：</p>
+<ul>
+<li><strong>合并</strong>（<strong>union</strong>）：如果 ${\alpha}{\to}{\beta}$ 且  ${\beta}{\to}{\gamma}$ ，则  ${\alpha}{\to}{\beta}{\gamma}$ </li>
+<li><strong>分解</strong>（<strong>decomposition</strong>）：如果  ${\alpha}{\to}{\beta}{\gamma}$ ，则 ${\alpha}{\to}{\beta}$ 且  ${\beta}{\to}{\gamma}$ </li>
+<li><strong>伪传递</strong>（<strong>pseudotransitivity</strong>）：如果 ${\alpha}{\to}{\beta}$ 且 ${\gamma}{\beta}{\to}{\delta}$，则 ${\alpha}{\gamma}{\to}{\delta}$ </li>
+</ul>
+<p>（我自己加一条：如果 ${\alpha}{\to}{\beta}$ ，则 ${\alpha}\gamma{\to}{\beta}$ ）</p>
+<h3 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h3><p><strong>Def</strong>：设 ${\alpha}$ 是一个属性集，在函数依赖 $F$ 下被 ${\alpha}$ 确定的所有属性称为 $F$ 下 $\alpha$ 的<strong>闭包</strong>，记为 ${\alpha}^+$</p>
+<p><strong>算法</strong>：从 $result={\alpha}$ 开始，把能从 $result$ 的子集推导出来的属性全部加入 $result$ </p>
+<p><strong>例</strong>：$U=\{A, B, C, D, E\}$；$F={AB→C, B→D, C→E, EC→B, AC→B}$</p>
+<p>则 $(AB)_F^+=ABCDE$ </p>
+<p><strong>作用</strong>：</p>
+<ul>
+<li>若 ${\alpha}^+$ 包括了所有属性，那么 ${\alpha}$ 可作为该关系的主码</li>
+<li>计算 ${\alpha}^+$ 同样也可以用作计算 $F^+$，因为可以得到 ${\alpha}{\to}{\gamma}$，其中 ${\gamma}{\subseteq}{\alpha}$</li>
+</ul>
+<h3 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h3><p><strong>Def</strong>：如果去除某一函数依赖中的一个属性不改变整个函数依赖集的闭包，则称该属性对于该函数依赖是<strong>无关的</strong>（ <strong>extraneous</strong> ）</p>
+<p><strong>算法</strong>：对于函数依赖 $\alpha\to\beta$，想要判断 $A$ 对于该函数依赖而言是否是无关的 ：</p>
+<p>① 若 $A{\,}{\in}{\,}\alpha$ ，则计算 $(\alpha-A)^+$，若包括 $\beta$，则显然 $A$ 对于 $\alpha\to\beta$ 来说是无关的；（说明不需要 $A$ 也可以推出 $\beta$ ）</p>
+<p>② 若 $A{\,}{\in}{\,}\beta$ ，则计算 ${\alpha}^+$ ，但不使用 $\alpha\to\beta$，而用 $\alpha\to(\beta-A)$ 代替，看看最后包不包括 $A$ ，若包括则无关；（说明 $\alpha$ 依据其他函数依赖就可以推出 $A$ 来了，这里不需要再写一遍）</p>
+<p><strong>例 1</strong>：在函数依赖集 $F=\{A{\to}C,AB{\to}C\}$ 中，属性 $B$ 对于 $AB{\to}C$ 来说是无关的，可以直接 $A{\to}C$ </p>
+<p><strong>例 2</strong>：在函数依赖集 $F=\{A{\to}C,AB{\to}CD\}$ 中，属性 $C$ 对于 $AB{\to}CD$ 来说是无关的，可以直接 $AB{\to}D$ </p>
+<p>（无关属性总是会出现在箭头的左边或右边，不可能不出现的哈，别理解错了）</p>
+<p><strong>Def</strong>：函数依赖集 $F$ 的 <strong>正则覆盖</strong>（<strong>Canonical Cover</strong>），为等价于 $F$ 的最小的函数依赖集，记为 $F_c$ </p>
+<p><strong>算法</strong>：同上述求无关属性算法的两种分类，遍历 $F$ 中的每一条函数依赖 $\alpha\to\beta$ ：</p>
+<p>① 若 $A{\in}\alpha$ 且 $A$ 对于 $\alpha\to\beta$ 是无关属性，则去掉 $F$ 中的 $\alpha\to\beta$ ，用 $(\alpha-A)\to\beta$ 代替；</p>
+<p>② 若 $A{\in}\beta$ 且 $A$ 对于 $\alpha\to\beta$ 是无关属性，则去掉 $F$ 中的 $\alpha\to\beta$ ，用 $\alpha\to(\beta-A)$ 代替；</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>所有函数依赖都不含无关属性</li>
+<li>$F_c$ 中每条函数依赖的<strong>左部是唯一</strong>的，即不存在 ${\alpha}_1{\to}{\beta}_1$ 和 ${\alpha}_1{\to}{\beta}_1$ 但 ${\alpha}_1={\alpha}_2$ </li>
+</ul>
+<p>（所以转化为正则覆盖的本质是合并相同的左部，去掉无关属性）</p>
+<p><strong>例</strong>：$R=(A,B,C)$ ，$F=\{A{\to}BC,{\,}B{\to}C,{\,}A{\to}B,{\,}AB{\to}C\}$ ，</p>
+<p>则 $F_c=\{A{\to}B,{\,}B{\to}C\}$ </p>
+<p><span id="ll-j-d"> </span></p>
+<h3 id="无损分解"><a href="#无损分解" class="headerlink" title="无损分解"></a>无损分解</h3><p><strong>Def</strong>：将关系模式 $R$ 分解为 $R_1$、$R_2$ 时没有信息损失，则称为 <strong>无损分解</strong> （<strong>Lossless-join Decomposition</strong>）</p>
+<p><strong>要求</strong>：对于 $R$ 中的所有实例 $r$ ，都有 $r=r_1{\,}{\,}natrual{\,}join{\,}{\,}r_2$</p>
+<p><strong>充分条件</strong>：以下依赖至少有一个在 $F^+$ 中：</p>
+<ul>
+<li>$R_1{\cap}R_2{\to}R_1$ </li>
+<li>$R_1{\cap}R_2{\to}R_2$ </li>
+</ul>
+<p>上述只是充分条件，当作用在关系模式 $R$ 上的所有约束都是函数依赖时，上述条件就是必要条件</p>
+<p>（也就是说上述条件只能确保函数依赖的信息不被丢失，至于其他的信息就不一定了hhh）</p>
+<h3 id="保持依赖"><a href="#保持依赖" class="headerlink" title="保持依赖"></a>保持依赖</h3><p><strong>Def</strong>：将 $R$ 分解为 $R_1,R_2,…,R_n$ ，函数依赖集 $F$ 在 $R_i$ 上的<strong>限定</strong>是 $F^+$ 中所有只包含 $R_i$ 中属性的函数依赖集合 $F_i$ </p>
+<p><strong>Def</strong>：将 $R$ 分解为 $R_1,R_2,…,R_n$ ，若所有限定有 $(F_1{\cup}F_2{\cup}…{\cup}F_n)^+=F^+$ ，则称该分解为 <strong>保持依赖</strong>（<strong>dependency preserving</strong>） 的分解</p>
+<p><strong>算法 1</strong>：朴素算法，先计算 $F^+$ ，再计算 $(F_1{\cup}F_2{\cup}…{\cup}F_n)^+$ ，最后比较二者是否相等（因为要计算 $F^+$ ，所以开销很大）</p>
+<p><strong>算法 2</strong>：验证充分性：若 $F$ 中每个函数依赖都可以在某个子关系 $R_i$ 上得到验证，那么显然是个保持依赖的分解</p>
+<p><strong>例</strong>：关系模式 $R=(A,B,C)$ ，函数依赖集 $F={A{\to}B,B{\to}C}$ </p>
+<p>则 $R_1=(A,B)$ 和 $R_2=(B,C)$ 就是一个保持依赖的分解，可以用算法2验证；</p>
+<h2 id="8-5-函数依赖的算法（Algorithms-for-Functional-Dependencies）"><a href="#8-5-函数依赖的算法（Algorithms-for-Functional-Dependencies）" class="headerlink" title="8.5 函数依赖的算法（Algorithms for Functional Dependencies）"></a>8.5 <strong>函数依赖的算法</strong>（<strong>Algorithms for Functional Dependencies</strong>）</h2><h3 id="BCNF分解"><a href="#BCNF分解" class="headerlink" title="BCNF分解"></a>BCNF分解</h3><h4 id="判断一个关系-R-是否属于-BCNF"><a href="#判断一个关系-R-是否属于-BCNF" class="headerlink" title="判断一个关系 R 是否属于 BCNF"></a>判断一个关系 R 是否属于 BCNF</h4><p><strong>算法</strong>：遍历 $F$ 中所有 $\alpha{\to}\beta$，计算 ${\alpha}^+$ ，若包含所有的属性，则满足条件；若有一个不包含，则不属于 $BCNF$ </p>
+<p><strong>注意</strong>：如果 $F$ 中没有函数依赖违反 $BCNF$，则 $F^+$ 中也不会由函数依赖违反 $BCNF$ </p>
+<h4 id="判断一个关系分解后是否属于BCNF"><a href="#判断一个关系分解后是否属于BCNF" class="headerlink" title="判断一个关系分解后是否属于BCNF"></a>判断一个关系分解后是否属于BCNF</h4><p><strong>算法</strong>：对分解后的 $R_i$ 中属性的每个属性子集 $\alpha$，确保 $\alpha$ 在原来 $R$ 的函数依赖集 $F$ 下的闭包 $\alpha^+$ 要么不包含 $R_i-\alpha$ 的属性，要么包含 $R_i$ 中的所有属性</p>
+<p><strong>注意</strong>：如果违反了上面的条件，可以得到 $\alpha\to(\alpha^+-\alpha){\cap}R_i{\in}F^+$ ，则违反了 $BCNF$ </p>
+<p>（因为这个时候意味着 $\alpha^+$ 并不包含 $R_i$ 中的所有元素，即 $\alpha$ 不能作为 $R_i$ 的超码；但却出现了 $\alpha$ 在左部的函数依赖，与 $BCNF$ 的 Def 2 矛盾）</p>
+<h4 id="BCNF分解算法"><a href="#BCNF分解算法" class="headerlink" title="BCNF分解算法"></a>BCNF分解算法</h4><p>以下算法可以分解一般的关系模式 $R$ 并保证最终为  $BCNF$ 范式：</p>
+<p>① 计算 $F^+$ ；</p>
+<p>② 遍历每一个不属于 $BCNF$ 的$R_i$，若有：</p>
+<ul>
+<li><p>$\alpha{\,}{\in}{\,}R_i$</p>
+</li>
+<li><p>$\alpha\to\beta$ 在 $R_i$ 上成立</p>
+</li>
+<li><p>$\alpha\cap\beta=\varnothing$ </p>
+<p>则用 $R_i-\beta$ 和 $(\alpha,\beta)$ 替换掉原来的 $R_i$ </p>
+</li>
+</ul>
+<p><strong>注意</strong>：我们在判定某个 $R_i$ 不属于 $BCNF$ 的时候就已经得到 $\alpha$ 了，相当于我们是在用违反 $BCNF$ 的依赖在进行分解</p>
+<p><strong>例</strong>：$R=(A,B,C)$ ，$F=\{A\to B,{\,}B{\to}C\}$</p>
+<p>则显然 $A$ 是码，但还存在 $B\to C$，于是可以分解为 $(A,B)$ 和 $(B,C)$ </p>
+<p><strong>反例</strong>：$R=(J,K,L)$ ，$F=\{JK\to L,{\,}L{\to}K\}$，$R$ 不是 $BCNF$ ，但是任何分解都不能保证 $JK\to L$ 了</p>
+<p>（虽然总是可以无损分解（除函数依赖外）为 $BCNF$ ，但是函数依赖无法总是保留）</p>
+<p>（这样的反例启示我们，有时候并不能分解为 $BCNF$ ，引出了下面的 $3NF$ 分解）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-8-2.o2sm6cx3mcg.webp" alt="db-8-2" style="zoom:50%;" /></p>
+<h3 id="3NF分解"><a href="#3NF分解" class="headerlink" title="3NF分解"></a>3NF分解</h3><p>（上面的反例说明，有时候我们需要保留一些冗余，来分解为无损分解、保持依赖的 $3NF$ （上面的$(l_1,k_1)$ 就是在重复））</p>
+<h4 id="判断一个关系-R-是否属于-3NF"><a href="#判断一个关系-R-是否属于-3NF" class="headerlink" title="判断一个关系 R 是否属于 3NF"></a>判断一个关系 R 是否属于 3NF</h4><p><strong>算法</strong>：遍历 $F$ 中的每个函数依赖 $\alpha \to \beta$ ：</p>
+<ul>
+<li>计算 $\alpha^+$ ，若包含 $R$ 的所有属性，即为超码，则符合条件</li>
+<li>否则，遍历 $\beta$ 中的每个属性，判断是否都包含于某个候选码中；若是，则符合条件；</li>
+</ul>
+<p>（算法的原理在于，第三范式已经解决了非主属性传递依赖与码的问题，但是还没有解决主属性之间的依赖问题；因此若 $\alpha$ 不是超码，则 $\beta$ 应该是主属性的集合）</p>
+<p>（只要遍历 $F$ 中的函数依赖就可，不用计算 $F^+$ ）</p>
+<p>（由于要计算候选码，因此判定非常复杂，应该是个NP问题；但是分解为 $3NF$ 却是P类问题）</p>
+<h4 id="3NF-分解算法"><a href="#3NF-分解算法" class="headerlink" title="3NF 分解算法"></a>3NF 分解算法</h4><p>以下算法可以对一般关系模式 $R$ 在保持依赖的情况下无损分解为 $3NF$ ：</p>
+<p>① 计算 $F_c$ ；</p>
+<p>② 遍历 $F_c$ 中每一条函数依赖 $\alpha \to \beta$ ，组合成 $\alpha \beta$ 作为 $R_i$ 加入；</p>
+<p>③ 若没有一个 $R_i$ 包含原来 $R$ 的任一候选码，则任意选 $R$ 的一个候选码作为一个新的 $R_i$ 加入；</p>
+<p>④ 除冗：若有某个关系模式 $R_j$ 包含于 $R_i$ ，则删除 $R_j$ ；最后丢弃原来的 $R$，将所有 $R_i$ 作为分解结果；</p>
+<p><strong>注意</strong>：总是可以将任意关系模式保持依赖、无损分解为第三范式！！！</p>
+<p><strong>例</strong>：设关系模式 $R=$（账号，储蓄额，收储员，储蓄所名），有函数依赖 $F=$ $\{$ </p>
+<ul>
+<li>(账号，收储员) $\to$ (储蓄额，储蓄所名)</li>
+<li>收储员 $\to$ 储蓄所名</li>
+<li>(账号，储蓄所名) $\to$ 收储员 $\}$ </li>
+</ul>
+<p>（这里假定某个客户在某家银行的负责人，即收储员是唯一的，多对一）</p>
+<p>(账号，收储员) 可作为候选码，但是有 储蓄所名 依赖于 收储员 间接依赖于这个候选码，因此不是第三范式</p>
+<p>计算得到 $F_c=\{$ </p>
+<ul>
+<li>(账号，收储员) $\to$ 储蓄额</li>
+<li>收储员 $\to$ 储蓄所名</li>
+<li>(账号，储蓄所名) $\to$ 收储员 $\}$ </li>
+</ul>
+<p>依据上边的算法，可拆分为两张子表：(账号，收储员，储蓄额) 和 (储蓄所名，收储员)</p>
+<h2 id="8-6-多值依赖（Multivalued-Dependencies-）"><a href="#8-6-多值依赖（Multivalued-Dependencies-）" class="headerlink" title="8.6 多值依赖（Multivalued Dependencies ）"></a>8.6 多值依赖（Multivalued Dependencies ）</h2><p>（函数依赖只能表示事物之间、事物属性之间一对一或一对多的联系，但还需要多值依赖来表示某事物（或事物属性）与其他多个事物（或事物属性）的相关关系）</p>
+<p><strong>Def 像集</strong>：设 $R(U)$ 是一个关系， $X, Y{\in}U$；对于 $R$ 的元组中的每一个 $X$ 的值 $x$ ，都存在着某个 $Y$ 值的集合与之相关联，我们称这个 $Y$ 值的集合为 $R$ 中 $x$ 的 $Y$ <strong>像集</strong>，记作 $Y_U(x)$ ，即 $Y_U(x)=\{t[Y] {\,}|{\,}t{\in}R$ 且 $t[X]=x\}$</p>
+<h4 id="多值依赖的定义"><a href="#多值依赖的定义" class="headerlink" title="多值依赖的定义"></a>多值依赖的定义</h4><p>（多值依赖就是某个属性集合的一个值对应的像集有多个值的关联关系）</p>
+<p><strong>Def 1</strong>：设 $R(U)$ 是一个关系模式， $X, Y{\,}{\in}{\,}U$，$Z=U-XY$，关系模式 $R$ 上的一个多值依赖是形如 $g:X\to \to Y$ 的一个命题，它的含义是：对于$R$ 的任一可能的实例关系中的元组的每一个 $XZ$ 的值 $xz$ ，都有 $Y_U(xz)=Y_U(x)$ ，即对于每一个给定的 $XZ$-值，其 $Y$-像集的值都仅仅依赖于 $XZ$-值的 $X$ 分量，而与 $Z$ 分量毫无关系。称在 $R$ 上 $X$ 多值决定 $Y$ ，或 $Y$ 多值依赖于 $X$ </p>
+<p><strong>Def 2</strong>：设 $R(U)$ 是一个关系模式， $X, Y{\,}{\in}{\,}U$，$Z=U-XY$，关系模式 $R$ 上的一个多值依赖是形如 $g:X\to \to Y$ 的一个命题，它的含义是：对于$R$ 的任一可能的实例关系 $r$ ，如果存在元组 $t,s{\,}{\in}{\,}r$，使得 $t[X]=s[X]$ ，则必定存在元组 $u{\,}{\in}{\,}r$，使得 $u[X]=t[X]=s[X]$ ，而 $u[Y]=t[Y]$ ， $u[Z]=s[Z]$ </p>
+<p>（太抽象了，赶紧先看个例子：$\downarrow$）</p>
+<p><strong>例</strong>：$inst_info{\,}(ID, child_name, phone_number)$ </p>
+<table style="text-align:center">
+    <thead>
+        <tr>
+            <td>ID</td><td>child_name</td><td>phone_number</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>99999</td><td>David</td><td>512-555-1234</td>
+        </tr>
+        <tr>
+            <td>99999</td><td>David</td><td>512-555-1234</td>
+        </tr>
+        <tr>
+            <td>99999</td><td>William</td><td>512-555-1234</td>
+        </tr>
+        <tr>
+            <td>99999</td><td>William</td><td>512-555-1234</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>有：$ID\to\to child_name$ 和 $ID\to\to phone_number$ ，即 $child_name$ 属性和 $phone_number$ 属性分别于 $ID$ 属性多值相关，但二者无关；</p>
+<p><strong>引理</strong>：$R(U)$ 是个关系模式：</p>
+<ul>
+<li>$X\to \to Y$ 当且仅当 $X\to \to U-XY$ ；</li>
+<li>$Y’=Y-X$ ，则 $X\to \to Y$ 当且仅当 $X\to \to Y’$ ；</li>
+<li>若 $Y{\,}{\subseteq}{\,}X{\,}{\subseteq}{\,}U$ ，则 $X\to \to Y$ ；</li>
+<li>若 $U=XY$ ，则  $X\to \to Y$ ；</li>
+</ul>
+<h4 id="函数依赖与多值依赖的关系"><a href="#函数依赖与多值依赖的关系" class="headerlink" title="函数依赖与多值依赖的关系"></a>函数依赖与多值依赖的关系</h4><p>① 函数依赖可以被看做是多值依赖的一个子类</p>
+<p>② 重要区别：</p>
+<ul>
+<li>函数依赖定义， $X\to Y$是否成立仅与 $XY$ 的值有关，不受其他属性值的影响</li>
+<li>多值依赖 $X\to \to Y$ 是否成立，不仅要考察 $XY$ 的值，而且要考察 $U-XY$ 的值；即，讨论任何一个 $X\to \to Y$ 不能离开它的论域，论域变化，$X\to \to Y$ 满足性就要改变</li>
+</ul>
+<p>（多值依赖考虑的比较多，例如 $R($班级，学员，课程$)$，则班级$\to \to$学员，班级$\to \to$课程；如果扩展该模式，  $R’($班级，学员，课程，成绩$)$，则上述两个多值依赖都不再成立。论域变化，属性值之间关系不再满足多值依赖的定义。）</p>
+<p><strong>注意</strong>：若 $Y\to Z$，则  $Y\to \to Z$ </p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><p><strong>Th</strong>：设  $r$ 是关系模式 $R(U)$ 的一个实例关系，$X, Y{\,}{\in}{\,}U$ 而 $Z=U-XY$ ，则关系 $r$ 满足MVD  $X\to \to Y$ 当且仅当 $r$ 可以联接无损地分解到两个关系模式 $R1 =XY$ 和 $R2 =XZ$ 上</p>
+<p><strong>检验方法</strong>：检验某个关系 $r$ 是否满足多值依赖 $X\to \to Y$ ：把 $r$ 投影到 $XY$ 和 $XZ$ （$Z$ 就是上面的补集）上，然后对投影做自然连接；若结果还是 $r$ ，则有 $X\to \to Y$ ，否则不成立；</p>
+<p><strong>多值依赖推导公理</strong>：（单一的MVD环境）设 $R(U)$ 是一个关系模式， $X, Y, W, Z{\in}U$，则</p>
+<ul>
+<li>MVD0（补规则）$X\to \to Y$ ，则 $X\to \to U-XY$ ；</li>
+<li>MVD1（自反公理）若 $Y{\,}{\subseteq}{\,}X{\,}{\subseteq}{\,}U$ ，则 $X\to \to Y$ ；</li>
+<li>MVD2（增广规则）若 $V{\subseteq}W$，$X\to \to Y$ ，则 $XW\to \to YV$ ； </li>
+<li>MVD3（传递规则）若$X\to \to Y$ ，$Y\to \to Z$，则$X\to \to Z$ ；</li>
+<li>MVD4（并规则）若$X\to \to Y$ ，$X\to \to Z$，则$X\to \to YZ$ ；</li>
+<li>MVD5（投影规则）若$X\to \to Y$ ，$X\to \to Z$，则$X\to \to Y{\cap}Z$ ；</li>
+<li>MVD6（伪传递规则）若$X\to \to Y$ ，$WY\to \to Z$，则 $XW\to \to Z-YW$</li>
+</ul>
+<p>（MVD 0、1、3 就可以推出其他公式）</p>
+<h4 id="第四范式"><a href="#第四范式" class="headerlink" title="第四范式"></a>第四范式</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p><strong>Def 平凡多值依赖</strong>：若 $\beta{\,}{\subseteq}{\,}\alpha$ 或者 ${\beta}{\,}{\cup}{\alpha}=R$ ，则称 $\alpha \to \to \beta$ 称为平凡的多值依赖</p>
+<p><strong>Def</strong>：设 $R$ 是一个关系模式，如果对于在 $R$ 上成立的每一个非平凡 $MVD$ $X\to \to Y$ ，$X$ 都是 $R$ 的一个超码，则称 $R$ 是属于第四范式的，记作 $R{\,}{\in}{\,}4NF$ </p>
+<p><strong>Def 闭包</strong>：（闭包的扩展定义）$D$ 是函数依赖和多值依赖的集合， $D$ 的<strong>闭包</strong> $D^+$ 是由 $D$ 逻辑蕴涵的所有函数依赖和多值依赖的集合</p>
+<p><strong>Def</strong>：$D$ 在 $R_i$ 上的限定集合 $D_i$ 定义为：</p>
+<ul>
+<li>$D^+$ 中所有只含 $R_i$ 中属性的函数依赖；</li>
+<li>所有形如 $\alpha \to \to (\beta{\cap}R_i)$ 的多值依赖，其中 $\alpha{\subseteq}R_i$ 且  $\alpha \to \to \beta {\,}{\subseteq}{\,}D^+$</li>
+</ul>
+<p><strong>注意</strong>：第四范式一定属于 $BCNF$ </p>
+<h5 id="第四范式分解"><a href="#第四范式分解" class="headerlink" title="第四范式分解"></a>第四范式分解</h5><p>以下算法可以无损分解为 $4NF$ ：</p>
+<p>① 计算 $D^+$ ；</p>
+<p>② 对每一个不属于第四范式的子关系模式 $R_i$，令  $\alpha \to \to \beta$ 为在$R_i$ 上成立的非平凡多值依赖，使得 $\alpha \to R_i$ 不属于 $D_i$ ，且 $\alpha {\,}{\cap}{\,} \beta=\varnothing$ ，则使用 $R_i- \beta$ 和 $(\alpha,{\,}\beta)$ 代替 $R_i$ ；</p>
+<p><strong>例</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-4.1mhypu7zajc0.webp" alt="db-4"></p>
+<p>（我实在不想打字了，原谅我吧~现在已经<img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/2022/5/1.4bnb2bltajs0.webp"></img>了，该去洗澡啦~）</p>
+<p>（第五范式不太常用，其实最重要的是 $BCNF$ 和第三范式！）</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/04/30/%E7%AC%AC11%E7%AB%A0%E7%AC%94%E8%AE%B0%20II/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算理论基础 第11章 复杂性理论与难解问题 II</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-8-Relational-Database-Design"><span class="nav-text">Chapter 8: Relational Database Design</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E5%A5%BD%E7%9A%84%E5%85%B3%E7%B3%BB%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%88Features-of-Good-Relational-Design%EF%BC%89"><span class="nav-text">8.1 好的关系设计的特点（Features of Good Relational Design）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E9%80%89%E6%8B%A9%EF%BC%88Design-Alternative%EF%BC%89"><span class="nav-text">设计选择（Design Alternative）:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%BC%82%E5%B8%B8%EF%BC%88Storage-Anomaly%EF%BC%89"><span class="nav-text">存储异常（Storage Anomaly）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F"><span class="nav-text">关系模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BE%9D%E8%B5%96"><span class="nav-text">数据依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%EF%BC%88MVD%EF%BC%8CMulti-Valued-Dependency%EF%BC%89%EF%BC%88%E5%B0%86%E5%9C%A88-6%E8%8A%82%E4%BB%8B%E7%BB%8D%EF%BC%89"><span class="nav-text">多值依赖（MVD，Multi-Valued Dependency）（将在8.6节介绍） </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%EF%BC%88FD%EF%BC%8CFunctional-Dependency%EF%BC%89"><span class="nav-text">函数依赖（FD，Functional Dependency）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A0%81"><span class="nav-text">码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E5%8E%9F%E5%AD%90%E5%9F%9F%E5%92%8C%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F%EF%BC%88Atomic-Domains-and-First-Normal-Form%EF%BC%89"><span class="nav-text">8.2 原子域和第一范式（Atomic Domains and First Normal Form）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F"><span class="nav-text">第一范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F"><span class="nav-text">第二范式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E8%BF%9B%E8%A1%8C%E5%88%86%E8%A7%A3%EF%BC%88Decomposition-Using-Functional-Dependencies%EF%BC%89"><span class="nav-text">8.3 使用函数依赖进行分解（Decomposition Using Functional Dependencies）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="nav-text">第三范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BCNF"><span class="nav-text">BCNF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%9A%84%E4%BF%9D%E6%8C%81%E3%80%81%E7%AD%89%E4%BB%B7%E4%B8%8E%E8%A6%86%E7%9B%96"><span class="nav-text">函数依赖的保持、等价与覆盖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%90%86%E8%AE%BA%EF%BC%88Functional-Dependency-Theory%EF%BC%89"><span class="nav-text">8.4 函数依赖理论（Functional-Dependency Theory）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%9A%84%E9%97%AD%E5%8C%85"><span class="nav-text">函数依赖的闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Armstrong-%E5%85%AC%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-text">Armstrong 公理系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E9%9B%86%E7%9A%84%E9%97%AD%E5%8C%85"><span class="nav-text">属性集的闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A6%86%E7%9B%96"><span class="nav-text">正则覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%8D%9F%E5%88%86%E8%A7%A3"><span class="nav-text">无损分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81%E4%BE%9D%E8%B5%96"><span class="nav-text">保持依赖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%9A%84%E7%AE%97%E6%B3%95%EF%BC%88Algorithms-for-Functional-Dependencies%EF%BC%89"><span class="nav-text">8.5 函数依赖的算法（Algorithms for Functional Dependencies）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BCNF%E5%88%86%E8%A7%A3"><span class="nav-text">BCNF分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%85%B3%E7%B3%BB-R-%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8E-BCNF"><span class="nav-text">判断一个关系 R 是否属于 BCNF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%85%B3%E7%B3%BB%E5%88%86%E8%A7%A3%E5%90%8E%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8EBCNF"><span class="nav-text">判断一个关系分解后是否属于BCNF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BCNF%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="nav-text">BCNF分解算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3NF%E5%88%86%E8%A7%A3"><span class="nav-text">3NF分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%85%B3%E7%B3%BB-R-%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8E-3NF"><span class="nav-text">判断一个关系 R 是否属于 3NF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3NF-%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="nav-text">3NF 分解算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%EF%BC%88Multivalued-Dependencies-%EF%BC%89"><span class="nav-text">8.6 多值依赖（Multivalued Dependencies ）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">多值依赖的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E4%B8%8E%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">函数依赖与多值依赖的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E8%8C%83%E5%BC%8F"><span class="nav-text">第四范式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E8%8C%83%E5%BC%8F%E5%88%86%E8%A7%A3"><span class="nav-text">第四范式分解</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

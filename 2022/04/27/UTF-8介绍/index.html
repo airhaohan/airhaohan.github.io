@@ -23,126 +23,10 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"祝阿姨生日快乐 ! ! ! 🎂 Forever young and brave🚀~"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcome to airhaohan's secret place !"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"><style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 
 <body>
@@ -379,7 +263,7 @@ mjx-container[display="true"] + br {
 <p>这样就得出这转义序列的码点，然后我们再把它编码成 UTF-8。如果只有高代理项而欠缺低代理项，或是低代理项不在合法码点范围，我们都返回 <code>LEPT_PARSE_INVALID_UNICODE_SURROGATE</code> 错误。如果 <code>\u</code> 后不是 4 位十六进位数字，则返回 <code>LEPT_PARSE_INVALID_UNICODE_HEX</code> 错误。</p>
 <h2 id="3-UTF-8-编码"><a href="#3-UTF-8-编码" class="headerlink" title="3. UTF-8 编码"></a>3. UTF-8 编码</h2><p>UTF-8 在网页上的使用率势无可挡：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/Utf8webgrowth.1qx2yjktetds.webp" alt="Utf8webgrowth"></p>
-<p>（图片来自 <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Utf8webgrowth.svg">Wikipedia Common<i class="fas fa-external-link-alt"></i></a>，数据来自 Google 对网页字符编码的统计。）</p>
+<p>（图片来自 <a class="link"   target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Utf8webgrowth.svg" >Wikipedia Common<i class="fas fa-external-link-alt"></i></a>，数据来自 Google 对网页字符编码的统计。）</p>
 <p>由于我们的 JSON 库也只支持 UTF-8，我们需要把码点编码成 UTF-8。这里简单介绍一下 UTF-8 的编码方式。</p>
 <p>UTF-8 的编码单元为 8 位（1 字节），每个码点编码成 1 至 4 个字节。它的编码方式很简单，按照码点的范围，把码点的二进位分拆成 1 至最多 4 个字节：</p>
 <table style="text-align:center">
@@ -415,10 +299,10 @@ mjx-container[display="true"] + br {
 <li>用十六进位表示即：0xE2, 0x82, 0xAC</li>
 </ol>
 <p>对于这例子的范围，对应的 C 代码是这样的：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (u &gt;= <span class="number">0x0800</span> &amp;&amp; u &lt;= <span class="number">0xFFFF</span>) {</span><br><span class="line">    OutputByte(<span class="number">0xE0</span> | ((u &gt;&gt; <span class="number">12</span>) &amp; <span class="number">0xFF</span>)); <span class="comment">/* 0xE0 = 11100000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ((u &gt;&gt;  <span class="number">6</span>) &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x80 = 10000000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ( u        &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x3F = 00111111 */</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (u &gt;= <span class="number">0x0800</span> &amp;&amp; u &lt;= <span class="number">0xFFFF</span>) &#123;</span><br><span class="line">    OutputByte(<span class="number">0xE0</span> | ((u &gt;&gt; <span class="number">12</span>) &amp; <span class="number">0xFF</span>)); <span class="comment">/* 0xE0 = 11100000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ((u &gt;&gt;  <span class="number">6</span>) &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x80 = 10000000 */</span></span><br><span class="line">    OutputByte(<span class="number">0x80</span> | ( u        &amp; <span class="number">0x3F</span>)); <span class="comment">/* 0x3F = 00111111 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>UTF-8 的解码稍复杂一点，但我们的 JSON 库不会校验 JSON 文本是否符合 UTF-8，所以这里也不展开了。</p>
 <hr>
-<p>转载自Milo Yip大佬的<a class="link" target="_blank" rel="noopener" href="https://github.com/miloyip/json-tutorial">lept_JSON项目<i class="fas fa-external-link-alt"></i></a></p>
+<p>转载自Milo Yip大佬的<a class="link"   target="_blank" rel="noopener" href="https://github.com/miloyip/json-tutorial" >lept_JSON项目<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
@@ -452,13 +336,13 @@ mjx-container[display="true"] + br {
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/04/28/Chapter%208%20Relational%20Database%20Design/"
+                           href="/2022/04/29/%E7%AC%AC11%E7%AB%A0%E7%AC%94%E8%AE%B0%20I/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">数据库引论 第8章 关系数据库设计</span>
+                                <span class="post-nav-title-item">计算理论基础 第11章 复杂性理论与难解问题 I</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -668,5 +552,20 @@ mjx-container[display="true"] + br {
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
