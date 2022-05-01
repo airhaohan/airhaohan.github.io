@@ -26,7 +26,119 @@
     KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcome to airhaohan's secret place !"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 6.1.0"></head>
+<meta name="generator" content="Hexo 6.1.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -232,7 +344,7 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles/" >题目<i class="fas fa-external-link-alt"></i></a></h2><h4 id="LeetCode-2218-从栈中取出K个硬币的最大面值和（hard）"><a href="#LeetCode-2218-从栈中取出K个硬币的最大面值和（hard）" class="headerlink" title="LeetCode 2218. 从栈中取出K个硬币的最大面值和（hard）"></a>LeetCode 2218. 从栈中取出K个硬币的最大面值和（hard）</h4><p>一张桌子上总共有 <code>n</code> 个硬币 <strong>栈</strong> 。每个栈有 <strong>正整数</strong> 个带面值的硬币。</p>
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a class="link" target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles/">题目<i class="fas fa-external-link-alt"></i></a></h2><h4 id="LeetCode-2218-从栈中取出K个硬币的最大面值和（hard）"><a href="#LeetCode-2218-从栈中取出K个硬币的最大面值和（hard）" class="headerlink" title="LeetCode 2218. 从栈中取出K个硬币的最大面值和（hard）"></a>LeetCode 2218. 从栈中取出K个硬币的最大面值和（hard）</h4><p>一张桌子上总共有 <code>n</code> 个硬币 <strong>栈</strong> 。每个栈有 <strong>正整数</strong> 个带面值的硬币。</p>
 <p>每一次操作中，你可以从任意一个栈的 <strong>顶部</strong> 取出 1 个硬币，从栈中移除它，并放入你的钱包里。</p>
 <p>给你一个列表 <code>piles</code> ，其中 <code>piles[i</code>] 是一个整数数组，分别表示第 <code>i</code> 个栈里 从顶到底 的硬币面值。同时给你一个正整数 <code>k</code> ，请你返回在 恰好 进行 <code>k</code> 次操作的前提下，你钱包里硬币面值之和 <strong>最大为多少</strong> 。</p>
 <p><strong>示例 1：</strong></p>
@@ -253,10 +365,10 @@
 <li><code>j</code>代表到第<code>i</code>个栈为止一共往背包里装了多少个数，最大不能超过<code>k</code>，但同时也不能超过从第<code>1</code>个栈到第<code>i</code>个栈为止所有栈中的数的个数之和，因为显然不能将所有栈中的数字都取出来后再继续取。因此需要一个<code>sum</code>来记录。还有，从当前栈中不取任何数的情况单独处理，不放进for循环中，因此<code>j &gt;= 1</code></li>
 <li><code>l</code>代表从第<code>i</code>个栈里取出了多少个数，不能超过当前栈的数的总数，也不能超过当前假定的、到这个栈为止一共往背包里装了多少个数，即<code>j</code></li>
 </ul>
-<h2 id="代码（C-实现）"><a href="#代码（C-实现）" class="headerlink" title="代码（C++实现）"></a>代码（C++实现）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxValueOfCoins</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; piles, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = piles.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(k + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            sum += piles[i - <span class="number">1</span>].<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; piles[i - <span class="number">1</span>].<span class="built_in">size</span>(); ++j)</span><br><span class="line">                piles[i - <span class="number">1</span>][j] += piles[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= k &amp;&amp; j &lt;= sum; ++j) &#123;</span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">1</span>; l &lt;= j &amp;&amp; l &lt;= piles[i - <span class="number">1</span>].<span class="built_in">size</span>(); ++l) &#123;</span><br><span class="line">                    dp[i][j] = <span class="built_in">max</span>(dp[i][j], dp[i - <span class="number">1</span>][j - l] + piles[i - <span class="number">1</span>][l - <span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">                ret = <span class="built_in">max</span>(ret, dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="代码（C-实现）"><a href="#代码（C-实现）" class="headerlink" title="代码（C++实现）"></a>代码（C++实现）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxValueOfCoins</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; piles, <span class="type">int</span> k)</span> </span>{</span><br><span class="line">        <span class="type">int</span> n = piles.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(k + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">            sum += piles[i - <span class="number">1</span>].<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; piles[i - <span class="number">1</span>].<span class="built_in">size</span>(); ++j)</span><br><span class="line">                piles[i - <span class="number">1</span>][j] += piles[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= k &amp;&amp; j &lt;= sum; ++j) {</span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">1</span>; l &lt;= j &amp;&amp; l &lt;= piles[i - <span class="number">1</span>].<span class="built_in">size</span>(); ++l) {</span><br><span class="line">                    dp[i][j] = <span class="built_in">max</span>(dp[i][j], dp[i - <span class="number">1</span>][j - l] + piles[i - <span class="number">1</span>][l - <span class="number">1</span>]);</span><br><span class="line">                }</span><br><span class="line">                ret = <span class="built_in">max</span>(ret, dp[i][j]);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
 <hr>
-<p>有收获的话，求个赞~ <a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles/solution/by-airhao-han-f15m/" >Click Here<i class="fas fa-external-link-alt"></i></a></p>
-<p>来源：力扣（LeetCode）<br>链接：<a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles" >https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles<i class="fas fa-external-link-alt"></i></a></p>
+<p>有收获的话，求个赞~ <a class="link" target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles/solution/by-airhao-han-f15m/">Click Here<i class="fas fa-external-link-alt"></i></a></p>
+<p>来源：力扣（LeetCode）<br>链接：<a class="link" target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles">https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 

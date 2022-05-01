@@ -26,7 +26,119 @@
     KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcome to airhaohan's secret place !"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 6.1.0"></head>
+<meta name="generator" content="Hexo 6.1.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -232,7 +344,7 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-swaps-to-group-all-1s-together-ii/" >题目<i class="fas fa-external-link-alt"></i></a></h2><h4 id="LeetCode-2134-最少交换次数来组合所有的-1-II（median）"><a href="#LeetCode-2134-最少交换次数来组合所有的-1-II（median）" class="headerlink" title="LeetCode 2134. 最少交换次数来组合所有的 1 II（median）"></a>LeetCode 2134. 最少交换次数来组合所有的 1 II（median）</h4><p><strong>交换</strong> 定义为选中一个数组中的两个 <strong>互不相同</strong> 的位置并交换二者的值。</p>
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a class="link" target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-swaps-to-group-all-1s-together-ii/">题目<i class="fas fa-external-link-alt"></i></a></h2><h4 id="LeetCode-2134-最少交换次数来组合所有的-1-II（median）"><a href="#LeetCode-2134-最少交换次数来组合所有的-1-II（median）" class="headerlink" title="LeetCode 2134. 最少交换次数来组合所有的 1 II（median）"></a>LeetCode 2134. 最少交换次数来组合所有的 1 II（median）</h4><p><strong>交换</strong> 定义为选中一个数组中的两个 <strong>互不相同</strong> 的位置并交换二者的值。</p>
 <p><strong>环形</strong> 数组是一个数组，可以认为 <strong>第一个</strong> 元素和 <strong>最后一个</strong> 元素 <strong>相邻</strong> 。</p>
 <p>给你一个 <strong>二进制环形</strong> 数组 <code>nums</code> ，返回在 <strong>任意位置</strong> 将数组中的所有 <code>1</code> 聚集在一起需要的最少交换次数。</p>
 <p><strong>示例 1：</strong></p>
@@ -261,10 +373,10 @@
 </li>
 </ul>
 <h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/5977_2.4crhaxo85ck0.webp" alt="5977_2"></p>
-<h2 id="代码（C-实现）"><a href="#代码（C-实现）" class="headerlink" title="代码（C++实现）"></a>代码（C++实现）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSwaps</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> len = <span class="built_in">accumulate</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (len == n || !len)   <span class="comment">//若全为1或全为0，则不需要操作</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> now_sum = <span class="built_in">accumulate</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">begin</span>() + len, <span class="number">0</span>);</span><br><span class="line">        <span class="type">int</span> ret = len - now_sum;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            now_sum -= nums[i - <span class="number">1</span>];</span><br><span class="line">            now_sum += nums[(i + len - <span class="number">1</span>) % n];</span><br><span class="line">            ret = <span class="built_in">min</span>(ret, len - now_sum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="代码（C-实现）"><a href="#代码（C-实现）" class="headerlink" title="代码（C++实现）"></a>代码（C++实现）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSwaps</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> len = <span class="built_in">accumulate</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (len == n || !len)   <span class="comment">//若全为1或全为0，则不需要操作</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> now_sum = <span class="built_in">accumulate</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">begin</span>() + len, <span class="number">0</span>);</span><br><span class="line">        <span class="type">int</span> ret = len - now_sum;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) {</span><br><span class="line">            now_sum -= nums[i - <span class="number">1</span>];</span><br><span class="line">            now_sum += nums[(i + len - <span class="number">1</span>) % n];</span><br><span class="line">            ret = <span class="built_in">min</span>(ret, len - now_sum);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
 <hr>
-<p>有收获的话，求个赞~ <a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-swaps-to-group-all-1s-together-ii/solution/c-hua-dong-chuang-kou-shuang-bai-by-airh-cs9v/" >Click Here<i class="fas fa-external-link-alt"></i></a></p>
-<p>来源：力扣（LeetCode）<br>链接：<a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-swaps-to-group-all-1s-together-ii" >https://leetcode-cn.com/problems/minimum-swaps-to-group-all-1s-together-ii<i class="fas fa-external-link-alt"></i></a></p>
+<p>有收获的话，求个赞~ <a class="link" target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-swaps-to-group-all-1s-together-ii/solution/c-hua-dong-chuang-kou-shuang-bai-by-airh-cs9v/">Click Here<i class="fas fa-external-link-alt"></i></a></p>
+<p>来源：力扣（LeetCode）<br>链接：<a class="link" target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-swaps-to-group-all-1s-together-ii">https://leetcode-cn.com/problems/minimum-swaps-to-group-all-1s-together-ii<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
