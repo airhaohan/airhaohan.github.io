@@ -346,9 +346,9 @@
 <p><strong>反例</strong>：设关系模式 $R=$（账号，姓名，储蓄额，收储员，储蓄所名），”储蓄所名” 通过 “收储员” 依赖于 “账号”；（属于第二范式而不属于第三范式）</p>
 <p><strong>正例</strong>：图书馆借阅登记的关系模式 $Borrow(\underline{LCNO}, Name, Dept, \underline{BNO}, Date)$ = {借书证号，借书人姓名，所在部门，图书登录号，借书日期} 的一种分解方案：$CARD(LCNO, Name, Dept)$ 和 $LOANS(LCNO, BNO, Date)$ 是 $3NF$ </p>
 <p>（第三范式解决了第二范式的问题，但是还有新的问题，即主属性对码可能存在部分函数依赖和传递函数依赖）</p>
-<h3 id="BCNF"><a href="#BCNF" class="headerlink" title="BCNF"></a>BCNF</h3><p><strong>Def 1</strong>：设 $F$ 是关系模式 $R$ 上的 $FD$ 集，如果 $R{\,}{\in}{\,}1NF$，并且在 $R$ 中无任何属性传递函数依赖于 $R$ 中的任何一个码，则称关系模式 $R$ 是属于 $BCNF$ 的</p>
+<h3 id="BCNF"><a href="#BCNF" class="headerlink" title="BCNF"></a>BCNF</h3><p><strong>Def 1</strong>：设 $F$ 是关系模式 $R$ 上的 $FD$ 集，如果 $R{\,}{\in}{\,}1NF$，并且在 $R$ 中无任何属性传递函数依赖于 $R$ 中的任何一个码，则称关系模式 $R$ 是属于 $BCNF$ 的 <span id="bcnf-def2"></span></p>
 <p><strong>Def 2</strong>：设 $F$ 是关系模式 $R$ 上的 $FD$ 集，如果对于任一属性集 $Y{\subset}R$ 和任一属性 $A{\,}{\in}{\,}R-Y$。只要 $Y{\to}A$ 成立，$Y$ 必定是 $R$ 的某个超码，则称关系模式 $R$ 是属于 $BCNF$ 的</p>
-<p>（Def 2 比较好，说明任何一条函数依赖的左部都可以作为超码）</p>
+<p>（Def 2 比较好，<strong>说明BCNF的任何一条函数依赖的左部都可以作为超码</strong>）</p>
 <p><strong>Th</strong>：设 $R$ 是一个关系模式，如果 $R{\in}BCNF$，则必有 $R{\in}3NF$</p>
 <p><strong>性质</strong>：</p>
 <ul>
@@ -361,10 +361,6 @@
 <p><strong>反例</strong>：邮政编码关系模式 $R(City,Street,Zip)$， $FD$ 集 $\{ \{City,Street\}{\to} Zip,{\,}Zip{\to}City\}$ ，显然 $R$ 中不存在非主属性，因为 $\{City,Street\}$ 和 $\{Zip, Street\}$ 都是 $R$ 的候选码，因此 $R{\,}{\in}{\,}3NF$，然而 $City$ 部分函数依赖于 $\{Zip, Street\}$ ，因此也是传递函数依赖于 $\{Zip, Street\}$ ，因而 $R{\,}{\notin}{\,}BCNF$ （属于第三范式而不属于 $BCNF$）</p>
 <p><strong>正例 1</strong>：关系模式 $C(Cno,Cname,Pcno)$ ，只有一个码 $Cno$ ，显然它是唯一的决定因素，因此 $C{\,}{\in}{\,}BCNF$ </p>
 <p><strong>正例 2</strong>：关系模式 $SJP(S,J,P)$, 中，$S$ 是学生，$J$ 表示课程，$P$ 表示名次，假设不存在并列名次，则 $(S,J)$ 和 $(J,P)$ 都可以作为候选码，且没有其他决定因素，因此 $SJP{\,}{\in}{\,}BCNF$ </p>
-<h3 id="函数依赖的保持、等价与覆盖"><a href="#函数依赖的保持、等价与覆盖" class="headerlink" title="函数依赖的保持、等价与覆盖"></a>函数依赖的保持、等价与覆盖</h3><p><strong>Def</strong>：设 ${\rho}={R_1,R_2,…R_k}$ 是关系模式 $R={\lt}W,F{\gt}$ 的一个分解；把 ${\pi}_{R_i}(F)=\{X{\to}Y:{\,}X{\to}Y{\,}{\in}{\,}F^+$ 且 $X{\cup}Y{\,}{\subseteq}{\,}R_i\}$ 称为 $F$ 到 $R_i$ 上的投影。如果所有的投影的并集再去闭包还是原来的函数依赖，即 $({\pi}_{R_1}{\cup}{\pi}_{R_2}{\cup}…{\cup}{\pi}_{R_k})^+=F^+$ ，则称 ${\rho}$ 是<strong>保持 $FD$ 集</strong> $F$ 的</p>
-<p>（简单来说，就是把一个关系模式拆开来以后，原来的所有依赖是不是都还在（可能分散在各个拆开后的关系中），如果都在就叫保持 $FD$ 集；有点像等价类的拆分？）</p>
-<p><strong>Def</strong>：若关系模式 $R$ 上的两个两个 $FD$ 集合$F$ 和 $G$  有 $F^+=G^+$ ，则称 $F$ 和 $G$ 是<strong>等价</strong>的，记为 $F{\equiv}G$</p>
-<p><strong>Def</strong>：若 $FD$ 集 $F{\equiv}G$ ，则称 $G$ 是 $F$ 的一个覆盖</p>
 <h2 id="8-4-函数依赖理论（Functional-Dependency-Theory）"><a href="#8-4-函数依赖理论（Functional-Dependency-Theory）" class="headerlink" title="8.4 函数依赖理论（Functional-Dependency Theory）"></a>8.4 函数依赖理论（Functional-Dependency Theory）</h2><h3 id="函数依赖的闭包"><a href="#函数依赖的闭包" class="headerlink" title="函数依赖的闭包"></a>函数依赖的闭包</h3><p><strong>Def</strong>：关系模式 $R{\lt}U,F{\gt}$ 中任意一个关系 $r$ ，若函数依赖 $X{\to}Y$ 都成立，则称 $F$ <strong>逻辑蕴含</strong> $X{\to}Y$ </p>
 <p><strong>Def</strong>：设 $F$ 是一个函数依赖集，$F$ 的 <strong>闭包</strong> 是被 $F$ 逻辑蕴含的所有函数依赖的集合，记作 $F^+$ </p>
 <h4 id="Armstrong-公理系统"><a href="#Armstrong-公理系统" class="headerlink" title="Armstrong 公理系统"></a>Armstrong 公理系统</h4><ul>
@@ -373,21 +369,49 @@
 <li><strong>传递</strong>（<strong>transitivity</strong>）：如果 ${\alpha}{\to}{\beta}$ 且  ${\beta}{\to}{\gamma}$ ，则  ${\alpha}{\to}{\gamma}$ </li>
 </ul>
 <p>（Armstrong公理系统是有效且完善的，反复使用可以得到闭包 $F^+$ ）</p>
+<p>（自反律的使用并不依靠于 $F^+$ ）</p>
 <p>由上面三条基本公理，还可以得到一些推论：</p>
 <ul>
 <li><strong>合并</strong>（<strong>union</strong>）：如果 ${\alpha}{\to}{\beta}$ 且  ${\beta}{\to}{\gamma}$ ，则  ${\alpha}{\to}{\beta}{\gamma}$ </li>
 <li><strong>分解</strong>（<strong>decomposition</strong>）：如果  ${\alpha}{\to}{\beta}{\gamma}$ ，则 ${\alpha}{\to}{\beta}$ 且  ${\beta}{\to}{\gamma}$ </li>
 <li><strong>伪传递</strong>（<strong>pseudotransitivity</strong>）：如果 ${\alpha}{\to}{\beta}$ 且 ${\gamma}{\beta}{\to}{\delta}$，则 ${\alpha}{\gamma}{\to}{\delta}$ </li>
 </ul>
+<p><strong>引理 1</strong>：$X\to A_1A_2…A_k$ 的重要条件是 $X\to A_i,{\,}(i=1,2,…,k)$ 成立</p>
 <p>（我自己加一条：如果 ${\alpha}{\to}{\beta}$ ，则 ${\alpha}\gamma{\to}{\beta}$ ）</p>
-<h3 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h3><p><strong>Def</strong>：设 ${\alpha}$ 是一个属性集，在函数依赖 $F$ 下被 ${\alpha}$ 确定的所有属性称为 $F$ 下 $\alpha$ 的<strong>闭包</strong>，记为 ${\alpha}^+$</p>
-<p><strong>算法</strong>：从 $result={\alpha}$ 开始，把能从 $result$ 的子集推导出来的属性全部加入 $result$ </p>
+<h3 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h3><p><strong>Def 1</strong>：设 ${\alpha}$ 是一个属性集，在函数依赖 $F$ 下被 ${\alpha}$ 确定的所有属性称为 $F$ 下 $\alpha$ 的 <strong>闭包</strong>，记为 ${\alpha}^+$ </p>
+<p><strong>Def 2</strong>：设 $F$ 为属性集 $U$ 上的一组函数依赖，$X$ 、$Y{\,}{\subseteq}{\,}U$ ， $X_F^+=\{A{\,}|{\,}X\to A$ 能由 $F$ 根据Armstrong公理导出 $\}$ ，$X_F^+$ 称为属性集 $X$ 关于函数依赖集 $F$ 的闭包</p>
+<p><strong>引理 2</strong>：设 $F$ 为属性集 $U$ 上的一组函数依赖，$X$ 、$Y{\,}{\subseteq}{\,}U$ ，则 $X \to Y$ 能由 $F$ 根据 Armstrong公理导出的充分必要条件是：$Y{\subseteq} X_F^+$ </p>
+<p>（由引理 2可知，要判断是否 $X \to Y$ ，只需先求出 $X_F^+$ ，再判断是否 $Y{\subseteq} X_F^+$ ）</p>
+<p><strong>算法</strong>：从 $result={\alpha}$ 开始，把能从 $result$ 的子集推导出来的属性全部加入 $result$ （就是遍历 $F$ 中的每条函数依赖，若左部属于 $result$，则将其右部加入 $result$；反复遍历，直至 $result$ 不再改变为止）</p>
 <p><strong>例</strong>：$U=\{A, B, C, D, E\}$；$F={AB→C, B→D, C→E, EC→B, AC→B}$</p>
 <p>则 $(AB)_F^+=ABCDE$ </p>
 <p><strong>作用</strong>：</p>
 <ul>
 <li>若 ${\alpha}^+$ 包括了所有属性，那么 ${\alpha}$ 可作为该关系的主码</li>
-<li>计算 ${\alpha}^+$ 同样也可以用作计算 $F^+$，因为可以得到 ${\alpha}{\to}{\gamma}$，其中 ${\gamma}{\subseteq}{\alpha}$</li>
+<li>计算 ${\alpha}^+$ 同样也可以用作计算 $F^+$，因为可以得到 ${\alpha}{\to}{\gamma}$，其中 ${\gamma}{\subseteq}{\alpha}$ </li>
+</ul>
+<h3 id="函数依赖的保持、等价与覆盖"><a href="#函数依赖的保持、等价与覆盖" class="headerlink" title="函数依赖的保持、等价与覆盖"></a>函数依赖的保持、等价与覆盖</h3><p><strong>Def</strong>：设 ${\rho}={R_1,R_2,…R_k}$ 是关系模式 $R={\lt}W,F{\gt}$ 的一个分解；把 ${\pi}_{R_i}(F)=\{X{\to}Y:{\,}X{\to}Y{\,}{\in}{\,}F^+$ 且 $X{\cup}Y{\,}{\subseteq}{\,}R_i\}$ 称为 $F$ 到 $R_i$ 上的投影。如果所有的投影的并集再去闭包还是原来的函数依赖，即 $({\pi}_{R_1}{\cup}{\pi}_{R_2}{\cup}…{\cup}{\pi}_{R_k})^+=F^+$ ，则称 ${\rho}$ 是<strong>保持 $FD$ 集</strong> $F$ 的</p>
+<p>（简单来说，就是把一个关系模式拆开来以后，原来的所有依赖是不是都还在（可能分散在各个拆开后的关系中），如果都在就叫保持 $FD$ 集；有点像等价类的拆分？）</p>
+<p><strong>Def</strong>：若关系模式 $R$ 上的两个两个 $FD$ 集合$F$ 和 $G$  有 $F^+=G^+$ ，则称 $F$ 和 $G$ 是<strong>等价</strong>的，记为 $F{\equiv}G$</p>
+<p><strong>Def</strong>：若 $FD$ 集 $F{\equiv}G$ ，则称 $G$ 是 $F$ 的一个覆盖</p>
+<p><strong>引理 3</strong>： $F^+=G^+$ 的充分必要条件是 $F{\,}{\subseteq}{\,}G^+$ 和 $G{\,}{\subseteq}{\,}F^+$ </p>
+<h3 id="极小函数依赖集"><a href="#极小函数依赖集" class="headerlink" title="极小函数依赖集"></a>极小函数依赖集</h3><p><strong>Def</strong>：如果函数依赖集 $F$ 满足以下条件，称 $F$ 为一个 <strong>极小函数依赖集</strong> ，亦称为 <strong>最小依赖集</strong> 或 <strong>最小覆盖</strong> ：</p>
+<ul>
+<li>$F$ 中任一函数依赖的右部仅含有一个属性</li>
+<li>$F$ 中不存在这样的函数依赖 $X\to A$ ，使得 $F$ 与 $F-\{X\to A\}$ 等价</li>
+<li>$F$ 中不存在这样的函数依赖 $X\to A$ ， $X$ 有真子集 $Z$ 使得 $F-\{X\to A\}{\cup}\{Z\to A\}$ 与 $F$ 等价 </li>
+</ul>
+<p>（第二条代表 $F$ 中的函数依赖均不能由 $F$ 中其他函数依赖导出；第三条代表$F$ 中各函数依赖左部均为最小属性集，不存在冗余） </p>
+<p><strong>Th</strong>：任一函数依赖集 $F$ 均等价于一个极小函数依赖集，记为 $F_m$ </p>
+<p><strong>算法</strong>：</p>
+<p>① 遍历 $F$ 中每一条函数依赖 $X\to Y$ ，若 $Y=A_1A_2…A_k(k{\geq}2)$，则用每一个 $X\to A_i$ 代替</p>
+<p>② 遍历 $F$ 中每一条函数依赖 $X\to A$ ，令 $G=F-\{X\to A\}$ ，若 $A{\in}X_G^+$ ，则删除此函数依赖</p>
+<p>③ 遍历 $F$ 中每一条函数依赖 $X\to A$ ，若 $X=B_1B_2…B_m(m{\geq}2)$ ，则逐一考察 $B_i$ ，若 $A{\,}\in{\,}(X-B_i)_F^+$ ，则用 $(X-B_i)\to A$ 取代 $X\to A$ </p>
+<p>（$F$ 的最小依赖集 $F_m$ 并不一定是唯一的，它与具体的函数依赖以及 $X\to A$ 中 $X$ 各属性的处置顺序有关）</p>
+<p><strong>例</strong>：$F=\{A\to B,{\,}B\to A,{\,}B\to C,{\,}A\to C,{\,}C\to A\}$ ，$F_{m1}$ 和 $F_{m2}$ 都是最小依赖集：</p>
+<ul>
+<li>$F_{m1} = \{A\to B,{\,}B\to{\,}C,{\,}C\to A\}$ </li>
+<li>$F_{m2}=\{A\to B,{\,}B\to A,{\,}A\to C,{\,}C\to A\}$ </li>
 </ul>
 <h3 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h3><p><strong>Def</strong>：如果去除某一函数依赖中的一个属性不改变整个函数依赖集的闭包，则称该属性对于该函数依赖是<strong>无关的</strong>（ <strong>extraneous</strong> ）</p>
 <p><strong>算法</strong>：对于函数依赖 $\alpha\to\beta$，想要判断 $A$ 对于该函数依赖而言是否是无关的 ：</p>
@@ -396,7 +420,7 @@
 <p><strong>例 1</strong>：在函数依赖集 $F=\{A{\to}C,AB{\to}C\}$ 中，属性 $B$ 对于 $AB{\to}C$ 来说是无关的，可以直接 $A{\to}C$ </p>
 <p><strong>例 2</strong>：在函数依赖集 $F=\{A{\to}C,AB{\to}CD\}$ 中，属性 $C$ 对于 $AB{\to}CD$ 来说是无关的，可以直接 $AB{\to}D$ </p>
 <p>（无关属性总是会出现在箭头的左边或右边，不可能不出现的哈，别理解错了）</p>
-<p><strong>Def</strong>：函数依赖集 $F$ 的 <strong>正则覆盖</strong>（<strong>Canonical Cover</strong>），为等价于 $F$ 的最小的函数依赖集，记为 $F_c$ </p>
+<p> <strong>Def</strong>：函数依赖集 $F$ 的 <strong>正则覆盖</strong>（<strong>Canonical Cover</strong>），为等价于 $F$ 的最小的函数依赖集，记为 $F_c$ </p>
 <p><strong>算法</strong>：同上述求无关属性算法的两种分类，遍历 $F$ 中的每一条函数依赖 $\alpha\to\beta$ ：</p>
 <p>① 若 $A{\in}\alpha$ 且 $A$ 对于 $\alpha\to\beta$ 是无关属性，则去掉 $F$ 中的 $\alpha\to\beta$ ，用 $(\alpha-A)\to\beta$ 代替；</p>
 <p>② 若 $A{\in}\beta$ 且 $A$ 对于 $\alpha\to\beta$ 是无关属性，则去掉 $F$ 中的 $\alpha\to\beta$ ，用 $\alpha\to(\beta-A)$ 代替；</p>
@@ -407,10 +431,12 @@
 </ul>
 <p>（所以转化为正则覆盖的本质是合并相同的左部，去掉无关属性）</p>
 <p><strong>例</strong>：$R=(A,B,C)$ ，$F=\{A{\to}BC,{\,}B{\to}C,{\,}A{\to}B,{\,}AB{\to}C\}$ ，</p>
-<p>则 $F_c=\{A{\to}B,{\,}B{\to}C\}$ </p>
+<p>则 $F_c=\{A{\to}B,{\,}B{\to}C\}$  </p>
+<p>（极小函数依赖集的算法和正则覆盖使用去除无关属性的算法本质上是一样的，只是表述不同，尤其是在于正则表达式的右部要合并，而极小函数依赖集要拆开）</p>
 <p><span id="ll-j-d"> </span></p>
 <h3 id="无损分解"><a href="#无损分解" class="headerlink" title="无损分解"></a>无损分解</h3><p><strong>Def</strong>：将关系模式 $R$ 分解为 $R_1$、$R_2$ 时没有信息损失，则称为 <strong>无损分解</strong> （<strong>Lossless-join Decomposition</strong>）</p>
-<p><strong>要求</strong>：对于 $R$ 中的所有实例 $r$ ，都有 $r=r_1{\,}{\,}natrual{\,}join{\,}{\,}r_2$</p>
+<p><strong>要求</strong>：对于 $R$ 中的<strong>所有</strong>实例 $r$ ，都有 $r=r_1{\,}{\,}natrual{\,}join{\,}{\,}r_2$ ：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-10.23nxa4c3adfk.webp" alt="db-10" style="zoom:40%;" /></p>
 <p><strong>充分条件</strong>：以下依赖至少有一个在 $F^+$ 中：</p>
 <ul>
 <li>$R_1{\cap}R_2{\to}R_1$ </li>
@@ -424,11 +450,14 @@
 <p><strong>算法 2</strong>：验证充分性：若 $F$ 中每个函数依赖都可以在某个子关系 $R_i$ 上得到验证，那么显然是个保持依赖的分解</p>
 <p><strong>例</strong>：关系模式 $R=(A,B,C)$ ，函数依赖集 $F={A{\to}B,B{\to}C}$ </p>
 <p>则 $R_1=(A,B)$ 和 $R_2=(B,C)$ 就是一个保持依赖的分解，可以用算法2验证；</p>
+<p><strong>注意</strong>：无损分解强调对于每一个具体的关系实例，拆分以后再自然连接可以得到原来的关系实例；保持依赖强调对于拆分以后的关系模式，仍然可以推导出原来的所有函数依赖；一个是实例层面的要求，一个是理论上的要求；</p>
 <h2 id="8-5-函数依赖的算法（Algorithms-for-Functional-Dependencies）"><a href="#8-5-函数依赖的算法（Algorithms-for-Functional-Dependencies）" class="headerlink" title="8.5 函数依赖的算法（Algorithms for Functional Dependencies）"></a>8.5 <strong>函数依赖的算法</strong>（<strong>Algorithms for Functional Dependencies</strong>）</h2><h3 id="BCNF分解"><a href="#BCNF分解" class="headerlink" title="BCNF分解"></a>BCNF分解</h3><h4 id="判断一个关系-R-是否属于-BCNF"><a href="#判断一个关系-R-是否属于-BCNF" class="headerlink" title="判断一个关系 R 是否属于 BCNF"></a>判断一个关系 R 是否属于 BCNF</h4><p><strong>算法</strong>：遍历 $F$ 中所有 $\alpha{\to}\beta$，计算 ${\alpha}^+$ ，若包含所有的属性，则满足条件；若有一个不包含，则不属于 $BCNF$ </p>
-<p><strong>注意</strong>：如果 $F$ 中没有函数依赖违反 $BCNF$，则 $F^+$ 中也不会由函数依赖违反 $BCNF$ </p>
+<p><strong>注意</strong>：如果 $F$ 中没有函数依赖违反 $BCNF$，则 $F^+$ 中也不会由函数依赖违反 $BCNF$ ，所以只需对 $F$ 中和的函数依赖进行检查；但判断 $R$ 的一个分解 $R_i$ 是否属于 $BCNF$ ，只用 $F$ 就不够了</p>
+<p><strong>反例</strong>：$R=(A,B,C,D,E)$ ，$F={A\to B,{\,}BC\to D}$ ；若将 $R$ 分解为 $R_1=(A,B)$ 和 $R_2=(A,C,D,E)$ ，则用这里的算法，会误认为 $R_2$ 满足 $BCNF$ ；</p>
+<p>事实上， $AC\to D {\in}{\,}F^+$ ，所以 $R_2$ 是不满足 $BCNF$ 的</p>
 <h4 id="判断一个关系分解后是否属于BCNF"><a href="#判断一个关系分解后是否属于BCNF" class="headerlink" title="判断一个关系分解后是否属于BCNF"></a>判断一个关系分解后是否属于BCNF</h4><p><strong>算法</strong>：对分解后的 $R_i$ 中属性的每个属性子集 $\alpha$，确保 $\alpha$ 在原来 $R$ 的函数依赖集 $F$ 下的闭包 $\alpha^+$ 要么不包含 $R_i-\alpha$ 的属性，要么包含 $R_i$ 中的所有属性</p>
 <p><strong>注意</strong>：如果违反了上面的条件，可以得到 $\alpha\to(\alpha^+-\alpha){\cap}R_i{\in}F^+$ ，则违反了 $BCNF$ </p>
-<p>（因为这个时候意味着 $\alpha^+$ 并不包含 $R_i$ 中的所有元素，即 $\alpha$ 不能作为 $R_i$ 的超码；但却出现了 $\alpha$ 在左部的函数依赖，与 $BCNF$ 的 Def 2 矛盾）</p>
+<p>（因为这个时候意味着 $\alpha^+$ 并不包含 $R_i$ 中的所有元素，即 $\alpha$ 不能作为 $R_i$ 的超码；但却出现了 $\alpha$ 在左部的函数依赖，与 $BCNF$ 的 <a href="#bcnf-def2">Def 2</a> 矛盾）</p>
 <h4 id="BCNF分解算法"><a href="#BCNF分解算法" class="headerlink" title="BCNF分解算法"></a>BCNF分解算法</h4><p>以下算法可以分解一般的关系模式 $R$ 并保证最终为  $BCNF$ 范式：</p>
 <p>① 计算 $F^+$ ；</p>
 <p>② 遍历每一个不属于 $BCNF$ 的$R_i$，若有：</p>
@@ -445,7 +474,7 @@
 <p><strong>例</strong>：$R=(A,B,C)$ ，$F=\{A\to B,{\,}B{\to}C\}$</p>
 <p>则显然 $A$ 是码，但还存在 $B\to C$，于是可以分解为 $(A,B)$ 和 $(B,C)$ </p>
 <p><strong>反例</strong>：$R=(J,K,L)$ ，$F=\{JK\to L,{\,}L{\to}K\}$，$R$ 不是 $BCNF$ ，但是任何分解都不能保证 $JK\to L$ 了</p>
-<p>（虽然总是可以无损分解（除函数依赖外）为 $BCNF$ ，但是函数依赖无法总是保留）</p>
+<p>（虽然总是可以无损分解（除函数依赖外）为 $BCNF$ ，但是<strong>函数依赖无法总是保留</strong>）</p>
 <p>（这样的反例启示我们，有时候并不能分解为 $BCNF$ ，引出了下面的 $3NF$ 分解）</p>
 <p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-8-2.o2sm6cx3mcg.webp" alt="db-8-2" style="zoom:50%;" /></p>
 <h3 id="3NF分解"><a href="#3NF分解" class="headerlink" title="3NF分解"></a>3NF分解</h3><p>（上面的反例说明，有时候我们需要保留一些冗余，来分解为无损分解、保持依赖的 $3NF$ （上面的$(l_1,k_1)$ 就是在重复））</p>
@@ -534,6 +563,7 @@
 <li>MVD4（并规则）若$X\to \to Y$ ，$X\to \to Z$，则$X\to \to YZ$ ；</li>
 <li>MVD5（投影规则）若$X\to \to Y$ ，$X\to \to Z$，则$X\to \to Y{\cap}Z$ ；</li>
 <li>MVD6（伪传递规则）若$X\to \to Y$ ，$WY\to \to Z$，则 $XW\to \to Z-YW$</li>
+<li>MVD7（）</li>
 </ul>
 <p>（MVD 0、1、3 就可以推出其他公式）</p>
 <h4 id="第四范式"><a href="#第四范式" class="headerlink" title="第四范式"></a>第四范式</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p><strong>Def 平凡多值依赖</strong>：若 $\beta{\,}{\subseteq}{\,}\alpha$ 或者 ${\beta}{\,}{\cup}{\alpha}=R$ ，则称 $\alpha \to \to \beta$ 称为平凡的多值依赖</p>
@@ -551,6 +581,7 @@
 <p><strong>例</strong>：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-4.1mhypu7zajc0.webp" alt="db-4"></p>
 <p>（我实在不想打字了，原谅我吧~现在已经<img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/2022/5/1.4bnb2bltajs0.webp"></img>了，该去洗澡啦~）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-9.6ikhi3ra3o00.webp" alt="db-9"></p>
 <p>（第五范式不太常用，其实最重要的是 $BCNF$ 和第三范式！）</p>
 
         </div>
@@ -703,7 +734,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-8-Relational-Database-Design"><span class="nav-text">Chapter 8: Relational Database Design</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E5%A5%BD%E7%9A%84%E5%85%B3%E7%B3%BB%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%88Features-of-Good-Relational-Design%EF%BC%89"><span class="nav-text">8.1 好的关系设计的特点（Features of Good Relational Design）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E9%80%89%E6%8B%A9%EF%BC%88Design-Alternative%EF%BC%89"><span class="nav-text">设计选择（Design Alternative）:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%BC%82%E5%B8%B8%EF%BC%88Storage-Anomaly%EF%BC%89"><span class="nav-text">存储异常（Storage Anomaly）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F"><span class="nav-text">关系模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BE%9D%E8%B5%96"><span class="nav-text">数据依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%EF%BC%88MVD%EF%BC%8CMulti-Valued-Dependency%EF%BC%89%EF%BC%88%E5%B0%86%E5%9C%A88-6%E8%8A%82%E4%BB%8B%E7%BB%8D%EF%BC%89"><span class="nav-text">多值依赖（MVD，Multi-Valued Dependency）（将在8.6节介绍） </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%EF%BC%88FD%EF%BC%8CFunctional-Dependency%EF%BC%89"><span class="nav-text">函数依赖（FD，Functional Dependency）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A0%81"><span class="nav-text">码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E5%8E%9F%E5%AD%90%E5%9F%9F%E5%92%8C%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F%EF%BC%88Atomic-Domains-and-First-Normal-Form%EF%BC%89"><span class="nav-text">8.2 原子域和第一范式（Atomic Domains and First Normal Form）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F"><span class="nav-text">第一范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F"><span class="nav-text">第二范式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E8%BF%9B%E8%A1%8C%E5%88%86%E8%A7%A3%EF%BC%88Decomposition-Using-Functional-Dependencies%EF%BC%89"><span class="nav-text">8.3 使用函数依赖进行分解（Decomposition Using Functional Dependencies）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="nav-text">第三范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BCNF"><span class="nav-text">BCNF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%9A%84%E4%BF%9D%E6%8C%81%E3%80%81%E7%AD%89%E4%BB%B7%E4%B8%8E%E8%A6%86%E7%9B%96"><span class="nav-text">函数依赖的保持、等价与覆盖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%90%86%E8%AE%BA%EF%BC%88Functional-Dependency-Theory%EF%BC%89"><span class="nav-text">8.4 函数依赖理论（Functional-Dependency Theory）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%9A%84%E9%97%AD%E5%8C%85"><span class="nav-text">函数依赖的闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Armstrong-%E5%85%AC%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-text">Armstrong 公理系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E9%9B%86%E7%9A%84%E9%97%AD%E5%8C%85"><span class="nav-text">属性集的闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A6%86%E7%9B%96"><span class="nav-text">正则覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%8D%9F%E5%88%86%E8%A7%A3"><span class="nav-text">无损分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81%E4%BE%9D%E8%B5%96"><span class="nav-text">保持依赖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%9A%84%E7%AE%97%E6%B3%95%EF%BC%88Algorithms-for-Functional-Dependencies%EF%BC%89"><span class="nav-text">8.5 函数依赖的算法（Algorithms for Functional Dependencies）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BCNF%E5%88%86%E8%A7%A3"><span class="nav-text">BCNF分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%85%B3%E7%B3%BB-R-%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8E-BCNF"><span class="nav-text">判断一个关系 R 是否属于 BCNF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%85%B3%E7%B3%BB%E5%88%86%E8%A7%A3%E5%90%8E%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8EBCNF"><span class="nav-text">判断一个关系分解后是否属于BCNF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BCNF%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="nav-text">BCNF分解算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3NF%E5%88%86%E8%A7%A3"><span class="nav-text">3NF分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%85%B3%E7%B3%BB-R-%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8E-3NF"><span class="nav-text">判断一个关系 R 是否属于 3NF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3NF-%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="nav-text">3NF 分解算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%EF%BC%88Multivalued-Dependencies-%EF%BC%89"><span class="nav-text">8.6 多值依赖（Multivalued Dependencies ）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">多值依赖的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E4%B8%8E%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">函数依赖与多值依赖的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E8%8C%83%E5%BC%8F"><span class="nav-text">第四范式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E8%8C%83%E5%BC%8F%E5%88%86%E8%A7%A3"><span class="nav-text">第四范式分解</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-8-Relational-Database-Design"><span class="nav-text">Chapter 8: Relational Database Design</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E5%A5%BD%E7%9A%84%E5%85%B3%E7%B3%BB%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%88Features-of-Good-Relational-Design%EF%BC%89"><span class="nav-text">8.1 好的关系设计的特点（Features of Good Relational Design）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E9%80%89%E6%8B%A9%EF%BC%88Design-Alternative%EF%BC%89"><span class="nav-text">设计选择（Design Alternative）:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%BC%82%E5%B8%B8%EF%BC%88Storage-Anomaly%EF%BC%89"><span class="nav-text">存储异常（Storage Anomaly）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F"><span class="nav-text">关系模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BE%9D%E8%B5%96"><span class="nav-text">数据依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%EF%BC%88MVD%EF%BC%8CMulti-Valued-Dependency%EF%BC%89%EF%BC%88%E5%B0%86%E5%9C%A88-6%E8%8A%82%E4%BB%8B%E7%BB%8D%EF%BC%89"><span class="nav-text">多值依赖（MVD，Multi-Valued Dependency）（将在8.6节介绍） </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%EF%BC%88FD%EF%BC%8CFunctional-Dependency%EF%BC%89"><span class="nav-text">函数依赖（FD，Functional Dependency）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A0%81"><span class="nav-text">码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E5%8E%9F%E5%AD%90%E5%9F%9F%E5%92%8C%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F%EF%BC%88Atomic-Domains-and-First-Normal-Form%EF%BC%89"><span class="nav-text">8.2 原子域和第一范式（Atomic Domains and First Normal Form）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F"><span class="nav-text">第一范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F"><span class="nav-text">第二范式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E8%BF%9B%E8%A1%8C%E5%88%86%E8%A7%A3%EF%BC%88Decomposition-Using-Functional-Dependencies%EF%BC%89"><span class="nav-text">8.3 使用函数依赖进行分解（Decomposition Using Functional Dependencies）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="nav-text">第三范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BCNF"><span class="nav-text">BCNF</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%90%86%E8%AE%BA%EF%BC%88Functional-Dependency-Theory%EF%BC%89"><span class="nav-text">8.4 函数依赖理论（Functional-Dependency Theory）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%9A%84%E9%97%AD%E5%8C%85"><span class="nav-text">函数依赖的闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Armstrong-%E5%85%AC%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-text">Armstrong 公理系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E9%9B%86%E7%9A%84%E9%97%AD%E5%8C%85"><span class="nav-text">属性集的闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%9A%84%E4%BF%9D%E6%8C%81%E3%80%81%E7%AD%89%E4%BB%B7%E4%B8%8E%E8%A6%86%E7%9B%96"><span class="nav-text">函数依赖的保持、等价与覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%B0%8F%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E9%9B%86"><span class="nav-text">极小函数依赖集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A6%86%E7%9B%96"><span class="nav-text">正则覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%8D%9F%E5%88%86%E8%A7%A3"><span class="nav-text">无损分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81%E4%BE%9D%E8%B5%96"><span class="nav-text">保持依赖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E7%9A%84%E7%AE%97%E6%B3%95%EF%BC%88Algorithms-for-Functional-Dependencies%EF%BC%89"><span class="nav-text">8.5 函数依赖的算法（Algorithms for Functional Dependencies）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BCNF%E5%88%86%E8%A7%A3"><span class="nav-text">BCNF分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%85%B3%E7%B3%BB-R-%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8E-BCNF"><span class="nav-text">判断一个关系 R 是否属于 BCNF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%85%B3%E7%B3%BB%E5%88%86%E8%A7%A3%E5%90%8E%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8EBCNF"><span class="nav-text">判断一个关系分解后是否属于BCNF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BCNF%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="nav-text">BCNF分解算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3NF%E5%88%86%E8%A7%A3"><span class="nav-text">3NF分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%85%B3%E7%B3%BB-R-%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8E-3NF"><span class="nav-text">判断一个关系 R 是否属于 3NF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3NF-%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="nav-text">3NF 分解算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%EF%BC%88Multivalued-Dependencies-%EF%BC%89"><span class="nav-text">8.6 多值依赖（Multivalued Dependencies ）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">多值依赖的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E4%B8%8E%E5%A4%9A%E5%80%BC%E4%BE%9D%E8%B5%96%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">函数依赖与多值依赖的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E8%8C%83%E5%BC%8F"><span class="nav-text">第四范式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E8%8C%83%E5%BC%8F%E5%88%86%E8%A7%A3"><span class="nav-text">第四范式分解</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
