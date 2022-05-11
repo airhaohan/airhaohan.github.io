@@ -9,7 +9,7 @@
     
     <title>
         
-            数据库引论 第8章 设计关系数据库 |
+            数据库引论 第8章 关系数据库设计 |
         
         Splendid
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">数据库引论 第8章 设计关系数据库</span>
+            <span class="title-hover-animation">数据库引论 第8章 关系数据库设计</span>
         </div>
 
         
@@ -224,7 +224,7 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="Chapter-8-Relational-Database-Design"><a href="#Chapter-8-Relational-Database-Design" class="headerlink" title="Chapter 8: Relational Database Design"></a><strong>Chapter 8: Relational Database Design</strong></h1><h2 id="8-1-好的关系设计的特点（Features-of-Good-Relational-Design）"><a href="#8-1-好的关系设计的特点（Features-of-Good-Relational-Design）" class="headerlink" title="8.1 好的关系设计的特点（Features of Good Relational Design）"></a><strong>8.1 </strong>好的关系设计的特点（Features of Good Relational Design）</h2><h3 id="设计选择（Design-Alternative）"><a href="#设计选择（Design-Alternative）" class="headerlink" title="设计选择（Design Alternative）:"></a>设计选择（Design Alternative）:</h3><ul>
+            <h1 id="Chapter-8-Relational-Database-Design"><a href="#Chapter-8-Relational-Database-Design" class="headerlink" title="Chapter 8: Relational Database Design"></a>Chapter 8: Relational Database Design</h1><h2 id="8-1-好的关系设计的特点（Features-of-Good-Relational-Design）"><a href="#8-1-好的关系设计的特点（Features-of-Good-Relational-Design）" class="headerlink" title="8.1 好的关系设计的特点（Features of Good Relational Design）"></a><strong>8.1 </strong>好的关系设计的特点（Features of Good Relational Design）</h2><h3 id="设计选择（Design-Alternative）"><a href="#设计选择（Design-Alternative）" class="headerlink" title="设计选择（Design Alternative）:"></a>设计选择（Design Alternative）:</h3><ul>
 <li>Larger Schemas（更大的模式）</li>
 <li>Smaller Schemas（更小的模式）</li>
 </ul>
@@ -309,7 +309,7 @@
 <h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p><strong>Def</strong>：作为二维表，关系要符合一个最基本的条件：每个分量必须是不可分开的数据项。满足了这个条件的关系模式就属于第一范式（1NF）</p>
 <p>（相对应的情况是多值属性、组合属性，例如 “CS101”可以被拆分为院系CS和课程号101）</p>
 <h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p><strong>Def</strong>：若 $R{\subseteq}1NF$，且每一个非主键属性都完全函数依赖于 $R$ 的主键，则  $R{\subseteq}2NF$</p>
-<p>（或者说，$R$ 中任何一个非主属性都完全函数依赖于 $R$ 的每一个候选码（因为任何一个候选码都可以作为主键）） </p>
+<p>（或者说，$R$ 中任何一个非主属性都完全函数依赖于 $R$ 的每一个候选码（因为任何一个候选码都可以作为主键，主键就是从候选码中选一个出来的）） </p>
 <p><strong>反例</strong>：图书馆借阅登记的关系模式 $Borrow(\underline{LCNO}, Name, Dept, \underline{BNO}, Date)$ = {借书证号，借书人姓名，所在部门，图书登录号，借书日期}，但是借书人姓名只依赖于借书证号，而不用同时依赖于图书登录号（属于第一范式而不属于第二范式）</p>
 <p>（第一范式会出现的问题在于，关系模式中一个或一些（但不是候选码中的全部）主属性就可以直接决定一些属性，并能与他们一起拆分开来形成一张新的表；第二范式解决了这个问题）</p>
 <p><strong>Example</strong>：不属于第二范式会产生的异常：（以 $S-L-C(\underline{Sno},Sdept,Sloc,\underline{Cno},Grade)$ 为例）</p>
@@ -340,16 +340,23 @@
 </ul>
 <h2 id="8-3-使用函数依赖进行分解（Decomposition-Using-Functional-Dependencies）"><a href="#8-3-使用函数依赖进行分解（Decomposition-Using-Functional-Dependencies）" class="headerlink" title="8.3 使用函数依赖进行分解（Decomposition Using Functional Dependencies）"></a>8.3 使用函数依赖进行分解（Decomposition Using Functional Dependencies）</h2><p><a href="#fd">函数依赖</a></p>
 <p>（第二范式会出现的问题在于，某些非主属性虽然依赖于某个候选码，但这种依赖不是直接的，而是通过传递依赖得到的，因此仍然会出现冗余）</p>
-<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p><strong>Def</strong>：设 $R$ 是一个关系模式，如果 $R{\in}1NF$ ，并且 $R$ 中不存在任何非主属性传递函数依赖于 $R$ 的某个候选关键字（即候选码），则称 $R$ 是第三范式的</p>
-<p>数学描述：设关系模式 $R{\lt}U,F{\gt}∈1NF$ ，若 $R$ 中不存在这样的码 $X$ 、属性组 $Y$ 及非主属性 $Z$（$Z ⊇ Y$）, 使得 $X→Y$，$Y→Z$成立，$Y{\nrightarrow}X$不成立，则称 $R{\lt}U,F{\gt} ∈ 3NF$</p>
-<p><strong>Th</strong>：设 $R$ 是一个关系模式，如果 $R{\in}3NF$，则必有 $R{\in}2NF$</p>
+<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p><strong>Def 1</strong>：设 $R$ 是一个关系模式，如果 $R{\in}1NF$ ，并且 $R$ 中不存在任何非主属性传递函数依赖于 $R$ 的某个候选关键字（即候选码），则称 $R$ 是第三范式的</p>
+<p><strong>Def 2</strong>：设 $R$ 是一个关系模式， $R{\in}1NF$ ，对于 $R$ 上函数依赖的闭包 $F^+$ 中的所有函数依赖 $\alpha\to \beta$ ，以下一项至少成立：</p>
+<ul>
+<li>$\alpha\to \beta$ 是平凡函数依赖</li>
+<li>$\alpha$ 是 $R$ 的一个超码</li>
+<li>$\beta - \alpha$ 中的每个属性都包含在 $R$ 的一个候选码中</li>
+</ul>
+<p>（Def 2 更好理解）</p>
+<p><strong>数学描述</strong>：设关系模式 $R{\lt}U,F{\gt}∈1NF$ ，若 $R$ 中不存在这样的码 $X$ 、属性组 $Y$ 及非主属性 $Z$（$Y{\not\subset}Z$）, 使得 $X→Y$，$Y→Z$成立，$Y{\nrightarrow}X$不成立，则称 $R{\lt}U,F{\gt} ∈ 3NF$ </p>
+<p><strong>Th</strong>：设 $R$ 是一个关系模式，如果 $R{\in}3NF$，则必有 $R{\in}2NF$ </p>
 <p><strong>反例</strong>：设关系模式 $R=$（账号，姓名，储蓄额，收储员，储蓄所名），”储蓄所名” 通过 “收储员” 依赖于 “账号”；（属于第二范式而不属于第三范式）</p>
 <p><strong>正例</strong>：图书馆借阅登记的关系模式 $Borrow(\underline{LCNO}, Name, Dept, \underline{BNO}, Date)$ = {借书证号，借书人姓名，所在部门，图书登录号，借书日期} 的一种分解方案：$CARD(LCNO, Name, Dept)$ 和 $LOANS(LCNO, BNO, Date)$ 是 $3NF$ </p>
 <p>（第三范式解决了第二范式的问题，但是还有新的问题，即主属性对码可能存在部分函数依赖和传递函数依赖）</p>
 <h3 id="BCNF"><a href="#BCNF" class="headerlink" title="BCNF"></a>BCNF</h3><p><strong>Def 1</strong>：设 $F$ 是关系模式 $R$ 上的 $FD$ 集，如果 $R{\,}{\in}{\,}1NF$，并且在 $R$ 中无任何属性传递函数依赖于 $R$ 中的任何一个码，则称关系模式 $R$ 是属于 $BCNF$ 的 <span id="bcnf-def2"></span></p>
 <p><strong>Def 2</strong>：设 $F$ 是关系模式 $R$ 上的 $FD$ 集，如果对于任一属性集 $Y{\subset}R$ 和任一属性 $A{\,}{\in}{\,}R-Y$。只要 $Y{\to}A$ 成立，$Y$ 必定是 $R$ 的某个超码，则称关系模式 $R$ 是属于 $BCNF$ 的</p>
-<p>（Def 2 比较好，<strong>说明BCNF的任何一条函数依赖的左部都可以作为超码</strong>）</p>
-<p><strong>Th</strong>：设 $R$ 是一个关系模式，如果 $R{\in}BCNF$，则必有 $R{\in}3NF$</p>
+<p>（Def 2 比较好，<strong>说明BCNF的任何一条非平凡函数依赖的左部都可以作为超码</strong>）</p>
+<p><strong>Th</strong>：设 $R$ 是一个关系模式，如果 $R{\in}BCNF$，则必有 $R{\in}3NF$ </p>
 <p><strong>性质</strong>：</p>
 <ul>
 <li>所有非主属性都完全函数依赖于每个候选码</li>
@@ -424,6 +431,7 @@
 <p><strong>算法</strong>：同上述求无关属性算法的两种分类，遍历 $F$ 中的每一条函数依赖 $\alpha\to\beta$ ：</p>
 <p>① 若 $A{\in}\alpha$ 且 $A$ 对于 $\alpha\to\beta$ 是无关属性，则去掉 $F$ 中的 $\alpha\to\beta$ ，用 $(\alpha-A)\to\beta$ 代替；</p>
 <p>② 若 $A{\in}\beta$ 且 $A$ 对于 $\alpha\to\beta$ 是无关属性，则去掉 $F$ 中的 $\alpha\to\beta$ ，用 $\alpha\to(\beta-A)$ 代替；</p>
+<p>③ 去除所有无关属性后，若出现 $\alpha\to\beta_1$ 和 $\alpha\to\beta_2$ ，则用 $\alpha\to(\beta_1 \cup \beta_2)$ 代替这两条函数依赖</p>
 <p><strong>特点</strong>：</p>
 <ul>
 <li>所有函数依赖都不含无关属性</li>
@@ -455,6 +463,7 @@
 <p><strong>注意</strong>：如果 $F$ 中没有函数依赖违反 $BCNF$，则 $F^+$ 中也不会由函数依赖违反 $BCNF$ ，所以只需对 $F$ 中和的函数依赖进行检查；但判断 $R$ 的一个分解 $R_i$ 是否属于 $BCNF$ ，只用 $F$ 就不够了</p>
 <p><strong>反例</strong>：$R=(A,B,C,D,E)$ ，$F={A\to B,{\,}BC\to D}$ ；若将 $R$ 分解为 $R_1=(A,B)$ 和 $R_2=(A,C,D,E)$ ，则用这里的算法，会误认为 $R_2$ 满足 $BCNF$ ；</p>
 <p>事实上， $AC\to D {\in}{\,}F^+$ ，所以 $R_2$ 是不满足 $BCNF$ 的</p>
+<p><strong>注意</strong>：<mark>$BCNF$ 的要求非常简单，就是所有非平凡函数依赖的左部都是超码</mark></p>
 <h4 id="判断一个关系分解后是否属于BCNF"><a href="#判断一个关系分解后是否属于BCNF" class="headerlink" title="判断一个关系分解后是否属于BCNF"></a>判断一个关系分解后是否属于BCNF</h4><p><strong>算法</strong>：对分解后的 $R_i$ 中属性的每个属性子集 $\alpha$，确保 $\alpha$ 在原来 $R$ 的函数依赖集 $F$ 下的闭包 $\alpha^+$ 要么不包含 $R_i-\alpha$ 的属性，要么包含 $R_i$ 中的所有属性</p>
 <p><strong>注意</strong>：如果违反了上面的条件，可以得到 $\alpha\to(\alpha^+-\alpha){\cap}R_i{\in}F^+$ ，则违反了 $BCNF$ </p>
 <p>（因为这个时候意味着 $\alpha^+$ 并不包含 $R_i$ 中的所有元素，即 $\alpha$ 不能作为 $R_i$ 的超码；但却出现了 $\alpha$ 在左部的函数依赖，与 $BCNF$ 的 <a href="#bcnf-def2">Def 2</a> 矛盾）</p>

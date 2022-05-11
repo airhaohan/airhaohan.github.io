@@ -9,7 +9,7 @@
     
     <title>
         
-            test5-2-4 |
+            LRU 算法与 MRU 算法对比 |
         
         Splendid
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">test5-2-4</span>
+            <span class="title-hover-animation">LRU 算法与 MRU 算法对比</span>
         </div>
 
         
@@ -184,10 +184,32 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-05-02 08:14:10</span>
-        <span class="mobile">2022-05-02 08:14</span>
+        <span class="pc">2022-05-11 16:56:00</span>
+        <span class="mobile">2022-05-11 16:56</span>
     </span>
     
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Computation-Structure/">Computation Structure</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E8%AE%A1%E7%BB%84/">计组</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -202,41 +224,133 @@
         
 
         <div class="article-content markdown-body">
-            <script type="math/tex; mode=display">
-{\alpha} {\beta} {\gamma}</script><script type="math/tex; mode=display">
-a {\,} {\in} {\,} A</script>
+            <p>计算机组成与体系结构，第7章存储器层次结构，关于Cache组相连映射的替换算法对比。</p>
+<h1 id="LRU-算法与-MRU-算法对比"><a href="#LRU-算法与-MRU-算法对比" class="headerlink" title="LRU 算法与 MRU 算法对比"></a>LRU 算法与 MRU 算法对比</h1><h3 id="LRU-算法"><a href="#LRU-算法" class="headerlink" title="LRU 算法"></a>LRU 算法</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>LRU（least-recently used）算法，即最近最少用，当某组的行已满，需要替换时，选择替换最近最少用的那行</p>
+<ul>
+<li><p>LRU是一种栈算法，它的命中率随组的增大而提高</p>
+</li>
+<li><p>当分块局部化范围（即：某段时间集中访问的存储区）超过了Cache存储容量时，命中率变得很低。极端情况下，假设地址流是1,2,3,4,1 2,3,4,1,……，而Cache每组只有3行，那么，不管是FIFO，还是LRU算法，其命中率都为0。这种现象称为颠簸（Thrashing / PingPong）</p>
+</li>
+</ul>
+<p><strong>例</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/csapp-7-1.v5irkokoqzk.webp" alt="csapp-7-1"></p>
+<p>显然，</p>
+<ul>
+<li><p>每组3行的命中情况时每组4行的命中情况的子集；</p>
+</li>
+<li><p>每组4行的命中情况时每组5行的命中情况的子集；</p>
+</li>
+</ul>
+<p><strong>注意</strong>：一般都是 $2^k$ 行每组，这里只是为了演示</p>
+<h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><p>LRU具体实现时，并不是通过移动块来实现的，而是通过给每个cache行设定一个计数器，根据计数值来记录这些主存块的使用情况。这个计数值称为LRU位。</p>
+<p><strong>例</strong>：还是上边的地址流，以关联度为4举例</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/csapp-7-2.3aas4nzs6zu0.webp" alt="csapp-7-2"></p>
+<p><strong>计数器变化规律</strong>：</p>
+<ul>
+<li><p>每组4行时，计数器有2位，计数值越小则说明越被常用</p>
+</li>
+<li><p>命中时，被访问行的计数器置0，比其低的计数器加1，其余不变</p>
+</li>
+<li><p>未命中且该组未满时，新行计数器置为0，其余全加1</p>
+</li>
+<li><p>未命中且该组已满时，计数值为3的那一行中的主存块被淘汰，新行计数器置为0，其余加1</p>
+</li>
+</ul>
+<p><strong>注意</strong>：每次都是加入到空的行或者加入到计数值位3的行中，并将该行计数值置为0，其他行计数值加1（如果计数值已经是 3 ，就不加了），这样计数值仍然可以保证是 0、1、2、3 的序列！！！</p>
+<h3 id="MRU-算法"><a href="#MRU-算法" class="headerlink" title="MRU 算法"></a>MRU 算法</h3><p>MRU（most-recently used）算法，即最近最常用，当某组的行已满，需要替换时，选择替换最近最少用的那行</p>
+<h3 id="LRU-算法-与-MRU-算法对比"><a href="#LRU-算法-与-MRU-算法对比" class="headerlink" title="LRU 算法 与 MRU 算法对比"></a>LRU 算法 与 MRU 算法对比</h3><p><strong>例</strong>：假定计算机系统主存空间大小为 32K x16 位，且有一个 4K 字的 4 路组相联 Cache，主存和Cache 之间的数据交换块的大小为 64 字。假定 Cache 开始为空，处理器顺序地从存储单元 0、1、…、4351 中取数，一共重复 10 次。设 Cache 比主存快 10 倍。采用 LRU 算法。试分析 Cache 的结构和主存地址的划分。说明采用 Cache 后速度提高了多少？采用 MRU 算法后呢？</p>
+<p><strong>解</strong>：</p>
+<p>假定主存按字编址，每字16位。那么：</p>
+<ul>
+<li>主存 =  32Kx16 位 = 32K字 = 512块 x 64字/块 （已知每块64字，得到512块）</li>
+<li>Cache = 4K 字 = 16组 x 4行/组 x 64字/行 （已知每行64字和每组4行，得到16组）</li>
+</ul>
+<p>主存地址划分为：（每块就是每行）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/csapp-7-3.12kr3ck75fvk.webp" alt="csapp-7-3" style="zoom:50%;" /></p>
+<p>顺序地从存储单元 0、1、…、4351 中取数，相当于 4352 / 64 = 68 块，对前 68 块连续访问10次</p>
+<h4 id="LRU算法"><a href="#LRU算法" class="headerlink" title="LRU算法"></a>LRU算法</h4><p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/csapp-7-4.2nt40zhwbnc0.webp" alt="csapp-7-4"></p>
+<ul>
+<li><p>刚开始全是空的，显然68块（每块要占1行）都没有命中；但刚开始全部填满也只能填到0到63块，剩下64、65、66、67这四块要分别替换掉0、1、2、3的位置</p>
+</li>
+<li><p>接着，第二次循环，</p>
+<ul>
+<li>0、1、2、3 命中不了，分别代替了16、17、18、19的位置，</li>
+<li>然后16、17、18、19分别替代32、33、34、35的位置，</li>
+<li>然后32、33、34、35分别替代48、49、50、51的位置，</li>
+<li>然后48、49、50、51分别替代64、65、66、67的位置，</li>
+<li>然后64、65、66、67的分别替代0、1、2、3的位置，到这里就是20次未命中；</li>
+<li>其余块不受影响</li>
+</ul>
+</li>
+<li><p>之后的循环都和第二次循环相同</p>
+</li>
+</ul>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>第一次循环，每一块只有第一字未命中，其余都命中</li>
+<li>之后 9 次循环，有 20 块的第一字未命中，其余都命中</li>
+</ul>
+<p>（相当于由于多出来的64-67，使得余数为0、1、2、3的这20块一直都未命中，所以一直循环；而其他块只是第一次未命中，之后的循环都可以直接在Cache中找到）</p>
+<p>（其实这里余数为0、1、2、3的这20块就出现了上边所说的“颠簸”）</p>
+<p>命中率为：99.43%</p>
+<script type="math/tex; mode=display">
+\frac{43520-68-9\times20}{43520}=99.43\%</script><p>速度提高为：9.5倍</p>
+<script type="math/tex; mode=display">
+\frac{t_m}{t_a}=\frac{t_m}{t_c+(1-p)t_m}=\frac{10}{1+10\times(1-99.43\%)}=9.5</script><p>（题目中又说假设Cache比主存快10倍，就是说访问Cache的时间是访问主存时间的1/10）</p>
+<h4 id="MRU算法"><a href="#MRU算法" class="headerlink" title="MRU算法"></a>MRU算法</h4><p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/csapp-7-5.sfxypj64ry8.webp" alt="csapp-7-5"></p>
+<ul>
+<li><p>跟刚刚一样，第一次所有都未命中，之后只有余数为0-3的块受影响；</p>
+</li>
+<li><p>第一次，是64、65、66、67替换了48、49、50、51，4次未命中</p>
+</li>
+<li><p>第二次，是48、49、50、51替换了32、33、34、35，4次未命中</p>
+</li>
+<li><p>第三次，是32、33、34、35替换了16、17、18、19，4次未命中</p>
+</li>
+<li><p>第四次，是16、17、18、19替换了0、1、2、3，4，4次未命中</p>
+</li>
+<li><p>第五次，首先是0、1、2、3，4替换了64、65、66、67，接着是64、65、66、67替换了48、49、50、51，因此是8次未命中</p>
+</li>
+<li><p>第六、七、八、九和第二、三、四、五相同，第十和第二相同</p>
+</li>
+</ul>
+<p>（你想想，MRU算法是替换掉最近被使用的，我们按顺序访问0-67，比如对于32，如果32要替换掉谁的话，一定是替换掉16，因为此时第0组必定是0、16、48、64，距离访问32最近的上一个第0组成员一定是访问16）</p>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>第一次68个字都未命中</li>
+<li>第 2、3、4、6、7、8、10 次各有 4 字未命中</li>
+<li>第 5、9 次各有 8 字未命中</li>
+</ul>
+<p>命中率为：99.74%</p>
+<script type="math/tex; mode=display">
+\frac{43520-68-7\times4-2\times8}{43520}=99.74\%</script><p>速度提高为：9.77倍</p>
+<script type="math/tex; mode=display">
+\frac{t_m}{t_a}=\frac{t_m}{t_c+(1-p)t_m}=\frac{10}{1+10\times(1-99.74\%)}=9.77</script>
         </div>
 
         
 
         
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E8%AE%A1%E7%BB%84/">#计组</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
         
             <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/05/05/CS%20%E5%B8%B8%E7%94%A8LaTex%E7%AC%A6%E5%8F%B7/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">CS 常用LaTex符号</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
                 
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/05/01/Chapter%208%20Relational%20Database%20Design/"
+                           href="/2022/05/06/%E7%AC%AC11%E7%AB%A0%E7%AC%94%E8%AE%B0%20III/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">数据库引论 第8章 关系数据库设计</span>
+                                <span class="post-nav-title-item">计算理论基础 第11章 复杂性理论与难解问题 III</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -347,7 +461,7 @@ a {\,} {\in} {\,} A</script>
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LRU-%E7%AE%97%E6%B3%95%E4%B8%8E-MRU-%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="nav-text">LRU 算法与 MRU 算法对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LRU-%E7%AE%97%E6%B3%95"><span class="nav-text">LRU 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-text">具体实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRU-%E7%AE%97%E6%B3%95"><span class="nav-text">MRU 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LRU-%E7%AE%97%E6%B3%95-%E4%B8%8E-MRU-%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="nav-text">LRU 算法 与 MRU 算法对比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LRU%E7%AE%97%E6%B3%95"><span class="nav-text">LRU算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MRU%E7%AE%97%E6%B3%95"><span class="nav-text">MRU算法</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
