@@ -9,7 +9,7 @@
     
     <title>
         
-            CS 常用LaTex符号 |
+            数据库引论 第10章 存储和文件结构 |
         
         Splendid
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">CS 常用LaTex符号</span>
+            <span class="title-hover-animation">数据库引论 第10章 存储和文件结构</span>
         </div>
 
         
@@ -184,8 +184,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-05-05 18:00:00</span>
-        <span class="mobile">2022-05-05 18:00</span>
+        <span class="pc">2022-05-12 09:04:00</span>
+        <span class="mobile">2022-05-12 09:04</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -193,7 +193,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/blog/">blog</a>&nbsp;
+                        <a href="/categories/Database/">Database</a>&nbsp;
                     </li>
                 
             </ul>
@@ -205,15 +205,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/latex/">latex</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/markdown/">markdown</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/blog/">blog</a>&nbsp;
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
                     </li>
                 
             </ul>
@@ -232,42 +224,113 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="CS-常用LaTex符号"><a href="#CS-常用LaTex符号" class="headerlink" title="CS 常用LaTex符号"></a>CS 常用LaTex符号</h1><h2 id="集合论"><a href="#集合论" class="headerlink" title="集合论"></a>集合论</h2><p>属于：$\in$    \in    $\notin$    \notin</p>
-<p>子集：$\subseteq$    \subseteq    $\not\subseteq$    \not\subseteq</p>
-<p>真子集：$\subset$    \subset    $\not\subset$    \not\subset</p>
-<p>并集：$\cup$    \cup</p>
-<p>交集：$\cap$    \cap</p>
-<p>空集：$\varnothing$    \varnoting</p>
-<p>对称差：$\oplus$    \oplus</p>
-<p>笛卡尔积：$\times$    \times</p>
-<p>阿列夫零：$\aleph_0$    $\aleph_0</p>
-<h2 id="代数"><a href="#代数" class="headerlink" title="代数"></a>代数</h2><p>下确界：$\wedge$    \wedge</p>
-<p>上确界：$\vee$    \vee</p>
-<p>小于等于：$\preccurlyeq$    \preccurlyeq</p>
-<p>大于等于：$\succcurlyeq$    $\succcurlyeq</p>
-<p>小于：$\prec$    \prec</p>
-<p>大于：$\succ$    \succ</p>
-<p>函数符合：$\circ$    \circ</p>
-<h2 id="数理逻辑"><a href="#数理逻辑" class="headerlink" title="数理逻辑"></a>数理逻辑</h2><p>合取：$\wedge$    \wedge</p>
-<p>析取：$\vee$    \vee</p>
-<p>蕴含：$\to$    \to 或 \rightarrow</p>
-<p>等价：$\leftrightarrow$    \leftrightarrow</p>
-<p>取反：$\neg$    \neg</p>
-<h2 id="形式语言与自动机"><a href="#形式语言与自动机" class="headerlink" title="形式语言与自动机"></a>形式语言与自动机</h2><p>空字符：$\llcorner!\lrcorner$    \llcorner\!\lrcorner</p>
-<p>空串：$\varepsilon$    \varepsilon</p>
-<p>转移函数：$\delta$    \delta</p>
-<p>开始符号：$\vdash$    \vdash</p>
-<p>结束符号：$\dashv$    \dashv</p>
-<p>井号：$\sharp$    \sharp</p>
-<p>派生：$\Rightarrow$    \Rightarrow</p>
-<h2 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h2><p>阿尔法：$\alpha$    \alpha</p>
-<p>贝塔：$\beta$    \beta</p>
-<p>伽马：$\Gamma$    \Gamma    $\gamma$    \gamma</p>
-<p>西格玛：$\Sigma$    \Sigma    $\sigma$    \sigma</p>
-<p>德尔塔：$\Delta$    \Delta    $\delta$    \delta</p>
-<p>拉姆达：$\Lambda$    \Lambda    $\lambda$    \lambda</p>
-<p>斐：$\Phi$    \Phi    $\varphi$    \varphi</p>
-<p>宇普西龙：$\varepsilon$    \varepsilon</p>
+            <h1 id="Chapter-10-Storage-and-File-Structure"><a href="#Chapter-10-Storage-and-File-Structure" class="headerlink" title="Chapter 10: Storage and File Structure"></a>Chapter 10: Storage and File Structure</h1><h2 id="Storage-Hierarchy"><a href="#Storage-Hierarchy" class="headerlink" title="Storage Hierarchy"></a>Storage Hierarchy</h2><h3 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h3><p><strong>基本存储</strong>（primary storage）</p>
+<ul>
+<li>快速、易失：Cache、主存</li>
+</ul>
+<p><strong>辅助存储</strong>（secondary storage）：又叫 <strong>联机存储</strong>（on-line storage）</p>
+<ul>
+<li>不易失，快速：快闪、磁盘</li>
+</ul>
+<p><strong>三级存储</strong>（tertiary storage）：又叫 <strong>脱机存储</strong>（off-line storage）</p>
+<ul>
+<li>稳定，访问慢：磁带、光盘</li>
+</ul>
+<h3 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h3><p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-10-1.1mdmr1fair9c.webp" alt="db-10-1" style="zoom:40%;" /></p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><table>
+    <tr>
+        <td>Cache<br />(高速缓冲存储器)</td><td>存在于主存与CPU之间的一级存储器
+；快速、价格高；易失；由硬件控制</td>
+    </tr>
+    <tr>
+        <td>Main memory<br />(主存储器)</td><td>用于存放可处理的数据的存储介质；易失；不够放下整个数据库</td>
+    </tr>
+    <tr>
+        <td>Flash memory<br/>(快闪存储器)</td><td>电源关闭或故障时，数据能够保存；读快写慢</td>
+    </tr>
+    <tr>
+        <td>Magnetic-disk<br/>(磁盘存储器)</td><td>数据存在旋转磁盘中；通常用于存储整个数据库</td>
+    </tr>
+    <tr>
+        <td>Optical storage<br/>(光学存储器)</td><td>WORM(Write-one, read-many)写一次读多次</td>
+    </tr>
+    <tr>
+        <td>Tape storage<br/ >(磁带存储器)</td><td>顺序访问，用于备份数据、归档数据</td>
+    </tr>
+</table>
+
+
+
+<h2 id="Magnetic-Disks（磁盘）"><a href="#Magnetic-Disks（磁盘）" class="headerlink" title="Magnetic Disks（磁盘）"></a>Magnetic Disks（磁盘）</h2><h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><ul>
+<li><strong>read-write head</strong> (读写头)</li>
+<li><strong>platter</strong> (磁盘)：divided into circular <strong>tracks</strong> (磁道)；each track divided into sectors；a <strong>sector</strong> (扇区，size typically 512 bytes) is the smallest unit of data can be read or written</li>
+<li><strong>cyclinder</strong> </li>
+<li><strong>Disk controller</strong> : interfaces between the computer system and the disk drive hardware</li>
+</ul>
+<h3 id="性能衡量"><a href="#性能衡量" class="headerlink" title="性能衡量"></a>性能衡量</h3><ul>
+<li>access time<ul>
+<li>seek time</li>
+<li>rotational latency</li>
+</ul>
+</li>
+<li>data-transfer rate</li>
+</ul>
+<h2 id="File-Organization（文件组织）"><a href="#File-Organization（文件组织）" class="headerlink" title="File Organization（文件组织）"></a>File Organization（文件组织）</h2><h3 id="组织"><a href="#组织" class="headerlink" title="组织"></a>组织</h3><p><strong>块</strong>：每个文件分成定长的存储单元，称为块（block）。块是存储分配和数据传输的基本单元。大多数数据库默认4~8KB块大小。一个块含多条记录。</p>
+<p><strong>文件头</strong>：在文件的开始处，分配一定数量的字节作为文件头（file header），包含有关文件的各种信息。</p>
+<p><strong>空闲列表</strong>：在文件头中存储被删除的第一个记录的地址，用这第一个记录来存储第二个可用记录的地址，依次类推。被删除的记录形成一条链表，称为空闲列表（free list）</p>
+<p><strong>插入</strong>：</p>
+<ul>
+<li><p>使用文件头所指向的记录，并改变文件头的指针以指向下一个可用记录。</p>
+</li>
+<li><p>如果没有可用空间，新记录添加到文件末尾。</p>
+</li>
+</ul>
+<h3 id="变长记录"><a href="#变长记录" class="headerlink" title="变长记录"></a>变长记录</h3><p><strong>方式</strong>：采用以下方式：</p>
+<ul>
+<li>多种记录类型在一个文件中存储</li>
+<li>允许一个或多个字段是变长记录类型（varchar）</li>
+<li>允许可重复字段的记录类型（数组、多重集合）</li>
+</ul>
+<p>一条有变长度属性的记录中属性连续存储，通常具有两部分：初始部分是定长属性，接着是变长属性</p>
+<p>变长属性在记录的初始部分表示为一个对（偏移量，长度），其中：</p>
+<ul>
+<li>偏移量表示在记录中该属性的数据开始位置</li>
+<li>长度表示变长属性的字节长度</li>
+</ul>
+<p>null值表示：使用空位图</p>
+<p>例：如果salary是空值，则该位图的第4个位置置1，存储在12-19字节的salary值被忽略</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-10-2.5g5k4srpdig0.webp" alt="db-10-2"></p>
+<h4 id="分槽的页结构"><a href="#分槽的页结构" class="headerlink" title="分槽的页结构"></a>分槽的页结构</h4><p><strong>结构</strong>：</p>
+<ul>
+<li>记录条目的个数</li>
+<li>块中空闲的末尾处</li>
+<li>每个记录的位置和大小</li>
+</ul>
+<p><strong>特点</strong>：</p>
+<ul>
+<li><p>实际记录从块的尾部开始连续排列，块中的空闲空间是连续的</p>
+</li>
+<li><p>指针指向块头记有记录实际位置的条目，而不是直接指向记录</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-10-3.5s9k2zy1t8w0.webp" alt="db-10-3" style="zoom:50%;" /></p>
+<p><strong>插入</strong>：在空闲空间的尾部给插入的记录分配空间，并且将包含此记录大小和位置的条目添加到块头中</p>
+<p><strong>删除</strong>：分两步：</p>
+<ul>
+<li>它所占用的空间被释放，并且它的条目被设置成被删除状态</li>
+<li>块中被删除记录之前的记录被移动，使得由删除产生的空闲空间被重用，并且所有空闲空间存在于块头数组的最后一个条目和第一个记录之间</li>
+</ul>
+<h2 id="Organization-of-Records-in-Files（文件中记录的组织）"><a href="#Organization-of-Records-in-Files（文件中记录的组织）" class="headerlink" title="Organization of Records in Files（文件中记录的组织）"></a>Organization of Records in Files（文件中记录的组织）</h2><h3 id="顺序文件组织（Sequential-File-Organization）"><a href="#顺序文件组织（Sequential-File-Organization）" class="headerlink" title="顺序文件组织（Sequential File Organization）"></a>顺序文件组织（Sequential File Organization）</h3><p><strong>目的</strong>：为了高效处理按某个搜索码的顺序的记录而设计的</p>
+<p><strong>搜索码</strong>：一个属性或者属性的集合，不一定是主码、超码</p>
+<p><strong>指针链管理</strong>： 通过指针把记录链接起来，指向搜索码下一条记录</p>
+<p><strong>删除</strong>：直接用指针跳过连接，并将删除部分加入空闲列表</p>
+<p><strong>插入</strong>：如果有空闲空间，则直接插入；如果没有，则将记录插入到溢出块中；两操作都通过指针实现</p>
+<p><strong>注意</strong>：需要不时地重新组织文件以恢复顺序；文件重组时，重组代价高</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-10-4.b1f0f3mhdc4.webp" alt="db-10-4" style="zoom:60%;" /></p>
+<h3 id="多表聚簇文件组织（Multitable-Clustering-File-Organization）"><a href="#多表聚簇文件组织（Multitable-Clustering-File-Organization）" class="headerlink" title="多表聚簇文件组织（Multitable Clustering File Organization）"></a>多表聚簇文件组织（Multitable Clustering File Organization）</h3><p><strong>目的</strong>：为高效执行连接操作设计</p>
+<p><strong>缺点</strong>：处理其他类型查询变慢</p>
+<p><strong>组织</strong>：用指针把这个关系的所有记录链接起来</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-10-5.3duop7mzk8i0.webp" alt="db-10-5" style="zoom:50%;" /></p>
 
         </div>
 
@@ -277,15 +340,7 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/latex/">#latex</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/markdown/">#markdown</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/blog/">#blog</a>&nbsp;
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>&nbsp;
                     </li>
                 
             </ul>
@@ -294,29 +349,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/05/06/%E7%AC%AC11%E7%AB%A0%E7%AC%94%E8%AE%B0%20III/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">计算理论基础 第11章 复杂性理论与难解问题 III</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/05/02/test/"
+                           href="/2022/05/11/LRU%20%E7%AE%97%E6%B3%95%E4%B8%8E%20MRU%20%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">test5-2-4</span>
+                                <span class="post-nav-title-item">LRU 算法与 MRU 算法对比</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -427,7 +467,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CS-%E5%B8%B8%E7%94%A8LaTex%E7%AC%A6%E5%8F%B7"><span class="nav-text">CS 常用LaTex符号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E8%AE%BA"><span class="nav-text">集合论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0"><span class="nav-text">代数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91"><span class="nav-text">数理逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">形式语言与自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D"><span class="nav-text">希腊字母</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-10-Storage-and-File-Structure"><span class="nav-text">Chapter 10: Storage and File Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Storage-Hierarchy"><span class="nav-text">Storage Hierarchy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-text">层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-text">示意图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Magnetic-Disks%EF%BC%88%E7%A3%81%E7%9B%98%EF%BC%89"><span class="nav-text">Magnetic Disks（磁盘）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E6%88%90"><span class="nav-text">组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E8%A1%A1%E9%87%8F"><span class="nav-text">性能衡量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-Organization%EF%BC%88%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87%EF%BC%89"><span class="nav-text">File Organization（文件组织）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E7%BB%87"><span class="nav-text">组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%95%BF%E8%AE%B0%E5%BD%95"><span class="nav-text">变长记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%A7%BD%E7%9A%84%E9%A1%B5%E7%BB%93%E6%9E%84"><span class="nav-text">分槽的页结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Organization-of-Records-in-Files%EF%BC%88%E6%96%87%E4%BB%B6%E4%B8%AD%E8%AE%B0%E5%BD%95%E7%9A%84%E7%BB%84%E7%BB%87%EF%BC%89"><span class="nav-text">Organization of Records in Files（文件中记录的组织）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87%EF%BC%88Sequential-File-Organization%EF%BC%89"><span class="nav-text">顺序文件组织（Sequential File Organization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%A1%A8%E8%81%9A%E7%B0%87%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87%EF%BC%88Multitable-Clustering-File-Organization%EF%BC%89"><span class="nav-text">多表聚簇文件组织（Multitable Clustering File Organization）</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
