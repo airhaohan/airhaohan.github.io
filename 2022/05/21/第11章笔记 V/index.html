@@ -260,21 +260,21 @@
 <p><strong>注意</strong>：当为一个复杂性类定义完全问题时，归约的模型必须比用来定义类本身的模型更加受限</p>
 <p>（给定一个问题描述，判定/证明是PSAPCE完全性，和NP完全性证明一样，要遵循PSPACE完全性定义的两个方面要素）</p>
 <h3 id="TQBF问题"><a href="#TQBF问题" class="headerlink" title="TQBF问题"></a>TQBF问题</h3><p><strong>Def</strong>：$TQBF=\{ {\lt}{\phi}{\gt}|{\phi}$ 是真的全量词化的布尔公式 $\}$ </p>
-<p>（全量词化：每个变量都出现在某一量词的辖域内，如  ${\phi={\forall}x{\exist}y[(x\vee y)\wedge(\overline{y}\vee\overline{y})]}$ ，因此即使不需要对 $x$、$y$ 指派， $\phi$ 也已经有了真假值）</p>
+<p>（全量词化：每个变量都出现在某一量词的辖域内，如  ${\phi={\forall}x{\exists}y[(x\vee y)\wedge(\overline{y}\vee\overline{y})]}$ ，因此即使不需要对 $x$、$y$ 指派， $\phi$ 也已经有了真假值）</p>
 <p><strong>Th 8.8</strong>：$TQBF$ 是 $PSPACE$ 完全的</p>
 <p>① $TQBF$ 是 $PSPACE$ 问题</p>
 <p>对每个量词的变量，然后对每个变量取 1 或 0 的情况都遍历一遍；要使得 $\phi$ 为真：</p>
 <ul>
 <li>对于 $\forall x$ ，需要 $x$ 取 0 和 1 时 $\phi$ 都为真；</li>
-<li>对于 $\exist x$ ，需要 $x$ 取 0 和 1 时 $\phi$ 至少有一个为真；</li>
+<li>对于 $\exists x$ ，需要 $x$ 取 0 和 1 时 $\phi$ 至少有一个为真；</li>
 </ul>
 <p>存储的递归深度最大为每个变量都存一遍，因此可以在 $O(n)$ 的空间内实现</p>
 <p>②  $TQBF$ 是 $PSPACE$ 完全的</p>
 <p>模仿证明 $3SAT$ 是 $NP$ 问题的证法，将格局变化的合理性用布尔表达式表示：</p>
 <script type="math/tex; mode=display">
-{\phi}_{c_1,c_2,t}={\exist}{\,}m_1[{\phi}_{c_1,m_1,\frac{t}{2}} \wedge {\phi}_{m_1,c_2,\frac{t}{2}}]</script><p>但是你发现这相当于把公式的长度翻了一倍，因为长度：$len({\phi}_{c_1,c_2,t}){\approx}len({\phi}_{c_1,m_1,\frac{t}{2}}){\approx}len({\phi}_{m_1,c_2,\frac{t}{2}})$ ，这样反复递归生成的布尔表达式是原来问题的指数倍了，达不到归约的效果，因此我们借助 $\forall$ 量词：</p>
+{\phi}_{c_1,c_2,t}={\exists}{\,}m_1[{\phi}_{c_1,m_1,\frac{t}{2}} \wedge {\phi}_{m_1,c_2,\frac{t}{2}}]</script><p>但是你发现这相当于把公式的长度翻了一倍，因为长度：$len({\phi}_{c_1,c_2,t}){\approx}len({\phi}_{c_1,m_1,\frac{t}{2}}){\approx}len({\phi}_{m_1,c_2,\frac{t}{2}})$ ，这样反复递归生成的布尔表达式是原来问题的指数倍了，达不到归约的效果，因此我们借助 $\forall$ 量词：</p>
 <script type="math/tex; mode=display">
-{\phi}_{c_1,c_2,t}={\exist}{\,}m_1{\forall}{\,}(c_3,c_4){\in}\{(c_1,m_1),(m_1,c_2)\}[{\phi}_{c_3,m_4,\frac{t}{2}}]</script><p>这样子就把两个递归的子公式折叠为一个子公式；令 ${\phi}_{c_{start},c_{accept},t}$ ，$t=2^{df(n)}$ ，这样递归调用，所需栈的大小为 $log_2(t)=f(n)$ ，而子公式的增长是线性的，需要 $O(f(n))$ 的空间，那么所使用的最大空间为 $O(f^2(n))$ </p>
+{\phi}_{c_1,c_2,t}={\exists}{\,}m_1{\forall}{\,}(c_3,c_4){\in}\{(c_1,m_1),(m_1,c_2)\}[{\phi}_{c_3,m_4,\frac{t}{2}}]</script><p>这样子就把两个递归的子公式折叠为一个子公式；令 ${\phi}_{c_{start},c_{accept},t}$ ，$t=2^{df(n)}$ ，这样递归调用，所需栈的大小为 $log_2(t)=f(n)$ ，而子公式的增长是线性的，需要 $O(f(n))$ 的空间，那么所使用的最大空间为 $O(f^2(n))$ </p>
 <p><strong>注意</strong>：</p>
 <ul>
 <li><p>时间复杂性中，有关 $NP$ 完全问题的证明是建立和 布尔表达式（$3SAT$） 可满足性判定问题之间的关联/转换；</p>
@@ -283,9 +283,9 @@
 </li>
 </ul>
 <h3 id="博弈必胜策略"><a href="#博弈必胜策略" class="headerlink" title="博弈必胜策略"></a>博弈必胜策略</h3><p><strong>Def</strong>：$FORMULA-GAME=\{ {\lt}\phi{\gt}|$ 在与 $\phi$ 相关联的公式博弈中选手 $E$ 有必胜策略 $\}$ </p>
-<p>（一般要求 $\phi={\exist}x_1{\forall}x_2…Q$ ，即具有前束范式的量词化布尔公式；选手 $A$ 和选手 $E$ 分别轮流为对应的变量取值；若最终为 $TRUE$ 则选手 $E$ 赢）</p>
+<p>（一般要求 $\phi={\exists}x_1{\forall}x_2…Q$ ，即具有前束范式的量词化布尔公式；选手 $A$ 和选手 $E$ 分别轮流为对应的变量取值；若最终为 $TRUE$ 则选手 $E$ 赢）</p>
 <p><strong>Th 8.10</strong>：$FORMULA-GAME$ 是 $PSPACE$ 完全的</p>
-<p>事实上，这个问题和 $TQBF$ 是一样的，对于 $\phi={\exist}x_1{\forall}x_2…Q$，相当于是说存在对 $x_1$ 的指派，对任意 $x_2$ 的指派……使得 $Q$ 为真，那么不就是选手 $E$ 获胜嘛！</p>
+<p>事实上，这个问题和 $TQBF$ 是一样的，对于 $\phi={\exists}x_1{\forall}x_2…Q$，相当于是说存在对 $x_1$ 的指派，对任意 $x_2$ 的指派……使得 $Q$ 为真，那么不就是选手 $E$ 获胜嘛！</p>
 <h3 id="广义地理学"><a href="#广义地理学" class="headerlink" title="广义地理学"></a>广义地理学</h3><p><strong>Def</strong>：$GG=\{ {\lt}G,b{\gt}|$ 在图 $G$ 上以结点 $b$ 起始的广义地理学游戏中，选手 $I$ 有必胜策略 $\}$ </p>
 <p>（给定一个城市名，选手 $I$ 和 $II$ 轮流给出城市名，必须顶真一个字母，而这里的游戏中城市名是个有限集合，把城市名看作结点，可以接着给出的两个城市名有有向边相连；选手 $I$ 先手）</p>
 <p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-8-2.67vl96b0yp00.webp" alt="fct-8-2"></p>
