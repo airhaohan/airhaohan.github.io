@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            计算理论基础 第11章 复杂性理论与难解问题 V |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcome to airhaohan's secret place !"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">计算理论基础 第11章 复杂性理论与难解问题 V</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-05-21 21:08:00</span>
+        <span class="mobile">2022-05-21 21:08</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Computation-Theory/">Computation Theory</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/">计算理论</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%90%86%E8%AE%BA/">复杂性理论</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>计算理论基础 第11章 复杂性理论与难解问题 V 的相关笔记，包括：PSPACE类问题、L和NL类问题……</p>
+<p>这部分最重要的内容是，从空间复杂性角度，如何证明一个问题是PSPACE完全问题。</p>
+<h1 id="第11章笔记-（V）"><a href="#第11章笔记-（V）" class="headerlink" title="第11章笔记 （V）"></a>第11章笔记 （V）</h1><h2 id="8-1-萨维奇定理"><a href="#8-1-萨维奇定理" class="headerlink" title="8.1 萨维奇定理"></a>8.1 萨维奇定理</h2><p><strong>Def 8.1</strong>：令 $M$ 是 一个完全、确定型图灵机，$M$ 的 <strong>空间复杂度</strong> 是一个函数：$f:N\to N$，其中 $f(n)$ 是在任何长为 $n$ 的输入上扫描带子方格的最大数</p>
+<p>（就是说当输入长度为 $n$ 时，$M$ 运行所占的空间）</p>
+<p><strong>Def 8.2</strong>：令 $f:N\to R^+$ 是一个函数，两个 <strong>空间复杂性类</strong> 定义为：</p>
+<ul>
+<li>$SPACE(f(n))=\{L|L$ 是被 $O(f(n))$ 空间的 <strong>确定型图灵机</strong> <strong>判定</strong> 的语言 </li>
+<li>$NSPACE(f(n))=\{L|L$ 是被 $O(f(n))$ 空间的 <strong>非确定型图灵机</strong> <strong>判定</strong> 的语言 </li>
+</ul>
+<p><strong>例 8.3：</strong>$SAT$ 的空间复杂度是 $O(n)$ ，只需要存储每次尝试时每个变量的真假值</p>
+<p><strong>例 8.4</strong>：$ALL_{NFA}=\{ {\lt}A{\gt}|A$ 是一个 $NFA$ 且 $L(A)={\Sigma}^\ast\}$ ，则 $\overline{ALL_{NFA} }$ 的空间复杂度为非确定的 $O(n)$ </p>
+<p><strong>算法</strong>：从起始状态开始，重复执行 $2^q$ 次的非确定选择下一状态；若当中某个时刻所有分支都拒绝，则接受；若执行完 $2^q$ 次后未停机，则拒绝（因为状态数为 $q$ 的情况下，比如最大分支数为 $k$ 的情况下，所有状态转移最多有 $k^q$ 种；因此若该状态机存在拒绝的字符串，那必定拒绝一个长度不超过 $k^q$ 的字符串（有点像是缩胀））</p>
+<h4 id="萨维奇定理："><a href="#萨维奇定理：" class="headerlink" title="萨维奇定理："></a>萨维奇定理：</h4><p><strong>Th 8.1</strong>：对任何函数 $f:N\to R^+$ ，其中 $f(n){\ge}n$ ，有 $NSPACE(f(n)){\subseteq}SPACE(f^2(n))$ </p>
+<p><strong>证明</strong>：若采用平凡的证明方法，将非确定型图灵机的每个分支步骤保存下来，那么相当于空间不可复用，可能会消耗 $2^{O(f(n))}$ 的空间，因此不能这样操作；</p>
+<p>我们选择使用类似二分的方式，设 $t=2^{df(n)}$ 时 $N$ 在所有分支上的运行时间的上界（即最大步数）；我们从启示格局 $c_{start}$ 和中止格局 $c_{accept}$ 选择一个中间格局 $c_{mid}$ ，并计算是否可以在不大于 $\frac{t}{2}$ 的时间内从  $c_{start}$ 运行到 $c_{mid}$ 、是否可以在不大于 $\frac{t}{2}$ 的时间内从  $c_{mid}$ 运行到 $c_{accept}$ ；这样递归调用，所需栈的大小为 $log_2(t)=f(n)$ ，保存每个格局需要 $f(n)$ 的空间，那么所使用的最大空间为 $O(f^2(n))$ </p>
+<h2 id="8-2-PSPACE-类"><a href="#8-2-PSPACE-类" class="headerlink" title="8.2 PSPACE 类"></a>8.2 PSPACE 类</h2><p><strong>Def 8.6</strong>：$PSPACE$ 是在 <strong>确定型图灵机</strong> 上、在 <strong>多项式空间</strong> 内可判定的语言类，即 $PSAPCE=\cup_kSPACE(n^k)$ </p>
+<p>由萨维奇定理得，$NPSPACE=PSPACE$ ，因为任何多项式的平方仍是多项式</p>
+<p>（ $SAT$ 和 $ALL_{NFA}$ 都是 $PSPACE$ ）</p>
+<p><strong>注意</strong>：时间用远不会小于空间，本质是空间可复用，时间不可复用。因此一个在 $t(n)$ 时间内运行的机器，即使每一步都是用一个新的空间，那么最多消耗 $t(n)$ 的空间，即 $NP{\subseteq}NPSPACE=PSPACE$ </p>
+<p><strong>注意</strong>：对于 $f(n)\geq n$，一个消耗 $f(n)$ 空间的图灵机至多有 $f(n)2^{O(f(n))}$ 个不同的格局，而完全图灵机由于要停机，所以不可能出现相同的格局，因此消耗 $f(n)$ 空间的图灵机必定在时间 $f(n)2^{O(f(n))}$ 内运行，则 $PSPACE{\subseteq}EXPTIME={\cup_k}TIME(2^{n^k})$ </p>
+<p><strong>总结</strong>： $P{\subseteq}NP{\subseteq}PSPACE=NPSPACE{\subseteq}EXPTIME$ </p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-8-1.60x3izn7l140.webp" alt="fct-8-1"></p>
+<p>（已知 $P\neq EXPTIME$ ，所以上述的包含式中至少有一个真包含，而且很有可能全部都是真包含）</p>
+<p>（表述的时候说的 2 的几次幂，并不一定是真的 2 的几次幂，而是任意有限大常数的几次幂都可以看作是 2 的几次幂）</p>
+<h2 id="8-3-PSPACE-完全性"><a href="#8-3-PSPACE-完全性" class="headerlink" title="8.3 PSPACE 完全性"></a>8.3 PSPACE 完全性</h2><p><strong>Def 8.7</strong>：若语言 $B$ 满足下面两个条件，则它是 <strong>$PSPACE$ 完全的</strong> ：</p>
+<ul>
+<li>$B{\in}PSPACE$ </li>
+<li>$PSPACE$ 中的每一个语言 $A$ 多项式时间可归约到 $B$ </li>
+</ul>
+<p><strong>注意</strong>：当为一个复杂性类定义完全问题时，归约的模型必须比用来定义类本身的模型更加受限</p>
+<p>（给定一个问题描述，判定/证明是PSAPCE完全性，和NP完全性证明一样，要遵循PSPACE完全性定义的两个方面要素）</p>
+<h3 id="TQBF问题"><a href="#TQBF问题" class="headerlink" title="TQBF问题"></a>TQBF问题</h3><p><strong>Def</strong>：$TQBF=\{ {\lt}{\phi}{\gt}|{\phi}$ 是真的全量词化的布尔公式 $\}$ </p>
+<p>（全量词化：每个变量都出现在某一量词的辖域内，如  ${\phi={\forall}x{\exist}y[(x\vee y)\wedge(\overline{y}\vee\overline{y})]}$ ，因此即使不需要对 $x$、$y$ 指派， $\phi$ 也已经有了真假值）</p>
+<p><strong>Th 8.8</strong>：$TQBF$ 是 $PSPACE$ 完全的</p>
+<p>① $TQBF$ 是 $PSPACE$ 问题</p>
+<p>对每个量词的变量，然后对每个变量取 1 或 0 的情况都遍历一遍；要使得 $\phi$ 为真：</p>
+<ul>
+<li>对于 $\forall x$ ，需要 $x$ 取 0 和 1 时 $\phi$ 都为真；</li>
+<li>对于 $\exist x$ ，需要 $x$ 取 0 和 1 时 $\phi$ 至少有一个为真；</li>
+</ul>
+<p>存储的递归深度最大为每个变量都存一遍，因此可以在 $O(n)$ 的空间内实现</p>
+<p>②  $TQBF$ 是 $PSPACE$ 完全的</p>
+<p>模仿证明 $3SAT$ 是 $NP$ 问题的证法，将格局变化的合理性用布尔表达式表示：</p>
+<script type="math/tex; mode=display">
+{\phi}_{c_1,c_2,t}={\exist}{\,}m_1[{\phi}_{c_1,m_1,\frac{t}{2}} \wedge {\phi}_{m_1,c_2,\frac{t}{2}}]</script><p>但是你发现这相当于把公式的长度翻了一倍，因为长度：$len({\phi}_{c_1,c_2,t}){\approx}len({\phi}_{c_1,m_1,\frac{t}{2}}){\approx}len({\phi}_{m_1,c_2,\frac{t}{2}})$ ，这样反复递归生成的布尔表达式是原来问题的指数倍了，达不到归约的效果，因此我们借助 $\forall$ 量词：</p>
+<script type="math/tex; mode=display">
+{\phi}_{c_1,c_2,t}={\exist}{\,}m_1{\forall}{\,}(c_3,c_4){\in}\{(c_1,m_1),(m_1,c_2)\}[{\phi}_{c_3,m_4,\frac{t}{2}}]</script><p>这样子就把两个递归的子公式折叠为一个子公式；令 ${\phi}_{c_{start},c_{accept},t}$ ，$t=2^{df(n)}$ ，这样递归调用，所需栈的大小为 $log_2(t)=f(n)$ ，而子公式的增长是线性的，需要 $O(f(n))$ 的空间，那么所使用的最大空间为 $O(f^2(n))$ </p>
+<p><strong>注意</strong>：</p>
+<ul>
+<li><p>时间复杂性中，有关 $NP$ 完全问题的证明是建立和 布尔表达式（$3SAT$） 可满足性判定问题之间的关联/转换；</p>
+</li>
+<li><p>空间复杂性中，有关 $PSPACE$ 完全问题是建立和 量化布尔表达式（$TQBF$）  取值是否为真值问题之间的关联/转换</p>
+</li>
+</ul>
+<h3 id="博弈必胜策略"><a href="#博弈必胜策略" class="headerlink" title="博弈必胜策略"></a>博弈必胜策略</h3><p><strong>Def</strong>：$FORMULA-GAME=\{ {\lt}\phi{\gt}|$ 在与 $\phi$ 相关联的公式博弈中选手 $E$ 有必胜策略 $\}$ </p>
+<p>（一般要求 $\phi={\exist}x_1{\forall}x_2…Q$ ，即具有前束范式的量词化布尔公式；选手 $A$ 和选手 $E$ 分别轮流为对应的变量取值；若最终为 $TRUE$ 则选手 $E$ 赢）</p>
+<p><strong>Th 8.10</strong>：$FORMULA-GAME$ 是 $PSPACE$ 完全的</p>
+<p>事实上，这个问题和 $TQBF$ 是一样的，对于 $\phi={\exist}x_1{\forall}x_2…Q$，相当于是说存在对 $x_1$ 的指派，对任意 $x_2$ 的指派……使得 $Q$ 为真，那么不就是选手 $E$ 获胜嘛！</p>
+<h3 id="广义地理学"><a href="#广义地理学" class="headerlink" title="广义地理学"></a>广义地理学</h3><p><strong>Def</strong>：$GG=\{ {\lt}G,b{\gt}|$ 在图 $G$ 上以结点 $b$ 起始的广义地理学游戏中，选手 $I$ 有必胜策略 $\}$ </p>
+<p>（给定一个城市名，选手 $I$ 和 $II$ 轮流给出城市名，必须顶真一个字母，而这里的游戏中城市名是个有限集合，把城市名看作结点，可以接着给出的两个城市名有有向边相连；选手 $I$ 先手）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-8-2.67vl96b0yp00.webp" alt="fct-8-2"></p>
+<p><strong>Th 8.11</strong>：$GG$ 是 $PSPACE$ 完全的</p>
+<p>① $GG$ 是 $PSPACE$ 问题</p>
+<p>对图进行拓扑排序，则递归的深度最多为结点的个数，空间为线性空间</p>
+<p>② $GG$ 是 $PSPACE$ 完全的</p>
+<p>看图吧，从 $TQBF$ 归约到 $GG$ ，构成这样的图：从 b 出发，某个变量取真从左边走，取假从右边走；我们认为最后一个是存在量词，即现在已经到结点 $c$ 了，并且是选手 $II$ 选择：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-8-5.1ore6ska7bts.webp" alt="fct-8-5"></p>
+<p>如果 $\phi$ 为真，那么每个子句的三个变量中至少有一个为真，此时不论 $II$ 选择哪个子句结点，$I$ 都可以选择这个子句中取值为真的变量结点；由于取值为真，因此下一步的那个节点之前就被走过了，$II$ 无路可走；</p>
+<p>如果 $\phi$ 为假，那么至少有一个子句的三个变量都为假，此时 $II$ 就选则这个子句结点，之后不论 $I$ 选择哪个变量结点，因为是假的，因此这个变量节点的下一步那个结点之前并没有被选过，所以 $II$ 可以再走下一步，而 $I$ 就是真的无路可走了；</p>
+<h2 id="8-4-L-和-NL-类"><a href="#8-4-L-和-NL-类" class="headerlink" title="8.4 L 和 NL 类"></a>8.4 L 和 NL 类</h2><p><strong>注意</strong>：接下来我们讨论亚线性的空间界限；但是亚线性的话甚至连输入都放不下，所以我们引入一条只读的辅助带作为输入，而只限制工作带的空间界限为亚线性</p>
+<p>（有关亚线性类问题，可以和辅助外存、指针的运用关联起来了解）</p>
+<p>（亚线性类问题的实质是以时间换空间，利用最有限的空间保存当前所利用的信息）</p>
+<p><strong>Def 8.12</strong>：</p>
+<ul>
+<li>$L$ 是确定型图灵机再对数空间可判定的语言类，$L=SPACE(log_n)$</li>
+<li>$NL$ 是非确定型图灵机在对数空间内可判定的语言类，$NL=NSPACE(log_n)$ </li>
+</ul>
+<p><strong>例 8.13</strong>：语言 $A=\{0^k1^k|k{\ge}0\}$ 是 $L$ 的成员</p>
+<p>原来的方法是左右消除 0 和 1，现在我们直接把待判断的字符串放在输入带上，工作带上用二进制 count 0 和 1 的数目<span id="814"></span></p>
+<p><strong>例 8.14</strong>：$PATH$ 是 $NL$ 的成员</p>
+<p><img src="https://raw.githubusercontent.com/airhaohan/image-hosting/main/hexo-blog/fct-7-2.6bzdus8xpr80.webp" alt="fct-7-2"></p>
+<p>从 $s$ 开始，非确定地猜测下一结点，工作带上只保留当前结点的信息（其实空间复杂度是非确定的常数级）；到达 $t$ 后接受，或者执行 $m$ 步后拒绝（ $m$ 是图的结点数 ）</p>
+<p><strong>注意</strong>：这里发现，我们以前说的“ $f(n)$ 空间界限的图灵机在 $2^{O(f(n))}$ 时间内运行 ” 对非常小的空间界限不再成立，比如这题，空间是 $O(1)$ ，但是时间是 $O(n)$ ，于是我们有了以下新的结论：</p>
+<p><strong>Def 8.15</strong>：若 $M$ 是一个有制度输入带的图灵机，$w$ 是输入，则 <strong>$M$ 在 $w$ 上的格局</strong> 包括：状态、工作带和两个读写头位置；</p>
+<p><strong>注意</strong>：输入 $w$ 不作为 $M$ 在 $w$ 上的格局的一部分</p>
+<p><strong>注意</strong>：$w$ 是长为 $n$ 的输入，如果 $M$ 在 $f(n)$ 空间内运行，则 $M$ 在 $w$ 上的格局数是 $n2^{O(f(n))}$ ，设 $M$ 有 $c$ 个状态和 $g$ 个带子符号，则输入头有 $n$ 种位置，工作头有 $f(n)$ 种位置，工作带上的字符有 $g^{f(n)}$ 种可能，工作带有 $c$ 种状态，所以格局数一共是 $cnf(n)g^{f(n)}$ ，即 $n2^{O(f(n))}$ </p>
+<p>因此，当 $f(n){\ge}log{\,}n$ 时，“ $f(n)$ 空间界限的图灵机在 $2^{O(f(n))}$ 时间内运行 ” 的结论是成立的</p>
+<h2 id="8-5-NL-完全性"><a href="#8-5-NL-完全性" class="headerlink" title="8.5 NL 完全性"></a>8.5 NL 完全性</h2><p>（ $L$ 是否等于 $NL$ 的问题是未知的 ）</p>
+<p><strong>Def 8.16</strong>：<strong>对数空间转换器</strong> 是只有一条只读输入带、一条只写输出带和一条读/写工作带的图灵机，其中：</p>
+<ul>
+<li>输出带的读写头不能向左移动（不能读已写内容）</li>
+<li>工作带可以至多包括 $O(log(n))$ 个符号</li>
+</ul>
+<p><strong>注意</strong>：并没有要求输入带的读取顺序，只要不改变输入带的内容，想怎么读就怎么读</p>
+<p>对数空间转换器 $M$ 计算一个函数：$f:{\Sigma^\ast}\to{\Sigma^\ast}$ ，其中 $f(w)$ 是把 $w$ 放到 $M$ 的输入带上运行、$M$ 停机后写在 $M$ 的输出带上的字符串；$f$ 称为 <strong>对数空间可计算函数</strong></p>
+<p><strong>Def</strong>：若语言 $A$ 可通过对数空间可计算函数 $f$ 映射可归约到语言 $B$ ，则称 $A$ 为 <strong>对数空间可归约</strong> 到 $B$ ，记为 $A{\le}_LB$ </p>
+<p><strong>Def 8.17</strong>：语言 $B$ 是 $NL$ 完全的，若：</p>
+<ul>
+<li>$B{\,}{\in}{\,}NL$ </li>
+<li>$NL$ 中的每个 $A$ 对数空间可归约到 $B$ </li>
+</ul>
+<p><strong>注意</strong>：NP完全性、PSPACE完全性其中都是多项式时间归约方式，NL完全性中是对数空间可归约</p>
+<p>（因为 $NL$ 中所有问题都在多项式时间内可解；我们之前说过，归约的方式必须比定义类本身的约束要更严格）</p>
+<p><strong>Th 8.18</strong>： $A{\le}_LB$ 且 $B{\,}{\in}{\,}L$ ，则 $A{\,}{\in}{\,}L$ </p>
+<p>（就是说，如果一个语言对数空间可归约到另一个已知属于 $L$ 的语言，则这个语言也属于 $L$ ） </p>
+<p>如果仿造前面证明 $P$ 问题的类似结论的朴素证法的话会出问题，因为 $M$ 的输入带只能读不能写，直接一次性把 $w$ 转换为 $f(w)$ 的话，$f(w)$ 就必须保存在 $M$ 的工作带上，可是装不下欸hhhh</p>
+<p>书上说是按照需求来计算出 $f(w)$ 中的个别符号，不要一次性转换，这样就可以用时间换空间</p>
+<p><strong>Th 8.19</strong>：若有一个 $NL$ 完全语言属于 $L$ ，则 $L=NL$ </p>
+<h3 id="PATH-是-NL-完全的"><a href="#PATH-是-NL-完全的" class="headerlink" title="PATH 是 NL 完全的"></a>PATH 是 NL 完全的</h3><p><strong>Th 8.20</strong>：$PATH$ 是 $NL$ 完全的</p>
+<p>① $PATH$ 属于 $NL$ 问题</p>
+<p><a href="#814">例 8.14</a> 已经证明了 $PATH$ 是 $NL$ 的成员</p>
+<p>②  $PATH$ 是 $NL$ 难的</p>
+<p>即证明 $NL$ 中任意一语言 $A$ 对数空间可归约到 $PATH$ ；</p>
+<p><strong>算法</strong>：将输入字符串 $w$ 对数空间归约映射为一个有向图，图的结点对应于非确定型图灵机在输入 $w$ 上的格局，结点之间的边代表一个格局到另一个格局可以一步产生；若初始格局到接受格局之间存在路径，则接受 $w$ </p>
+<p><strong>证明</strong>：显然 $PATH$ 有解时，$A{\in}NL$ ；主要证明给定输入 $w$ ，在对数空间内构造 ${\lt}G,s,t{\gt}$ </p>
+<p>由于格局包括状态、两个读写头的位置和工作带内容，其中最长的是工作带内容，因此给出一个对数空间转换器 $M$ ，只需要顺序遍历出所有长度为 $c{\,}log(n)$ 的字符串，判断它是不是 $M$ 在 $w$ 上的合法格局，并将合法的格局写到输出带上</p>
+<p>（这里的 ”合法“ 并不是说要从 $w$ 可以生成，而是说它至少得是个格局，而不是随机的一串；所以这次判断只要花费常数空间）</p>
+<p>类似地，$M$ 也可以枚举出所有的长度为边的长度的字符串，并且验证这是不是两条格局的边、这两个格局之间可不可以一步转化，将合法的边写到输出带上</p>
+<p>（因为验证边只需要考虑比如 $c_1$ 格局可不可以一步到达 $c_2$ 格局，所以只需要计算出 $c_1$ 的下一格局，并与 $c_2$ 比较，因此花费空间为 $c{\,}log(n)$）</p>
+<p><strong>Th 8.21</strong>：$NL{\,}{\subseteq}{\,}P$ </p>
+<p>只要看 $NL$ 中的 $NL$ 完全问题，比如刚刚的 $PATH$ 问题，前面已知 $PATH$ 是 $P$ 类问题，所以显而易见</p>
+<h2 id="8-6-NL-coNL"><a href="#8-6-NL-coNL" class="headerlink" title="8.6 NL = coNL"></a>8.6 NL = coNL</h2><p>这个记结论就好了hhhhh，书上是证明了 $\overline{PATH}$ 是 $NL$ 问题，而 $coNL$ 问题都可以对数空间可归约到 $\overline{PATH}$ 上，因此成立</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/">#计算理论</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%A4%8D%E6%9D%82%E6%80%A7%E7%90%86%E8%AE%BA/">#复杂性理论</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/05/12/Chapter%2010%20Storage%20and%20File%20Structure/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">数据库引论 第10章 存储和文件结构</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC11%E7%AB%A0%E7%AC%94%E8%AE%B0-%EF%BC%88V%EF%BC%89"><span class="nav-text">第11章笔记 （V）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E8%90%A8%E7%BB%B4%E5%A5%87%E5%AE%9A%E7%90%86"><span class="nav-text">8.1 萨维奇定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%90%A8%E7%BB%B4%E5%A5%87%E5%AE%9A%E7%90%86%EF%BC%9A"><span class="nav-text">萨维奇定理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-PSPACE-%E7%B1%BB"><span class="nav-text">8.2 PSPACE 类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-PSPACE-%E5%AE%8C%E5%85%A8%E6%80%A7"><span class="nav-text">8.3 PSPACE 完全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TQBF%E9%97%AE%E9%A2%98"><span class="nav-text">TQBF问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E5%BC%88%E5%BF%85%E8%83%9C%E7%AD%96%E7%95%A5"><span class="nav-text">博弈必胜策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E5%9C%B0%E7%90%86%E5%AD%A6"><span class="nav-text">广义地理学</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-L-%E5%92%8C-NL-%E7%B1%BB"><span class="nav-text">8.4 L 和 NL 类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-NL-%E5%AE%8C%E5%85%A8%E6%80%A7"><span class="nav-text">8.5 NL 完全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH-%E6%98%AF-NL-%E5%AE%8C%E5%85%A8%E7%9A%84"><span class="nav-text">PATH 是 NL 完全的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-NL-coNL"><span class="nav-text">8.6 NL &#x3D; coNL</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
