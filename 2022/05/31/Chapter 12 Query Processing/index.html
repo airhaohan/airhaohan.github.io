@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            数据库引论 第12章 查询处理 |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcome to airhaohan's secret place !"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">数据库引论 第12章 查询处理</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-05-31 13:55:00</span>
+        <span class="mobile">2022-05-31 13:55</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Database/">Database</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Chapter-12-Query-Processing"><a href="#Chapter-12-Query-Processing" class="headerlink" title="Chapter 12: Query Processing"></a>Chapter 12: Query Processing</h1><h2 id="概述（Overview）"><a href="#概述（Overview）" class="headerlink" title="概述（Overview）"></a>概述（Overview）</h2><h3 id="查询处理步骤"><a href="#查询处理步骤" class="headerlink" title="查询处理步骤"></a>查询处理步骤</h3><p>关系数据库管理系统查询处理阶段：</p>
+<ul>
+<li>查询分析</li>
+<li>查询检查</li>
+<li>查询优化</li>
+<li>查询执行</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-12-7.ioiwymfpek0.webp" alt="db-12-7"></p>
+<h4 id="查询分析"><a href="#查询分析" class="headerlink" title="查询分析"></a>查询分析</h4><p><strong>任务</strong>：对查询语句进行扫描、词法分析和语法分析</p>
+<ul>
+<li>词法分析：从查询语句中识别出正确的语言符号</li>
+<li>语法分析：进行语法检查</li>
+</ul>
+<h4 id="查询检查"><a href="#查询检查" class="headerlink" title="查询检查"></a>查询检查</h4><p><strong>任务</strong>：合法权检查、视图转换、安全性检查、完整性初步检查</p>
+<ul>
+<li><p>合法权检查：根据数据字典中的用户权限和完整性约束定义对用户的存取权限进行检查</p>
+</li>
+<li><p>视图转换：对视图的操作，需要用视图的消解方法把对视图的操作转换成对基本表的操作</p>
+</li>
+<li>安全性检查：根据数据字典中有关的模式定义，检查语句中的数据库对象，如关系名、属性名是否存在且有效</li>
+</ul>
+<p>检查通过后把 SQL 查询语句转换成内部表示，即等价的 <strong>关系代数表达式</strong> ；一般使用查询树（语法分析树）来表示扩展的关系代数表达式</p>
+<h4 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h4><p><strong>任务</strong>：选择一个高效执行的查询处理策略</p>
+<p><strong>分类</strong>：</p>
+<ul>
+<li>代数 / 逻辑优化：关系代数表达式的优化</li>
+<li>物理优化：存取路径和底层操作算法的选择</li>
+</ul>
+<p><strong>选择依据</strong>：基于 规则、代价 和 语义</p>
+<h4 id="查询执行"><a href="#查询执行" class="headerlink" title="查询执行"></a>查询执行</h4><p><strong>任务</strong>：依据优化器得到的执行策略生成查询执行计划，由代码生成器生成执行查询计划的代码；由查询执行引擎接受查询执行计划、执行该计划并返回结果给查询</p>
+<p><strong>Def： 查询执行计划</strong> ：用于执行一个查询的原语操作序列</p>
+<p><strong>注意</strong>：执行一个查询，不仅要提供关系代数表达式，而且还要对表达式加上注释来说明如何执行每个操作。加了“如何执行”注释的关系代数运算成为计算原语</p>
+<p><strong>分类</strong>：</p>
+<ul>
+<li>自顶向下</li>
+<li>自底向上</li>
+</ul>
+<h2 id="查询代价的度量（Measures-of-Query-Cost）"><a href="#查询代价的度量（Measures-of-Query-Cost）" class="headerlink" title="查询代价的度量（Measures of Query Cost）"></a>查询代价的度量（Measures of Query Cost）</h2><p><strong>Def：查询代价</strong>：执行一个查询所耗费的时间</p>
+<p><strong>注意</strong>：磁盘上存取数据的代价通常是最主要的代价，因为磁盘存取比内存操作速度慢，CPU速度的提升比磁盘的速度提升快得多；因此我们忽略CPU的时间消耗</p>
+<h3 id="度量方法"><a href="#度量方法" class="headerlink" title="度量方法"></a>度量方法</h3><p><strong>方法</strong>：使用 <strong>传送磁盘的块数</strong>、<strong>搜索磁盘的次数</strong> 来度量查询计划的代价</p>
+<ul>
+<li>$t_T$ —— 磁盘子系统传输一个块平均消耗时间</li>
+<li>$t_S$ —— 磁盘块平均访问时间（磁盘搜索时间 + 旋转延迟）</li>
+</ul>
+<p>则一次传输 $b$ 个块以及执行 $S$ 次磁盘搜索的操作的查询代价为：</p>
+<script type="math/tex; mode=display">
+Cost=b \times t_T + S \times t_S</script><h2 id="选择运算（Selection-Operation）"><a href="#选择运算（Selection-Operation）" class="headerlink" title="选择运算（Selection Operation）"></a>选择运算（Selection Operation）</h2><h3 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h3><ul>
+<li>全表扫描方法</li>
+<li>索引扫描方法</li>
+</ul>
+<p><strong>例</strong>：考虑 \<Predicate> 的几种情况：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Student <span class="keyword">WHERE</span> <span class="operator">&lt;</span>Predicate<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"># C1: 无条件</span><br><span class="line"># C2: Sno <span class="operator">=</span> <span class="string">&#x27;201215121&#x27;</span></span><br><span class="line"># C3: Sage <span class="operator">&gt;</span> <span class="number">20</span></span><br><span class="line"># C4: Sdept <span class="operator">=</span> <span class="string">&#x27;CS&#x27;</span> <span class="keyword">AND</span> Sage <span class="operator">&gt;</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<h4 id="全表扫描方法"><a href="#全表扫描方法" class="headerlink" title="全表扫描方法"></a>全表扫描方法</h4><p><strong>方法</strong>：对查询的基本表顺序扫描，逐一检查每个元组是否满足选择条件，把满足条件的元组作为结果输出</p>
+<p><strong>实现</strong>：假设可以使用的内存为 M 块：</p>
+<p>① 按照物理次序读 Student 的 M 块到内存</p>
+<p>② 检查内存的每个元组 t，如果满足条件，则输出 t；</p>
+<p>③ 如果 student 还有其他块未被处理，重复 ① ②</p>
+<p><strong>特点</strong>：适合小表，不适合大表</p>
+<h4 id="索引扫描方法"><a href="#索引扫描方法" class="headerlink" title="索引扫描方法"></a>索引扫描方法</h4><p><strong>方法</strong>：通过索引先找到满足条件的元组主码或元组指针，再通过元组指针直接再查询的基本表中找到元组</p>
+<p><strong>特点</strong>：适合于选择条件中的属性上有索引（ B+树索引 或 Hash索引 ）</p>
+<p><strong>C2</strong>：（假设 Sno 上有索引，或 Sno 是散列码）算法：</p>
+<p>① 使用索引（或散列）得到 Sno 为 201215121 元组的指针</p>
+<p>② 通过元组指针在 Student 表中检索到该学生</p>
+<p><strong>C3</strong>：（假设 Sage 上有 B+ 树索引）算法：</p>
+<p>① 使用 B+ 树索引找到 Sage = 20 的索引项，以此为入口点在 B+ 树的顺序集上得到 Sage &gt; 20 的所有元组指针</p>
+<p>② 通过这些元组指针到 Student 表中检索到所有年龄大于 20 的学生</p>
+<p><strong>C4</strong>：（假设 Sdept 和 Sage 上都有索引）</p>
+<p>算法一：</p>
+<p>① 分别用索引扫描找到 Sdept = ‘CS’ 的一组元组指针和 Sage &gt; 20 的另一组元组指针</p>
+<p>② 求得这两组指针的交集</p>
+<p>③ 通过元组指针在 Student 表中得到计算机系年龄大于 20 的学生</p>
+<p>算法二：</p>
+<p>① 找到 Sdept = ‘CS’ 的一组元组指针</p>
+<p>② 通过这些元组指针到 Student 表中检索，并对得到的元组检查另一些选择条件（Sage &gt; 20）</p>
+<p>③ 把满足条件的元组作为结果输出</p>
+<h3 id="查询代价"><a href="#查询代价" class="headerlink" title="查询代价"></a>查询代价</h3><h4 id="全表扫描方法-1"><a href="#全表扫描方法-1" class="headerlink" title="全表扫描方法"></a>全表扫描方法</h4><p>一次初始搜索加上 $b_r$ 个块传输，即：</p>
+<script type="math/tex; mode=display">
+Cost=t_S + b_r{\times}t_T</script><h4 id="索引扫描方法-1"><a href="#索引扫描方法-1" class="headerlink" title="索引扫描方法"></a>索引扫描方法</h4><p><strong>C2</strong>：Sno = ‘201215121’；设 Sno 为 B+ 树主索引，索引高度为 $h_i$ ；则索引查找需要穿越树的高度，再加上一次 I/O 来取记录（每个这样的 I/O 需要一次搜索和一次块传输），即：</p>
+<script type="math/tex; mode=display">
+Cost=(h_i+1){\times}(t_T+t_S)</script><p><strong>C3</strong>：Sage &gt; 20；设在 Sage 上有 B+ 树索引（二级索引），索引高度为 $h_i$ ，b 是包含具有指定搜索码记录的块数，（假定这些块是顺序存储的叶子块，且不需要额外搜索）则：</p>
+<script type="math/tex; mode=display">
+Cost=h_i{\times}(t_T+t_S)+t_S+b{\times}t_T</script><p><strong>C4</strong>：Sdept = ‘CS’ AND Sage &gt; 20；设在 Sdept 上有 B+ 树索引（二级索引），索引高度为 $h_i$ ；按照算法二，一共有 n 个满足条件的元组（不一定顺序存放，即需要额外搜索），则：</p>
+<script type="math/tex; mode=display">
+Cost=(h_i+n){\times}(t_T+t_S)</script><h2 id="连接运算（Join-Operation）"><a href="#连接运算（Join-Operation）" class="headerlink" title="连接运算（Join Operation）"></a>连接运算（Join Operation）</h2><p>（连接运算是查询处理最耗时的操作之一，我们这里只讨论等值连接/自然连接最常用的实现算法）</p>
+<h3 id="常用算法"><a href="#常用算法" class="headerlink" title="常用算法"></a>常用算法</h3><ul>
+<li>嵌套循环算法（nested loop join）</li>
+<li>排序 - 合并算法（sort-merge join）</li>
+<li>索引连接算法（index join）</li>
+<li>Hash Join 算法</li>
+</ul>
+<p><strong>例</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Student, SC <span class="keyword">WHERE</span> Student.Sno <span class="operator">=</span> SC.Sno</span><br></pre></td></tr></table></figure>
+<h4 id="嵌套循环算法"><a href="#嵌套循环算法" class="headerlink" title="嵌套循环算法"></a>嵌套循环算法</h4><p>① 对外层循环（Student 表）的每一个元组 s，检索内层循环 （SC 表）中的每一个元组 sc</p>
+<p>② 检查这两个元组在连接属性 Sno 上是否相等</p>
+<p>③ 如果满足连接条件，则串接后作为结果输出，直到外层循环表中的元组处理完为止</p>
+<h4 id="排序-合并算法"><a href="#排序-合并算法" class="headerlink" title="排序 - 合并算法"></a>排序 - 合并算法</h4><p>① 未排序的情况下，先对 Student 表和 SC 表按连接属性 Sno 排序（假设升序）</p>
+<p>② 取 Student 表中的第一个 Sno，依次扫描 SC 表中具有相同 Sno 的元组</p>
+<p>③ 当扫描到 Sno 不相同（SC.Sno &gt; Student.Sno）的第一个 SC 元组时，返回 Student 表，扫描它的下一个元组，再重复 ②，直至 Student 表扫描完</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-12-45.3o2jprfgbnk0.webp" alt="db-12-45"></p>
+<p>（此算法 Student 表和 SC 表都只要扫描一遍；即使是大表，加上扫描的时间，总的时间一般仍会减少）</p>
+<h4 id="索引连接算法"><a href="#索引连接算法" class="headerlink" title="索引连接算法"></a>索引连接算法</h4><p>① 在 SC 表上已经建立 Sno 属性的索引</p>
+<p>② 对 Student 中的每一个元组，由 Sno 值通过 SC 的索引查找相应的 SC 元组</p>
+<p>③ 把这些 SC 元组和 Student 元组连接起来</p>
+<p>④ 循环执行 ② 和 ③ ，直到 Student 表中的元组处理完为止</p>
+<h4 id="Hash-Join-算法"><a href="#Hash-Join-算法" class="headerlink" title="Hash Join 算法"></a>Hash Join 算法</h4><p>① 把连接属性 Sno 作为 hash 码，用同一个 hash 函数把 Student 表和 SC 表中的元组散列到 hash 表中</p>
+<p>② 划分阶段（building phase / partitioning phase）</p>
+<ul>
+<li>对包含较少元组的表（如 Student）进行一遍处理</li>
+<li>把它的元组按 hash 函数分散到 hash 表的桶中</li>
+</ul>
+<p>③ 试探阶段（probing phase，也称为 连接阶段 join phase ）</p>
+<ul>
+<li>对另一个表 （SC 表）进行一遍处理</li>
+<li>把 SC 表的元组也按同一个 hash 函数 （hash 码是连接属性）进行散列</li>
+<li>把 SC 元组与桶中来自 Student 表并与之相匹配的元组连接起来</li>
+</ul>
+<p><strong>注意</strong>：上面 hash join 算法前提是，假设两个表中较小的表在第一阶段后可以完全放入内存的 hash 桶中</p>
+<h3 id="查询代价-1"><a href="#查询代价-1" class="headerlink" title="查询代价"></a>查询代价</h3><p><table style="text-align: center">
+    <thead>
+        <tr>
+            <th>假设</th><th>Student</th><th>SC</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>记录数</td><td>5,000</td><td>10,000</td>
+        </tr>
+        <tr>
+            <td>块数</td><td>100</td><td>400</td>
+        </tr>
+    </tbody>
+</table></p>
+<h4 id="嵌套循环算法-1"><a href="#嵌套循环算法-1" class="headerlink" title="嵌套循环算法"></a>嵌套循环算法</h4><p>① 当 Student 表作为外层循环</p>
+<p>block transfers：5000 ${\times}$ 400 + 100 = 2,000,100</p>
+<p>（首先需要将 Student 的每个块都转移到内存一次，即 100 次；接着，对每条记录，都需要对 SC 的所有块都遍历一遍，所以需要转移 5000 ${\times}$ 400 次 ）</p>
+<p>seeks：5000 + 100 = 5100</p>
+<p>（Student 的每个块转移都需要查询一次，因此转移 100 块需要 Seek 100次；对于 Student 每个元组，都需要 Seek SC 表的起始位置一次，因此需要 Seek 5000 次）</p>
+<p>因此查询代价为：</p>
+<script type="math/tex; mode=display">
+Cost=2000100t_T+5100t_S</script><p>② 当 SC 表作为外层循环</p>
+<p>block transfer：10000 $\times$ 100 + 400 = 1000400</p>
+<p>seeks：10000 + 400 = 10400</p>
+<p>因此查询代价为：</p>
+<script type="math/tex; mode=display">
+Cost=1000400t_T+10400t_S</script><h4 id="块嵌套循环算法"><a href="#块嵌套循环算法" class="headerlink" title="块嵌套循环算法"></a>块嵌套循环算法</h4><p><strong>算法</strong>：（嵌套循环的变式，相当于四层 for 循环）</p>
+<p>① 遍历表 r 中的每个块 $B_r$ </p>
+<p>② 对于表 r 中的每个块 $B_r$ ，遍历表 s 中的每个块 $B_s$ </p>
+<p>③ 对于当前 $B_r$ 和 $B_s$ ，遍历二者的每个元组 $t_r$ 和 $t_s$ ，若满足结合条件，则将 $t_r\cdot t_s$ 加入结果集</p>
+<p>（$b_r$ 、$b_s$ 分别代表内外层循环的表的块数）</p>
+<p> 最坏情况：（Seek 是这样计算的：表 r 每个块都需要查询一次起始位置，即 $b_r$ 次；对于表 r 中每个块，都需要查询一次表 s 的起始位置，即 $b_r$ 次）</p>
+<script type="math/tex; mode=display">
+Cost=b_r{\times}b_s+2b_r</script><p>最好情况：（Seek 是这样计算的：表 r 和表 s 只需要查询一次起始位置，并保存下来，重复使用）</p>
+<script type="math/tex; mode=display">
+Cost=b_r{\times}b_s+2</script>
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/05/21/%E7%AC%AC11%E7%AB%A0%E7%AC%94%E8%AE%B0%20V/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算理论基础 第11章 复杂性理论与难解问题 V</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-12-Query-Processing"><span class="nav-text">Chapter 12: Query Processing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0%EF%BC%88Overview%EF%BC%89"><span class="nav-text">概述（Overview）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86%E6%AD%A5%E9%AA%A4"><span class="nav-text">查询处理步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%88%86%E6%9E%90"><span class="nav-text">查询分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%A3%80%E6%9F%A5"><span class="nav-text">查询检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="nav-text">查询优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%89%A7%E8%A1%8C"><span class="nav-text">查询执行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BB%A3%E4%BB%B7%E7%9A%84%E5%BA%A6%E9%87%8F%EF%BC%88Measures-of-Query-Cost%EF%BC%89"><span class="nav-text">查询代价的度量（Measures of Query Cost）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%A6%E9%87%8F%E6%96%B9%E6%B3%95"><span class="nav-text">度量方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E8%BF%90%E7%AE%97%EF%BC%88Selection-Operation%EF%BC%89"><span class="nav-text">选择运算（Selection Operation）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="nav-text">实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E8%A1%A8%E6%89%AB%E6%8F%8F%E6%96%B9%E6%B3%95"><span class="nav-text">全表扫描方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%89%AB%E6%8F%8F%E6%96%B9%E6%B3%95"><span class="nav-text">索引扫描方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BB%A3%E4%BB%B7"><span class="nav-text">查询代价</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E8%A1%A8%E6%89%AB%E6%8F%8F%E6%96%B9%E6%B3%95-1"><span class="nav-text">全表扫描方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%89%AB%E6%8F%8F%E6%96%B9%E6%B3%95-1"><span class="nav-text">索引扫描方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E8%BF%90%E7%AE%97%EF%BC%88Join-Operation%EF%BC%89"><span class="nav-text">连接运算（Join Operation）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95"><span class="nav-text">常用算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF%E7%AE%97%E6%B3%95"><span class="nav-text">嵌套循环算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F-%E5%90%88%E5%B9%B6%E7%AE%97%E6%B3%95"><span class="nav-text">排序 - 合并算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95"><span class="nav-text">索引连接算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash-Join-%E7%AE%97%E6%B3%95"><span class="nav-text">Hash Join 算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BB%A3%E4%BB%B7-1"><span class="nav-text">查询代价</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF%E7%AE%97%E6%B3%95-1"><span class="nav-text">嵌套循环算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9D%97%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF%E7%AE%97%E6%B3%95"><span class="nav-text">块嵌套循环算法</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
