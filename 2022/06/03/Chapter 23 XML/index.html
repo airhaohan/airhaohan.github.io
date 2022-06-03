@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            数据库引论 第23章 XML |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcome to airhaohan's secret place !"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">数据库引论 第23章 XML</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-03 20:54:00</span>
+        <span class="mobile">2022-06-03 20:54</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Database/">Database</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Chapter-23-XML"><a href="#Chapter-23-XML" class="headerlink" title="Chapter 23: XML"></a>Chapter 23: XML</h1><h2 id="概述（Introduction）"><a href="#概述（Introduction）" class="headerlink" title="概述（Introduction）"></a>概述（Introduction）</h2><p><strong>XML</strong>：Extensible Markup Language（可扩展标记语言）</p>
+<p><strong>注意</strong>：标签没有被预定义，需要自行定义标签</p>
+<p><strong>例</strong>：购物清单</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">purchae_order</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">identifier</span>&gt;</span>P-101<span class="tag">&lt;/<span class="name">identifier</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">purchaser</span>&gt;</span>...<span class="tag">&lt;/<span class="name">purchaser</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">itemlist</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">item</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">identifier</span>&gt;</span>RS1<span class="tag">&lt;/<span class="name">identifier</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">description</span>&gt;</span>Atom powered rocked sled<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">quantity</span>&gt;</span>2<span class="tag">&lt;/<span class="name">quantity</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">price</span>&gt;</span>199.95<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">identifier</span>&gt;</span>SG1<span class="tag">&lt;/<span class="name">identifier</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">description</span>&gt;</span>Superb glue<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">quantity</span>&gt;</span>1<span class="tag">&lt;/<span class="name">quantity</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">unit-of-measure</span>&gt;</span>Liter<span class="tag">&lt;/<span class="name">unit-of-measure</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">price</span>&gt;</span>199.95<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">itemlist</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">purchae_order</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="XML-数据结构（Structure-of-XML-Data）"><a href="#XML-数据结构（Structure-of-XML-Data）" class="headerlink" title="XML 数据结构（Structure of XML Data）"></a>XML 数据结构（Structure of XML Data）</h2><p><strong>①</strong> 文本可以与子元素混合</p>
+<p>例：对文本标记有益，但不利于数据展示</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">course</span>&gt;</span></span><br><span class="line">	This course is being offered for the first time in 2009.</span><br><span class="line">    <span class="tag">&lt;<span class="name">course_id</span>&gt;</span>BIO-399<span class="tag">&lt;/<span class="name">course_id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Computational Biology<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dept_name</span>&gt;</span>Biology<span class="tag">&lt;/<span class="name">dept_name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">credits</span>&gt;</span>3<span class="tag">&lt;/<span class="name">credits</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">course</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>② 属性</strong>：模式为 name = value，属性时字符串，不包含标记</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">course</span> <span class="attr">course_id</span>=<span class="string">”CS-101“</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Intro. to Computer Science<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dept_name</span>&gt;</span>Comp Sci.<span class="tag">&lt;/<span class="name">dept_name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">credits</span>&gt;</span>4<span class="tag">&lt;/<span class="name">credits</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">course</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>属性可以和子元素相互转化，建议元素的标识用属性表示，元素的内容用子元素表示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">course</span> <span class="attr">course_id</span>=<span class="string">&quot;CS-101&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">course</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">course</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">course_id</span>&gt;</span>CS-101<span class="tag">&lt;/<span class="name">course_id</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">course</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>③ 名字空间（Namespace）</strong>：每个标签或属性前加上通用资源标识符（或网址）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">university</span> <span class="attr">xmlns:yale</span>=<span class="string">&quot;http://www.yale.edu&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">yale:course</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">yale:course_id</span>&gt;</span>CS-101<span class="tag">&lt;/<span class="name">yale:course_id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">yale:title</span>&gt;</span>Into. to Computer Science<span class="tag">&lt;/<span class="name">yale:title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">yale:dept_name</span>&gt;</span>Comp. Sci.<span class="tag">&lt;/<span class="name">yale:dept_name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">yale:credits</span>&gt;</span>4<span class="tag">&lt;/<span class="name">yale:credits</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">yale:course</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">university</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>④</strong> 没有子元素的标签可以自封闭</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">course</span> <span class="attr">course_id</span>=<span class="string">&quot;CS-101&quot;</span> <span class="attr">Title</span>=<span class="string">&quot;Intro. To Computer Science&quot;</span> <span class="attr">dept_name</span>=<span class="string">&quot;Comp. Sci.&quot;</span> <span class="attr">credits</span>=<span class="string">&quot;4&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>⑤</strong> CDATA （character data）可用于表示带标签的字符串，这样字符串就不会被解析为子元素，而是解析为文本数据</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;![CDATA[&lt;course&gt;...&lt;/course&gt;]]&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="XML-文档模式（XML-Document-Schema）"><a href="#XML-文档模式（XML-Document-Schema）" class="headerlink" title="XML 文档模式（XML Document Schema）"></a>XML 文档模式（XML Document Schema）</h2><h3 id="DTD"><a href="#DTD" class="headerlink" title="DTD"></a>DTD</h3><p><strong>DTD</strong>：Document Type Definition（文档类型定义）</p>
+<p>DTD 定义了 XML 文档的三个方面：</p>
+<ul>
+<li>可以有哪些元素</li>
+<li>元素可以有哪些属性、必须有哪些属性</li>
+<li>元素的子元素可以有哪些、可以出现多少次</li>
+</ul>
+<p>注意：DTD 不限制 XML 的数据格式，因为所有 XML 中的值都是以字符串的形式存在的</p>
+<p><strong>语法</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ELEMENT element(subelements-specification)&gt;</span><br><span class="line">&lt;!ATTLIST element(attributes)&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>①</strong> 子元素的限定：</p>
+<ul>
+<li>子元素的名字</li>
+<li>#PCDATA（parsed character data），即子元素可以是字符串</li>
+<li>EMPTY（没有任何子元素）或 ANY（子元素可以时任何东西）</li>
+<li>可以使用正则表达式：| 或       +  一个或多个      *  0 个或多个      ?  0 个或 1 个</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE university[</span><br><span class="line">	&lt;!ELEMENT university((department|course|instructor|teaches)+)&gt;</span><br><span class="line">	&lt;!ELEMENT department(dept_name, building, budget)&gt;</span><br><span class="line">	&lt;!ELEMENT course(course_id, title, dept_name, credites)&gt;</span><br><span class="line">	&lt;!ELEMENT instructor(IID, name, dept_name, salary)&gt;</span><br><span class="line">	&lt;!ELEMENT teaches(IID, course_id)&gt;</span><br><span class="line">	&lt;!ELEMENT dept_name(#PCDATA)&gt;</span><br><span class="line">	&lt;!ELEMENT building(#PCDATA)&gt;</span><br><span class="line">	&lt;!ELEMENT budget(#PCDATA)&gt;</span><br><span class="line">	&lt;!ELEMENT course_id(#PCDATA)&gt;</span><br><span class="line">	&lt;!ELEMENT title(#PCDATA)&gt;</span><br><span class="line">	&lt;!ELEMENT credits(#PCDATA)&gt;</span><br><span class="line">	&lt;!ELEMENT IID(#PCDATA)&gt;</span><br><span class="line">	&lt;!ELEMENT name(#PCDATA)&gt;</span><br><span class="line">	&lt;!ELEMENT salary(#PCDATA)&gt;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>②</strong> 属性的限定：每个属性需要包括这几个限定</p>
+<ul>
+<li>属性名</li>
+<li><p>属性的类型</p>
+<ul>
+<li>CDATA（包含字符数据）</li>
+<li>ID（identifier，该元素的唯一标识符，跟 html 里的 id 一个意思）或 IDREF（ID reference，对另一个元素的引用，这个属性必须是在文档中的某个元素的 ID 属性，有点外键的意思）或IDREFS（multiple IDREFs，空格分开的引用列表）</li>
+</ul>
+</li>
+<li><p>其他限定</p>
+<ul>
+<li>#REQUIRED（每个元素在该属性上必须指定一个值）</li>
+<li>value（默认值）</li>
+<li>#IMPLIED（既不必须，也没有默认值）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE university [</span><br><span class="line">	&lt;!ELEMENT university((department|course|instructor)+)&gt;</span><br><span class="line">	&lt;!ELEMENT department(building, budget)&gt;</span><br><span class="line">	&lt;!ATTLIST department</span><br><span class="line">		dept_name ID #REQUIRED&gt;</span><br><span class="line">	&lt;!ELEMENT course(title, credits)&gt;</span><br><span class="line">	&lt;!ATTLIST course</span><br><span class="line">		course_id ID #REQUIRED</span><br><span class="line">		dept_name IDREF #REQUIRED</span><br><span class="line">		instructors IDREF #IMPLIED &gt;</span><br><span class="line">	&lt;!ELEMENT instructor(name, salary)&gt;</span><br><span class="line">	&lt;!ATTLIST instructor</span><br><span class="line">		IID ID #REQUIRED</span><br><span class="line">		dept_name IDREF #REQUIRED&gt;</span><br><span class="line">	... other declarations ...</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>③</strong> DTD 的限制</p>
+<ul>
+<li>单个文本元素和属性不能进一步限定类型（缺乏这样的约束在数据处理和交换应用中会出现问题）</li>
+<li>DTD 机制很难指定子元素的无序集合（就是说很难用正则表达式表达出来）（事实上，顺序在数据交换中很少有用处）</li>
+<li>ID 和 IDREF 没有类型的限定（这样无法指定 IDREF 属性应该引用的元素类型）</li>
+</ul>
+<h3 id="XML-模式"><a href="#XML-模式" class="headerlink" title="XML 模式"></a>XML 模式</h3><p>（为了弥补 DTD 机制的缺陷，发展出了一种更为完善的模式语言—— XML 模式）</p>
+<p><strong>XML Scheme</strong>：在标签上增加名字空间前缀 xs</p>
+<p>注意：xs 这个前缀通过根元素 xmlns:xs 声明与 XML SCheme 名字空间相关联，也就是说是可以改的，不一定要用 ”xs:“ ，但是 XML Scheme 定义的所有类型必须都加上这个名字空间前缀</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xs:schema</span> <span class="attr">xmlns:xs</span>=<span class="string">“http://www.w3.org/2001/XMLSchema”</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“university”</span> <span class="attr">type</span>=<span class="string">“universityType”</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“department”</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">xs:complexType</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“dept</span> <span class="attr">name</span>” <span class="attr">type</span>=<span class="string">“xs:string”/</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“building”</span> <span class="attr">type</span>=<span class="string">“xs:string”/</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“budget”</span> <span class="attr">type</span>=<span class="string">“xs:decimal”/</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">xs:complexType</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xs:element</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“instructor”</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xs:complexType</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“IID”</span> <span class="attr">type</span>=<span class="string">“xs:string”/</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“name”</span> <span class="attr">type</span>=<span class="string">“xs:string”/</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“dept</span> <span class="attr">name</span>” <span class="attr">type</span>=<span class="string">“xs:string”/</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">name</span>=<span class="string">“salary”</span> <span class="attr">type</span>=<span class="string">“xs:decimal”/</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">xs:complexType</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xs:element</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line"><span class="tag">&lt;<span class="name">xs:complexType</span> <span class="attr">name</span>=<span class="string">“UniversityType”</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">ref</span>=<span class="string">“department”</span> <span class="attr">minOccurs</span>=<span class="string">“0”</span> <span class="attr">maxOccurs</span>=<span class="string">“unbounded”/</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">ref</span>=<span class="string">“course”</span> <span class="attr">minOccurs</span>=<span class="string">“0”</span> <span class="attr">maxOccurs</span>=<span class="string">“unbounded”/</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">ref</span>=<span class="string">“instructor”</span> <span class="attr">minOccurs</span>=<span class="string">“0”</span> <span class="attr">maxOccurs</span>=<span class="string">“unbounded”/</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xs:element</span> <span class="attr">ref</span>=<span class="string">“teaches”</span> <span class="attr">minOccurs</span>=<span class="string">“0”</span> <span class="attr">maxOccurs</span>=<span class="string">“unbounded”/</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">xs:sequence</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xs:complexType</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xs:schema</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/03/Chapter%2013%20Query%20Optimization/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">数据库引论 第13章 查询优化</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-23-XML"><span class="nav-text">Chapter 23: XML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0%EF%BC%88Introduction%EF%BC%89"><span class="nav-text">概述（Introduction）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88Structure-of-XML-Data%EF%BC%89"><span class="nav-text">XML 数据结构（Structure of XML Data）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML-%E6%96%87%E6%A1%A3%E6%A8%A1%E5%BC%8F%EF%BC%88XML-Document-Schema%EF%BC%89"><span class="nav-text">XML 文档模式（XML Document Schema）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DTD"><span class="nav-text">DTD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML-%E6%A8%A1%E5%BC%8F"><span class="nav-text">XML 模式</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            数据库引论 第13章 查询优化 |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcome to airhaohan's secret place !"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">数据库引论 第13章 查询优化</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-03 17:55:00</span>
+        <span class="mobile">2022-06-03 17:55</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Database/">Database</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Chapter-13-Query-Optimization"><a href="#Chapter-13-Query-Optimization" class="headerlink" title="Chapter 13: Query Optimization"></a>Chapter 13: Query Optimization</h1><h2 id="概述（Introduction）"><a href="#概述（Introduction）" class="headerlink" title="概述（Introduction）"></a>概述（Introduction）</h2><h3 id="执行代价"><a href="#执行代价" class="headerlink" title="执行代价"></a>执行代价</h3><ul>
+<li>集中式数据库：（磁盘存取块数）IO 代价 + （处理时间）CPU 代价 + （查询的内存开销）内存代价</li>
+<li>分布式数据库：IO 代价 + CPU 代价 + 内存代价 + 通信代价</li>
+</ul>
+<p><strong>注意</strong>：IO 代价是最主要的</p>
+<h3 id="一个实例"><a href="#一个实例" class="headerlink" title="一个实例"></a>一个实例</h3><p><strong>例</strong>：求选修了 2 号课程的学生姓名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Student.Sname</span><br><span class="line"><span class="keyword">FROM</span>   Student, SC</span><br><span class="line"><span class="keyword">WHERE</span>  Student.Sno <span class="operator">=</span> SC.Sno <span class="keyword">AND</span> SC.Cno<span class="operator">=</span><span class="string">&#x27;2&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>（假定 Student 数据库中有 1000 个学生记录，10000 条选课记录，其中选修 2 号课程的选课记录为 50 个）</p>
+<p>三种查询方式：（${\times}_{natrual}$ 代表自然连接）</p>
+<script type="math/tex; mode=display">
+Q_1={\Pi}_{Sname}({\sigma}_{Student.Sno=SC.Sno{\wedge}SC.Cno='2'}(Student{\times}SC))</script><script type="math/tex; mode=display">
+Q_2={\Pi}_{Sname}({\sigma}_{SC.Cno='2'}(Student{\times}_{natrual}SC))</script><script type="math/tex; mode=display">
+Q_3={\Pi}_{Sname}(Student{\times}_{natrual}{\sigma}_{SC.Cno='2'}(SC))</script><h4 id="①-Q-1-Pi-Sname-sigma-Student-Sno-SC-Sno-wedge-SC-Cno-’2’-Student-times-SC"><a href="#①-Q-1-Pi-Sname-sigma-Student-Sno-SC-Sno-wedge-SC-Cno-’2’-Student-times-SC" class="headerlink" title="① $Q_1={\Pi}_{Sname}({\sigma}_{Student.Sno=SC.Sno{\wedge}SC.Cno=’2’}(Student{\times}SC))$"></a>① $Q_1={\Pi}_{Sname}({\sigma}_{Student.Sno=SC.Sno{\wedge}SC.Cno=’2’}(Student{\times}SC))$</h4><h5 id="Step-1：计算广义笛卡尔积"><a href="#Step-1：计算广义笛卡尔积" class="headerlink" title="Step 1：计算广义笛卡尔积"></a>Step 1：计算广义笛卡尔积</h5><p>① 在内存中尽可能多地装入某个表（如 Student 表）的若干块，留出一块存放另一个表（如 SC 表）的元组</p>
+<p>② 把 SC 中的每个元组和 Student 中每个元组连接，连接后的元组装满一块后写到中间文件上</p>
+<p>③ 从 SC 中读入一块和内存中的 Student 元组连接，直到 SC 表处理完</p>
+<p>④ 再读入若干块 Student 元组，读入一块 SC 元组，重复 ② - ③，直到把 Student 表处理完</p>
+<p><strong>代价</strong>：</p>
+<p>读：设一个块能装 10 个 Student 元组或 100 个 SC 元组，在内存中存放 5 块 Student 元组和 1 块 SC 元组，则读取总块数为：（块）</p>
+<script type="math/tex; mode=display">
+\frac{1000}{10}+\frac{1000}{10{\times}5}\times\frac{10000}{100}=2100</script><p>写：连接后的元组数为 $10^3{\times}10^4=10^7$，设每块能装 10 个元组，则写出 $10^6$ 块</p>
+<h5 id="Step-2：选择操作"><a href="#Step-2：选择操作" class="headerlink" title="Step 2：选择操作"></a>Step 2：选择操作</h5><p>忽略内存处理时间，读取文件花费的时间（通写中间文件一样），需读入 $10^6$ 块</p>
+<p>满足条件的元组仅 50 个，均可放在内存</p>
+<h5 id="Step-3：投影操作"><a href="#Step-3：投影操作" class="headerlink" title="Step 3：投影操作"></a>Step 3：投影操作</h5><p>把 Step 2 的结果再 Sname 上作投影输出，得到最终结果</p>
+<h5 id="总代价："><a href="#总代价：" class="headerlink" title="总代价："></a>总代价：</h5><p>$Q_1$ 的查询方法总读写数据块 $=2100+10^6+10^6$ </p>
+<h4 id="②-Q-2-Pi-Sname-sigma-SC-Cno-’2’-Student-times-natrual-SC"><a href="#②-Q-2-Pi-Sname-sigma-SC-Cno-’2’-Student-times-natrual-SC" class="headerlink" title="② $Q_2={\Pi}_{Sname}({\sigma}_{SC.Cno=’2’}(Student{\times}_{natrual}SC))$"></a>② $Q_2={\Pi}_{Sname}({\sigma}_{SC.Cno=’2’}(Student{\times}_{natrual}SC))$</h4><h5 id="Step-1：计算自然连接"><a href="#Step-1：计算自然连接" class="headerlink" title="Step 1：计算自然连接"></a>Step 1：计算自然连接</h5><p>执行自然连接时，读取 Student 和 SC 表的策略不变，总的读取块仍为 2100 块</p>
+<p>自然连接的结果比 $Q_1$ 大大减少，为 $10^4$ 个元组，即写出数据块为 $10^3$ 块</p>
+<h5 id="Step-2：选择操作-1"><a href="#Step-2：选择操作-1" class="headerlink" title="Step 2：选择操作"></a>Step 2：选择操作</h5><p>读取中间文件块，执行选择运算，读取数据块为 $10^3$ 块</p>
+<h5 id="Step-3：投影操作-1"><a href="#Step-3：投影操作-1" class="headerlink" title="Step 3：投影操作"></a>Step 3：投影操作</h5><p>把 Step 2 的结果再 Sname 上作投影输出，得到最终结果</p>
+<h5 id="总代价：-1"><a href="#总代价：-1" class="headerlink" title="总代价："></a>总代价：</h5><p>$Q_2$ 的查询方法总读写数据块 $=2100+10^3+10^3$ </p>
+<h4 id="③-Q-3-Pi-Sname-Student-times-natrual-sigma-SC-Cno-’2’-SC"><a href="#③-Q-3-Pi-Sname-Student-times-natrual-sigma-SC-Cno-’2’-SC" class="headerlink" title="③ $Q_3={\Pi}_{Sname}(Student{\times}_{natrual}{\sigma}_{SC.Cno=’2’}(SC))$"></a>③ $Q_3={\Pi}_{Sname}(Student{\times}_{natrual}{\sigma}_{SC.Cno=’2’}(SC))$</h4><h5 id="Step-1：选择操作"><a href="#Step-1：选择操作" class="headerlink" title="Step 1：选择操作"></a>Step 1：选择操作</h5><p>先对 SC 表作选择运算，只需读一遍 SC 表，存取 100 块；</p>
+<p>最终满足条件的元组仅有 50 条，所以不必使用中间文件</p>
+<h5 id="Step-2：计算自然连接"><a href="#Step-2：计算自然连接" class="headerlink" title="Step 2：计算自然连接"></a>Step 2：计算自然连接</h5><p>把读入的 Student 元组和内存中的 SC 元组作连接，只需读一遍 Student 表共 100 块</p>
+<h5 id="Step-3：投影操作-2"><a href="#Step-3：投影操作-2" class="headerlink" title="Step 3：投影操作"></a>Step 3：投影操作</h5><p>把 Step 2 的结果再 Sname 上作投影输出，得到最终结果</p>
+<h5 id="总代价：-2"><a href="#总代价：-2" class="headerlink" title="总代价："></a>总代价：</h5><p>$Q_3$ 的查询方法总的读写块 $=100+100$ </p>
+<h4 id="④-其他情况"><a href="#④-其他情况" class="headerlink" title="④ 其他情况"></a>④ 其他情况</h4><h5 id="假如-SC-表的-Cno-字段上有索引"><a href="#假如-SC-表的-Cno-字段上有索引" class="headerlink" title="假如 SC 表的 Cno 字段上有索引"></a>假如 SC 表的 Cno 字段上有索引</h5><p>对于 $Q_3$ ，第一步就可以简化成只读取 Cno = ‘2’ 的 50 条元组；</p>
+<p>存取的索引块和 SC 中满足条件的数据块大约总共 3~4 块</p>
+<h5 id="假如-Student-表的-Sno-字段上有索引"><a href="#假如-Student-表的-Sno-字段上有索引" class="headerlink" title="假如 Student 表的 Sno 字段上有索引"></a>假如 Student 表的 Sno 字段上有索引</h5><p>不必读取所有的 Student 元组，因为满足条件的 SC 记录仅有 50 个，涉及最多 50 个 Student 记录</p>
+<h4 id="⑤-总结"><a href="#⑤-总结" class="headerlink" title="⑤ 总结"></a>⑤ 总结</h4><p>将表达式 $Q_1$ 变换为 $Q_2$ 再变为 $Q_3$ ，开销大大减少；</p>
+<p><strong>结论</strong>：有选择和连接操作时，先做选择操作。这样参加连接的元组就可以大大减少，叫做 <strong>代数优化</strong></p>
+<h2 id="关系表达式的转化（Transformation-of-Relational-Expressions）"><a href="#关系表达式的转化（Transformation-of-Relational-Expressions）" class="headerlink" title="关系表达式的转化（Transformation of Relational Expressions）"></a>关系表达式的转化（Transformation of Relational Expressions）</h2><h3 id="等价规则（equivalence-rule）"><a href="#等价规则（equivalence-rule）" class="headerlink" title="等价规则（equivalence rule）"></a>等价规则（equivalence rule）</h3><p><strong>关系代数表达式的等价</strong>：指用相同的关系代替两个表达式中相应的关系所得到的结果时相同的</p>
+<h4 id="常用的等价变换规则"><a href="#常用的等价变换规则" class="headerlink" title="常用的等价变换规则"></a>常用的等价变换规则</h4><h5 id="①-连接、笛卡尔积交换律"><a href="#①-连接、笛卡尔积交换律" class="headerlink" title="① 连接、笛卡尔积交换律"></a>① 连接、笛卡尔积交换律</h5><p>设 $E_1$ 和 $E_2$ 是关系代数表达式，$F$ 是连接运算的条件，则有：</p>
+<ul>
+<li>$E_1{\times}E_2{\equiv}E_2{\times}E_1$  </li>
+<li>$E_1{\times}_{natrual}E_2{\equiv}E_2{\times}_{natrual}E_1$ </li>
+<li>$E_1{\times}_{F}^{natrual}E_2{\equiv}E_2{\times}_{F}^{natrual}E_1$ </li>
+</ul>
+<h5 id="②-连接、笛卡尔积结合律"><a href="#②-连接、笛卡尔积结合律" class="headerlink" title="② 连接、笛卡尔积结合律"></a>② 连接、笛卡尔积结合律</h5><p>设 $E_1$ 、$E_2$ 和 $E_3$ 是关系代数表达式，$F_1$ 和 $F_2$ 是连接运算的条件，则有：</p>
+<ul>
+<li>$(E_1{\times}E_2){\times}E_3{\equiv}E_1{\times}(E_2{\times}E_3)$ </li>
+<li><p>$(E_1{\times}_{natrual}E_2){\times}_{natrual}E_3{\equiv}E_1{\times}_{natrual}(E_2{\times}_{natrual}E_3)$ </p>
+</li>
+<li><p>$(E_1{\times}_{F_1}^{natrual}E_2){\times}_{F_2}^{natrual}E_3{\equiv}E_1{\times}_{F_1}^{natrual}(E_2{\times}_{F_2}^{natrual}E_3)$ </p>
+</li>
+</ul>
+<h5 id="③-投影的串接定律"><a href="#③-投影的串接定律" class="headerlink" title="③ 投影的串接定律"></a>③ 投影的串接定律</h5><p>${\Pi}_{A_1,A_2,…A_n}({\Pi}_{B_1,B_2,…B_m}(E)){\equiv}{\Pi}_{A_1,A_2,…A_n}(E)$ ，其中：</p>
+<ul>
+<li>$E$ 是关系代数表达式</li>
+<li>$A_i(i=1,2…n)$ 和 $B_i(i=1,2…m)$ 是属性名</li>
+<li>$\{A_1,A_2,…A_n\}$ 构成 $\{B_1,B_2,…B_m\}$ 的子集</li>
+</ul>
+<h5 id="④-选择的串接定理"><a href="#④-选择的串接定理" class="headerlink" title="④ 选择的串接定理"></a>④ 选择的串接定理</h5><p>${\sigma}_{F_1}({\sigma}_{F_2}(E)){\equiv}{\sigma}_{F_1{\wedge}F_2}(E){\equiv}{\sigma}_{F_2}({\sigma}_{F_1}(E))$ ，其中 $E$ 是关系代数表达式， $F_1$、$F_2$ 是选择条件</p>
+<p>选择的串接律说明选择条件可以合并，这样一次就可以检查全部条件</p>
+<h5 id="⑤-选择与投影操作的交换律"><a href="#⑤-选择与投影操作的交换律" class="headerlink" title="⑤ 选择与投影操作的交换律"></a>⑤ 选择与投影操作的交换律</h5><p>${\sigma}_F({\Pi}_{A_1,A_2,…A_n}(E)){\equiv}{\Pi}_{A_1,A_2,…A_n}({\sigma}_F(E))$ ，其中</p>
+<ul>
+<li><p>选择条件 $F$ 指涉及属性 $A_i(i=1,2,…n)$ </p>
+</li>
+<li><p>若 $F$ 中有不属于 $A_i(i=1,2…n)$ 的属性 $B_i(i=1,2,…m)$ ，则有更一般规则：</p>
+<p>${\Pi}_{A_1,A_2,…A_n}({\sigma}_F(E)){\equiv}{\Pi}_{A_1,A_2,…A_n}({\sigma}_F({\Pi}_{A1,A2,…A_n,B_1,B_2,…B_m}(E)))$</p>
+</li>
+</ul>
+<h5 id="⑥-选择与笛卡尔积的交换律"><a href="#⑥-选择与笛卡尔积的交换律" class="headerlink" title="⑥ 选择与笛卡尔积的交换律"></a>⑥ 选择与笛卡尔积的交换律</h5><p>若 $F$ 中涉及的属性都是 $E_1$ 中的属性，则：</p>
+<p> ${\sigma}_F(E_1{\times}E_2){\equiv}{\sigma}_F(E_1){\times}E_2$ </p>
+<p>若 $F=F_1{\wedge}F_2$ ，且 $F_1$ 中只涉及 $E_1$ 中的属性，$F_2$ 中只涉及 $E_2$ 中的属性，则：</p>
+<p>${\sigma}_F(E_1{\times}E_2){\equiv}{\sigma}_{F_1}(E_1){\times}{\sigma}_{F_2}(E_2)$ </p>
+<p>若 $F_1$ 只涉及 $E_1$ 中的属性，$F_2$ 涉及 $E_1$ 和 $E_2$ 两者的属性，则仍然有：</p>
+<p>${\sigma}_F(E_1{\times}E_2){\equiv}{\sigma}_{F_2}({\sigma}_{F_1}(E_1){\times}E_2)$ </p>
+<p>这样可以使得部分选择再笛卡尔积之前先做</p>
+<h5 id="⑦-选择与并的分配律"><a href="#⑦-选择与并的分配律" class="headerlink" title="⑦ 选择与并的分配律"></a>⑦ 选择与并的分配律</h5><p>设 $E=E_1{\cup}E_2$ ，$E_1$ 和 $E_2$ 有相同的属性名，则：</p>
+<p>${\sigma}_F(E_1{\cup}E_2){\equiv}{\sigma}_F(E_1){\cup}{\sigma}_F(E_2)$ </p>
+<h5 id="⑧-选择与差运算的分配律"><a href="#⑧-选择与差运算的分配律" class="headerlink" title="⑧ 选择与差运算的分配律"></a>⑧ 选择与差运算的分配律</h5><p>若 $E_1$ 和 $E_2$ 有相同的属性名，则：</p>
+<p>${\sigma}_F(E_1{-}E_2){\equiv}{\sigma}_F(E_1){-}{\sigma}_F(E_2)$ </p>
+<h5 id="⑨-选择对自然连接的分配律"><a href="#⑨-选择对自然连接的分配律" class="headerlink" title="⑨ 选择对自然连接的分配律"></a>⑨ 选择对自然连接的分配律</h5><p>$F$ 只涉及 $E_1$ 与 $E_2$ 的公共属性，则：</p>
+<p>${\sigma}_F(E_1{\times}_{natrual}E_2){\equiv}{\sigma}_F(E_1){\times}_{natrual}{\sigma}_F(E_2)$ </p>
+<h5 id="⑩-投影与笛卡尔积的分配律"><a href="#⑩-投影与笛卡尔积的分配律" class="headerlink" title="⑩ 投影与笛卡尔积的分配律"></a>⑩ 投影与笛卡尔积的分配律</h5><p>设 $E_1$ 和 $E_2$ 是两个关系表达式，$A_1$ ,… $A_n$ 是 $E_1$ 的属性， $B_1$ ,… $B_m$ 是 $E_2$ 的属性，则：</p>
+<p>${\Pi}_{A_1,…,A_n,B_1,…B_m}(E_1{\times}E_2)={\Pi}_{A_1,…A_n}(E_1){\times}{\Pi}_{B_1,…B_m}(E_2)$ </p>
+<h5 id="⑩①-投影与并的分配律"><a href="#⑩①-投影与并的分配律" class="headerlink" title="⑩① 投影与并的分配律"></a>⑩① 投影与并的分配律</h5><p>设 $E_1$ 和 $E_2$ 有相同的属性名，则：</p>
+<p>${\Pi}_{A_1,A_2,…A_n}(E_1{\cup}E_2){\equiv}{\Pi}_{A_1,A_2,…A_n}(E_1){\cup}{\Pi}_{A_1,A_2,…A_n}(E_2)$ </p>
+<h2 id="物理优化"><a href="#物理优化" class="headerlink" title="物理优化"></a>物理优化</h2><h3 id="基于启发式规则的存取路径选择优化"><a href="#基于启发式规则的存取路径选择优化" class="headerlink" title="基于启发式规则的存取路径选择优化"></a>基于启发式规则的存取路径选择优化</h3><h4 id="典型的启发式规则"><a href="#典型的启发式规则" class="headerlink" title="典型的启发式规则"></a>典型的启发式规则</h4><p>① 选择运算应尽可能先做</p>
+<p>② 把投影运算和选择运算同时进行</p>
+<p>（如有若干个投影和选择运算，并且都对同一个关系操作，则可以再扫描此关系的同时完成所有这些运算，以避免重复扫描关系）</p>
+<p>③ 把投影运算同其前后的双目运算结合起来</p>
+<p>（没必要为了去掉某些字段而扫描一遍关系）</p>
+<p>④ 把某些选择同它前面要执行的笛卡尔积结合起来成为一个连接运算</p>
+<p>（连接特别是等值连接运算要比同样关系上的笛卡尔积省很多时间）</p>
+<p>⑤ 找出公共子表达式</p>
+<p>（如果重复出现的子表达式的结果不是很大的关系，并且从外村中读入这个关系比计算该子表达式的时间少得多，则先计算一次公共子表达式，并把结果写入中间文件是合算的）</p>
+<p>（当查询的是视图时，定义视图的表达式就是公共子表达式的情况）</p>
+<p><strong>方法</strong>：</p>
+<p>① 利用等价变换规则 4，把形如 ${\sigma}_{F_1{\wedge}F_2{\wedge}…{\wedge}F_n}(E)$ 变换为 ${\sigma}_{F_1}({\sigma}_{F_2}(…({\sigma}_{F_n}(E))))$</p>
+<p>② 对每一个选择，尽可能把它移动到树的顶端（即尽可能先做）</p>
+<p>③ 对每一个投影，尽可能把它移动到树的顶端（即尽可能先做）</p>
+<p>④ 把选择和投影的串接合并成单个选择、单个投影或一个选择后跟一个投影，使多个选择或投影能同时执行，或再一次扫描中全部完成</p>
+<p>⑤ 把上述得到的语法树的内节点分组</p>
+<ul>
+<li><p>每一双目运算（${\times}$、${\times}_{natural}$、${\cup}$、$-$）和它所有的直接足有为一组（直接祖先是 ${\sigma}$、${\Pi}$ 运算）</p>
+</li>
+<li><p>如果其后代直到叶子全是单目运算，则也将它们并入该组</p>
+</li>
+<li>但当双目运算是笛卡尔积（${\times}$）时，且后面不是与它组成等值连接的选择时，则不能把选择与这个双目运算组成一组</li>
+</ul>
+<p>上面的实例：</p>
+<table>
+    <tr>
+        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-13-51.45vna8ntdhe0.webp" zoom="40%"></td><td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-13-53.15u7xbtddmik.webp"></td>
+    </tr>
+</table>
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/06/03/Chapter%2023%20XML/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">数据库引论 第23章 XML</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/05/31/Chapter%2012%20Query%20Processing/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">数据库引论 第12章 查询处理</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-13-Query-Optimization"><span class="nav-text">Chapter 13: Query Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0%EF%BC%88Introduction%EF%BC%89"><span class="nav-text">概述（Introduction）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E4%BB%A3%E4%BB%B7"><span class="nav-text">执行代价</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BE%8B"><span class="nav-text">一个实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0-Q-1-Pi-Sname-sigma-Student-Sno-SC-Sno-wedge-SC-Cno-%E2%80%992%E2%80%99-Student-times-SC"><span class="nav-text">① $Q_1&#x3D;{\Pi}_{Sname}({\sigma}_{Student.Sno&#x3D;SC.Sno{\wedge}SC.Cno&#x3D;’2’}(Student{\times}SC))$</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Step-1%EF%BC%9A%E8%AE%A1%E7%AE%97%E5%B9%BF%E4%B9%89%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF"><span class="nav-text">Step 1：计算广义笛卡尔积</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step-2%EF%BC%9A%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C"><span class="nav-text">Step 2：选择操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step-3%EF%BC%9A%E6%8A%95%E5%BD%B1%E6%93%8D%E4%BD%9C"><span class="nav-text">Step 3：投影操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%BB%E4%BB%A3%E4%BB%B7%EF%BC%9A"><span class="nav-text">总代价：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1-Q-2-Pi-Sname-sigma-SC-Cno-%E2%80%992%E2%80%99-Student-times-natrual-SC"><span class="nav-text">② $Q_2&#x3D;{\Pi}_{Sname}({\sigma}_{SC.Cno&#x3D;’2’}(Student{\times}_{natrual}SC))$</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Step-1%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%87%AA%E7%84%B6%E8%BF%9E%E6%8E%A5"><span class="nav-text">Step 1：计算自然连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step-2%EF%BC%9A%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C-1"><span class="nav-text">Step 2：选择操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step-3%EF%BC%9A%E6%8A%95%E5%BD%B1%E6%93%8D%E4%BD%9C-1"><span class="nav-text">Step 3：投影操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%BB%E4%BB%A3%E4%BB%B7%EF%BC%9A-1"><span class="nav-text">总代价：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2-Q-3-Pi-Sname-Student-times-natrual-sigma-SC-Cno-%E2%80%992%E2%80%99-SC"><span class="nav-text">③ $Q_3&#x3D;{\Pi}_{Sname}(Student{\times}_{natrual}{\sigma}_{SC.Cno&#x3D;’2’}(SC))$</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Step-1%EF%BC%9A%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C"><span class="nav-text">Step 1：选择操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step-2%EF%BC%9A%E8%AE%A1%E7%AE%97%E8%87%AA%E7%84%B6%E8%BF%9E%E6%8E%A5"><span class="nav-text">Step 2：计算自然连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step-3%EF%BC%9A%E6%8A%95%E5%BD%B1%E6%93%8D%E4%BD%9C-2"><span class="nav-text">Step 3：投影操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%BB%E4%BB%A3%E4%BB%B7%EF%BC%9A-2"><span class="nav-text">总代价：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3-%E5%85%B6%E4%BB%96%E6%83%85%E5%86%B5"><span class="nav-text">④ 其他情况</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%81%87%E5%A6%82-SC-%E8%A1%A8%E7%9A%84-Cno-%E5%AD%97%E6%AE%B5%E4%B8%8A%E6%9C%89%E7%B4%A2%E5%BC%95"><span class="nav-text">假如 SC 表的 Cno 字段上有索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%81%87%E5%A6%82-Student-%E8%A1%A8%E7%9A%84-Sno-%E5%AD%97%E6%AE%B5%E4%B8%8A%E6%9C%89%E7%B4%A2%E5%BC%95"><span class="nav-text">假如 Student 表的 Sno 字段上有索引</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A4-%E6%80%BB%E7%BB%93"><span class="nav-text">⑤ 总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96%EF%BC%88Transformation-of-Relational-Expressions%EF%BC%89"><span class="nav-text">关系表达式的转化（Transformation of Relational Expressions）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E8%A7%84%E5%88%99%EF%BC%88equivalence-rule%EF%BC%89"><span class="nav-text">等价规则（equivalence rule）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AD%89%E4%BB%B7%E5%8F%98%E6%8D%A2%E8%A7%84%E5%88%99"><span class="nav-text">常用的等价变换规则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-%E8%BF%9E%E6%8E%A5%E3%80%81%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="nav-text">① 连接、笛卡尔积交换律</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-%E8%BF%9E%E6%8E%A5%E3%80%81%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E7%BB%93%E5%90%88%E5%BE%8B"><span class="nav-text">② 连接、笛卡尔积结合律</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2-%E6%8A%95%E5%BD%B1%E7%9A%84%E4%B8%B2%E6%8E%A5%E5%AE%9A%E5%BE%8B"><span class="nav-text">③ 投影的串接定律</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A3-%E9%80%89%E6%8B%A9%E7%9A%84%E4%B8%B2%E6%8E%A5%E5%AE%9A%E7%90%86"><span class="nav-text">④ 选择的串接定理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A4-%E9%80%89%E6%8B%A9%E4%B8%8E%E6%8A%95%E5%BD%B1%E6%93%8D%E4%BD%9C%E7%9A%84%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="nav-text">⑤ 选择与投影操作的交换律</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A5-%E9%80%89%E6%8B%A9%E4%B8%8E%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E7%9A%84%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="nav-text">⑥ 选择与笛卡尔积的交换律</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A6-%E9%80%89%E6%8B%A9%E4%B8%8E%E5%B9%B6%E7%9A%84%E5%88%86%E9%85%8D%E5%BE%8B"><span class="nav-text">⑦ 选择与并的分配律</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A7-%E9%80%89%E6%8B%A9%E4%B8%8E%E5%B7%AE%E8%BF%90%E7%AE%97%E7%9A%84%E5%88%86%E9%85%8D%E5%BE%8B"><span class="nav-text">⑧ 选择与差运算的分配律</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A8-%E9%80%89%E6%8B%A9%E5%AF%B9%E8%87%AA%E7%84%B6%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%88%86%E9%85%8D%E5%BE%8B"><span class="nav-text">⑨ 选择对自然连接的分配律</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A9-%E6%8A%95%E5%BD%B1%E4%B8%8E%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E7%9A%84%E5%88%86%E9%85%8D%E5%BE%8B"><span class="nav-text">⑩ 投影与笛卡尔积的分配律</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A9%E2%91%A0-%E6%8A%95%E5%BD%B1%E4%B8%8E%E5%B9%B6%E7%9A%84%E5%88%86%E9%85%8D%E5%BE%8B"><span class="nav-text">⑩① 投影与并的分配律</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E4%BC%98%E5%8C%96"><span class="nav-text">物理优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%90%AF%E5%8F%91%E5%BC%8F%E8%A7%84%E5%88%99%E7%9A%84%E5%AD%98%E5%8F%96%E8%B7%AF%E5%BE%84%E9%80%89%E6%8B%A9%E4%BC%98%E5%8C%96"><span class="nav-text">基于启发式规则的存取路径选择优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E7%9A%84%E5%90%AF%E5%8F%91%E5%BC%8F%E8%A7%84%E5%88%99"><span class="nav-text">典型的启发式规则</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
