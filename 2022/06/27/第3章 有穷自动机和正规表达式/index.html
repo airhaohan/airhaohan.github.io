@@ -273,15 +273,8 @@
 <p>$\delta(q_4,0)=\{q_4\}$            $\delta(q_4,1)=\{q_4\}$ </p>
 <p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-4.1gf6dxe6fsf4.webp" alt="fct-3-4" style="zoom:20%;" /></p>
 <p><strong>过程</strong>：</p>
-<table>
-    <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-4-1.4ph8mv573y80.webp" alt="fct-3-4-1" style="zoom:15%;" /></td>
-        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-4-2.5pkdgmdpb780.webp" alt="fct-3-4-2" style="zoom:16%;" /></td>
-    </tr>
-</table>
-
-
-
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-4-1.4ph8mv573y80.webp" alt="fct-3-4-1" style="zoom:20%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-4-2.5pkdgmdpb780.webp" alt="fct-3-4-2" style="zoom:20%;" /></p>
 <h2 id="varepsilon-NFA-to-NFA"><a href="#varepsilon-NFA-to-NFA" class="headerlink" title="$\varepsilon$-NFA $\to$ NFA"></a>$\varepsilon$-NFA $\to$ NFA</h2><h3 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h3><p><strong>算法</strong>：</p>
 <p>① 状态并不改变，转移路径去除了接受 $\varepsilon$ 的路径；</p>
 <p>② 增加了另外许多路径，增加规则如下：</p>
@@ -342,7 +335,52 @@ F,{\quad}{\quad}{\quad}{\,}{\,}{\,}else
 <h3 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h3><p><strong>例</strong>：将 10*+0 构造成一个 NFA</p>
 <p><img src="D:\TEMPFI~1\WeChat Files\94b7de45cecc67bfae8bf1eb8d01c2a.jpg" alt="94b7de45cecc67bfae8bf1eb8d01c2a" style="zoom:25%;" /></p>
 <h2 id="DFA-to-RL"><a href="#DFA-to-RL" class="headerlink" title="DFA $\to$ RL"></a>DFA $\to$ RL</h2><h3 id="算法描述-3"><a href="#算法描述-3" class="headerlink" title="算法描述"></a>算法描述</h3><p><strong>算法</strong>：将 DFA 中所有状态标上序号，引入记号 $R^k_{ij}$ ，其含义是从序号为 $i$ 到序号为 $j$ 的状态的路径中所经过状态序号不大于 $k$ （不包括 $i$ 、$j$ 本身）的字符串集合，递推公式为：</p>
-<p>$$<br>R^0_{ij}=\left \{ \begin{array}{ll}<br>\{a|{\delta}(q_i,a=q_j)\},{\quad}{\quad}{\quad}if{\,}{\,}{\,}{\,}i{\not}=j\\<br>\{a|{\delta}(q_i,a=q_j)\}{\cup}\</p>
+<script type="math/tex; mode=display">
+R^0_{ij}=\left \{ \begin{array}{ll}
+\{a|{\delta}(q_i,a=q_j)\},{\quad}{\quad}{\quad}if{\,}{\,}{\,}{\,}i{\not}=j\\
+\{a|{\delta}(q_i,a=q_j)\}{\cup}\{ {\varepsilon}\},{\quad}if{\,}{\,}{\,}{\,}i=j
+\end{array} \right.\\</script><script type="math/tex; mode=display">
+R^k_{ij}=R^{k-1}_{ik}(R^{k-1}_{kk})^{\ast}R^{k-1}_{kj}{\,}{\cup}{\,}R^{k-1}_{ij}</script><p>递推公式第二条第一部分的意思是，如果有经过状态序号为 $k$ 的状态，则将这部分拆分开来</p>
+<p>（具体用表格实现，$k=0$ 的情况直接根据 DFA 的转移路径写出；若有 $n$ 个状态，则 $k=n$ 的情况不要全部写出来，而是只写出 $q_j{\,}{\in}{\,}F$ 的情况）</p>
+<h3 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h3><p><strong>例</strong>：给定如图 DFA，写出代表该自动机所接受的语言集合的正规表达式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-9.14pr1wu0rncw.webp" alt="fct-3-9" style="zoom:25%;" /></p>
+<p><strong>表格</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-10.32c5hwh6jwo0.webp" alt="fct-3-10" style="zoom:20%;" /></p>
+<p>最后 $q_2$ 和 $q_3$ 是终结状态，因此只需求出：</p>
+<ul>
+<li><p>$r^3_{12}=r^2_{13}(r^2_{33}){\ast}r^2_{32}+r^2_{12}=0^{\ast}1((0+1)0^{\ast}1)^{\ast}(0+1)(00)^{\ast}+0(00)^{\ast}$ </p>
+</li>
+<li><p>$r^3_{13}=r^2_{13}(r^2_{33}){\ast}r^2_{33}+r^2_{13}=0^{\ast}1((0+1)0^{\ast}1)^{\ast}$ </p>
+</li>
+</ul>
+<p>因此所求正则表达式为： $r^3_{12}+r^3_{13}=0^{\ast}1((0+1)0^{\ast}1)^{\ast}((0+1)(00)^{\ast}+{\varepsilon})+0(00)^{\ast}$ </p>
+<h2 id="具有输出的有穷自动机"><a href="#具有输出的有穷自动机" class="headerlink" title="具有输出的有穷自动机"></a>具有输出的有穷自动机</h2><h3 id="Moore机"><a href="#Moore机" class="headerlink" title="Moore机"></a>Moore机</h3><p>Moore 机是六元组 $M=(Q,\Sigma,\Delta,\delta,\lambda,q_0)$ ，其中：</p>
+<ul>
+<li>$\Delta$ 是输出字母表</li>
+<li>$\lambda$ 是输出函数，$\lambda:\,Q\to\Delta$ </li>
+</ul>
+<p>（无所谓接受或者拒绝，所以不需要终结状态；每个状态对应一个输出，因此输出序列比输入序列长度大一）</p>
+<h3 id="Mealy-机"><a href="#Mealy-机" class="headerlink" title="Mealy 机"></a>Mealy 机</h3><p>Mealy 机是六元组 $M=(Q,\Sigma,\Delta,\delta,\lambda,q_0)$ ，其中：</p>
+<ul>
+<li>$\Delta$ 是输出字母表</li>
+<li>$\lambda$ 是输出函数，$\lambda:\,Q\times\Sigma\to\Delta$ </li>
+</ul>
+<p>（每次转移对应一个输出，因此输出序列和输入序列长度相等）</p>
+<h3 id="Moore机-to-Mealy机"><a href="#Moore机-to-Mealy机" class="headerlink" title="Moore机 $\to$ Mealy机"></a>Moore机 $\to$ Mealy机</h3><p><strong>算法</strong>：将所有转状态结点的输出移动到其入边，作为其入边的输出；（相当于提前半个周期，在不考虑第一个输出字符的情况下二者等价）</p>
+<h3 id="Mealy机-to-Moore机"><a href="#Mealy机-to-Moore机" class="headerlink" title="Mealy机 $\to$ Moore机"></a>Mealy机 $\to$ Moore机</h3><p><strong>算法</strong>：无法向上边一样，直接将输出向后推半个周期作为入状态的输出，因为一个状态会作为多个入边的入状态；因此需要将状态进行拆分，每条不同的入边都需要对应一个新的状态</p>
+<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><table style="text-align:center">
+    <thead>
+        <tr>
+            <th>Moore to Mealy</th><th>Mealy to Moore</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-15-1.2jt97s0s9ps0.webp" alt="fct-3-15-1" style="zoom:100%;" /></td>
+            <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-15-2.j8wo4m9u6ls.webp" alt="fct-3-15-2" style="zoom:60%;" /></td>
+        </tr>
+    </tbody>
+</table>
 
         </div>
 
@@ -483,7 +521,7 @@ F,{\quad}{\quad}{\quad}{\,}{\,}{\,}else
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%92%8C%E6%AD%A3%E8%A7%84%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">第3章 有穷自动机和正规表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFA"><span class="nav-text">DFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFA"><span class="nav-text">NFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#varepsilon-NFA"><span class="nav-text">$\varepsilon$-NFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-text">结构图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFA-to-DFA"><span class="nav-text">NFA $\to$ DFA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#varepsilon-NFA-to-NFA"><span class="nav-text">$\varepsilon$-NFA $\to$ NFA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0-1"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RL-to-varepsilon-NFA"><span class="nav-text">RL $\to\varepsilon$-NFA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0-2"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DFA-to-RL"><span class="nav-text">DFA $\to$ RL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0-3"><span class="nav-text">算法描述</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%92%8C%E6%AD%A3%E8%A7%84%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">第3章 有穷自动机和正规表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFA"><span class="nav-text">DFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFA"><span class="nav-text">NFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#varepsilon-NFA"><span class="nav-text">$\varepsilon$-NFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-text">结构图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFA-to-DFA"><span class="nav-text">NFA $\to$ DFA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#varepsilon-NFA-to-NFA"><span class="nav-text">$\varepsilon$-NFA $\to$ NFA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0-1"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RL-to-varepsilon-NFA"><span class="nav-text">RL $\to\varepsilon$-NFA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0-2"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DFA-to-RL"><span class="nav-text">DFA $\to$ RL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0-3"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-3"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E6%9C%89%E8%BE%93%E5%87%BA%E7%9A%84%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">具有输出的有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Moore%E6%9C%BA"><span class="nav-text">Moore机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mealy-%E6%9C%BA"><span class="nav-text">Mealy 机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Moore%E6%9C%BA-to-Mealy%E6%9C%BA"><span class="nav-text">Moore机 $\to$ Mealy机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mealy%E6%9C%BA-to-Moore%E6%9C%BA"><span class="nav-text">Mealy机 $\to$ Moore机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%A4%BA"><span class="nav-text">图示</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
