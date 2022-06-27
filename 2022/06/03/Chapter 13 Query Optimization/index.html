@@ -243,8 +243,8 @@ Q_3={\Pi}_{Sname}(Student{\times}_{natrual}{\sigma}_{SC.Cno='2'}(SC))</script><h
 <p><strong>代价</strong>：</p>
 <p>读：设一个块能装 10 个 Student 元组或 100 个 SC 元组，在内存中存放 5 块 Student 元组和 1 块 SC 元组，则读取总块数为：（块）</p>
 <script type="math/tex; mode=display">
-\frac{1000}{10}+\frac{1000}{10{\times}5}\times\frac{10000}{100}=2100</script><p>写：连接后的元组数为 $10^3{\times}10^4=10^7$，设每块能装 10 个元组，则写出 $10^6$ 块</p>
-<h5 id="Step-2：选择操作"><a href="#Step-2：选择操作" class="headerlink" title="Step 2：选择操作"></a>Step 2：选择操作</h5><p>忽略内存处理时间，读取文件花费的时间（通写中间文件一样），需读入 $10^6$ 块</p>
+\frac{1000}{10}+\frac{1000}{10{\times}5}\times\frac{10000}{100}=2100</script><p>写：连接后的元组数为 $10^3{\times}10^4=10^7$，设每块能装 10 个元组，则写出 $10^6$ 块（到磁盘）</p>
+<h5 id="Step-2：选择操作"><a href="#Step-2：选择操作" class="headerlink" title="Step 2：选择操作"></a>Step 2：选择操作</h5><p>忽略内存处理时间，读取文件花费的时间（通写中间文件一样），需读入 $10^6$ 块（从磁盘）</p>
 <p>满足条件的元组仅 50 个，均可放在内存</p>
 <h5 id="Step-3：投影操作"><a href="#Step-3：投影操作" class="headerlink" title="Step 3：投影操作"></a>Step 3：投影操作</h5><p>把 Step 2 的结果再 Sname 上作投影输出，得到最终结果</p>
 <h5 id="总代价："><a href="#总代价：" class="headerlink" title="总代价："></a>总代价：</h5><p>$Q_1$ 的查询方法总读写数据块 $=2100+10^6+10^6$ </p>
@@ -311,7 +311,7 @@ Q_3={\Pi}_{Sname}(Student{\times}_{natrual}{\sigma}_{SC.Cno='2'}(SC))</script><h
 <p>${\Pi}_{A_1,…,A_n,B_1,…B_m}(E_1{\times}E_2)={\Pi}_{A_1,…A_n}(E_1){\times}{\Pi}_{B_1,…B_m}(E_2)$ </p>
 <h5 id="⑩①-投影与并的分配律"><a href="#⑩①-投影与并的分配律" class="headerlink" title="⑩① 投影与并的分配律"></a>⑩① 投影与并的分配律</h5><p>设 $E_1$ 和 $E_2$ 有相同的属性名，则：</p>
 <p>${\Pi}_{A_1,A_2,…A_n}(E_1{\cup}E_2){\equiv}{\Pi}_{A_1,A_2,…A_n}(E_1){\cup}{\Pi}_{A_1,A_2,…A_n}(E_2)$ </p>
-<h2 id="物理优化"><a href="#物理优化" class="headerlink" title="物理优化"></a>物理优化</h2><h3 id="基于启发式规则的存取路径选择优化"><a href="#基于启发式规则的存取路径选择优化" class="headerlink" title="基于启发式规则的存取路径选择优化"></a>基于启发式规则的存取路径选择优化</h3><h4 id="典型的启发式规则"><a href="#典型的启发式规则" class="headerlink" title="典型的启发式规则"></a>典型的启发式规则</h4><p>① 选择运算应尽可能先做</p>
+<h2 id="物理优化"><a href="#物理优化" class="headerlink" title="物理优化"></a>物理优化</h2><h3 id="基于启发式规则的存取路径选择优化"><a href="#基于启发式规则的存取路径选择优化" class="headerlink" title="基于启发式规则的存取路径选择优化"></a>基于启发式规则的存取路径选择优化</h3><h4 id="典型的启发式规则"><a href="#典型的启发式规则" class="headerlink" title="典型的启发式规则"></a>典型的启发式规则</h4><p><strong>① 选择运算应尽可能先做</strong></p>
 <p>② 把投影运算和选择运算同时进行</p>
 <p>（如有若干个投影和选择运算，并且都对同一个关系操作，则可以再扫描此关系的同时完成所有这些运算，以避免重复扫描关系）</p>
 <p>③ 把投影运算同其前后的双目运算结合起来</p>
@@ -323,12 +323,12 @@ Q_3={\Pi}_{Sname}(Student{\times}_{natrual}{\sigma}_{SC.Cno='2'}(SC))</script><h
 <p>（当查询的是视图时，定义视图的表达式就是公共子表达式的情况）</p>
 <p><strong>方法</strong>：</p>
 <p>① 利用等价变换规则 4，把形如 ${\sigma}_{F_1{\wedge}F_2{\wedge}…{\wedge}F_n}(E)$ 变换为 ${\sigma}_{F_1}({\sigma}_{F_2}(…({\sigma}_{F_n}(E))))$</p>
-<p>② 对每一个选择，尽可能把它移动到树的顶端（即尽可能先做）</p>
-<p>③ 对每一个投影，尽可能把它移动到树的顶端（即尽可能先做）</p>
-<p>④ 把选择和投影的串接合并成单个选择、单个投影或一个选择后跟一个投影，使多个选择或投影能同时执行，或再一次扫描中全部完成</p>
+<p>② 对每一个选择，尽可能把它移动到树的叶端（即尽可能先做）</p>
+<p>③ 对每一个投影，尽可能把它移动到树的叶端（即尽可能先做）</p>
+<p>④ 把选择和投影的串接合并成单个选择、单个投影或一个选择后跟一个投影，使多个选择或投影能同时执行，或在一次扫描中全部完成</p>
 <p>⑤ 把上述得到的语法树的内节点分组</p>
 <ul>
-<li><p>每一双目运算（${\times}$、${\times}_{natural}$、${\cup}$、$-$）和它所有的直接足有为一组（直接祖先是 ${\sigma}$、${\Pi}$ 运算）</p>
+<li><p>每一双目运算（${\times}$、${\times}_{natural}$、${\cup}$、$-$）和它所有的直接祖先为一组（直接祖先是 ${\sigma}$、${\Pi}$ 运算）</p>
 </li>
 <li><p>如果其后代直到叶子全是单目运算，则也将它们并入该组</p>
 </li>
@@ -337,7 +337,7 @@ Q_3={\Pi}_{Sname}(Student{\times}_{natrual}{\sigma}_{SC.Cno='2'}(SC))</script><h
 <p>上面的实例：</p>
 <table>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-13-51.45vna8ntdhe0.webp" zoom="40%"></td><td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-13-53.15u7xbtddmik.webp"></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-13-51.45vna8ntdhe0.webp"></td><td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-13-53.15u7xbtddmik.webp"></td>
     </tr>
 </table>
         </div>

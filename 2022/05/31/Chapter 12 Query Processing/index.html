@@ -245,7 +245,7 @@
 </li>
 <li>安全性检查：根据数据字典中有关的模式定义，检查语句中的数据库对象，如关系名、属性名是否存在且有效</li>
 </ul>
-<p>检查通过后把 SQL 查询语句转换成内部表示，即等价的 <strong>关系代数表达式</strong> ；一般使用查询树（语法分析树）来表示扩展的关系代数表达式</p>
+<p>检查通过后把 SQL 查询语句转换成内部表示，即等价的 <strong>关系代数表达式</strong> ；一般使用 <strong>查询树（语法分析树）</strong>来表示扩展的关系代数表达式</p>
 <h4 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h4><p><strong>任务</strong>：选择一个高效执行的查询处理策略</p>
 <p><strong>分类</strong>：</p>
 <ul>
@@ -323,7 +323,7 @@ Cost=(h_i+n){\times}(t_T+t_S)</script><h2 id="连接运算（Join-Operation）">
 <p>② 取 Student 表中的第一个 Sno，依次扫描 SC 表中具有相同 Sno 的元组</p>
 <p>③ 当扫描到 Sno 不相同（SC.Sno &gt; Student.Sno）的第一个 SC 元组时，返回 Student 表，扫描它的下一个元组，再重复 ②，直至 Student 表扫描完</p>
 <p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/db-12-45.3o2jprfgbnk0.webp" alt="db-12-45"></p>
-<p>（此算法 Student 表和 SC 表都只要扫描一遍；即使是大表，加上扫描的时间，总的时间一般仍会减少）</p>
+<p>（此算法 Student 表和 SC 表都只要扫描一遍；即使是大表，加上排序和扫描的时间，总的时间一般仍会减少）</p>
 <h4 id="索引连接算法"><a href="#索引连接算法" class="headerlink" title="索引连接算法"></a>索引连接算法</h4><p>① 在 SC 表上已经建立 Sno 属性的索引</p>
 <p>② 对 Student 中的每一个元组，由 Sno 值通过 SC 的索引查找相应的 SC 元组</p>
 <p>③ 把这些 SC 元组和 Student 元组连接起来</p>
@@ -375,9 +375,9 @@ Cost=1000400t_T+10400t_S</script><h4 id="块嵌套循环算法"><a href="#块嵌
 <p>（$b_r$ 、$b_s$ 分别代表内外层循环的表的块数）</p>
 <p> 最坏情况：（Seek 是这样计算的：表 r 每个块都需要查询一次起始位置，即 $b_r$ 次；对于表 r 中每个块，都需要查询一次表 s 的起始位置，即 $b_r$ 次）</p>
 <script type="math/tex; mode=display">
-Cost=b_r{\times}b_s+2b_r</script><p>最好情况：（Seek 是这样计算的：表 r 和表 s 只需要查询一次起始位置，并保存下来，重复使用）</p>
+Cost=(b_r{\times}b_s+b_r)t_T+2b_rt_S</script><p>最好情况：（Seek 是这样计算的：表 r 和表 s 只需要查询一次起始位置，并保存下来，重复使用）</p>
 <script type="math/tex; mode=display">
-Cost=b_r{\times}b_s+2</script>
+Cost=(b_r+b_s)t_T+2t_S</script>
         </div>
 
         

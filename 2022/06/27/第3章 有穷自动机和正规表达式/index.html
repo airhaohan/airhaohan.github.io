@@ -9,7 +9,7 @@
     
     <title>
         
-            LeetCode 2218. 从栈中取出K个硬币的最大面值和（hard） |
+            计算理论基础 第3章 有穷自动机和正规表达式 |
         
         Splendid
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">LeetCode 2218. 从栈中取出K个硬币的最大面值和（hard）</span>
+            <span class="title-hover-animation">计算理论基础 第3章 有穷自动机和正规表达式</span>
         </div>
 
         
@@ -184,8 +184,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-03-27 22:00:00</span>
-        <span class="mobile">2022-03-27 22:00</span>
+        <span class="pc">2022-06-27 18:17:00</span>
+        <span class="mobile">2022-06-27 18:17</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -193,7 +193,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/LeetCode/">LeetCode</a>&nbsp;
+                        <a href="/categories/Computation-Theory/">Computation Theory</a>&nbsp;
                     </li>
                 
             </ul>
@@ -205,15 +205,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/LeetCode/">LeetCode</a>&nbsp;
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/">计算理论</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/C/">C++</a>&nbsp;
+                        | <a href="/tags/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a>&nbsp;
                     </li>
                 
             </ul>
@@ -232,31 +228,121 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles/" >题目<i class="fas fa-external-link-alt"></i></a></h2><h4 id="LeetCode-2218-从栈中取出K个硬币的最大面值和（hard）"><a href="#LeetCode-2218-从栈中取出K个硬币的最大面值和（hard）" class="headerlink" title="LeetCode 2218. 从栈中取出K个硬币的最大面值和（hard）"></a>LeetCode 2218. 从栈中取出K个硬币的最大面值和（hard）</h4><p>一张桌子上总共有 <code>n</code> 个硬币 <strong>栈</strong> 。每个栈有 <strong>正整数</strong> 个带面值的硬币。</p>
-<p>每一次操作中，你可以从任意一个栈的 <strong>顶部</strong> 取出 1 个硬币，从栈中移除它，并放入你的钱包里。</p>
-<p>给你一个列表 <code>piles</code> ，其中 <code>piles[i</code>] 是一个整数数组，分别表示第 <code>i</code> 个栈里 从顶到底 的硬币面值。同时给你一个正整数 <code>k</code> ，请你返回在 恰好 进行 <code>k</code> 次操作的前提下，你钱包里硬币面值之和 <strong>最大为多少</strong> 。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2019/11/09/e1.png" alt="ex.jpg"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：piles = [[1,100,3],[7,8,9]], k = 2</span><br><span class="line">输出：101</span><br><span class="line">解释：</span><br><span class="line">上图展示了几种选择 k 个硬币的不同方法。</span><br><span class="line">我们可以得到的最大面值为 101 。</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：piles = [[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]], k = 7</span><br><span class="line">输出：706</span><br><span class="line">解释：</span><br><span class="line">如果我们所有硬币都从最后一个栈中取，可以得到最大面值和。</span><br></pre></td></tr></table></figure>
-<p><strong>提示：</strong></p>
+            <p>计算理论基础 第3章 有穷自动机和正规表达式 的相关笔记，包括：三类有穷自动机、四种形式的转换、Moore 机 和 Mealy 机等…</p>
+<h1 id="第3章-有穷自动机和正规表达式"><a href="#第3章-有穷自动机和正规表达式" class="headerlink" title="第3章 有穷自动机和正规表达式"></a>第3章 有穷自动机和正规表达式</h1><h2 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h2><h3 id="DFA"><a href="#DFA" class="headerlink" title="DFA"></a>DFA</h3><p>确定的有穷自动机（DFA）是个五元组： $M=(Q,\Sigma,\delta,q_0,F)$ ，其中：</p>
 <ul>
-<li><code>n == piles.length</code></li>
-<li><code>1 &lt;= n &lt;= 1000</code></li>
-<li><code>1 &lt;= piles[i][j] &lt;= 105</code></li>
-<li><code>1 &lt;= k &lt;= sum(piles[i].length) &lt;= 2000</code></li>
+<li>$Q$ 是有穷状态集</li>
+<li>$\Sigma$ 是有穷的输入字母表</li>
+<li>$\delta$ 是转移函数， $\delta:\, Q\times\Sigma\to Q$ </li>
+<li>$q_0\,\in\, Q$ ，是初始状态</li>
+<li>$F\,\subseteq\,Q$ ，是终结状态集</li>
 </ul>
-<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><p>① 把背包容量看成<code>k</code>，每个栈代表一种物品，所需容量为从此栈中取出的数的个数，跟一般的0-1背包不同的是，这里每个物品所占的容量是会变化的，取决于从这个栈里取多少数出来<br>② 对于第<code>i</code>个物品，即第<code>i</code>个栈，遍历其可能拿出的数所有情况。<code>j</code>代表到第<code>i</code>个栈为止一共往背包里装了多少个数。<code>l</code>代表从第<code>i</code>个栈里取出了多少个数。即有转移方程<code>dp[i][j] = max(dp[i][j], dp[i - 1][j - l] + piles[i - 1][l - 1])</code>，其中<code>piles[i - 1][l - 1]</code>已经是前缀和<br>③ 这里需要注意for循环的范围：</p>
+<p>转移函数定义拓展：</p>
+<script type="math/tex; mode=display">
+\left \{ \begin{array}{ll}
+\hat{\delta}(q,\varepsilon)=q\\
+\hat{\delta}(q,wa)=\delta(\hat{\delta}(q,w),a)
+\end{array} \right.</script><p>其中 $w$ 是字符串，$w\in{\Sigma}^{\ast}$ </p>
+<h3 id="NFA"><a href="#NFA" class="headerlink" title="NFA"></a>NFA</h3><p>定义与 DFA 类似，不同之处在于转移函数 $\delta:\, Q\times\Sigma\to 2^Q$ ，即下一状态是个集合；只要有一条分支到达 $F$ 就算接受</p>
+<p>转移函数定义拓展：</p>
+<script type="math/tex; mode=display">
+\left \{ \begin{array}{ll}
+\hat{\delta}(q,\varepsilon)=\{q\}\\
+\hat{\delta}(q,wa)=\{p|p\,\in\,\delta(r,a)\, ,r\,\in\,\hat{\delta}(q,w)\}
+\end{array} \right.</script><p>其中 $w$ 是字符串，$w\in{\Sigma}^{\ast}$ </p>
+<h3 id="varepsilon-NFA"><a href="#varepsilon-NFA" class="headerlink" title="$\varepsilon$-NFA"></a>$\varepsilon$-NFA</h3><p>定义与 NFA 类似，不同之处在于转移函数还可以接受空串/空字符 $\varepsilon$ </p>
+<p>转移函数定义拓展：</p>
+<script type="math/tex; mode=display">
+\left \{ \begin{array}{ll}
+\hat{\delta}(q,\varepsilon)={\varepsilon}-CLOSURE(q)\\
+\hat{\delta}(q,wa)={\varepsilon}-CLOSURE(P),{\,}P={\cup}_{r\,\in\,\hat{\delta}(q,w)}{\delta}(r,a)
+\end{array} \right.</script><p>其中 $\varepsilon -CLOSURE(q)$ 定义为：</p>
 <ul>
-<li><code>i</code>的范围为第1个栈到第n个栈，所以转化为下标、取对应的前缀和<code>piles[i - 1][l - 1]</code>时，<code>i</code>需要减一</li>
-<li><code>j</code>代表到第<code>i</code>个栈为止一共往背包里装了多少个数，最大不能超过<code>k</code>，但同时也不能超过从第<code>1</code>个栈到第<code>i</code>个栈为止所有栈中的数的个数之和，因为显然不能将所有栈中的数字都取出来后再继续取。因此需要一个<code>sum</code>来记录。还有，从当前栈中不取任何数的情况单独处理，不放进for循环中，因此<code>j &gt;= 1</code></li>
-<li><code>l</code>代表从第<code>i</code>个栈里取出了多少个数，不能超过当前栈的数的总数，也不能超过当前假定的、到这个栈为止一共往背包里装了多少个数，即<code>j</code></li>
+<li>$q$ 在 $\varepsilon -CLOSURE(q)$ 中</li>
+<li>若 $p$ 在 $\varepsilon -CLOSURE(q)$ 中，则 $\delta(p,{\varepsilon})$ 也在  $\varepsilon -CLOSURE(q)$  中</li>
+<li>重复以上步骤，直至  $\varepsilon -CLOSURE(q)$ 不再增加为止</li>
 </ul>
-<h2 id="代码（C-实现）"><a href="#代码（C-实现）" class="headerlink" title="代码（C++实现）"></a>代码（C++实现）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxValueOfCoins</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; piles, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = piles.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(k + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            sum += piles[i - <span class="number">1</span>].<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; piles[i - <span class="number">1</span>].<span class="built_in">size</span>(); ++j)</span><br><span class="line">                piles[i - <span class="number">1</span>][j] += piles[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= k &amp;&amp; j &lt;= sum; ++j) &#123;</span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">1</span>; l &lt;= j &amp;&amp; l &lt;= piles[i - <span class="number">1</span>].<span class="built_in">size</span>(); ++l) &#123;</span><br><span class="line">                    dp[i][j] = <span class="built_in">max</span>(dp[i][j], dp[i - <span class="number">1</span>][j - l] + piles[i - <span class="number">1</span>][l - <span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">                ret = <span class="built_in">max</span>(ret, dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>有收获的话，求个赞~ <a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles/solution/by-airhao-han-f15m/" >Click Here<i class="fas fa-external-link-alt"></i></a></p>
-<p>来源：力扣（LeetCode）<br>链接：<a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles" >https://leetcode-cn.com/problems/maximum-value-of-k-coins-from-piles<i class="fas fa-external-link-alt"></i></a></p>
+<p>（可以理解成从状态 $q$ 出发，仅通过接受 $\varepsilon$ 可以到达的状态集） </p>
+<h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-8.6hti97914o40.webp" alt="fct-3-8"></p>
+<h2 id="NFA-to-DFA"><a href="#NFA-to-DFA" class="headerlink" title="NFA $\to$ DFA"></a>NFA $\to$ DFA</h2><h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p><strong>算法</strong>：<mark>将状态的集合看作状态</mark>（状态会发生改变）；从起始状态开始，逐一尝试字母表中每个字母，获得下一状态；对于新增加的状态，重复上述过程，直到不再有新的状态产生；</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><strong>例</strong>：将如图所示的 NFA 转化为相应的 DFA，转移函数：</p>
+<p>$\delta(q_0,0)=\{q_0,q_3\}$     $\delta(q_0,1)=\{q_0,q_1\}$ </p>
+<p>$\delta(q_1,0)=\varnothing$                $\delta(q_1,1)=\{q_2\}$ </p>
+<p>$\delta(q_2,0)=\{q_2\}$            $\delta(q_2,1)=\{q_2\}$ </p>
+<p>$\delta(q_3,0)=\{q_4\}$            $\delta(q_3,1)=\varnothing$ </p>
+<p>$\delta(q_4,0)=\{q_4\}$            $\delta(q_4,1)=\{q_4\}$ </p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-4.1gf6dxe6fsf4.webp" alt="fct-3-4" style="zoom:20%;" /></p>
+<p><strong>过程</strong>：</p>
+<table>
+    <tr>
+        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-4-1.4ph8mv573y80.webp" alt="fct-3-4-1" style="zoom:15%;" /></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-4-2.5pkdgmdpb780.webp" alt="fct-3-4-2" style="zoom:16%;" /></td>
+    </tr>
+</table>
+
+
+
+<h2 id="varepsilon-NFA-to-NFA"><a href="#varepsilon-NFA-to-NFA" class="headerlink" title="$\varepsilon$-NFA $\to$ NFA"></a>$\varepsilon$-NFA $\to$ NFA</h2><h3 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h3><p><strong>算法</strong>：</p>
+<p>① 状态并不改变，转移路径去除了接受 $\varepsilon$ 的路径；</p>
+<p>② 增加了另外许多路径，增加规则如下：</p>
+<ul>
+<li>对于 $\delta(q,a)=P$ ，则增加路径 $q\overset{a}{\to}{\varepsilon}-CLOSURE(P)$ ；</li>
+<li>对于 $Q\subseteq{\varepsilon}-CLOSURE(q)$ 且 $Q\overset{a}{\to}P$ ，增加路径 $q\overset{a}{\to}P$ ；</li>
+</ul>
+<p>（即需要增加：① 能够通过 $q$ 的闭包到达的状态；② $q$ 能够到达状态的闭包）</p>
+<p>③ 处理终结状态：</p>
+<script type="math/tex; mode=display">
+F'=\left \{ \begin{array}{ll}
+F{\cup}\{q_0\},{\quad}if{\,}{\,}{\,}{\,}{\varepsilon}-CLOSURE(q_0){\cap}F{\not=}{\varnothing}\\
+F,{\quad}{\quad}{\quad}{\,}{\,}{\,}else
+\end{array} \right.</script><p>（就是说，如果原来从起始状态出发，不接受任何字符就可以到达终结状态，那么起始状态事实上也是终结状态）</p>
+<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><p><strong>例</strong>：将如图所示的 $\varepsilon$-NFA 转化为 NFA：</p>
+<table style="text-align:center">
+    <thead>
+        <tr>
+            <th>转化前</th><th>转化后</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-6.db4ecaieju.webp" alt="fct-3-6" style="zoom:18%;" /></td>
+            <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-7.4kevuclk36e0.webp" alt="fct-3-7" style="zoom:18%;" /></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h2 id="RL-to-varepsilon-NFA"><a href="#RL-to-varepsilon-NFA" class="headerlink" title="RL $\to\varepsilon$-NFA"></a>RL $\to\varepsilon$-NFA</h2><h3 id="算法描述-2"><a href="#算法描述-2" class="headerlink" title="算法描述"></a>算法描述</h3><p><strong>算法</strong>：将基础和正则表达式的三种运算用不同的 $\varepsilon$-NFA 处理：</p>
+<table style="text-align:center">
+    <thead>
+        <tr>
+            <th>基础</th><th>或</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-3-1.4crhazzgs7s0.webp" alt="fct-3-3-1" style="zoom:20%;" /></td>
+            <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-3-2.6785m6vmqj40.webp" alt="fct-3-3-2" style="zoom:15%;" /></td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>连接</th><th>闭包</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-3-3.w6chitwjo6o.webp" alt="fct-3-3-3" style="zoom:15%;" /></td>
+            <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-3-3-4.w3zewcp6hdc.webp" alt="fct-3-3-4" style="zoom:15%;" /></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h3><p><strong>例</strong>：将 10*+0 构造成一个 NFA</p>
+<p><img src="D:\TEMPFI~1\WeChat Files\94b7de45cecc67bfae8bf1eb8d01c2a.jpg" alt="94b7de45cecc67bfae8bf1eb8d01c2a" style="zoom:25%;" /></p>
+<h2 id="DFA-to-RL"><a href="#DFA-to-RL" class="headerlink" title="DFA $\to$ RL"></a>DFA $\to$ RL</h2><h3 id="算法描述-3"><a href="#算法描述-3" class="headerlink" title="算法描述"></a>算法描述</h3><p><strong>算法</strong>：将 DFA 中所有状态标上序号，引入记号 $R^k_{ij}$ ，其含义是从序号为 $i$ 到序号为 $j$ 的状态的路径中所经过状态序号不大于 $k$ （不包括 $i$ 、$j$ 本身）的字符串集合，递推公式为：</p>
+<p>$$<br>R^0_{ij}=\left \{ \begin{array}{ll}<br>\{a|{\delta}(q_i,a=q_j)\},{\quad}{\quad}{\quad}if{\,}{\,}{\,}{\,}i{\not}=j\\<br>\{a|{\delta}(q_i,a=q_j)\}{\cup}\</p>
 
         </div>
 
@@ -266,15 +352,11 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/LeetCode/">#LeetCode</a>&nbsp;
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/">#计算理论</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/C/">#C++</a>&nbsp;
+                        <a href="/tags/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">#形式语言与自动机</a>&nbsp;
                     </li>
                 
             </ul>
@@ -283,29 +365,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/04/27/%E7%AC%AC8%E7%AB%A0%20%E4%B8%8D%E5%8F%AF%E5%88%A4%E5%AE%9A%E6%80%A7/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">计算理论基础 第8章 不可判定性</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/03/19/Redis%E4%BD%BF%E7%94%A8%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+                           href="/2022/06/26/%E7%AC%AC2%E7%AB%A0%20%E6%96%87%E6%B3%95%E7%90%86%E8%AE%BA/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Redis使用快速入门</span>
+                                <span class="post-nav-title-item">计算理论基础 第2章 文法理论</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -416,7 +483,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LeetCode-2218-%E4%BB%8E%E6%A0%88%E4%B8%AD%E5%8F%96%E5%87%BAK%E4%B8%AA%E7%A1%AC%E5%B8%81%E7%9A%84%E6%9C%80%E5%A4%A7%E9%9D%A2%E5%80%BC%E5%92%8C%EF%BC%88hard%EF%BC%89"><span class="nav-text">LeetCode 2218. 从栈中取出K个硬币的最大面值和（hard）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A"><span class="nav-text">解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88C-%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-text">代码（C++实现）</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%92%8C%E6%AD%A3%E8%A7%84%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">第3章 有穷自动机和正规表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFA"><span class="nav-text">DFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFA"><span class="nav-text">NFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#varepsilon-NFA"><span class="nav-text">$\varepsilon$-NFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-text">结构图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFA-to-DFA"><span class="nav-text">NFA $\to$ DFA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#varepsilon-NFA-to-NFA"><span class="nav-text">$\varepsilon$-NFA $\to$ NFA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0-1"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RL-to-varepsilon-NFA"><span class="nav-text">RL $\to\varepsilon$-NFA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0-2"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DFA-to-RL"><span class="nav-text">DFA $\to$ RL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0-3"><span class="nav-text">算法描述</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

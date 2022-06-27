@@ -279,7 +279,7 @@
 <p>（显然，若 $NP$ 完全问题是 $P$ 类问题，那么所有 $NP$ 问题都可以归约到 $NP$ 完全问题，进而得到多项式时间的算法）<span id="npc-f"></span></p>
 <p><strong>Th</strong>：$NPC$ 问题的四个性质：（第四条最重要）</p>
 <ul>
-<li>若 $A,B{\in}NPC$ ，则 $A{\leq}_pB$ （可相互规约）</li>
+<li>若 $A,B{\in}NPC$ ，则 $A{\leq}_pB$ （可相互归约）</li>
 <li>$A{\in}NPC$ ，若 $A{\in}P$ ，则 $NP=P$ </li>
 <li>$A{\in}NPC$ ，若 $A{\notin}P$ ，则 $NP{\cap}P=\varnothing$ </li>
 <li>$A{\in}NPC$，$B{\in}NP$ ，若 $A{\leq}_pB$ ，则 $B{\in}NPC$ </li>
@@ -343,11 +343,11 @@
 <ul>
 <li>a. 变量构件中的一条边要被覆盖，必有 $x_i$ 与 $\overline{x_i}$ 中的一个加入了 $k$ ；</li>
 <li>b. 子句结点组中的三条边必须要两个结点覆盖；</li>
-<li>c. 若变量构件中被选中的结点在子句结点组中也被选中，则该覆盖的结点显然超过 $k$ 个，因此每个顶点覆盖均包含每个变量构建的一个结点和每个子句构件的两个结点，且子句构件中没有被选中的那个结点变量构件中被选中，一共是 $k$ 个结点；</li>
+<li>c. 若变量构件中被选中的结点在子句结点组中也被选中，则该覆盖的结点显然超过 $k$ 个，因此每个顶点覆盖均包含每个变量构建的一个结点和每个子句构件的两个结点，且子句构件中没有被选中的那个结点变量在构件中被选中，一共是 $k$ 个结点；</li>
 </ul>
 <p>将变量构件中被选中的结点对应的变量赋值为1，则得到了一个可以使 $\phi=1$ 的赋值</p>
 <p>因此，$3SAT{\leq}_PVERTEX-COVER$ ，$VERTEX-COVER$ 是 $NP$ 完全的</p>
-<h3 id="哈密顿路径问题"><a href="#哈密顿路径问题" class="headerlink" title="哈密顿路径问题"></a>哈密顿路径问题</h3><p><strong>Th 7.35</strong>：$HAMPATH-COVER$ 是 $NP$ 完全的</p>
+<h1 id="（这个需要修改，就是-k-是什么呢）"><a href="#（这个需要修改，就是-k-是什么呢）" class="headerlink" title="（这个需要修改，就是 $k$ 是什么呢）"></a>（这个需要修改，就是 $k$ 是什么呢）</h1><h3 id="哈密顿路径问题"><a href="#哈密顿路径问题" class="headerlink" title="哈密顿路径问题"></a>哈密顿路径问题</h3><p><strong>Th 7.35</strong>：$HAMPATH-COVER$ 是 $NP$ 完全的</p>
 <p>归约函数：$f:{\phi}\to {\lt}G,s,t{\gt}$ ，$\phi=(a_1\vee b_1\vee c_1)\wedge(a_2\vee b_2\vee c_2)\wedge … \wedge (a_k\vee b_k\vee c_k)$ </p>
 <p>（有 $l$ 种变量和 $k$ 个子句）该归约函数复杂性为 $O(kl)$ ，为多项式时间</p>
 <p>构造：将所有变量表示为钻石型结构（变量构件），将每个子句看成一个结点（子句构件），要求：</p>
@@ -359,7 +359,7 @@
 <ul>
 <li><p>上下有 $s$ 和 $t$ 结点，串接所有 $x_i$ 的钻石结构（图7-14）</p>
 </li>
-<li><p>$c_i$ 连接对应变量 $x_i$ 的钻石的横向的结点对；根据 $c_i$ 包括whether $x_i$ or $\overline{x_i}$ ，连接子句结点的方向不同：（图7-16）（图7-17）</p>
+<li><p>$c_i$ 连接对应变量 $x_i$ 的钻石的横向的结点对；根据 $c_i$ 包括wether $x_i$ or $\overline{x_i}$ ，连接子句结点的方向不同：（图7-16）（图7-17）</p>
 </li>
 </ul>
 <table>
@@ -574,7 +574,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC11%E7%AB%A0%E7%AC%94%E8%AE%B0-%EF%BC%88III%EF%BC%89"><span class="nav-text">第11章笔记 （III）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-NP%E5%AE%8C%E5%85%A8%E6%80%A7"><span class="nav-text">7.4 NP完全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%97%B6%E9%97%B4%E5%8F%AF%E5%BD%92%E7%BA%A6%E6%80%A7"><span class="nav-text">多项式时间可归约性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%97%B6%E9%97%B4%E5%8F%AF%E5%BD%92%E7%BA%A6"><span class="nav-text">多项式时间可归约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E6%BB%A1%E8%B6%B3%E6%80%A7%E9%97%AE%E9%A2%98"><span class="nav-text">可满足性问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NP%E5%AE%8C%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-text">NP完全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NP%E5%AE%8C%E5%85%A8%E6%80%A7%E5%AE%9A%E4%B9%89"><span class="nav-text">NP完全性定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%93%E5%85%8B-%E5%88%97%E6%96%87%E5%AE%9A%E7%90%86"><span class="nav-text">库克-列文定理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-%E5%87%A0%E4%B8%AANP%E5%AE%8C%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-text">7.5 几个NP完全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%A2%E9%97%AE%E9%A2%98"><span class="nav-text">团问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="nav-text">顶点覆盖问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%88%E5%AF%86%E9%A1%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="nav-text">哈密顿路径问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E9%9B%86%E5%92%8C%E9%97%AE%E9%A2%98"><span class="nav-text">子集和问题</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC11%E7%AB%A0%E7%AC%94%E8%AE%B0-%EF%BC%88III%EF%BC%89"><span class="nav-text">第11章笔记 （III）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-NP%E5%AE%8C%E5%85%A8%E6%80%A7"><span class="nav-text">7.4 NP完全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%97%B6%E9%97%B4%E5%8F%AF%E5%BD%92%E7%BA%A6%E6%80%A7"><span class="nav-text">多项式时间可归约性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%97%B6%E9%97%B4%E5%8F%AF%E5%BD%92%E7%BA%A6"><span class="nav-text">多项式时间可归约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E6%BB%A1%E8%B6%B3%E6%80%A7%E9%97%AE%E9%A2%98"><span class="nav-text">可满足性问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NP%E5%AE%8C%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-text">NP完全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NP%E5%AE%8C%E5%85%A8%E6%80%A7%E5%AE%9A%E4%B9%89"><span class="nav-text">NP完全性定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%93%E5%85%8B-%E5%88%97%E6%96%87%E5%AE%9A%E7%90%86"><span class="nav-text">库克-列文定理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-%E5%87%A0%E4%B8%AANP%E5%AE%8C%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-text">7.5 几个NP完全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%A2%E9%97%AE%E9%A2%98"><span class="nav-text">团问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="nav-text">顶点覆盖问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%EF%BC%88%E8%BF%99%E4%B8%AA%E9%9C%80%E8%A6%81%E4%BF%AE%E6%94%B9%EF%BC%8C%E5%B0%B1%E6%98%AF-k-%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%89"><span class="nav-text">（这个需要修改，就是 $k$ 是什么呢）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%88%E5%AF%86%E9%A1%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="nav-text">哈密顿路径问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E9%9B%86%E5%92%8C%E9%97%AE%E9%A2%98"><span class="nav-text">子集和问题</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

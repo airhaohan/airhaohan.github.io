@@ -239,7 +239,7 @@ f(n){\le}cg(n)</script><p>此时称 $g(n)$ 为 $f(n)$ 的<strong>（渐进）上
 <p>（大O表示法要避免overpower的表示，如本身是多项式时间量级的求解时间代价，虽然可用指数级来表示上界，但指数或阶乘级别量级的问题往往归结于难解问题；因此对于多项式级问题，尽量不要用指数级的上界表示）</p>
 <h4 id="小o表示法"><a href="#小o表示法" class="headerlink" title="小o表示法"></a>小o表示法</h4><p><strong>Def 7.5</strong>：（小o表示法的数学描述）设 $f$ 和 $g$ 是两个 $N{\rightarrow}R^+$ 的函数。称 $f(n)=o(g(n))$ ，有：</p>
 <script type="math/tex; mode=display">
-{\lim_{n\to {\infty}}}{\frac{f(n)}{g(n)}}</script><p>（大O与小o记法的界都是可以任意取的，只要满足相当于 ${\leq}$ 或 ${\lt}$ 的条件）</p>
+{\lim_{n\to {\infty}}}{\frac{f(n)}{g(n)}}=0</script><p>（大O与小o记法的界都是可以任意取的，只要满足相当于 ${\leq}$ 或 ${\lt}$ 的条件）</p>
 <h3 id="分析算法"><a href="#分析算法" class="headerlink" title="分析算法"></a>分析算法</h3><p><strong>Def 7.7</strong>：令 $t:N{\to}R^+$ 是一个函数。定义 <strong>时间复杂性类</strong> $TIME(t(n))$ 为由 $O(t(n))$ 时间的图灵机判定的所有语言的集合</p>
 <p><strong>P.S.</strong> 复杂性理论和可计算性理论的重大区别：丘奇—图灵论题断言，所有合理的计算模型都是等价的。但在复杂性理论中，模型的选择影响语言的时间复杂度。</p>
 <p>（比如判定语言 $L={0^n1^n}$，单带图灵机时间的复杂度为 $O(n^2)$ ，多带图灵机的时间复杂度为 $O(n)$）</p>
@@ -291,10 +291,8 @@ P=\mathop{\cup}_kTIME(n^k)</script><ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (y) &#123;</span><br><span class="line">    x %= y;</span><br><span class="line">    <span class="built_in">swap</span>(x, y);</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;(x,y)=&quot;</span> &lt;&lt; x;</span><br></pre></td></tr></table></figure>
 <p><strong>分析</strong>：若起始状态 $x&gt;y$， 设 $x{\,}mod{\,}y=r$ （$0{\le}r&lt;y$，$r$ 是 $x$ 的新值） ：</p>
 <ul>
-<li><p>若 $y&gt;\frac{x}{2}$ ，则 $y+r{\,}{\le}{\,}x{\implies}r&lt;\frac{x}{2}$</p>
-</li>
-<li><p>若 $y{\,}{\le}{\,}\frac{x}{2}$  ，则 $r&lt;y&lt;\frac{x}{2}{\implies}r&lt;\frac{x}{2}$</p>
-</li>
+<li>若 $y&gt;\frac{x}{2}$ ，则 $y+r{\,}{\le}{\,}x{\implies}r&lt;\frac{x}{2}$</li>
+<li>若 $y{\,}{\le}{\,}\frac{x}{2}$  ，则 $r&lt;y{\le}\frac{x}{2}{\implies}r&lt;\frac{x}{2}$</li>
 </ul>
 <p>不论何种情况，$x$ 在每次循环过程中大小至少会减半，而一次循环结束后 $x$ 将获得 $y$ 的值；也就是说，每进行两次循环体，$x$ 和 $y$ 的值至少减少一半，执行最大次数是 $2log_2x$ 和 $2log_2y$ 中较小者，不大于 $O(n)$</p>
 <h4 id="上下文无关语言是P类问题"><a href="#上下文无关语言是P类问题" class="headerlink" title="上下文无关语言是P类问题"></a>上下文无关语言是P类问题</h4><p>复习一下 $CYK$ 算法~（第6章 上下文无关语言的性质 6.3 P151）复杂度为 $O(n^3)$</p>

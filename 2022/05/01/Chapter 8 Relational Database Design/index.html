@@ -224,7 +224,7 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="Chapter-8-Relational-Database-Design"><a href="#Chapter-8-Relational-Database-Design" class="headerlink" title="Chapter 8: Relational Database Design"></a>Chapter 8: Relational Database Design</h1><h2 id="8-1-好的关系设计的特点（Features-of-Good-Relational-Design）"><a href="#8-1-好的关系设计的特点（Features-of-Good-Relational-Design）" class="headerlink" title="8.1 好的关系设计的特点（Features of Good Relational Design）"></a><strong>8.1 </strong>好的关系设计的特点（Features of Good Relational Design）</h2><h3 id="设计选择（Design-Alternative）"><a href="#设计选择（Design-Alternative）" class="headerlink" title="设计选择（Design Alternative）:"></a>设计选择（Design Alternative）:</h3><ul>
+            <h1 id="Chapter-8-Relational-Database-Design"><a href="#Chapter-8-Relational-Database-Design" class="headerlink" title="Chapter 8: Relational Database Design"></a><strong>Chapter 8: Relational Database Design</strong></h1><h2 id="8-1-好的关系设计的特点（Features-of-Good-Relational-Design）"><a href="#8-1-好的关系设计的特点（Features-of-Good-Relational-Design）" class="headerlink" title="8.1 好的关系设计的特点（Features of Good Relational Design）"></a>8.1 好的关系设计的特点（Features of Good Relational Design）</h2><h3 id="设计选择（Design-Alternative）"><a href="#设计选择（Design-Alternative）" class="headerlink" title="设计选择（Design Alternative）:"></a>设计选择（Design Alternative）:</h3><ul>
 <li>Larger Schemas（更大的模式）</li>
 <li>Smaller Schemas（更小的模式）</li>
 </ul>
@@ -250,20 +250,20 @@
 </ul>
 <p>由于 $D$ 、$DOM$ 与模式设计关系不大，因此在本章中把关系模式看作一个三元组：$R{\lt}U,F{\gt}$</p>
 <p><strong>第一范式：</strong> 作为二维表，关系要符合一个最基本的条件：每个分量必须是不可分开的数据项。满足了这个条件的关系模式就属于第一范式（1NF）</p>
-<h3 id="数据依赖"><a href="#数据依赖" class="headerlink" title="数据依赖"></a>数据依赖</h3><h4 id="多值依赖（MVD，Multi-Valued-Dependency）（将在8-6节介绍）"><a href="#多值依赖（MVD，Multi-Valued-Dependency）（将在8-6节介绍）" class="headerlink" title="多值依赖（MVD，Multi-Valued Dependency）（将在8.6节介绍） "></a><strong>多值依赖（MVD，Multi-Valued Dependency）</strong>（将在8.6节介绍）<span id="fd"> </span></h4><h4 id="函数依赖（FD，Functional-Dependency）"><a href="#函数依赖（FD，Functional-Dependency）" class="headerlink" title="函数依赖（FD，Functional Dependency）"></a><strong>函数依赖（FD，Functional Dependency）</strong></h4><p><strong>Def</strong>：设 $R(U)$ 是一个属性集 $U$ 上的关系模式，$X$ 和 $Y$ 是 $U$ 的子集。若对于 $R(U)$ 的关系实例的任意两个可能的元组 $r1$ 、$r2$ ，若 $r1[X]=r2[X]$ ，则 $r1[Y]=r2[Y]$ ；或者，若 $r1[Y]$ 不等于 $r2[Y]$ ，则 $r1[X]$ 不等于 $r2[X]$ ；称 $X$ 决定 $Y$， 或者 $Y$ 依赖 $X$ ，记为 $X{\rightarrow}Y$。其中 $X$ 称为这个函数依赖的决定因素。</p>
+<h3 id="数据依赖"><a href="#数据依赖" class="headerlink" title="数据依赖"></a>数据依赖</h3><h4 id="多值依赖（MVD，Multi-Valued-Dependency）（将在8-6节介绍）"><a href="#多值依赖（MVD，Multi-Valued-Dependency）（将在8-6节介绍）" class="headerlink" title="多值依赖（MVD，Multi-Valued Dependency）（将在8.6节介绍） "></a>多值依赖（MVD，Multi-Valued Dependency）（将在8.6节介绍）<span id="fd"> </span></h4><h4 id="函数依赖（FD，Functional-Dependency）"><a href="#函数依赖（FD，Functional-Dependency）" class="headerlink" title="函数依赖（FD，Functional Dependency）"></a>函数依赖（FD，Functional Dependency）</h4><p><strong>Def</strong>：设 $R(U)$ 是一个属性集 $U$ 上的关系模式，$X$ 和 $Y$ 是 $U$ 的子集。若对于 $R(U)$ 的关系实例的任意两个可能的元组 $r1$ 、$r2$ ，若 $r1[X]=r2[X]$ ，则 $r1[Y]=r2[Y]$ ；或者，若 $r1[Y]$ 不等于 $r2[Y]$ ，则 $r1[X]$ 不等于 $r2[X]$ ；称 $X$ 决定 $Y$， 或者 $Y$ 依赖 $X$ ，记为 $X{\rightarrow}Y$。其中 $X$ 称为这个函数依赖的决定因素。</p>
 <p>（相互依赖记为 $X{\leftrightarrow}Y$ ，$Y$ 不依赖于 $X$ 记为 $X{\nrightarrow}Y$ ）</p>
 <p>（就是有种 $X$ 对于 $Y$ 来说是主键的感觉，这个箭头可以看作是数理逻辑中的“蕴含“，元组再某个属性组上取值相同时为真，不同时为假，则 $X{\rightarrow}Y$ 的意义与函数依赖相同）</p>
 <p><strong>Attention</strong>：函数依赖不是某个关系实例应当满足的条件，而是所有关系模式 $R$ 下所有关系实例均要满足的约束条件，即一个关系 $r$ 满足 $X{\rightarrow}Y$ 和在一个关系模式 $R$ 上 $X{\rightarrow}Y$ 成立是不同的</p>
-<p><strong>平凡函数依赖</strong>：当 $Y{\subseteq}X$ 时，显然 $X{\rightarrow}Y$ ，称为平凡函数依赖；反之，若 $Y{\nsubseteq}X$ 时且 $X{\rightarrow}Y$ ，则称为<strong>非平凡函数依赖</strong></p>
+<p><strong>平凡函数依赖</strong>：当 $Y{\subseteq}X$ 时，显然 $X{\rightarrow}Y$ ，称为平凡函数依赖；反之，若 $Y{\nsubseteq}X$ 时且 $X{\rightarrow}Y$ ，则称为 <strong>非平凡函数依赖</strong></p>
 <p>（平凡函数依赖没有什么特别的语义，我们所要求的语义都是非平凡函数依赖）</p>
 <p><strong>完全函数依赖</strong>：在 $R(U)$ 中，若 $X{\rightarrow}Y$ ，且对于 $X$ 的任意一个真子集 $X’{\subset}X$ ，都有 $X’{\nrightarrow}Y$ ，则称 $Y$ 对 $X$ 完全函数依赖；反之称为<strong>部分函数依赖</strong></p>
-<p>（部分依赖就是说 $X$ 作为 $Y$ 的“主码”有点冗余，其实不用那么多字段就可以决定$Y$ 的不同）</p>
+<p>（部分依赖就是说 $X$ 作为 $Y$ 的“主码”有点冗余，其实不用那么多字段就可以决定 $Y$ 的不同）</p>
 <p>（部分函数依赖是产生储存异常的内在原因）</p>
-<p><strong>传递函数依赖：</strong> $X$ 、$Y$、$Z$ 是关系 $R$ 中互不相同的属性集合，若有 $X{\rightarrow}Y$ ， $Y{\rightarrow}Z$，（$Y{\nrightarrow}X$）则称 $Z$ 传递函数依赖于 $X$ 。（若同时又$Y{\rightarrow}X$，则 $Z$ 实际上是直接依赖于 $X$）</p>
-<p>（<strong>注意</strong>：每个部份函数依赖都是传递函数依赖）</p>
+<p><strong>传递函数依赖：</strong> $X$ 、$Y$、$Z$ 是关系 $R$ 中互不相同的属性集合，若有 $X{\rightarrow}Y$ ， $Y{\rightarrow}Z$，（$Y{\nrightarrow}X$，$Z{\not\subseteq}Y$）则称 $Z$ 传递函数依赖于 $X$ 。（若同时又$Y{\rightarrow}X$，则 $Z$ 实际上是直接依赖于 $X$）</p>
+<p>（<strong>注意</strong>：每个部份函数依赖都是传递函数依赖，即 $X{\rightarrow}X’{\to}Y$）</p>
 <h4 id="码"><a href="#码" class="headerlink" title="码"></a>码</h4><p><strong>超码</strong>：对于$R{\lt}U,F{\gt}$，$X{\subseteq}U$，若$FD$ 上成立 $X{\rightarrow}U$，则称 $X$ 是 $R$ 的一个超码</p>
 <p><strong>候选码</strong>：对超码 $X$ ，若不存在 $X$ 的真子集 $X’{\subset}X$ ，使得 $X’{\rightarrow}U$，则称 $X$ 是 $R$ 的一个候选码</p>
-<p>（候选码就是最小的超码，适合用来做主键，候选码中的属性称作<strong>主属性</strong>，其他称为非主属性）</p>
+<p>（候选码就是最小的超码，适合用来做主键，候选码中的属性称作 <strong>主属性</strong>，其他称为非主属性）</p>
 <p><strong>全码</strong>：整个属性集 $U$ 是候选码，称为全码（all-key）</p>
 <p><strong>外码</strong>：定义关系模式 $R$ 中属性或属性组 $X$ 并非 $R$ 的码，但 $X$ 是另一个关系模式的码，则称 $X$ 是 $R$ 的外部码</p>
 <p><strong>有损分解</strong>（<strong>A Lossy Decomposition</strong>）：</p>
@@ -284,8 +284,8 @@
 
 <p><strong>无损分解</strong>（<strong>A Lossles Decomposition</strong>）：</p>
 <p><a href="#ll-j-d">无损分解</a></p>
-<p>关系 $R{\lt}U,F{\gt}$ 分解为 $R_1$ 和 $R_2$ ，当且仅当 $R_1{\cap}R_2{\to}R_1$ 或 $R_1{\cap}R_2{\to}R_2{\,}{\in}{\,}F^+$ </p>
-<h2 id="8-2-原子域和第一范式（Atomic-Domains-and-First-Normal-Form）"><a href="#8-2-原子域和第一范式（Atomic-Domains-and-First-Normal-Form）" class="headerlink" title="8.2 原子域和第一范式（Atomic Domains and First Normal Form）"></a><strong>8.2 原子域和第一范式</strong>（Atomic Domains and First Normal Form）</h2><p><strong>范式（Normal Form，NF）</strong>：是符合某一种级别的关系模式的集合</p>
+<p>关系 $R{\lt}U,F{\gt}$ 分解为 $R_1$ 和 $R_2$ ，当且仅当 $R_1{\cap}R_2{\to}R_1{\,}{\in}{\,}F^+$ 或 $R_1{\cap}R_2{\to}R_2{\,}{\in}{\,}F^+$ </p>
+<h2 id="8-2-原子域和第一范式（Atomic-Domains-and-First-Normal-Form）"><a href="#8-2-原子域和第一范式（Atomic-Domains-and-First-Normal-Form）" class="headerlink" title="8.2 原子域和第一范式（Atomic Domains and First Normal Form）"></a>8.2 原子域和第一范式（Atomic Domains and First Normal Form）</h2><p><strong>范式（Normal Form，NF）</strong>：是符合某一种级别的关系模式的集合</p>
 <table>
     <tr>
         <td>
@@ -308,10 +308,11 @@
 
 <h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p><strong>Def</strong>：作为二维表，关系要符合一个最基本的条件：每个分量必须是不可分开的数据项。满足了这个条件的关系模式就属于第一范式（1NF）</p>
 <p>（相对应的情况是多值属性、组合属性，例如 “CS101”可以被拆分为院系CS和课程号101）</p>
-<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p><strong>Def</strong>：若 $R{\subseteq}1NF$，且每一个非主键属性都完全函数依赖于 $R$ 的主键，则  $R{\subseteq}2NF$</p>
+<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>（第一范式会出现的问题在于，关系模式中一个或一些（但不是候选码中的全部）主属性就可以直接决定一些属性，并能与它们一起拆分开来形成一张新的表；第二范式解决了这个问题）</p>
+<p><strong>Def</strong>：若 $R{\subseteq}1NF$，且每一个非主属性都完全函数依赖于 $R$ 的主码，则  $R{\subseteq}2NF$</p>
 <p>（或者说，$R$ 中任何一个非主属性都完全函数依赖于 $R$ 的每一个候选码（因为任何一个候选码都可以作为主键，主键就是从候选码中选一个出来的）） </p>
-<p><strong>反例</strong>：图书馆借阅登记的关系模式 $Borrow(\underline{LCNO}, Name, Dept, \underline{BNO}, Date)$ = {借书证号，借书人姓名，所在部门，图书登录号，借书日期}，但是借书人姓名只依赖于借书证号，而不用同时依赖于图书登录号（属于第一范式而不属于第二范式）</p>
-<p>（第一范式会出现的问题在于，关系模式中一个或一些（但不是候选码中的全部）主属性就可以直接决定一些属性，并能与他们一起拆分开来形成一张新的表；第二范式解决了这个问题）</p>
+<p><strong>反例</strong>：图书馆借阅登记的关系模式 $Borrow(\underline{LCNO}, Name, Dept, \underline{BNO}, Date)$ = {借书证号，借书人姓名，所在部门，图书号，借书日期}，但是借书人姓名只依赖于借书证号，而不用同时依赖于图书登录号（属于第一范式而不属于第二范式）</p>
+<p>（第一范式会出现的问题在于，关系模式中一个或一些（但不是候选码中的全部）主属性就可以直接决定一些属性，并能与它们一起拆分开来形成一张新的表；第二范式解决了这个问题）</p>
 <p><strong>Example</strong>：不属于第二范式会产生的异常：（以 $S-L-C(\underline{Sno},Sdept,Sloc,\underline{Cno},Grade)$ 为例）</p>
 <ul>
 <li><p>插入异常：如果插入一个还没选课的新学生，则主属性 $Cno$ 就会为空，插入失败</p>
@@ -324,7 +325,7 @@
 <p>出现原因：例子中有两类非主属性：</p>
 <ul>
 <li>$Grade$：它对码完全函数依赖</li>
-<li>$Sdept$、$Sloc$：它们对码不是完全函数依赖，而是 $Sdept$、$Sloc{\,}{\rightarrow}Sno$</li>
+<li>$Sdept$、$Sloc$：它们对码不是完全函数依赖，而是 $Sno{\,}{\rightarrow}Sdept$、$Sloc$</li>
 </ul>
 <p>解决方法：用投影分解把关系模式 $S-L-C$ 分解成两个关系模式</p>
 <ul>
@@ -340,18 +341,20 @@
 </ul>
 <h2 id="8-3-使用函数依赖进行分解（Decomposition-Using-Functional-Dependencies）"><a href="#8-3-使用函数依赖进行分解（Decomposition-Using-Functional-Dependencies）" class="headerlink" title="8.3 使用函数依赖进行分解（Decomposition Using Functional Dependencies）"></a>8.3 使用函数依赖进行分解（Decomposition Using Functional Dependencies）</h2><p><a href="#fd">函数依赖</a></p>
 <p>（第二范式会出现的问题在于，某些非主属性虽然依赖于某个候选码，但这种依赖不是直接的，而是通过传递依赖得到的，因此仍然会出现冗余）</p>
+<p>换种说法更好理解</p>
+<p>（第二范式会出现的问题在于，关系模式中的一些属性（这些属性并不完全包含某个候选码）就可以直接决定一些属性，并能与它们一起拆分开来形成一张新的表；第三范式解决了这个问题）</p>
 <h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p><strong>Def 1</strong>：设 $R$ 是一个关系模式，如果 $R{\in}1NF$ ，并且 $R$ 中不存在任何非主属性传递函数依赖于 $R$ 的某个候选关键字（即候选码），则称 $R$ 是第三范式的</p>
 <p><strong>Def 2</strong>：设 $R$ 是一个关系模式， $R{\in}1NF$ ，对于 $R$ 上函数依赖的闭包 $F^+$ 中的所有函数依赖 $\alpha\to \beta$ ，以下一项至少成立：</p>
 <ul>
 <li>$\alpha\to \beta$ 是平凡函数依赖</li>
 <li>$\alpha$ 是 $R$ 的一个超码</li>
-<li>$\beta - \alpha$ 中的每个属性都包含在 $R$ 的一个候选码中</li>
+<li>$\beta - \alpha$ 中的每个属性都包含在 $R$ 的一个候选码中（每个属性可以包含在不同的候选码中，不一定是同一个）（换句话说，${\beta}-{\alpha}$ 中的属性都是主属性）</li>
 </ul>
-<p>（Def 2 更好理解）</p>
+<p>（Def 2 更好理解，对于情况 3，若有一个属性 $A{\,}{\in}{\,}{\beta}-{\alpha}$ 且 $A$ 不是主属性，那么存在传递函数依赖 候选码 $\to\alpha\to A$）</p>
 <p><strong>数学描述</strong>：设关系模式 $R{\lt}U,F{\gt}∈1NF$ ，若 $R$ 中不存在这样的码 $X$ 、属性组 $Y$ 及非主属性 $Z$（$Y{\not\subset}Z$）, 使得 $X→Y$，$Y→Z$成立，$Y{\nrightarrow}X$不成立，则称 $R{\lt}U,F{\gt} ∈ 3NF$ </p>
 <p><strong>Th</strong>：设 $R$ 是一个关系模式，如果 $R{\in}3NF$，则必有 $R{\in}2NF$ </p>
-<p><strong>反例</strong>：设关系模式 $R=$（账号，姓名，储蓄额，收储员，储蓄所名），”储蓄所名” 通过 “收储员” 依赖于 “账号”；（属于第二范式而不属于第三范式）</p>
-<p><strong>正例</strong>：图书馆借阅登记的关系模式 $Borrow(\underline{LCNO}, Name, Dept, \underline{BNO}, Date)$ = {借书证号，借书人姓名，所在部门，图书登录号，借书日期} 的一种分解方案：$CARD(LCNO, Name, Dept)$ 和 $LOANS(LCNO, BNO, Date)$ 是 $3NF$ </p>
+<p><strong>反例</strong>：设关系模式 $R=$（账号，姓名，储蓄额，收储员，储蓄所名），其中 账号 是主码；”储蓄所名” 通过 “收储员” 依赖于 “账号”；（属于第二范式而不属于第三范式）</p>
+<p><strong>正例</strong>：图书馆借阅登记的关系模式 $Borrow(\underline{LCNO}, Name, Dept, \underline{BNO}, Date)$ = {借书证号，借书人姓名，所在部门，图书号，借书日期} 的一种分解方案：$CARD(LCNO, Name, Dept)$ 和 $LOANS(LCNO, BNO, Date)$ 是 $3NF$ </p>
 <p>（第三范式解决了第二范式的问题，但是还有新的问题，即主属性对码可能存在部分函数依赖和传递函数依赖）</p>
 <h3 id="BCNF"><a href="#BCNF" class="headerlink" title="BCNF"></a>BCNF</h3><p><strong>Def 1</strong>：设 $F$ 是关系模式 $R$ 上的 $FD$ 集，如果 $R{\,}{\in}{\,}1NF$，并且在 $R$ 中无任何属性传递函数依赖于 $R$ 中的任何一个码，则称关系模式 $R$ 是属于 $BCNF$ 的 <span id="bcnf-def2"></span></p>
 <p><strong>Def 2</strong>：设 $F$ 是关系模式 $R$ 上的 $FD$ 集，如果对于任一属性集 $Y{\subset}R$ 和任一属性 $A{\,}{\in}{\,}R-Y$。只要 $Y{\to}A$ 成立，$Y$ 必定是 $R$ 的某个超码，则称关系模式 $R$ 是属于 $BCNF$ 的</p>
@@ -365,7 +368,7 @@
 </ul>
 <p>（$BCNF$ 消除了第三范式的问题，实际上已经消除了插入异常和删除异常，即消除了所有基于函数依赖能够发现的冗余，实现了模式的彻底分解，达到了最高的规范化程度）</p>
 <p>（也就是说，看起来没啥问题、不能再拆的一般就是 $BCNF$ ）</p>
-<p><strong>反例</strong>：邮政编码关系模式 $R(City,Street,Zip)$， $FD$ 集 $\{ \{City,Street\}{\to} Zip,{\,}Zip{\to}City\}$ ，显然 $R$ 中不存在非主属性，因为 $\{City,Street\}$ 和 $\{Zip, Street\}$ 都是 $R$ 的候选码，因此 $R{\,}{\in}{\,}3NF$，然而 $City$ 部分函数依赖于 $\{Zip, Street\}$ ，因此也是传递函数依赖于 $\{Zip, Street\}$ ，因而 $R{\,}{\notin}{\,}BCNF$ （属于第三范式而不属于 $BCNF$）</p>
+<p><strong>反例</strong>：邮政编码关系模式 $R(City,Street,Zip)$， $FD$ 集 $\{ \{City,Street\}{\to} Zip,{\,}Zip{\to}City\}$ （城市里有很多区县乡镇，每个区县乡镇的邮政编码相同，每个区县乡镇有很多街道，但一般来说同一个区县乡镇内不会有重名的街道）；显然 $R$ 中不存在非主属性，因为 $\{City,Street\}$ 和 $\{Zip, Street\}$ 都是 $R$ 的候选码，因此 $R{\,}{\in}{\,}3NF$，然而 $City$ 部分函数依赖于 $\{Zip, Street\}$ ，因此也是传递函数依赖于 $\{Zip, Street\}$ ，因而 $R{\,}{\notin}{\,}BCNF$ （属于第三范式而不属于 $BCNF$）</p>
 <p><strong>正例 1</strong>：关系模式 $C(Cno,Cname,Pcno)$ ，只有一个码 $Cno$ ，显然它是唯一的决定因素，因此 $C{\,}{\in}{\,}BCNF$ </p>
 <p><strong>正例 2</strong>：关系模式 $SJP(S,J,P)$, 中，$S$ 是学生，$J$ 表示课程，$P$ 表示名次，假设不存在并列名次，则 $(S,J)$ 和 $(J,P)$ 都可以作为候选码，且没有其他决定因素，因此 $SJP{\,}{\in}{\,}BCNF$ </p>
 <h2 id="8-4-函数依赖理论（Functional-Dependency-Theory）"><a href="#8-4-函数依赖理论（Functional-Dependency-Theory）" class="headerlink" title="8.4 函数依赖理论（Functional-Dependency Theory）"></a>8.4 函数依赖理论（Functional-Dependency Theory）</h2><h3 id="函数依赖的闭包"><a href="#函数依赖的闭包" class="headerlink" title="函数依赖的闭包"></a>函数依赖的闭包</h3><p><strong>Def</strong>：关系模式 $R{\lt}U,F{\gt}$ 中任意一个关系 $r$ ，若函数依赖 $X{\to}Y$ 都成立，则称 $F$ <strong>逻辑蕴含</strong> $X{\to}Y$ </p>
@@ -440,7 +443,7 @@
 <p>（所以转化为正则覆盖的本质是合并相同的左部，去掉无关属性）</p>
 <p><strong>例</strong>：$R=(A,B,C)$ ，$F=\{A{\to}BC,{\,}B{\to}C,{\,}A{\to}B,{\,}AB{\to}C\}$ ，</p>
 <p>则 $F_c=\{A{\to}B,{\,}B{\to}C\}$  </p>
-<p>（极小函数依赖集的算法和正则覆盖使用去除无关属性的算法本质上是一样的，只是表述不同，尤其是在于正则表达式的右部要合并，而极小函数依赖集要拆开）</p>
+<p>（极小函数依赖集的算法和正则覆盖使用去除无关属性的算法本质上是一样的，只是表述不同，尤其是在于正则表达式的左部要合并，而极小函数依赖集的右部要拆开）</p>
 <p><span id="ll-j-d"> </span></p>
 <h3 id="无损分解"><a href="#无损分解" class="headerlink" title="无损分解"></a>无损分解</h3><p><strong>Def</strong>：将关系模式 $R$ 分解为 $R_1$、$R_2$ 时没有信息损失，则称为 <strong>无损分解</strong> （<strong>Lossless-join Decomposition</strong>）</p>
 <p><strong>要求</strong>：对于 $R$ 中的<strong>所有</strong>实例 $r$ ，都有 $r=r_1{\,}{\,}natrual{\,}join{\,}{\,}r_2$ ：</p>
@@ -459,7 +462,7 @@
 <p><strong>例</strong>：关系模式 $R=(A,B,C)$ ，函数依赖集 $F={A{\to}B,B{\to}C}$ </p>
 <p>则 $R_1=(A,B)$ 和 $R_2=(B,C)$ 就是一个保持依赖的分解，可以用算法2验证；</p>
 <p><strong>注意</strong>：无损分解强调对于每一个具体的关系实例，拆分以后再自然连接可以得到原来的关系实例；保持依赖强调对于拆分以后的关系模式，仍然可以推导出原来的所有函数依赖；一个是实例层面的要求，一个是理论上的要求；</p>
-<h2 id="8-5-函数依赖的算法（Algorithms-for-Functional-Dependencies）"><a href="#8-5-函数依赖的算法（Algorithms-for-Functional-Dependencies）" class="headerlink" title="8.5 函数依赖的算法（Algorithms for Functional Dependencies）"></a>8.5 <strong>函数依赖的算法</strong>（<strong>Algorithms for Functional Dependencies</strong>）</h2><h3 id="BCNF分解"><a href="#BCNF分解" class="headerlink" title="BCNF分解"></a>BCNF分解</h3><h4 id="判断一个关系-R-是否属于-BCNF"><a href="#判断一个关系-R-是否属于-BCNF" class="headerlink" title="判断一个关系 R 是否属于 BCNF"></a>判断一个关系 R 是否属于 BCNF</h4><p><strong>算法</strong>：遍历 $F$ 中所有 $\alpha{\to}\beta$，计算 ${\alpha}^+$ ，若包含所有的属性，则满足条件；若有一个不包含，则不属于 $BCNF$ </p>
+<h2 id="8-5-函数依赖的算法（Algorithms-for-Functional-Dependencies）"><a href="#8-5-函数依赖的算法（Algorithms-for-Functional-Dependencies）" class="headerlink" title="8.5 函数依赖的算法（Algorithms for Functional Dependencies）"></a>8.5 函数依赖的算法（Algorithms for Functional Dependencies）</h2><h3 id="BCNF分解"><a href="#BCNF分解" class="headerlink" title="BCNF分解"></a>BCNF分解</h3><h4 id="判断一个关系-R-是否属于-BCNF"><a href="#判断一个关系-R-是否属于-BCNF" class="headerlink" title="判断一个关系 R 是否属于 BCNF"></a>判断一个关系 R 是否属于 BCNF</h4><p><strong>算法</strong>：遍历 $F$ 中所有 $\alpha{\to}\beta$，计算 ${\alpha}^+$ ，若包含所有的属性，则满足条件；若有一个不包含，则不属于 $BCNF$ </p>
 <p><strong>注意</strong>：如果 $F$ 中没有函数依赖违反 $BCNF$，则 $F^+$ 中也不会由函数依赖违反 $BCNF$ ，所以只需对 $F$ 中和的函数依赖进行检查；但判断 $R$ 的一个分解 $R_i$ 是否属于 $BCNF$ ，只用 $F$ 就不够了</p>
 <p><strong>反例</strong>：$R=(A,B,C,D,E)$ ，$F={A\to B,{\,}BC\to D}$ ；若将 $R$ 分解为 $R_1=(A,B)$ 和 $R_2=(A,C,D,E)$ ，则用这里的算法，会误认为 $R_2$ 满足 $BCNF$ ；</p>
 <p>事实上， $AC\to D {\in}{\,}F^+$ ，所以 $R_2$ 是不满足 $BCNF$ 的</p>
@@ -492,7 +495,7 @@
 <li>计算 $\alpha^+$ ，若包含 $R$ 的所有属性，即为超码，则符合条件</li>
 <li>否则，遍历 $\beta$ 中的每个属性，判断是否都包含于某个候选码中；若是，则符合条件；</li>
 </ul>
-<p>（算法的原理在于，第三范式已经解决了非主属性传递依赖与码的问题，但是还没有解决主属性之间的依赖问题；因此若 $\alpha$ 不是超码，则 $\beta$ 应该是主属性的集合）</p>
+<p>（算法的原理在于，第三范式已经解决了非主属性传递依赖于码的问题，但是还没有解决主属性之间的依赖问题；因此若 $\alpha$ 不是超码，则 $\beta$ 应该是主属性的集合）</p>
 <p>（只要遍历 $F$ 中的函数依赖就可，不用计算 $F^+$ ）</p>
 <p>（由于要计算候选码，因此判定非常复杂，应该是个NP问题；但是分解为 $3NF$ 却是P类问题）</p>
 <h4 id="3NF-分解算法"><a href="#3NF-分解算法" class="headerlink" title="3NF 分解算法"></a>3NF 分解算法</h4><p>以下算法可以对一般关系模式 $R$ 在保持依赖的情况下无损分解为 $3NF$ ：</p>
@@ -515,13 +518,14 @@
 <li>收储员 $\to$ 储蓄所名</li>
 <li>(账号，储蓄所名) $\to$ 收储员 $\}$ </li>
 </ul>
-<p>依据上边的算法，可拆分为两张子表：(账号，收储员，储蓄额) 和 (储蓄所名，收储员)</p>
+<p>依据上边的算法，可拆分为两张子表：(账号，收储员，储蓄额) 和 (账号，储蓄所名，收储员)</p>
 <h2 id="8-6-多值依赖（Multivalued-Dependencies-）"><a href="#8-6-多值依赖（Multivalued-Dependencies-）" class="headerlink" title="8.6 多值依赖（Multivalued Dependencies ）"></a>8.6 多值依赖（Multivalued Dependencies ）</h2><p>（函数依赖只能表示事物之间、事物属性之间一对一或一对多的联系，但还需要多值依赖来表示某事物（或事物属性）与其他多个事物（或事物属性）的相关关系）</p>
-<p><strong>Def 像集</strong>：设 $R(U)$ 是一个关系， $X, Y{\in}U$；对于 $R$ 的元组中的每一个 $X$ 的值 $x$ ，都存在着某个 $Y$ 值的集合与之相关联，我们称这个 $Y$ 值的集合为 $R$ 中 $x$ 的 $Y$ <strong>像集</strong>，记作 $Y_U(x)$ ，即 $Y_U(x)=\{t[Y] {\,}|{\,}t{\in}R$ 且 $t[X]=x\}$</p>
+<p><strong>Def 像集</strong>：设 $R(U)$ 是一个关系， $X, Y{\in}U$；对于 $R$ 的元组中的每一个 $X$ 的值 $x$ ，都存在着某个 $Y$ 值的集合与之相关联，我们称这个 $Y$ 值的集合为 $R$ 中 $x$ 的 $Y$ <strong>像集</strong>，记作 $Y_U(x)$ ，即 $Y_U(x)=\{t[Y] {\,}|{\,}t{\in}R$ 且 $t[X]=x\}$ </p>
+<p>（就比如 $X$ 是教职工，$Y$ 是电话号码，一个教职工有多个电话号码，但一个电话号码只能属于一个教职工）</p>
 <h4 id="多值依赖的定义"><a href="#多值依赖的定义" class="headerlink" title="多值依赖的定义"></a>多值依赖的定义</h4><p>（多值依赖就是某个属性集合的一个值对应的像集有多个值的关联关系）</p>
 <p><strong>Def 1</strong>：设 $R(U)$ 是一个关系模式， $X, Y{\,}{\in}{\,}U$，$Z=U-XY$，关系模式 $R$ 上的一个多值依赖是形如 $g:X\to \to Y$ 的一个命题，它的含义是：对于$R$ 的任一可能的实例关系中的元组的每一个 $XZ$ 的值 $xz$ ，都有 $Y_U(xz)=Y_U(x)$ ，即对于每一个给定的 $XZ$-值，其 $Y$-像集的值都仅仅依赖于 $XZ$-值的 $X$ 分量，而与 $Z$ 分量毫无关系。称在 $R$ 上 $X$ 多值决定 $Y$ ，或 $Y$ 多值依赖于 $X$ </p>
 <p><strong>Def 2</strong>：设 $R(U)$ 是一个关系模式， $X, Y{\,}{\in}{\,}U$，$Z=U-XY$，关系模式 $R$ 上的一个多值依赖是形如 $g:X\to \to Y$ 的一个命题，它的含义是：对于$R$ 的任一可能的实例关系 $r$ ，如果存在元组 $t,s{\,}{\in}{\,}r$，使得 $t[X]=s[X]$ ，则必定存在元组 $u{\,}{\in}{\,}r$，使得 $u[X]=t[X]=s[X]$ ，而 $u[Y]=t[Y]$ ， $u[Z]=s[Z]$ </p>
-<p>（太抽象了，赶紧先看个例子：$\downarrow$）</p>
+<p>（这个很，太抽象了，赶紧先看个例子：$\downarrow$）</p>
 <p><strong>例</strong>：$inst_info{\,}(ID, child_name, phone_number)$ </p>
 <table style="text-align:center">
     <thead>
@@ -534,16 +538,17 @@
             <td>99999</td><td>David</td><td>512-555-1234</td>
         </tr>
         <tr>
-            <td>99999</td><td>David</td><td>512-555-1234</td>
+            <td>99999</td><td>David</td><td>512-555-4321</td>
         </tr>
         <tr>
             <td>99999</td><td>William</td><td>512-555-1234</td>
         </tr>
         <tr>
-            <td>99999</td><td>William</td><td>512-555-1234</td>
+            <td>99999</td><td>William</td><td>512-555-4321</td>
         </tr>
     </tbody>
 </table>
+
 
 <p>有：$ID\to\to child_name$ 和 $ID\to\to phone_number$ ，即 $child_name$ 属性和 $phone_number$ 属性分别于 $ID$ 属性多值相关，但二者无关；</p>
 <p><strong>引理</strong>：$R(U)$ 是个关系模式：</p>
@@ -562,7 +567,8 @@
 <p>（多值依赖考虑的比较多，例如 $R($班级，学员，课程$)$，则班级$\to \to$学员，班级$\to \to$课程；如果扩展该模式，  $R’($班级，学员，课程，成绩$)$，则上述两个多值依赖都不再成立。论域变化，属性值之间关系不再满足多值依赖的定义。）</p>
 <p><strong>注意</strong>：若 $Y\to Z$，则  $Y\to \to Z$ </p>
 <h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><p><strong>Th</strong>：设  $r$ 是关系模式 $R(U)$ 的一个实例关系，$X, Y{\,}{\in}{\,}U$ 而 $Z=U-XY$ ，则关系 $r$ 满足MVD  $X\to \to Y$ 当且仅当 $r$ 可以联接无损地分解到两个关系模式 $R1 =XY$ 和 $R2 =XZ$ 上</p>
-<p><strong>检验方法</strong>：检验某个关系 $r$ 是否满足多值依赖 $X\to \to Y$ ：把 $r$ 投影到 $XY$ 和 $XZ$ （$Z$ 就是上面的补集）上，然后对投影做自然连接；若结果还是 $r$ ，则有 $X\to \to Y$ ，否则不成立；</p>
+<p><strong>检验方法</strong>：检验某个关系 $r$ 是否满足多值依赖 $X\to \to Y$ ：把 $r$ 投影到 $XY$ 和 $XZ$ （$Z$ 就是上面的补集）上，然后对投影做自然连接；若结果还是  $r$ （即无损连接），则有 $X\to \to Y$ ，否则不成立；</p>
+<p>（比如上边那个例子，分解为 $(ID,child_name)$ 和 $(ID,phone_number)$ ，再连接起来还是原来的表，说明多值依赖成立 ）</p>
 <p><strong>多值依赖推导公理</strong>：（单一的MVD环境）设 $R(U)$ 是一个关系模式， $X, Y, W, Z{\in}U$，则</p>
 <ul>
 <li>MVD0（补规则）$X\to \to Y$ ，则 $X\to \to U-XY$ ；</li>
@@ -571,8 +577,7 @@
 <li>MVD3（传递规则）若$X\to \to Y$ ，$Y\to \to Z$，则$X\to \to Z$ ；</li>
 <li>MVD4（并规则）若$X\to \to Y$ ，$X\to \to Z$，则$X\to \to YZ$ ；</li>
 <li>MVD5（投影规则）若$X\to \to Y$ ，$X\to \to Z$，则$X\to \to Y{\cap}Z$ ；</li>
-<li>MVD6（伪传递规则）若$X\to \to Y$ ，$WY\to \to Z$，则 $XW\to \to Z-YW$</li>
-<li>MVD7（）</li>
+<li>MVD6（伪传递规则）若$X\to \to Y$ ，$WY\to \to Z$，则 $XW\to \to Z-YW$ </li>
 </ul>
 <p>（MVD 0、1、3 就可以推出其他公式）</p>
 <h4 id="第四范式"><a href="#第四范式" class="headerlink" title="第四范式"></a>第四范式</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p><strong>Def 平凡多值依赖</strong>：若 $\beta{\,}{\subseteq}{\,}\alpha$ 或者 ${\beta}{\,}{\cup}{\alpha}=R$ ，则称 $\alpha \to \to \beta$ 称为平凡的多值依赖</p>
@@ -613,13 +618,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/05/02/test/"
+                           href="/2022/05/05/CS%20%E5%B8%B8%E7%94%A8LaTex%E7%AC%A6%E5%8F%B7/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">test5-2-4</span>
+                                <span class="post-nav-title-item">CS 常用LaTex符号</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
