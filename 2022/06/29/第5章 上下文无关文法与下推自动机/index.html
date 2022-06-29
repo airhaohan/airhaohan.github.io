@@ -9,7 +9,7 @@
     
     <title>
         
-            计算理论基础 第4章 正规文法和正规集的性质 |
+            计算理论基础 第5章 上下文无关文法与下推自动机 |
         
         Splendid
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">计算理论基础 第4章 正规文法和正规集的性质</span>
+            <span class="title-hover-animation">计算理论基础 第5章 上下文无关文法与下推自动机</span>
         </div>
 
         
@@ -184,8 +184,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-06-28 21:50:00</span>
-        <span class="mobile">2022-06-28 21:50</span>
+        <span class="pc">2022-06-29 18:54:00</span>
+        <span class="mobile">2022-06-29 18:54</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -228,87 +228,90 @@
         
 
         <div class="article-content markdown-body">
-            <p>计算理论基础 第4章 正规文法和正规集的性质 的相关笔记，包括：正规文法和有穷自动机的转化、正规集的缩胀定理、正规集的封闭性质和有穷自动机的判定问题、有穷自动机的极小化、Myhill-Nerode 定理等…</p>
-<h1 id="第4章-正规文法和正规集的性质"><a href="#第4章-正规文法和正规集的性质" class="headerlink" title="第4章 正规文法和正规集的性质"></a>第4章 正规文法和正规集的性质</h1><h2 id="正规文法和有穷自动机"><a href="#正规文法和有穷自动机" class="headerlink" title="正规文法和有穷自动机"></a>正规文法和有穷自动机</h2><h3 id="RG-to-varepsilon-NFA"><a href="#RG-to-varepsilon-NFA" class="headerlink" title="RG $\to\varepsilon$-NFA"></a>RG $\to\varepsilon$-NFA</h3><p>将文法中的变元看作状态，并增加一个新的状态 $f$ 作为终结状态：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-4-1.5nk03r03n680.webp" alt="fct-4-1" style="zoom:70%;" /></p>
-<h3 id="DFA-to-RG"><a href="#DFA-to-RG" class="headerlink" title="DFA $\to$ RG"></a>DFA $\to$ RG</h3><p>将文法中的变元看作状态；对于终结状态 F ，若 F 还有出边，则需要增加两条转移函数：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-4-1-2.hrmzgz40vg0.webp" style="zoom:70%;" /></p>
-<h2 id="正规集的缩胀定理"><a href="#正规集的缩胀定理" class="headerlink" title="正规集的缩胀定理"></a>正规集的缩胀定理</h2><p><strong>缩胀定理</strong>：设 $A$ 是一个正规集，则 $\exists k{\ge}0$ ，对于任何串 $x$，$y$，$z$  且 $xyz{\,}{\in}{\,}A$ ，只要 $|y|{\ge}k$ ，就可以将 $y$ 写成 $y=uvw$，$v\not={\varepsilon}$ ，并且对于 $\forall i{\geq}0$ ，都有 $xuv^iwz{\,}{\in}{\,}A$ ；</p>
-<p><strong>逆否命题</strong>：对于一个语言类 $A$ ，若对 $\forall k{\ge}0$ ，存在字符串 $x$，$y$，$z$  且 $xyz{\,}{\in}{\,}A$ ，只要 $|y|{\ge}k$ ，对于将 $y$ 写成任意 $y=uvw$，$v\not={\varepsilon}$ ，并且 $\exists i{\geq}0$ ，使得 $xuv^iwz{\,}{\not\in}{\,}A$ ，则 $A$ 不是正规集；</p>
-<p><strong>证明</strong>：取 $k=n$ ，$n$ 为对应 DFA 的状态数；在派生出长度大于 $n$ 的字符串过程中，必然会出现两个重复的状态（重复状态中间生成的字符串对应 $v$ ），则该段可以缩减，也可以反复膨胀</p>
-<p>（常用逆否命题证明某个语言类不属于正规集）</p>
-<p><strong>例</strong>：证明集合 $L_1=\{0^{i^2}|i{\,}{\in}{\,}N^+\}$ 不是正规集</p>
-<p><strong>证明</strong>：对 $\forall k{\ge}0$ ，取 $x=0^{k(k-1)}$ ，$y=0^k$，$z={\varepsilon}$ ，显然 $|y|=k$；对于任意 $y=uvw$ ，由于 $1{\le}|v|{\le}k$ ，故取 $i=2$ ，此时 $k^2&lt;xuv^2wz{\le}k^2+k{\lt}(k+1)^2$ ，故 $xuv^2wz{\not\in}L_1$ ，即 $L_1$ 不是正规集</p>
-<h2 id="正规集的封闭性质和判定性"><a href="#正规集的封闭性质和判定性" class="headerlink" title="正规集的封闭性质和判定性"></a>正规集的封闭性质和判定性</h2><h3 id="RL-的封闭性质"><a href="#RL-的封闭性质" class="headerlink" title="RL 的封闭性质"></a>RL 的封闭性质</h3><p><strong>Th 4.5</strong>：正规集在并、连接和闭包运算下是封闭的</p>
-<p>（由正规集的定义可知）</p>
-<p><strong>Th 4.6</strong>：正规集在补运算下封闭</p>
-<p>（只需将对应的 FA 的终结状态和非终结状态对换）</p>
-<p><strong>Th 4.7</strong>：正规集在交运算下封闭</p>
-<p>（ $L_1{\cap}L_2=\overline{\overline{L_1}\cup\overline{L_2}}$ ，因为并运算和补运算是封闭的，所以交运算也是封闭的）</p>
-<p><strong>Th 4.8</strong>：正规集与任意集合的商运算是封闭的</p>
-<p>（商运算： $L_1/L_2=\{x|\exists y{\,}{\in}{\,}L_2,xy{\,}{\in}{\,}L_1\}$ ）</p>
-<h3 id="FA-的判定问题"><a href="#FA-的判定问题" class="headerlink" title="FA 的判定问题"></a>FA 的判定问题</h3><p><strong>Th 4.9</strong>：具有 $n$ 个状态的有穷自动机具有如下性质：</p>
+            <p>计算理论基础 第5章 上下文无关文法与下推自动机 的相关笔记，包括：上下文无关文法的化简、上下文无关文法的乔姆斯基范式和格雷巴赫范式、下推自动机、下推自动机和上下文无关文法的转化 等…</p>
+<h1 id="第5章-上下文无关文法与下推自动机"><a href="#第5章-上下文无关文法与下推自动机" class="headerlink" title="第5章 上下文无关文法与下推自动机"></a>第5章 上下文无关文法与下推自动机</h1><h2 id="CFG-的化简"><a href="#CFG-的化简" class="headerlink" title="CFG 的化简"></a>CFG 的化简</h2><h3 id="无用符号"><a href="#无用符号" class="headerlink" title="无用符号"></a>无用符号</h3><p><strong>无用符号</strong>：</p>
 <ul>
-<li>它接受的集合非空，当且仅当它接受一个长度小于 $n$ 的字符串；</li>
-<li>它接受的集合是无穷的，当且仅当它接受一个长度为 $l$ 的字符串，这里 $n{\le}l{\lt}2n$ ；</li>
+<li>$X{\in}V{\cup}T$ ，但 $X$ 并不出现在由 $S$ 派生而来的任何字符串中</li>
+<li>$X{\in}V$ ，但 $X$ 派生不出任何终结符号串（缺失、死循环）</li>
 </ul>
-<p>（若接受集合非空，则对于其中任意一个字符串，若它长度大于等于 $n$，则接受过程中必然会有重复状态出现，因此可用缩胀定理将其长度缩短至小于 $n$ ；若接受一个长度小于 $n$ 的字符串，自然接受的集合非空）</p>
-<p>（若接受的集合无穷，则必然接受一个长度大于等于 $n$ 的串，接受过程中必然会有重复状态出现，将相邻的重复状态删去（每次删去的长度小于等于 $n$ ），直至长度小于 $2n$ ；若接受一个长度为 $l$ 的字符串，根据缩胀定理，可以不断膨胀，故接受的集合是无穷的）</p>
-<p><strong>推论</strong>：给定一个有穷自动机 $M$ </p>
+<p><strong>消除方法</strong>：</p>
 <ul>
-<li>$L(M)$ 是否为空是可判定的；</li>
-<li>$L(M)$ 是否有穷是可判定的</li>
+<li>第一类无用符号，使用正推的方法：先将 $S$ 放入结果集中；对于每次新放入结果集的变元，将其能够推导出的变元和终结符号也放入结果集中；重复，直至结果集不再增大；</li>
+<li>第二类无用符号，使用倒推的方法：先将一步就能生成终结符号的变元加入结果集中；遍历每个生成式，若右部的变元全部都在结果集中，则将左部变元加入结果集；重复，直至结果集不再增大；将仅能由被删除的变元派生来的终结符号也删除；</li>
 </ul>
-<p>（只需遍历所有长度小于 $n$ 的字符串）</p>
-<p>（只需遍历所有长度大于等于 $n$ 且小于 $2n$ 的字符串）</p>
-<p><strong>Th 4.10</strong>：两个有穷自动机是否等价是可判定的</p>
-<p>（可构造一个有穷自动机，使得 $L=(L_1{\cap}\overline{L_2}){\cup}(\overline{L_1}{\cap}L_2)$ （即对称差）；若该有穷自动机接受的语言为空集，则这两个有穷自动机等价；而有穷自动机接受语言是否为空是可判定的）</p>
-<h2 id="有穷自动机的极小化"><a href="#有穷自动机的极小化" class="headerlink" title="有穷自动机的极小化"></a>有穷自动机的极小化</h2><p><strong>等价关系</strong>：对于 $p,q{\,}{\in}{\,}Q$ ，若对任意 $x{\,}{\in}{\,}{\Sigma}^{\ast}$ ， $\delta(p,x){\,}{\in}{\,}F$ 当且仅当  $\delta(q,x){\,}{\in}{\,}F$ ，则称 $p$ 和 $q$ 等价</p>
+<p>（消除无用符号时，应当先消除 2 类再消除 1 类，因为先 1 类再 2 类的话有些终结符号不会被删除（不过我感觉如果仅仅考虑无用变元符号的化简，那么 1 类 2 类的消除顺序好像不太重要））</p>
+<p>此外，对于 $\varepsilon$-生成式（ $A\to\varepsilon$ ）、单一生成式（ $A\to B$ 或 $A\to a$ ），都可以通过合并到前一步来化简，最终得到化简过后的 CFG</p>
+<h2 id="CNF-和-GNF-范式"><a href="#CNF-和-GNF-范式" class="headerlink" title="CNF 和 GNF 范式"></a>CNF 和 GNF 范式</h2><h3 id="CNF-范式"><a href="#CNF-范式" class="headerlink" title="CNF 范式"></a>CNF 范式</h3><p><strong>Chomsky 范式</strong>：任何不包含 $\varepsilon$ 的 CFL ，都可由生成式仅为 $A\to BC$ 或 $A\to a$ 形式的文法产生</p>
 <p><strong>算法</strong>：</p>
-<p>① 首先画一个这样的阶梯形表格，并且将终结状态和非终结状态对应的位置打上标记；</p>
-<p>（标记了意味着不等价）</p>
-<p>② 对于上一轮增加的新标记的一对状态，若它们可由另一对状态接受相同字母转移而来，则将前一对状态也打上标记；</p>
-<p>③ 重复 ② ，直至没有新的标记产生，最终没有被打上标记的状态是等价的</p>
-<p><strong>原理</strong>：</p>
 <ul>
-<li>若 $p$ 、$q$ 等价，则 $\delta(p,a)$ 和 $\delta(q,a)$ 等价；</li>
-<li>若 $\delta(p,a)$ 和 $\delta(q,a)$ 不等价，则 $p$ 和 $q$ 不等价；</li>
+<li>先将所有终结符 $a$ 都看作变元 $[a]$ ，增加生成式 $[a]\to a$ ；若 $A\to \alpha a\beta$ ，则 $A\to\alpha[a]\beta$ ；</li>
+<li>对于 $A\to A_1A_2…A_n$ ，令 $D_{n-1}=A_1A_2…A_{n-1}$ ，则 $A\to D_{n-1}A_n$ ；逐层展开</li>
 </ul>
-<p><strong>例</strong>：将如图所示 FA 进行极小化，算法结果如右图所示，即状态 1 和状态 2 等价，状态 3 和状态 4 等价：</p>
-<table style="text-align:center">
-    <tr>
-        <td>极小化前</td><td>算法草稿</td>
-    </tr>
-    <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-4-3-1.6tgkildtmxg0.webp" alt="fct-4-3-1" style="zoom:90%;" /></td><td rowspan="3"><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-4-3-3.4pn1rtg7rzi0.webp" alt="fct-4-3-3" style="zoom:100%;" /></td>
-    </tr>
-    <tr>
-        <td>极小化后</td>
-    </tr>
-    <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-4-3-2.4avcdbx2fty0.webp" alt="fct-4-3-2" style="zoom:90%;" /></td>
-    </tr>
-</table>
-
-
-
-<h2 id="Myhill-Nerode-定理"><a href="#Myhill-Nerode-定理" class="headerlink" title="Myhill-Nerode 定理"></a>Myhill-Nerode 定理</h2><p>（这个定理比较难，简单讲一讲）</p>
-<p><strong>Myhill-Nerode 关系</strong>：设 $A{\,}{\subseteq}{\,}{\Sigma}^{\ast}$ ，$R$ 为 ${\Sigma}^{\ast}$ 上的等价关系，称 $R$ 为关于 $A$ 的 Myhill-Nerode 关系，当且仅当 $R$ 满足：</p>
+<h3 id="GNF-范式"><a href="#GNF-范式" class="headerlink" title="GNF 范式"></a>GNF 范式</h3><p><strong>Greibach 范式</strong>：任何不包含 $\varepsilon$ 的 CFL ，都可由生成式仅为 $A\to a\alpha$ （$\alpha$ 可为空）形式的文法产生</p>
+<p><strong>算法</strong>：</p>
 <ul>
-<li>是右不变的（即若 $xRy$ ，则 $xzRyz$ ）</li>
-<li>细分 $A$ </li>
-<li>具有有穷指数</li>
+<li>（ $i{\le}j$ ）将所有变元标上序号（ $A_i\,(i=1,2,…)$ ），保证不满足 GNF 范式的生成式不会出现大序号推出小序号开头的情况，即若 $A_i\to A_j\alpha$ ，则 $i{\le}j$；（具体做法为从左部为第二小序号的生成式开始，从小到大遍历，将右部开头的变元反复用已经满足序号左小于等于右开头的生成式替换，直至该生成式序号左小于等于右开头）</li>
+<li>（ $B_i$ ）对于左部序号等于右部开头的序号的生成式（ $A_i\to A_i\alpha$ ），使用如下变元 $B_i$ 替换：</li>
 </ul>
-<p>$R_A$ ：设 $A{\,}{\subseteq}{\,}{\Sigma}^{\ast}$ ，定义 ${\Sigma}^{\ast}$ 上的等价关系 $R_A$ 为：$xR_Ay$ 当且仅当对任意 $z{\in}{\Sigma}^{\ast}$ ，$xz{\in}A\iff yz{\in}A$ ；</p>
-<p><strong>Myhill-Nerode 定理</strong>：设 $A{\,}{\subseteq}{\,}{\Sigma}^{\ast}$ ，下列几个命题是等价的：</p>
+<script type="math/tex; mode=display">
+\left \{ \begin{array}{ll}
+A_i\to A_i\alpha_1|A_i\alpha_2|...|A_i\alpha_r\\
+A_i\to \beta_1|\beta_2|...|\beta_s \\
+\end{array} \right.</script><p>（其中 $\beta$ 已经均为终结符号开头了）替换为：</p>
+<script type="math/tex; mode=display">
+\left \{ \begin{array}{ll}
+A_i \to\beta_j\\
+A_i \to\beta_jB_i &(j=1,2,...,s)
+\end{array} \right. \\
+\left \{ \begin{array}{ll}
+B_i \to\alpha_j \\
+B_i \to\alpha_jB_i &(j=1,2,...,s)
+\end{array} \right.</script><ul>
+<li><p>（ $A\to a\alpha$ ）此时不满足 GNF 、且不含 $B_i$ 的生成式都满足序号左小于等于右开头了；则对于左部为最大序号的变元的生成式而言，其都满足 GNF，故从左部为第二大序号的生成式开始，从大到小遍历，将右部开头为序号大于左部的变元替换为满足 GNF的生成式的右部</p>
+</li>
+<li><p>（ $A$ 带入 $B$ ）最后处理 $B_i$ ；由于 $\alpha_j$ 只含有 $A_i$ 或终结符，不含有 $B$ ，且此时左部为 $A$ 的生成式都已经满足 GNF ，故只要将开头为 $A$ 的 $\alpha_j$ 的开头替换掉即可</p>
+</li>
+</ul>
+<p><strong>例</strong>：（第一步即包含了算法的第一、二步）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-4-1.7399na8j51w0.webp" alt="fct-5-4-1" style="zoom:25%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-4-2.2iwckfqrb3o.webp" alt="fct-5-4-2" style="zoom:23%;" /></p>
+<h2 id="PDA-与-CFG"><a href="#PDA-与-CFG" class="headerlink" title="PDA 与 CFG"></a>PDA 与 CFG</h2><h3 id="下推自动机"><a href="#下推自动机" class="headerlink" title="下推自动机"></a>下推自动机</h3><p>一个 <strong>下推自动机</strong>（简称 PDA）是一个七元组 $M=(Q,\Sigma,\Gamma,\delta,q_0,Z_0,F)$ ，其中：</p>
 <ul>
-<li>$A$ 是一个正规集</li>
-<li>在 ${\Sigma}^{\ast}$ 上存在一个关于 $A$ 的 Myhill-Nerode 关系</li>
-<li>关系 $R_A$ 具有有穷指数</li>
+<li>$Q$ 是有穷状态集</li>
+<li>$\Sigma$ 是有穷的输入字母表</li>
+<li>$\Gamma$ 是有穷的栈符号表</li>
+<li>$\delta$ 是转移函数，$\delta:Q{\times}({\Sigma}{\cup}\{\varepsilon\}){\times}\Gamma\to Q\times{\Gamma}^{\ast}$ 的有穷子集</li>
+<li>$q_0{\,}{\in}{\,}Q$ ，是初始状态</li>
+<li>$Z_0{\,}{\in}{\,}\Gamma$ ，是栈底符号</li>
+<li>$F{\subseteq}Q$ ，是终结状态集</li>
 </ul>
-<p>（常用第三条反证第一条）</p>
-<p><strong>例</strong>：证明 $A={0^n1^m2^m|n,m{\ge}1}$ 不是正规集</p>
-<p><strong>证明</strong>：考虑一列语句：$0012$，$00012$，$000012$ …… $0^n12$ …… ，其中 $i{\not=}j$ 时，有 $(0^i12+2^{i-1}{\,}{\in}{\,}A)$ 而 $(0^i12+2^{j-1}{\,}{\not\in}{\,}A)$ ，因此 $R_A$ 的指数是无穷的，由 Myhill-Nerode 定理得，$A$ 不是正规集；</p>
+<p>转移函数的一般形式为：（即转移函数是不确定的）（ $\gamma$ 可以为空，即退栈）</p>
+<script type="math/tex; mode=display">
+\delta(q,a,Z)=\{(p_1,\gamma_1),(p_2,\gamma_2),...,(p_m,\gamma_m)\}</script><p>PDA 的 <strong>接受方式 </strong>有两种：</p>
+<ul>
+<li>按栈空方式接受，即栈中为空时接受，此时 $F$ 可以不写</li>
+<li>按接受状态接受，即状态到达 $F$ 中的某一状态时接受</li>
+</ul>
+<p>（栈空 $\to$ 接受：在栈底垫一个特殊字符，遇到该字符时就是代表栈空了，此时转为接受状态）</p>
+<p>（接受 $\to$ 栈空：到达接受状态以后，不论栈中还有什么字符，一律消去）</p>
+<h3 id="CFG-to-PDA"><a href="#CFG-to-PDA" class="headerlink" title="CFG $\to$ PDA"></a>CFG $\to$ PDA</h3><p><strong>构造</strong>：根据 CFG $G=(V,T,P,S)$ ，构造 PDA $M=(\{q\},T,V,\delta,q,S,\varnothing)$ </p>
+<p>将 CFG 转化为 GNF 范式；只需要一个状态，将变元看作栈中符号，按栈空方式接受；</p>
+<p>对于生成式 $A\to a\alpha$ 对应转移函数 $\delta(q,a,A)$ 包含 $(q,\alpha)$ ；若 $\alpha$ 中有变元 $b$ ，则将 $b$ 看作栈中符号 $[b]$ ，并增加 $\delta(q,b,[b])$ 包含 $(q,\varepsilon)$ ；</p>
+<h3 id="PDA-to-CFG"><a href="#PDA-to-CFG" class="headerlink" title="PDA $\to$ CFG"></a>PDA $\to$ CFG</h3><p>这个比较复杂，结合例题来理解比较好</p>
+<p><strong>构造</strong>：根据 PDA $M=(Q,\Sigma,\Gamma,\delta,q_0,Z_0,\varnothing)$ ，构造 CFG $G=(V,\Sigma,P,S)$ ，其中：</p>
+<p>$V=\{[q,A,p]|q,p{\,}{\in}{\,}Q,{\,}A{\,}{\in}{\,}{\Gamma}\}{\cup}\{S\}$ ，代表状态 $q$ 经由接受 $A$ 所派生出来的字符串后，可以到达 $p$ 状态；也指当前状态为 $q$ ，栈顶为 $A$ ；</p>
+<p>$P$ 分为两类：</p>
+<ul>
+<li>$S\to [q_0,Z_0,q],{\,}\forall q{\,}{\in}{\,}Q$ </li>
+<li>当 $\delta(q,a,A)$ 包含 $(q_1,B_1,B_2,…,B_m)$ 时，则有：</li>
+</ul>
+<script type="math/tex; mode=display">
+[q_1,A,q_{m+1}]\to a[q_1,B_1,q_2][q_2,B_2,q_3]...[q_m,B_m,q_{m+1}]</script><p>其中 $q_2,q_3,…,q_{m+1}$ 取自 $Q$ 中任何状态；若 $m=0$ （即退栈操作），则有 $[q,A,q_1]\to a$ </p>
+<p><strong>例</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-8-1.4lr8ajjia0m0.webp" alt="fct-5-8-1" style="zoom:20%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-8-2.1c9pixqyndpc.webp" alt="fct-5-8-2" style="zoom:26%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-8-3.2hlw6n7via20.webp" alt="fct-5-8-3" style="zoom:21%;" /></p>
+<p>比如对于变元 $[q_1,X,q_0]$ ，它是无效变元：因为只有 $\delta(q_1,\varepsilon,X)=\{(q_1,\varepsilon)\}$ 和 $\delta(q_1,1,X)=\{(q_0,\varepsilon)\}$ 满足 $\delta(q_1,?,X)$ 的条件，但是这俩都是退栈操作，必须是 $[q_1,X,q_1]$ 才能变化，而不能是随意的 $[q_1,X,?]$ </p>
 
         </div>
 
@@ -331,29 +334,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/06/29/%E7%AC%AC5%E7%AB%A0%20%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95%E4%B8%8E%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">计算理论基础 第5章 上下文无关文法与下推自动机</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/06/27/%E7%AC%AC3%E7%AB%A0%20%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%92%8C%E6%AD%A3%E8%A7%84%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+                           href="/2022/06/28/%E7%AC%AC4%E7%AB%A0%20%E6%AD%A3%E8%A7%84%E6%96%87%E6%B3%95%E5%92%8C%E6%AD%A3%E8%A7%84%E9%9B%86%E7%9A%84%E6%80%A7%E8%B4%A8/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">计算理论基础 第3章 有穷自动机和正规表达式</span>
+                                <span class="post-nav-title-item">计算理论基础 第4章 正规文法和正规集的性质</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -464,7 +452,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-%E6%AD%A3%E8%A7%84%E6%96%87%E6%B3%95%E5%92%8C%E6%AD%A3%E8%A7%84%E9%9B%86%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">第4章 正规文法和正规集的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E8%A7%84%E6%96%87%E6%B3%95%E5%92%8C%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">正规文法和有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RG-to-varepsilon-NFA"><span class="nav-text">RG $\to\varepsilon$-NFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DFA-to-RG"><span class="nav-text">DFA $\to$ RG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E8%A7%84%E9%9B%86%E7%9A%84%E7%BC%A9%E8%83%80%E5%AE%9A%E7%90%86"><span class="nav-text">正规集的缩胀定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E8%A7%84%E9%9B%86%E7%9A%84%E5%B0%81%E9%97%AD%E6%80%A7%E8%B4%A8%E5%92%8C%E5%88%A4%E5%AE%9A%E6%80%A7"><span class="nav-text">正规集的封闭性质和判定性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RL-%E7%9A%84%E5%B0%81%E9%97%AD%E6%80%A7%E8%B4%A8"><span class="nav-text">RL 的封闭性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FA-%E7%9A%84%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98"><span class="nav-text">FA 的判定问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%9A%84%E6%9E%81%E5%B0%8F%E5%8C%96"><span class="nav-text">有穷自动机的极小化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Myhill-Nerode-%E5%AE%9A%E7%90%86"><span class="nav-text">Myhill-Nerode 定理</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0-%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95%E4%B8%8E%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">第5章 上下文无关文法与下推自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CFG-%E7%9A%84%E5%8C%96%E7%AE%80"><span class="nav-text">CFG 的化简</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%94%A8%E7%AC%A6%E5%8F%B7"><span class="nav-text">无用符号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CNF-%E5%92%8C-GNF-%E8%8C%83%E5%BC%8F"><span class="nav-text">CNF 和 GNF 范式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CNF-%E8%8C%83%E5%BC%8F"><span class="nav-text">CNF 范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GNF-%E8%8C%83%E5%BC%8F"><span class="nav-text">GNF 范式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PDA-%E4%B8%8E-CFG"><span class="nav-text">PDA 与 CFG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">下推自动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CFG-to-PDA"><span class="nav-text">CFG $\to$ PDA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PDA-to-CFG"><span class="nav-text">PDA $\to$ CFG</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
