@@ -9,7 +9,7 @@
     
     <title>
         
-            计算理论基础 第5章 上下文无关文法与下推自动机 |
+            计算理论基础 第6章 上下文无关语言的性质 |
         
         Splendid
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">计算理论基础 第5章 上下文无关文法与下推自动机</span>
+            <span class="title-hover-animation">计算理论基础 第6章 上下文无关语言的性质</span>
         </div>
 
         
@@ -184,8 +184,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-06-29 18:54:00</span>
-        <span class="mobile">2022-06-29 18:54</span>
+        <span class="pc">2022-06-30 15:38:00</span>
+        <span class="mobile">2022-06-30 15:38</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -228,90 +228,69 @@
         
 
         <div class="article-content markdown-body">
-            <p>计算理论基础 第5章 上下文无关文法与下推自动机 的相关笔记，包括：上下文无关文法的化简、上下文无关文法的乔姆斯基范式和格雷巴赫范式、下推自动机、下推自动机和上下文无关文法的转化 等…</p>
-<h1 id="第5章-上下文无关文法与下推自动机"><a href="#第5章-上下文无关文法与下推自动机" class="headerlink" title="第5章 上下文无关文法与下推自动机"></a>第5章 上下文无关文法与下推自动机</h1><h2 id="CFG-的化简"><a href="#CFG-的化简" class="headerlink" title="CFG 的化简"></a>CFG 的化简</h2><h3 id="无用符号"><a href="#无用符号" class="headerlink" title="无用符号"></a>无用符号</h3><p><strong>无用符号</strong>：</p>
-<ul>
-<li>$X{\in}V{\cup}T$ ，但 $X$ 并不出现在由 $S$ 派生而来的任何字符串中</li>
-<li>$X{\in}V$ ，但 $X$ 派生不出任何终结符号串（缺失、死循环）</li>
-</ul>
-<p><strong>消除方法</strong>：</p>
-<ul>
-<li>第一类无用符号，使用正推的方法：先将 $S$ 放入结果集中；对于每次新放入结果集的变元，将其能够推导出的变元和终结符号也放入结果集中；重复，直至结果集不再增大；</li>
-<li>第二类无用符号，使用倒推的方法：先将一步就能生成终结符号的变元加入结果集中；遍历每个生成式，若右部的变元全部都在结果集中，则将左部变元加入结果集；重复，直至结果集不再增大；将仅能由被删除的变元派生来的终结符号也删除；</li>
-</ul>
-<p>（消除无用符号时，应当先消除 2 类再消除 1 类，因为先 1 类再 2 类的话有些终结符号不会被删除（不过我感觉如果仅仅考虑无用变元符号的化简，那么 1 类 2 类的消除顺序好像不太重要））</p>
-<p>此外，对于 $\varepsilon$-生成式（ $A\to\varepsilon$ ）、单一生成式（ $A\to B$ 或 $A\to a$ ），都可以通过合并到前一步来化简，最终得到化简过后的 CFG</p>
-<h2 id="CNF-和-GNF-范式"><a href="#CNF-和-GNF-范式" class="headerlink" title="CNF 和 GNF 范式"></a>CNF 和 GNF 范式</h2><h3 id="CNF-范式"><a href="#CNF-范式" class="headerlink" title="CNF 范式"></a>CNF 范式</h3><p><strong>Chomsky 范式</strong>：任何不包含 $\varepsilon$ 的 CFL ，都可由生成式仅为 $A\to BC$ 或 $A\to a$ 形式的文法产生</p>
-<p><strong>算法</strong>：</p>
-<ul>
-<li>先将所有终结符 $a$ 都看作变元 $[a]$ ，增加生成式 $[a]\to a$ ；若 $A\to \alpha a\beta$ ，则 $A\to\alpha[a]\beta$ ；</li>
-<li>对于 $A\to A_1A_2…A_n$ ，令 $D_{n-1}=A_1A_2…A_{n-1}$ ，则 $A\to D_{n-1}A_n$ ；逐层展开</li>
-</ul>
-<h3 id="GNF-范式"><a href="#GNF-范式" class="headerlink" title="GNF 范式"></a>GNF 范式</h3><p><strong>Greibach 范式</strong>：任何不包含 $\varepsilon$ 的 CFL ，都可由生成式仅为 $A\to a\alpha$ （$\alpha$ 可为空）形式的文法产生</p>
-<p><strong>算法</strong>：</p>
-<ul>
-<li>（ $i{\le}j$ ）将所有变元标上序号（ $A_i\,(i=1,2,…)$ ），保证不满足 GNF 范式的生成式不会出现大序号推出小序号开头的情况，即若 $A_i\to A_j\alpha$ ，则 $i{\le}j$；（具体做法为从左部为第二小序号的生成式开始，从小到大遍历，将右部开头的变元反复用已经满足序号左小于等于右开头的生成式替换，直至该生成式序号左小于等于右开头）</li>
-<li>（ $B_i$ ）对于左部序号等于右部开头的序号的生成式（ $A_i\to A_i\alpha$ ），使用如下变元 $B_i$ 替换：</li>
-</ul>
-<script type="math/tex; mode=display">
-\left \{ \begin{array}{ll}
-A_i\to A_i\alpha_1|A_i\alpha_2|...|A_i\alpha_r\\
-A_i\to \beta_1|\beta_2|...|\beta_s \\
-\end{array} \right.</script><p>（其中 $\beta$ 已经均为终结符号开头了）替换为：</p>
-<script type="math/tex; mode=display">
-\left \{ \begin{array}{ll}
-A_i \to\beta_j\\
-A_i \to\beta_jB_i &(j=1,2,...,s)
-\end{array} \right. \\
-\left \{ \begin{array}{ll}
-B_i \to\alpha_j \\
-B_i \to\alpha_jB_i &(j=1,2,...,s)
-\end{array} \right.</script><ul>
-<li><p>（ $A\to a\alpha$ ）此时不满足 GNF 、且不含 $B_i$ 的生成式都满足序号左小于等于右开头了；则对于左部为最大序号的变元的生成式而言，其都满足 GNF，故从左部为第二大序号的生成式开始，从大到小遍历，将右部开头为序号大于左部的变元替换为满足 GNF的生成式的右部</p>
-</li>
-<li><p>（ $A$ 带入 $B$ ）最后处理 $B_i$ ；由于 $\alpha_j$ 只含有 $A_i$ 或终结符，不含有 $B$ ，且此时左部为 $A$ 的生成式都已经满足 GNF ，故只要将开头为 $A$ 的 $\alpha_j$ 的开头替换掉即可</p>
-</li>
-</ul>
-<p><strong>例</strong>：（第一步即包含了算法的第一、二步）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-4-1.7399na8j51w0.webp" alt="fct-5-4-1" style="zoom:25%;" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-4-2.2iwckfqrb3o.webp" alt="fct-5-4-2" style="zoom:23%;" /></p>
-<h2 id="PDA-与-CFG"><a href="#PDA-与-CFG" class="headerlink" title="PDA 与 CFG"></a>PDA 与 CFG</h2><h3 id="下推自动机"><a href="#下推自动机" class="headerlink" title="下推自动机"></a>下推自动机</h3><p>一个 <strong>下推自动机</strong>（简称 PDA）是一个七元组 $M=(Q,\Sigma,\Gamma,\delta,q_0,Z_0,F)$ ，其中：</p>
-<ul>
-<li>$Q$ 是有穷状态集</li>
-<li>$\Sigma$ 是有穷的输入字母表</li>
-<li>$\Gamma$ 是有穷的栈符号表</li>
-<li>$\delta$ 是转移函数，$\delta:Q{\times}({\Sigma}{\cup}\{\varepsilon\}){\times}\Gamma\to Q\times{\Gamma}^{\ast}$ 的有穷子集</li>
-<li>$q_0{\,}{\in}{\,}Q$ ，是初始状态</li>
-<li>$Z_0{\,}{\in}{\,}\Gamma$ ，是栈底符号</li>
-<li>$F{\subseteq}Q$ ，是终结状态集</li>
-</ul>
-<p>转移函数的一般形式为：（即转移函数是不确定的）（ $\gamma$ 可以为空，即退栈）</p>
-<script type="math/tex; mode=display">
-\delta(q,a,Z)=\{(p_1,\gamma_1),(p_2,\gamma_2),...,(p_m,\gamma_m)\}</script><p>PDA 的 <strong>接受方式 </strong>有两种：</p>
-<ul>
-<li>按栈空方式接受，即栈中为空时接受，此时 $F$ 可以不写</li>
-<li>按接受状态接受，即状态到达 $F$ 中的某一状态时接受</li>
-</ul>
-<p>（栈空 $\to$ 接受：在栈底垫一个特殊字符，遇到该字符时就是代表栈空了，此时转为接受状态）</p>
-<p>（接受 $\to$ 栈空：到达接受状态以后，不论栈中还有什么字符，一律消去）</p>
-<h3 id="CFG-to-PDA"><a href="#CFG-to-PDA" class="headerlink" title="CFG $\to$ PDA"></a>CFG $\to$ PDA</h3><p><strong>构造</strong>：根据 CFG $G=(V,T,P,S)$ ，构造 PDA $M=(\{q\},T,V,\delta,q,S,\varnothing)$ </p>
-<p>将 CFG 转化为 GNF 范式；只需要一个状态，将变元看作栈中符号，按栈空方式接受；</p>
-<p>对于生成式 $A\to a\alpha$ 对应转移函数 $\delta(q,a,A)$ 包含 $(q,\alpha)$ ；若 $\alpha$ 中有变元 $b$ ，则将 $b$ 看作栈中符号 $[b]$ ，并增加 $\delta(q,b,[b])$ 包含 $(q,\varepsilon)$ ；</p>
-<h3 id="PDA-to-CFG"><a href="#PDA-to-CFG" class="headerlink" title="PDA $\to$ CFG"></a>PDA $\to$ CFG</h3><p>这个比较复杂，结合例题来理解比较好</p>
-<p><strong>构造</strong>：根据 PDA $M=(Q,\Sigma,\Gamma,\delta,q_0,Z_0,\varnothing)$ ，构造 CFG $G=(V,\Sigma,P,S)$ ，其中：</p>
-<p>$V=\{[q,A,p]|q,p{\,}{\in}{\,}Q,{\,}A{\,}{\in}{\,}{\Gamma}\}{\cup}\{S\}$ ，代表状态 $q$ 经由接受 $A$ 所派生出来的字符串后，可以到达 $p$ 状态；也指当前状态为 $q$ ，栈顶为 $A$ ；</p>
-<p>$P$ 分为两类：</p>
-<ul>
-<li>$S\to [q_0,Z_0,q],{\,}\forall q{\,}{\in}{\,}Q$ </li>
-<li>当 $\delta(q,a,A)$ 包含 $(q_1,B_1,B_2,…,B_m)$ 时，则有：</li>
-</ul>
-<script type="math/tex; mode=display">
-[q_1,A,q_{m+1}]\to a[q_1,B_1,q_2][q_2,B_2,q_3]...[q_m,B_m,q_{m+1}]</script><p>其中 $q_2,q_3,…,q_{m+1}$ 取自 $Q$ 中任何状态；若 $m=0$ （即退栈操作），则有 $[q,A,q_1]\to a$ </p>
+            <p>计算理论基础 第6章 上下文无关语言的性质 的相关笔记，包括：CFL 的缩胀定理和 Ogden 定理、上下文无关语言的封闭性质和判定性质、CFG 成员资格判定（ CYK 算法）等…</p>
+<h1 id="第6章-上下文无关语言的性质"><a href="#第6章-上下文无关语言的性质" class="headerlink" title="第6章 上下文无关语言的性质"></a>第6章 上下文无关语言的性质</h1><h2 id="CFL-的缩胀定理和-Ogden-定理"><a href="#CFL-的缩胀定理和-Ogden-定理" class="headerlink" title="CFL 的缩胀定理和 Ogden 定理"></a>CFL 的缩胀定理和 Ogden 定理</h2><h3 id="CFL-缩胀定理"><a href="#CFL-缩胀定理" class="headerlink" title="CFL 缩胀定理"></a>CFL 缩胀定理</h3><p><strong>CFL 缩胀定理</strong>：对于每个 CFL $L$ ，都 $\exists k{\ge}0$ ，使得对 $\forall z{\,}{\in}{\,}L$ ，只要 $|z|{\ge}k$ ，就存在 $z$ 的划分 $z=uvwxy$ ，其中 $|vx|{\ge}1$ ，$|vwx|{\le}k$ ，并且对 $\forall i{\ge}0$ ，都有 $uv^iwx^iy{\,}{\in}{\,}L$ ；</p>
+<p><strong>逆否命题</strong>：对于语言类 $L$ ，若对 $\forall k{\ge}0$ ， $\exists z{\,}{\in}{\,}L$ ，只要 $|z|{\ge}k$ ，则对任意 $z$ 的划分 $z=uvwxy$ ，其中 $|vx|{\ge}1$ ，$|vwx|{\le}k$ ，并且 $\exists i{\ge}0$ ，使得 $uv^iwx^iy{\,}{\not\in}{\,}L$ ；</p>
+<p><strong>证明</strong>：将 CFL 派生树的终结符也写到叶子节点上；那么当派生树高度超过变元总数时，最长派生路径上一定会出现重复的变元，因此可以缩胀</p>
+<table style="text-align:center">
+    <tr>
+        <td colspan="2">划分</td>
+    </tr>
+    <tr>
+        <td colspan="2"><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-6-4.6c5ajevd5ek0.webp" alt="fct-6-4" style="zoom:20%;" /></td>
+    </tr>
+    <tr>
+        <td>缩</td><td>胀</td>
+    </tr>
+    <tr>
+        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-6-6.2nd28psbcig0.webp" alt="fct-6-6" style="zoom:20%;" /></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-6-5.241ewnuk9pds.webp" alt="fct-6-5" style="zoom:20%;" /></td>
+    </tr>
+</table>
+
+<p><strong>例</strong>：证明 $L=\{ww|w{\,}{\in}{\,}\{a,b\}^{\ast}\}$ 不是 CFL</p>
+<p><strong>证</strong>：对 $\forall k{\ge}0$ ，取 $z=a^kb^ka^kb^k{\,}{\in}{\,}L$  ，显然 $|z|{\ge}k$ ；将 $z$ 任意划分为 $z=uvwxy$ ，且满足 $|vx|{\ge}1$ ，$|vwx|{\le}k$ ，有以下情况：</p>
+<p>① 若 $v$ 或 $x$ 中包括两种符号（但由于 $|vx|{\le}k$ ，故 $v$ 和 $x$ 不可能同时包括两种符号），则取 $i=2$ ，会出现 $a^{l_1}b^{l_2}a^{l_3}b^{l_4}a^{l_5}b^{l_6}$ ，不可能是 $ww$ 的形式；</p>
+<p>② 若 $v$ 和 $x$ 只包含 $a$ 或 $b$ ，则取 $i=0$ ，前后 $a$ 或 $b$ 的数量不相等，不可能是 $ww$ 的形式；</p>
+<p>由此可得，$L$ 不是 CFL；</p>
+<h3 id="Ogden-定理"><a href="#Ogden-定理" class="headerlink" title="Ogden 定理"></a>Ogden 定理</h3><p><strong>Ogden 定理</strong>：对于每个 CFL $L$ ，都 $\exists k{\ge}0$ ，使得对 $\forall z{\,}{\in}{\,}L$ ，并且在 $z$ 中标出至少 $k$ 个特别符号，就存在 $z$ 的划分 $z=uvwxy$ ，其中 $vx$ 至少包含一个特别符号，$vwx$ 至少包含 $k$ 个特别符号，则对 $\forall i{\ge}0$ ，都有 $uv^iwx^iy{\,}{\in}{\,}L$ ；</p>
+<p><strong>逆否命题</strong>：对于语言类 $L$ ，若对 $\forall k{\ge}0$ ， $\exists z{\,}{\in}{\,}L$ ，并且在 $z$ 中标出至少 $k$ 个特别符号，对任意 $z$ 的划分 $z=uvwxy$ ，其中 $vx$ 至少包含一个特别符号，$vwx$ 至少包含 $k$ 个特别符号，都 $\exists i{\ge}0$ ，使得 $uv^iwx^iy{\,}{\not\in}{\,}L$ ，则 $L$ 不属于 CFL；</p>
+<p><strong>证明</strong>：和 CFL 缩胀定理证明类似：（假设为 CNF范式 ）选定特别符号后，从根节点出发，每次选择的分支为特别符号较多的那个分支，直至走到叶子节点；由于特别符号的数目限制，该路径必然会出现重复的变元，即可缩胀</p>
 <p><strong>例</strong>：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-8-1.4lr8ajjia0m0.webp" alt="fct-5-8-1" style="zoom:20%;" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-8-2.1c9pixqyndpc.webp" alt="fct-5-8-2" style="zoom:26%;" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-5-8-3.2hlw6n7via20.webp" alt="fct-5-8-3" style="zoom:21%;" /></p>
-<p>比如对于变元 $[q_1,X,q_0]$ ，它是无效变元：因为只有 $\delta(q_1,\varepsilon,X)=\{(q_1,\varepsilon)\}$ 和 $\delta(q_1,1,X)=\{(q_0,\varepsilon)\}$ 满足 $\delta(q_1,?,X)$ 的条件，但是这俩都是退栈操作，必须是 $[q_1,X,q_1]$ 才能变化，而不能是随意的 $[q_1,X,?]$ </p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-6-4-1.ejg8fuk6k2w.webp" alt="fct-6-4-1" style="zoom:17%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-6-4-2.5rrjejh7ji40.webp" alt="fct-6-4-2" style="zoom:22%;" /></p>
+<p>（当 $v$ 在 $a$ 中，$x$ 在 $b$ 中，就让 $|a|=|c|$ ；当 $v$ 在 $a$ 中，$x$ 在 $c$ 中，就让 $|a|=|b|$ ；）</p>
+<h2 id="CFL-的封闭性质和判定性质"><a href="#CFL-的封闭性质和判定性质" class="headerlink" title="CFL 的封闭性质和判定性质"></a>CFL 的封闭性质和判定性质</h2><h3 id="CFL-封闭性质"><a href="#CFL-封闭性质" class="headerlink" title="CFL 封闭性质"></a>CFL 封闭性质</h3><p><strong>Th 6.4</strong>：CFL 在 <strong>并、连接、闭包</strong> 运算下是封闭的</p>
+<p>（并：$S\to S_1|S_2$ ；连接：$S\to S_1S_2$ ；闭包：$S\to SS_1|\varepsilon$ ）</p>
+<p><strong>Th 6.5</strong>：CFL 在 <strong>交运算</strong> 下不封闭</p>
+<p>（反例：$a^ib^ic^j$ 和 $a^ib^jc^j$ ）</p>
+<p><strong>Th 6.5 推论</strong>：CFL 在 <strong>补运算</strong> 下不封闭</p>
+<p>（反证：若补运算封闭，又并运算封闭，可得交运算封闭（$L_1{\cap}L_2=\overline{\overline{L_1}\cup{\overline{L_2}}}$））</p>
+<p><strong>Th 6.7</strong>：CFL 与 RL 的交是 CFL</p>
+<p>（PDA 可以模拟 FA，所以交集就是二者捆绑在一起运行）</p>
+<h3 id="CFL-判定性质"><a href="#CFL-判定性质" class="headerlink" title="CFL 判定性质"></a>CFL 判定性质</h3><p><strong>Th 6.7</strong>：给出 CFG $G$ ，$L(G)$ 是否为空、$L(G)$ 是否有穷是可判定的</p>
+<p>（是否为空，采用消除无用符号的算法，若最终 $S$ 也被删除，则为空）</p>
+<p>（是否有穷：采用 CNF 范式，将变元看作结点，$A\to BC$ 代表 $A$ 有指向 $B$ 和 $C$ 的有向边；若该图有环，则 $L(G)$ 无穷）</p>
+<h2 id="CFL-的成员资格判定（CYK-算法）"><a href="#CFL-的成员资格判定（CYK-算法）" class="headerlink" title="CFL 的成员资格判定（CYK 算法）"></a>CFL 的成员资格判定（CYK 算法）</h2><h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p><strong>问题</strong>：给定字符串 $w$ 和 CFG $G$ ，判定 $w$ 是否可由 $G$ 产生</p>
+<p><strong>算法</strong>：采用 CNF 范式，画出如图倒阶梯形表格，其中 $x_{ij}$ 代表 $w.substr(i,j)$ 这一子串可由 $G$ 中哪些变元派生而来；从第一行开始填：（注意下标从 1 开始）</p>
+<ul>
+<li><p>对于第一行，子串均为单个字母，如为 $a$ ，且存在 $A\to a$ ，则将 $A$ 填入该格</p>
+</li>
+<li><p>对于接下来的行，比如填到 $x_{24}$ 时，需要尝试 $x_{21}x_{33}$ 、$x_{22}x_{42}$ 和 $x_{23}x_{51}$ （有点像 DP 的思想）</p>
+</li>
+</ul>
+<p><strong>分析</strong>：该算法需要三层 for 循环，时间复杂度为 $O(n^3)$ </p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><strong>例</strong>：给出 Chomsky 范式 CFG 文法 $G$ ，生成式有：</p>
+<p>$S\to AB|BC$         $A\to BA|a$         $B\to CC|b$         $C\to AB|a$ </p>
+<p>和 $x=baaba$ ，判定 $x$ 是否为 $G$ 的成员，算法草稿如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-6-10.1skcvfxf6w2o.webp" alt="fct-6-10" style="zoom:20%;" /></p>
+<p>如填 $x_{15}$ 时，可以有：</p>
+<ul>
+<li><p>$x_{15}=x_{11}x_{24}$ ；$x_{11}$ 有 $B$ ，$x_{24}$ 有 $A$ ；而 $G$ 中有 $A\to BA$ ，故将 $A$ 填入 $x_{15}$ ；</p>
+</li>
+<li><p>$x_{15}=x_{12}x_{33}$ ；$x_{12}$ 有 $A$ ，$x_{33}$ 有 $B$ ；而 $G$ 中有 $S\to AB$ 和 $C\to AB$ ，故将 $S$ 和 $C$ 填入 $x_{15}$ ；</p>
+</li>
+</ul>
 
         </div>
 
@@ -337,13 +316,13 @@ B_i \to\alpha_jB_i &(j=1,2,...,s)
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/06/30/%E7%AC%AC6%E7%AB%A0%20%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E8%AF%AD%E8%A8%80%E7%9A%84%E6%80%A7%E8%B4%A8/"
+                           href="/2022/06/30/%E7%AC%AC7%E7%AB%A0%20%E5%9B%BE%E7%81%B5%E6%9C%BA/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">计算理论基础 第6章 上下文无关语言的性质</span>
+                                <span class="post-nav-title-item">计算理论基础 第7章 图灵机</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -353,10 +332,10 @@ B_i \to\alpha_jB_i &(j=1,2,...,s)
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/06/28/%E7%AC%AC4%E7%AB%A0%20%E6%AD%A3%E8%A7%84%E6%96%87%E6%B3%95%E5%92%8C%E6%AD%A3%E8%A7%84%E9%9B%86%E7%9A%84%E6%80%A7%E8%B4%A8/"
+                           href="/2022/06/29/%E7%AC%AC5%E7%AB%A0%20%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95%E4%B8%8E%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">计算理论基础 第4章 正规文法和正规集的性质</span>
+                                <span class="post-nav-title-item">计算理论基础 第5章 上下文无关文法与下推自动机</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -467,7 +446,7 @@ B_i \to\alpha_jB_i &(j=1,2,...,s)
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0-%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95%E4%B8%8E%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">第5章 上下文无关文法与下推自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CFG-%E7%9A%84%E5%8C%96%E7%AE%80"><span class="nav-text">CFG 的化简</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%94%A8%E7%AC%A6%E5%8F%B7"><span class="nav-text">无用符号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CNF-%E5%92%8C-GNF-%E8%8C%83%E5%BC%8F"><span class="nav-text">CNF 和 GNF 范式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CNF-%E8%8C%83%E5%BC%8F"><span class="nav-text">CNF 范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GNF-%E8%8C%83%E5%BC%8F"><span class="nav-text">GNF 范式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PDA-%E4%B8%8E-CFG"><span class="nav-text">PDA 与 CFG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">下推自动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CFG-to-PDA"><span class="nav-text">CFG $\to$ PDA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PDA-to-CFG"><span class="nav-text">PDA $\to$ CFG</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0-%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E8%AF%AD%E8%A8%80%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">第6章 上下文无关语言的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CFL-%E7%9A%84%E7%BC%A9%E8%83%80%E5%AE%9A%E7%90%86%E5%92%8C-Ogden-%E5%AE%9A%E7%90%86"><span class="nav-text">CFL 的缩胀定理和 Ogden 定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CFL-%E7%BC%A9%E8%83%80%E5%AE%9A%E7%90%86"><span class="nav-text">CFL 缩胀定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ogden-%E5%AE%9A%E7%90%86"><span class="nav-text">Ogden 定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CFL-%E7%9A%84%E5%B0%81%E9%97%AD%E6%80%A7%E8%B4%A8%E5%92%8C%E5%88%A4%E5%AE%9A%E6%80%A7%E8%B4%A8"><span class="nav-text">CFL 的封闭性质和判定性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CFL-%E5%B0%81%E9%97%AD%E6%80%A7%E8%B4%A8"><span class="nav-text">CFL 封闭性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CFL-%E5%88%A4%E5%AE%9A%E6%80%A7%E8%B4%A8"><span class="nav-text">CFL 判定性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CFL-%E7%9A%84%E6%88%90%E5%91%98%E8%B5%84%E6%A0%BC%E5%88%A4%E5%AE%9A%EF%BC%88CYK-%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-text">CFL 的成员资格判定（CYK 算法）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

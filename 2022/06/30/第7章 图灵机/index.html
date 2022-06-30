@@ -9,7 +9,7 @@
     
     <title>
         
-            分类 |
+            计算理论基础 第7章 图灵机 |
         
         Splendid
     </title>
@@ -77,7 +77,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/categories"
                             >
                                 分类
@@ -132,7 +132,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/categories">分类</a>
                 </li>
             
@@ -162,13 +162,165 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="category-list-container">
-        <div class="category-list-content">
-            <ul class="all-category-list"><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/Computation-Theory/">Computation Theory</a><span class="all-category-list-count">12</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/Computer-Structure/">Computer Structure</a><span class="all-category-list-count">2</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/Database/">Database</a><span class="all-category-list-count">6</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/LeetCode/">LeetCode</a><span class="all-category-list-count">4</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/blog/">blog</a><span class="all-category-list-count">1</span></li></ul>
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">计算理论基础 第7章 图灵机</span>
         </div>
-        <div class="category-comments">
-            
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-30 17:24:00</span>
+        <span class="mobile">2022-06-30 17:24</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Computation-Theory/">Computation Theory</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/">计算理论</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>计算理论基础 第7章 图灵机 的相关笔记，包括：图灵机定义、图灵机的构造技术、图灵机的变形、图灵机与 0 型文法的关系 等…</p>
+<h1 id="第7章-图灵机"><a href="#第7章-图灵机" class="headerlink" title="第7章 图灵机"></a>第7章 图灵机</h1><h2 id="图灵机的基本模型"><a href="#图灵机的基本模型" class="headerlink" title="图灵机的基本模型"></a>图灵机的基本模型</h2><p><strong>Def 7.1</strong>：一个确定的、单带图灵机（TM）是一个九元组 $M=(Q,\Sigma,\Gamma,\vdash,\llcorner!\lrcorner,\delta,s,t,r)$ ，其中：</p>
+<ul>
+<li>$Q$ 是有穷状态集；</li>
+<li>$\Sigma$ 是有穷的输入字母表（本来在带上的输入字母表）；</li>
+<li>$\Gamma$ 是有穷的带字母表（可以出现在带上的字母表）；</li>
+<li>$\vdash{\in}\Gamma-\Sigma$ ，是左端标记；</li>
+<li>$\llcorner!\lrcorner{\in}\Gamma-\Sigma$ ，是空白符号；</li>
+<li>$\delta$ 是转移函数，$\delta:Q\times\Gamma\to Q\times\Gamma\times\{L,R\}$ </li>
+<li>$s\in Q$ ，是开始状态；</li>
+<li>$t\in Q$ ，是接收状态；</li>
+<li>$r\in Q$ ，是拒绝状态</li>
+</ul>
+<p><strong>Def 7.2</strong>：若一个 TM $M$ 对任意输入都能停机，则称此 TM $M$ 是完全的：</p>
+<ul>
+<li>被 TM $M$ 接受的语言 $L(M)$ 称为 <strong>递归可枚举集</strong> （ $r.e.$ ）</li>
+<li>被完全的 TM $M$ 接受的语言 $L(M)$ 称为 <strong>递归集</strong></li>
+</ul>
+<h2 id="图灵机的构造技术"><a href="#图灵机的构造技术" class="headerlink" title="图灵机的构造技术"></a>图灵机的构造技术</h2><ul>
+<li>有限控制器中的存储</li>
+<li>移动</li>
+<li>多道技术</li>
+<li>查讫符号</li>
+<li>子程序技术</li>
+</ul>
+<p>（最有用的是子程序技术，是一种思想，要保证结束子程序时读写头回到进入子程序时的位置）</p>
+<h2 id="图灵机的变形"><a href="#图灵机的变形" class="headerlink" title="图灵机的变形"></a>图灵机的变形</h2><ul>
+<li>双向无限带</li>
+<li>多带</li>
+<li>非确定的图灵机</li>
+<li>双栈机（ PDA 是单栈机，由此可见 TM 比 PDA 的接受能力更强）</li>
+<li>带字母最少的图灵机（所有符号都用等长二进制描述）</li>
+<li>作为枚举器的图灵机</li>
+</ul>
+<p>（这些变形并没有增大图灵机的接受能力，但是时间复杂度和空间复杂度可能会发生变化）</p>
+<h2 id="图灵机与-0-型文法"><a href="#图灵机与-0-型文法" class="headerlink" title="图灵机与 0 型文法"></a>图灵机与 0 型文法</h2><p>TM 就是对应 0 型文法，具体证明不写啦~</p>
+
         </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/">#计算理论</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">#形式语言与自动机</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/06/30/%E7%AC%AC9%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E6%9C%89%E7%95%8C%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9C%89%E5%85%B3%E8%AF%AD%E8%A8%80/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算理论基础 第9章 线性有界自动机和上下文有关语言</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/06/30/%E7%AC%AC6%E7%AB%A0%20%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E8%AF%AD%E8%A8%80%E7%9A%84%E6%80%A7%E8%B4%A8/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算理论基础 第6章 上下文无关语言的性质</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
     </div>
 </div>
 
@@ -201,6 +353,23 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -246,6 +415,14 @@
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC7%E7%AB%A0-%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="nav-text">第7章 图灵机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B"><span class="nav-text">图灵机的基本模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA%E7%9A%84%E6%9E%84%E9%80%A0%E6%8A%80%E6%9C%AF"><span class="nav-text">图灵机的构造技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA%E7%9A%84%E5%8F%98%E5%BD%A2"><span class="nav-text">图灵机的变形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA%E4%B8%8E-0-%E5%9E%8B%E6%96%87%E6%B3%95"><span class="nav-text">图灵机与 0 型文法</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -315,6 +492,14 @@
 
 
 <div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
     
 </div>
 
