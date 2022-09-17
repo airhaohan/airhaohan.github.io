@@ -9,7 +9,7 @@
     
     <title>
         
-            LeetCode 1094. 拼车（median） |
+            LeetCode 刷题指南 |
         
         Splendid
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">LeetCode 1094. 拼车（median）</span>
+            <span class="title-hover-animation">LeetCode 刷题指南</span>
         </div>
 
         
@@ -184,8 +184,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-01-05 22:00:00</span>
-        <span class="mobile">2022-01-05 22:00</span>
+        <span class="pc">2022-09-08 22:23:00</span>
+        <span class="mobile">2022-09-08 22:23</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -208,14 +208,6 @@
                         <a href="/tags/LeetCode/">LeetCode</a>&nbsp;
                     </li>
                 
-                    <li>
-                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/C/">C++</a>&nbsp;
-                    </li>
-                
             </ul>
         </span>
     
@@ -232,40 +224,42 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/car-pooling/" >题目<i class="fas fa-external-link-alt"></i></a></h2><h4 id="LeetCode-1094-拼车（median）"><a href="#LeetCode-1094-拼车（median）" class="headerlink" title="LeetCode 1094. 拼车（median）"></a>LeetCode 1094. 拼车（median）</h4><p>车上最初有 <code>capacity</code> 个空座位。车<strong>只能</strong>向一个方向行驶（也就是说，<strong>不允许掉头或改变方向</strong>）</p>
-<p>给定整数 <code>capacity</code> 和一个数组<code>`trips</code>, <code>trip[i] = [numPassengers_i, from_i, to_i]</code> 表示第 <code>i</code> 次旅行有 <code>numPassengers_i</code> 乘客，接他们和放他们的位置分别是 <code>from_i</code> 和 <code>to_i</code> 。这些位置是从汽车的初始位置向东的公里数。</p>
-<p>当且仅当你可以在所有给定的行程中接送所有乘客时，返回 <code>true</code>，否则请返回 <code>false</code>。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：trips = [[2,1,5],[3,3,7]], capacity = 4</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：trips = [[2,1,5],[3,3,7]], capacity = 5</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-<p><strong>提示：</strong></p>
+            <h1 id="LeetCode-刷题指南"><a href="#LeetCode-刷题指南" class="headerlink" title="LeetCode 刷题指南"></a>LeetCode 刷题指南</h1><p>力扣，作为一个国内外的程序员都用作准备面试的刷题网站，对正在阅读这篇指南的你应该都不陌生。随着力扣社区越做越好，各种有关求职、技术的讨论贴以及企业招聘信息都活跃在这个平台上。当你想要借助力扣刷题，提升代码能力、在面试中脱颖而出，却无从着手时，这篇文章可以作为你的入门指南。</p>
+<h2 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h2><p>这部分包括了力扣的关键功能以及一些实用技巧，适合从未或者较少使用力扣刷题的人们快速入门。需要刷题路线的同学可以直接跳转到第二部分<a href="#stgl">【刷题攻略】</a>。</p>
+<h3 id="每日一题"><a href="#每日一题" class="headerlink" title="每日一题"></a>每日一题</h3><p>首先屹立在题库之首的是力扣官方的每日一题。每日一题的难度分布和整个题库相同，且往往评论区中会有大佬们凌晨撰写的最新题解，所以作为 CV 工程师根本不用担心做不出来 [\doge]。每月完成所有的每日一题打卡任务，还可以获得独一无二的月度刷题勋章。面对全站两千多道题（这个数字甚至还在快速膨胀），不知从何着手的话，不如就从每日一题开始立下目标吧！</p>
+<h3 id="学习计划"><a href="#学习计划" class="headerlink" title="学习计划"></a>学习计划</h3><p><img src="https://img-blog.csdnimg.cn/16c44d30299149feb3f59d5893fc8d59.jpeg" alt="请添加图片描述"></p>
+<p>力扣学习计划广场提供了一些免费的刷题计划，包括：</p>
 <ul>
-<li><code>1 &lt;= trips.length &lt;= 1000</code></li>
-<li><code>trips[i].length == 3</code></li>
-<li><code>1 &lt;= numPassengersi &lt;= 100</code></li>
-<li><code>0 &lt;= fromi &lt; toi &lt;= 1000</code></li>
-<li><code>1 &lt;= capacity &lt;= 105</code></li>
+<li>专项突破：算法、数据结构、动态规划、SQL等（SQL 很多题目需要会员，如果你还是学生并且想要充值会员的话一定要先认证教育优惠资质！）；</li>
+<li>综合提升：剑指 Offer、力扣杯竞赛真题集；</li>
+<li>企业真题：你能想到的国内大中厂。</li>
 </ul>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ul>
-<li><p>这里只要保证整个行车过程中不会超载就可以啦~</p>
-</li>
-<li><p>使用一个<code>map&lt;int, int&gt;</code>保存每个时间点对应的人数变化量，由于map自动排序，故第二次遍历时就是按照时间由小到大进行的</p>
-</li>
-<li><p>再次遍历map的过程中，每次让capacity（剩余容量）根据所保存的信息进行变化，如果出现<code>capacity &lt; 0</code>（即超载），那么返回false</p>
-</li>
+<p>每日任务量大概是两三道题，适合作为每日一题的补充或是用于针对性训练。</p>
+<h3 id="刷题界面"><a href="#刷题界面" class="headerlink" title="刷题界面"></a>刷题界面</h3><p><img src="https://img-blog.csdnimg.cn/c86c6af6cd9f459b98af4984cf3a125e.png" alt="请添加图片描述"></p>
+<h4 id="左边"><a href="#左边" class="headerlink" title="左边"></a>左边</h4><ul>
+<li>收藏：一些经典题目或者暂时未解决的问题都可以收藏起来！收藏支持创建文件夹（需要在收藏题目的时候创建，而不是在个人资料里），便于分类管理，像我自己的收藏里有这几个文件夹：数据结构、好难啊、不愧是我[\doge]</li>
+<li>中英文切换：有些题目描述（特别是序号较大的新题）往往是机翻。所以当阅读中文题目令人感到困惑时，一定要参考一下英文原题描述！（顺便到评论区听取骂声一片哈哈）</li>
+<li>提交记录标记：所有提交记录都可以做上标记和描述，在右侧编辑区可以拉取标记过的代码。例如同一道题的不同解法，简单写上思路方便日后再看，咱当初就是靠这个复习数据结构的。</li>
+<li>题解标签：搜索题解时，可以按照语言和知识点进行标签筛选，如果热门题解并没有说人话，或者你正在使用小语种刷题，又或者想要查看特定解法时，标签筛选是效率最高的方法！</li>
 </ul>
-<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><ul>
-<li><p>不满足条件的情况<br><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/1904_1.1r27a8dnp9sw.webp" alt="1904_1"></p>
-</li>
-<li><p>满足条件的情况<br><img src="C:\Users\air浩瀚\Desktop\1904_2.5hyjmyfuvqo0.webp" alt="1904_2"></p>
-</li>
+<h4 id="右边"><a href="#右边" class="headerlink" title="右边"></a>右边</h4><ul>
+<li>快速获取标记代码：点击右上方的小旗，就可以快速拉取曾经被标记过的提交记录！</li>
+<li>编辑器设置：点击右上方的小 i 和齿轮可以进行一些简单的设置，力扣自带的编辑器还是很不错的，熟悉一些快捷键可以加快码的速度~</li>
+<li>语言设置：左上角可以选择语言，点击小 i 标识可以查看力扣编译器对语言的支持程度；我习惯用 C++ 做题，力扣支持 C++17 标准，大部分头文件不需要包含就可以直接使用。</li>
+<li>Dark Side：喜欢熬夜刷题的小伙伴们都知道切换到黑夜模式的重要性，但是黑夜模式并不在编辑器设置中，而是在点击头像的 Dark Side 按钮里！</li>
+<li>笔记：编辑区右下角有个悬浮的笔记标志，支持 MarkDown 格式的笔记记录，把你的奇思妙想都记下来吧！</li>
 </ul>
-<h3 id="代码（C-实现）"><a href="#代码（C-实现）" class="headerlink" title="代码（C++实现）"></a>代码（C++实现）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">carPooling</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; trips, <span class="type">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; mp;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; vec : trips) &#123;</span><br><span class="line">            mp[vec[<span class="number">1</span>]] -= vec[<span class="number">0</span>];</span><br><span class="line">            mp[vec[<span class="number">2</span>]] += vec[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; p : mp) &#123;</span><br><span class="line">            capacity += p.second;</span><br><span class="line">            <span class="keyword">if</span> (capacity &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="竞赛"><a href="#竞赛" class="headerlink" title="竞赛"></a>竞赛</h3><p><img src="https://img-blog.csdnimg.cn/410a08e5ad8348d1a7798fc970d6a53c.jpeg" alt="请添加图片描述"></p>
+<p>每周天上午 10：30-12：00 都会有各个企业冠名的力扣竞赛，双周周六晚上有 22：00-00：00的夜猫子赛场，力扣官方还会常常举办力扣杯（有个人赛和团队赛）。每场比赛一个半小时，四道题，一般是 2 Easy + 1 Median + 1Hard。参与就可以得到积分（可用于换取力扣周边礼品），手速够快的话还能获得企业奖品，当然更重要的是内推或简历免筛的机会！如果觉得自己剑已经磨练好的话，速来力扣竞赛击剑×小试牛刀✓！ 可以用于模拟面试环境~<div id="stgl"> </div></p>
+<h2 id="刷题攻略"><a href="#刷题攻略" class="headerlink" title="刷题攻略"></a>刷题攻略</h2><p>力扣里都是面试真题，企业也往往将其作为面试题库。不过鉴于大家都不屑于将题目全部刷完 [\doge]，且网上相关的算法刷题攻略也层出不穷，这里我推荐几个靠谱的刷题攻略：</p>
+<h3 id="LeetCode-Cookbook"><a href="#LeetCode-Cookbook" class="headerlink" title="LeetCode Cookbook"></a>LeetCode Cookbook</h3><p><img src="https://img-blog.csdnimg.cn/4bcaa060c078433eae676f27a31b5aa7.png" alt="请添加图片描述"></p>
+<p>这本书的 <a class="link"   target="_blank" rel="noopener" href="https://books.halfrost.com/leetcode/" >在线地址<i class="fas fa-external-link-alt"></i></a>，<a class="link"   target="_blank" rel="noopener" href="https://github.com/halfrost/LeetCode-Go/releases/" >PDF永久更新地址<i class="fas fa-external-link-alt"></i></a>。全书用 Golang 作为示例语言将LeetCode经典的两千题详细解析，质量和完成度双高，不仅仅适用于 go 选手。其中手册开头还有将题号按照不同知识点分类的索引，需要专项突破的同学可以作为参考。</p>
+<h3 id="《剑指Offer》"><a href="#《剑指Offer》" class="headerlink" title="《剑指Offer》"></a>《剑指Offer》</h3><p><img src="https://img-blog.csdnimg.cn/a289149c17ce4ce4b894367a5044d5b6.jpeg" alt="请添加图片描述"></p>
+<p>这是一本经典的知名互联网大厂的面试题集，使用 C/ C++（主要是 C）实现，力扣上已有现成的相关合集。书的前半部分还有关于面试流程的经验指导，是面试向的工具书，见证了许许多多职场人的成长，可以说是非常实用了！</p>
+<h3 id="代码随想录"><a href="#代码随想录" class="headerlink" title="代码随想录"></a>代码随想录</h3><p><img src="https://img-blog.csdnimg.cn/eadc83c39f7b493982c03c10b19cf7b2.jpeg" alt="请添加图片描述"></p>
+<p>Carl 哥用丰富详实的语言配以生动形象的图示，详细解释了很多基础算法的原理，帮助大家记忆理解更加深刻。有多语言实现，很适合入门参考。<a class="link"   target="_blank" rel="noopener" href="https://github.com/youngyangyang04/leetcode-master" >GitHub仓库<i class="fas fa-external-link-alt"></i></a>；此外，代码随想录还有微信公众号、B站视频以及实体书。</p>
 <hr>
-<p>有收获的话，求个赞~ <a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/car-pooling/solution/chai-fen-map-by-airhao-han-g8fg/" >Click Here<i class="fas fa-external-link-alt"></i></a></p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/car-pooling/" >https://leetcode-cn.com/problems/car-pooling/<i class="fas fa-external-link-alt"></i></a></p>
+<p>如果这篇文章对你有帮助的话，不妨点个赞？（鞠躬）</p>
 
         </div>
 
@@ -278,14 +272,6 @@
                         <a href="/tags/LeetCode/">#LeetCode</a>&nbsp;
                     </li>
                 
-                    <li class="tag-item">
-                        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/C/">#C++</a>&nbsp;
-                    </li>
-                
             </ul>
         
 
@@ -295,13 +281,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/01/09/LeetCode%202134%20%E6%9C%80%E5%B0%91%E4%BA%A4%E6%8D%A2%E6%AC%A1%E6%95%B0%E6%9D%A5%E7%BB%84%E5%90%88%E6%89%80%E6%9C%89%E7%9A%84%201%20II/"
+                           href="/2022/09/13/partial%20specialization%20of%20function%20templates%20%E5%92%8C%20partial%20ordering%20of%20function%20template%20%E7%9A%84%E5%8C%BA%E5%88%AB/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2134. 最少交换次数来组合所有的 1 II（median）</span>
+                                <span class="post-nav-title-item">partial specialization of function templates 和 partial ordering of function template 的区别</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -311,10 +297,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/11/27/LeetCode%20314%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9E%82%E7%9B%B4%E9%81%8D%E5%8E%86/"
+                           href="/2022/06/30/%E7%AC%AC9%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E6%9C%89%E7%95%8C%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9C%89%E5%85%B3%E8%AF%AD%E8%A8%80/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 314. 二叉树的垂直遍历（median）</span>
+                                <span class="post-nav-title-item">计算理论基础 第9章 线性有界自动机和上下文有关语言</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -425,7 +411,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LeetCode-1094-%E6%8B%BC%E8%BD%A6%EF%BC%88median%EF%BC%89"><span class="nav-text">LeetCode 1094. 拼车（median）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%A4%BA"><span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88C-%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-text">代码（C++实现）</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LeetCode-%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97"><span class="nav-text">LeetCode 刷题指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="nav-text">使用指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><span class="nav-text">每日一题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92"><span class="nav-text">学习计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%B7%E9%A2%98%E7%95%8C%E9%9D%A2"><span class="nav-text">刷题界面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A6%E8%BE%B9"><span class="nav-text">左边</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%B3%E8%BE%B9"><span class="nav-text">右边</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%9E%E8%B5%9B"><span class="nav-text">竞赛</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E9%A2%98%E6%94%BB%E7%95%A5"><span class="nav-text">刷题攻略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeetCode-Cookbook"><span class="nav-text">LeetCode Cookbook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%8A%E5%89%91%E6%8C%87Offer%E3%80%8B"><span class="nav-text">《剑指Offer》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95"><span class="nav-text">代码随想录</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

@@ -9,7 +9,7 @@
     
     <title>
         
-            计算理论基础 第9章 线性有界自动机和上下文有关语言 |
+            分类: C++ |
         
         Splendid
     </title>
@@ -77,7 +77,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class=""
+                            <a class="active"
                                href="/categories"
                             >
                                 分类
@@ -132,7 +132,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class=""
+                    <a class="active"
                        href="/categories">分类</a>
                 </li>
             
@@ -162,151 +162,49 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">计算理论基础 第9章 线性有界自动机和上下文有关语言</span>
+    <div class="category-container">
+        <div class="category-name">
+            <i class="fas fa-folder"></i>&nbsp;C++
         </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/profile.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">airhaohan</span>
-                        
-                            <span class="author-label">Lv3</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-06-30 18:39:00</span>
-        <span class="mobile">2022-06-30 18:39</span>
-    </span>
+        <div class="category-post-list">
+            
+<div class="archive-list-container">
     
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2022</span>
+                <span class="archive-year-post-count">[2]</span>
+            </div>
+            <ul class="article-list">
                 
-                    <li>
-                        <a href="/categories/Computation-Theory/">Computation Theory</a>&nbsp;
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2022/09/14/SGI%20STL%20%E7%9A%84%20list.sort()%20%E5%88%86%E6%9E%90/"
+                        >SGI STL 的 list::sort() 分析</a>
+                        <span class="article-date">09-14</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2022/09/13/partial%20specialization%20of%20function%20templates%20%E5%92%8C%20partial%20ordering%20of%20function%20template%20%E7%9A%84%E5%8C%BA%E5%88%AB/"
+                        >partial specialization of function templates 和 partial ordering of function template 的区别</a>
+                        <span class="article-date">09-13</span>
                     </li>
                 
             </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/">计算理论</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-    
+        </section>
     
 </div>
 
-                    </div>
-                </div>
-            </div>
-        
-
-        <div class="article-content markdown-body">
-            <p>计算理论基础 第9章 线性有界自动机和上下文有关语言 的相关笔记，包括：线性有界自动机、线性有界自动机与上下文有关文法的关系、上下文有关语言的性质、谱系定理 等…</p>
-<h1 id="第9章-线性有界自动机和上下文有关语言"><a href="#第9章-线性有界自动机和上下文有关语言" class="headerlink" title="第9章 线性有界自动机和上下文有关语言"></a>第9章 线性有界自动机和上下文有关语言</h1><h2 id="线性有界自动机"><a href="#线性有界自动机" class="headerlink" title="线性有界自动机"></a>线性有界自动机</h2><p>线性有界自动机（LBA）是一种特殊的非确定的图灵机，是一个九元组：$M=(Q,\Sigma,\Gamma,\vdash,\dashv,\delta,s,t,r)$，其中：$\dashv$ 是右端标记，其余与图灵机相同</p>
-<h2 id="线性有界自动机和上下文有关文法的关系"><a href="#线性有界自动机和上下文有关文法的关系" class="headerlink" title="线性有界自动机和上下文有关文法的关系"></a>线性有界自动机和上下文有关文法的关系</h2><p>LBA 和 CSG 等价，证明就不写啦~</p>
-<h2 id="上下文有关语言的性质"><a href="#上下文有关语言的性质" class="headerlink" title="上下文有关语言的性质"></a>上下文有关语言的性质</h2><p><strong>注意</strong>：CSL 中是一定不含空串 $\varepsilon$ 的</p>
-<p><strong>Th 9.3</strong>：CSL 关于 <strong>并</strong>、<strong>连接</strong>、<strong>正闭包</strong> 运算封闭</p>
-<p>（并：$S\to S_1|S_2$ ；连接：$S\to S_1S_2$ ；正闭包：$S\to SS_1|S_1$ ）</p>
-<p><strong>Th 9.4</strong>：CSL 类对 <strong>交</strong> 运算封闭</p>
-<p> （先模拟其中一个 LBA 运行，再模拟另外一个 LBA 运行）</p>
-<p><strong>Th 9.5</strong>：每个 CSL 都是递归的</p>
-<p>（LBA 本身是特殊的 TM；又由于 LBA 有界，故格局数有限，所以可以记录其步数，当超过最大格局数时停机，即肯定可以停机）</p>
-<p><strong>Th 9.6</strong>：存在一个递归集，它不是 CSL</p>
-<p>（记住就好）</p>
-<h2 id="谱系定理"><a href="#谱系定理" class="headerlink" title="谱系定理"></a>谱系定理</h2><p><strong>谱系定理</strong>：各语言类之间存在下列关系：</p>
-<ul>
-<li>RL 真包含在 CFL 中</li>
-<li>不含 $\varepsilon$ 的 CFL 真包含在 CSL 中</li>
-<li>CSL 真包含在递归集中</li>
-<li>递归集真包含在 $r.e.$ 中</li>
-<li>在递归可枚举集类之外，存在者非 $r.e.$ 语言</li>
-</ul>
-<p>看图！</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/fct-9-2.7ddaf1tnylo0.webp" alt="fct-9-2" style="zoom:20%;" /></p>
-
         </div>
+    </div>
+    <div class="category-paginator">
+        <div class="paginator">
+    
 
-        
+    
+</div>
 
-        
-            <ul class="post-tags-box">
-                
-                    <li class="tag-item">
-                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/">#计算理论</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">#形式语言与自动机</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/09/08/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 刷题指南</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/06/30/%E7%AC%AC7%E7%AB%A0%20%E5%9B%BE%E7%81%B5%E6%9C%BA/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">计算理论基础 第7章 图灵机</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
     </div>
 </div>
 
@@ -339,23 +237,6 @@
         </div>
     </div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-    </ul>
-</div>
-
-        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -401,14 +282,6 @@
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC9%E7%AB%A0-%E7%BA%BF%E6%80%A7%E6%9C%89%E7%95%8C%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9C%89%E5%85%B3%E8%AF%AD%E8%A8%80"><span class="nav-text">第9章 线性有界自动机和上下文有关语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%9C%89%E7%95%8C%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-text">线性有界自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%9C%89%E7%95%8C%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9C%89%E5%85%B3%E6%96%87%E6%B3%95%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">线性有界自动机和上下文有关文法的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9C%89%E5%85%B3%E8%AF%AD%E8%A8%80%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">上下文有关语言的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%B1%E7%B3%BB%E5%AE%9A%E7%90%86"><span class="nav-text">谱系定理</span></a></li></ol></li></ol>
-    </div>
-</div>
-        </aside>
     
 
     <div class="image-viewer-container">
@@ -478,14 +351,6 @@
 
 
 <div class="post-scripts">
-    
-        
-<script src="/js/left-side-toggle.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-<script src="/js/toc.js"></script>
-
     
 </div>
 

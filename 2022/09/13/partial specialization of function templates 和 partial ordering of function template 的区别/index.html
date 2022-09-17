@@ -9,7 +9,7 @@
     
     <title>
         
-            LeetCode 1094. 拼车（median） |
+            partial specialization of function templates 和 partial ordering of function template 的区别 |
         
         Splendid
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">LeetCode 1094. 拼车（median）</span>
+            <span class="title-hover-animation">partial specialization of function templates 和 partial ordering of function template 的区别</span>
         </div>
 
         
@@ -184,8 +184,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-01-05 22:00:00</span>
-        <span class="mobile">2022-01-05 22:00</span>
+        <span class="pc">2022-09-13 16:45:00</span>
+        <span class="mobile">2022-09-13 16:45</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -193,7 +193,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/LeetCode/">LeetCode</a>&nbsp;
+                        <a href="/categories/C/">C++</a>&nbsp;
                     </li>
                 
             </ul>
@@ -205,15 +205,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/LeetCode/">LeetCode</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/C/">C++</a>&nbsp;
+                        <a href="/tags/C/">C++</a>&nbsp;
                     </li>
                 
             </ul>
@@ -232,40 +224,14 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/car-pooling/" >题目<i class="fas fa-external-link-alt"></i></a></h2><h4 id="LeetCode-1094-拼车（median）"><a href="#LeetCode-1094-拼车（median）" class="headerlink" title="LeetCode 1094. 拼车（median）"></a>LeetCode 1094. 拼车（median）</h4><p>车上最初有 <code>capacity</code> 个空座位。车<strong>只能</strong>向一个方向行驶（也就是说，<strong>不允许掉头或改变方向</strong>）</p>
-<p>给定整数 <code>capacity</code> 和一个数组<code>`trips</code>, <code>trip[i] = [numPassengers_i, from_i, to_i]</code> 表示第 <code>i</code> 次旅行有 <code>numPassengers_i</code> 乘客，接他们和放他们的位置分别是 <code>from_i</code> 和 <code>to_i</code> 。这些位置是从汽车的初始位置向东的公里数。</p>
-<p>当且仅当你可以在所有给定的行程中接送所有乘客时，返回 <code>true</code>，否则请返回 <code>false</code>。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：trips = [[2,1,5],[3,3,7]], capacity = 4</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：trips = [[2,1,5],[3,3,7]], capacity = 5</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= trips.length &lt;= 1000</code></li>
-<li><code>trips[i].length == 3</code></li>
-<li><code>1 &lt;= numPassengersi &lt;= 100</code></li>
-<li><code>0 &lt;= fromi &lt; toi &lt;= 1000</code></li>
-<li><code>1 &lt;= capacity &lt;= 105</code></li>
+            <h1 id="partial-specialization-of-function-templates-和-partial-ordering-of-function-template-的区别"><a href="#partial-specialization-of-function-templates-和-partial-ordering-of-function-template-的区别" class="headerlink" title="partial specialization of function templates 和 partial ordering of function template 的区别"></a>partial specialization of function templates 和 partial ordering of function template 的区别</h1><h2 id="概念辨析"><a href="#概念辨析" class="headerlink" title="概念辨析"></a>概念辨析</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
+<li>partial specialization of function templates 指函数模板偏特化，即显式地指定函数模板的部分模板参数而非全部参数；</li>
+<li>partial ordering of function template 也是一种函数模板偏特化，但指的是模板参数范围上的偏特化。实际调用中，当有多个偏特化的函数模板匹配时，编译器会按照偏特化的精确程度（范围）进行排序，选择调用最精确的（范围最小的）版本</li>
 </ul>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ul>
-<li><p>这里只要保证整个行车过程中不会超载就可以啦~</p>
-</li>
-<li><p>使用一个<code>map&lt;int, int&gt;</code>保存每个时间点对应的人数变化量，由于map自动排序，故第二次遍历时就是按照时间由小到大进行的</p>
-</li>
-<li><p>再次遍历map的过程中，每次让capacity（剩余容量）根据所保存的信息进行变化，如果出现<code>capacity &lt; 0</code>（即超载），那么返回false</p>
-</li>
-</ul>
-<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><ul>
-<li><p>不满足条件的情况<br><img src="https://cdn.jsdelivr.net/gh/airhaohan/image-hosting@main/hexo-blog/1904_1.1r27a8dnp9sw.webp" alt="1904_1"></p>
-</li>
-<li><p>满足条件的情况<br><img src="C:\Users\air浩瀚\Desktop\1904_2.5hyjmyfuvqo0.webp" alt="1904_2"></p>
-</li>
-</ul>
-<h3 id="代码（C-实现）"><a href="#代码（C-实现）" class="headerlink" title="代码（C++实现）"></a>代码（C++实现）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">carPooling</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; trips, <span class="type">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; mp;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; vec : trips) &#123;</span><br><span class="line">            mp[vec[<span class="number">1</span>]] -= vec[<span class="number">0</span>];</span><br><span class="line">            mp[vec[<span class="number">2</span>]] += vec[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; p : mp) &#123;</span><br><span class="line">            capacity += p.second;</span><br><span class="line">            <span class="keyword">if</span> (capacity &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>有收获的话，求个赞~ <a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/car-pooling/solution/chai-fen-map-by-airhao-han-g8fg/" >Click Here<i class="fas fa-external-link-alt"></i></a></p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/car-pooling/" >https://leetcode-cn.com/problems/car-pooling/<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>函数模板偏特化（partial specialization of function templates）包括模板参数个数的偏特化和模板参数范围的偏特化，而 partial ordering of function template 指的就是模板参数范围的偏特化中，编译器所作的按照不同偏特化版本的匹配程度进行排序选择的动作</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><h3 id="partial-ordering-of-function-template"><a href="#partial-ordering-of-function-template" class="headerlink" title="partial ordering of function template"></a>partial ordering of function template</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T)</span> </span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;func&lt;T&gt; is called!&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T*)</span> </span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;func&lt;T*&gt; is called!&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">const</span> T*)</span> </span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;func&lt;const T*&gt; is called!&quot;</span> &lt;&lt; endl; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span>* p = &amp;i;</span><br><span class="line">	<span class="type">const</span> <span class="type">int</span>* cp = &amp;i;</span><br><span class="line">	<span class="built_in">func</span>(i);	<span class="comment">// func&lt;T&gt; is called!</span></span><br><span class="line">	<span class="built_in">func</span>(p);	<span class="comment">// func&lt;T*&gt; is called!</span></span><br><span class="line">	<span class="built_in">func</span>(cp);	<span class="comment">// func&lt;const T*&gt; is called! </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="partial-specialization-of-function-templates"><a href="#partial-specialization-of-function-templates" class="headerlink" title="partial specialization of function templates"></a>partial specialization of function templates</h3><p>除了上面这一种范围上的偏特化以外，最常见的是以下的参数个数的偏特化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T)</span> </span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;func&lt;T&gt; is called!&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;</span><br><span class="line"><span class="type">void</span> <span class="built_in">func</span>&lt;<span class="type">int</span>&gt;(<span class="type">int</span>) &#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;func&lt;int&gt; is called!&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;</span><br><span class="line"><span class="type">void</span> <span class="built_in">func</span>&lt;<span class="type">char</span>&gt;(<span class="type">char</span>) &#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;func&lt;char&gt; is called!&quot;</span> &lt;&lt; endl; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="type">char</span> ch = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	<span class="built_in">func</span>(<span class="string">&quot;&quot;</span>);	<span class="comment">// func&lt;T&gt; is called!</span></span><br><span class="line">	<span class="built_in">func</span>(i);	<span class="comment">// func&lt;int&gt; is called!</span></span><br><span class="line">	<span class="built_in">func</span>(ch);	<span class="comment">// func&lt;char&gt; is called!</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -273,14 +239,6 @@
 
         
             <ul class="post-tags-box">
-                
-                    <li class="tag-item">
-                        <a href="/tags/LeetCode/">#LeetCode</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
-                    </li>
                 
                     <li class="tag-item">
                         <a href="/tags/C/">#C++</a>&nbsp;
@@ -295,13 +253,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/01/09/LeetCode%202134%20%E6%9C%80%E5%B0%91%E4%BA%A4%E6%8D%A2%E6%AC%A1%E6%95%B0%E6%9D%A5%E7%BB%84%E5%90%88%E6%89%80%E6%9C%89%E7%9A%84%201%20II/"
+                           href="/2022/09/14/SGI%20STL%20%E7%9A%84%20list.sort()%20%E5%88%86%E6%9E%90/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2134. 最少交换次数来组合所有的 1 II（median）</span>
+                                <span class="post-nav-title-item">SGI STL 的 list::sort() 分析</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -311,10 +269,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/11/27/LeetCode%20314%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9E%82%E7%9B%B4%E9%81%8D%E5%8E%86/"
+                           href="/2022/09/08/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 314. 二叉树的垂直遍历（median）</span>
+                                <span class="post-nav-title-item">LeetCode 刷题指南</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -425,7 +383,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LeetCode-1094-%E6%8B%BC%E8%BD%A6%EF%BC%88median%EF%BC%89"><span class="nav-text">LeetCode 1094. 拼车（median）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%A4%BA"><span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88C-%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-text">代码（C++实现）</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#partial-specialization-of-function-templates-%E5%92%8C-partial-ordering-of-function-template-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">partial specialization of function templates 和 partial ordering of function template 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%BE%A8%E6%9E%90"><span class="nav-text">概念辨析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB"><span class="nav-text">区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B"><span class="nav-text">举例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#partial-ordering-of-function-template"><span class="nav-text">partial ordering of function template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#partial-specialization-of-function-templates"><span class="nav-text">partial specialization of function templates</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
