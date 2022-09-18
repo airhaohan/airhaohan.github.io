@@ -224,7 +224,7 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="SGI-STL-的-list-sort-分析"><a href="#SGI-STL-的-list-sort-分析" class="headerlink" title="SGI STL 的 list::sort() 分析"></a>SGI STL 的 list::sort() 分析</h1><p>在看侯捷大佬的《STL源码剖析》的过程中，关于 SGI STL 中关于 list 的排序函数的实现，记录一下自己的理解</p>
+            <h1 id="SGI-STL-的-list-sort-分析（《STL源码剖析》读书笔记）"><a href="#SGI-STL-的-list-sort-分析（《STL源码剖析》读书笔记）" class="headerlink" title="SGI STL 的 list::sort() 分析（《STL源码剖析》读书笔记）"></a>SGI STL 的 list::sort() 分析（《STL源码剖析》读书笔记）</h1><p>在看侯捷大佬的《STL源码剖析》的过程中，关于 SGI STL 中关于 list 的排序函数的实现，记录一下自己的理解</p>
 <h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><p>各家编译器的 STL 中的 list 大多由双向环状链表实现，SGI STL 的链表结点定义如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">__list_node</span> &#123;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="type">void</span>* void_pointer;</span><br><span class="line">	void_pointer prev;</span><br><span class="line">	void_pointer next;</span><br><span class="line">	T data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>双下划线是 SGI 中特有的命名方式，代表这是 SGI STL 特有的实现细节，而非标准的一部分；</p>
@@ -264,7 +264,7 @@
                            href="/2022/09/13/partial%20specialization%20of%20function%20templates%20%E5%92%8C%20partial%20ordering%20of%20function%20template%20%E7%9A%84%E5%8C%BA%E5%88%AB/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">partial specialization of function templates 和 partial ordering of function template 的区别</span>
+                                <span class="post-nav-title-item">C++ partial specialization of function templates 和 partial ordering of function template 的区别</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -375,7 +375,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SGI-STL-%E7%9A%84-list-sort-%E5%88%86%E6%9E%90"><span class="nav-text">SGI STL 的 list::sort() 分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-text">list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-text">sort()</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SGI-STL-%E7%9A%84-list-sort-%E5%88%86%E6%9E%90%EF%BC%88%E3%80%8ASTL%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%89"><span class="nav-text">SGI STL 的 list::sort() 分析（《STL源码剖析》读书笔记）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-text">list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-text">sort()</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
