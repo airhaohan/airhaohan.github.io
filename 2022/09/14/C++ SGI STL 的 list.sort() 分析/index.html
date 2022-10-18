@@ -9,7 +9,7 @@
     
     <title>
         
-            SGI STL 的 list::sort() 分析 |
+            C++ SGI STL 的 list::sort() 分析 |
         
         Splendid
     </title>
@@ -23,7 +23,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"祝楷铭生日快乐🍰你可以只过生日 不用长大🎈"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"计院人的2+X就是2+Labs+PJs+Reports🙋‍♂️"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 6.1.0"></head>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">SGI STL 的 list::sort() 分析</span>
+            <span class="title-hover-animation">C++ SGI STL 的 list::sort() 分析</span>
         </div>
 
         
@@ -224,7 +224,7 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="SGI-STL-的-list-sort-分析（《STL源码剖析》读书笔记）"><a href="#SGI-STL-的-list-sort-分析（《STL源码剖析》读书笔记）" class="headerlink" title="SGI STL 的 list::sort() 分析（《STL源码剖析》读书笔记）"></a>SGI STL 的 list::sort() 分析（《STL源码剖析》读书笔记）</h1><p>在看侯捷大佬的《STL源码剖析》的过程中，关于 SGI STL 中关于 list 的排序函数的实现，记录一下自己的理解</p>
+            <h1 id="C-SGI-STL-的-list-sort-分析（《STL源码剖析》读书笔记）"><a href="#C-SGI-STL-的-list-sort-分析（《STL源码剖析》读书笔记）" class="headerlink" title="C++ SGI STL 的 list::sort() 分析（《STL源码剖析》读书笔记）"></a>C++ SGI STL 的 list::sort() 分析（《STL源码剖析》读书笔记）</h1><p>在看侯捷大佬的《STL源码剖析》的过程中，关于 SGI STL 中关于 list 的排序函数的实现，记录一下自己的理解</p>
 <h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><p>各家编译器的 STL 中的 list 大多由双向环状链表实现，SGI STL 的链表结点定义如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">__list_node</span> &#123;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="type">void</span>* void_pointer;</span><br><span class="line">	void_pointer prev;</span><br><span class="line">	void_pointer next;</span><br><span class="line">	T data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>双下划线是 SGI 中特有的命名方式，代表这是 SGI STL 特有的实现细节，而非标准的一部分；</p>
@@ -390,7 +390,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SGI-STL-%E7%9A%84-list-sort-%E5%88%86%E6%9E%90%EF%BC%88%E3%80%8ASTL%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%89"><span class="nav-text">SGI STL 的 list::sort() 分析（《STL源码剖析》读书笔记）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-text">list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-text">sort()</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-SGI-STL-%E7%9A%84-list-sort-%E5%88%86%E6%9E%90%EF%BC%88%E3%80%8ASTL%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%89"><span class="nav-text">C++ SGI STL 的 list::sort() 分析（《STL源码剖析》读书笔记）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-text">list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-text">sort()</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>

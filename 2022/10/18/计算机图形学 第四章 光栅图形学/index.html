@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            计算机图形学 第四章 光栅图形学 |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"计院人的2+X就是2+Labs+PJs+Reports🙋‍♂️"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">计算机图形学 第四章 光栅图形学</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-18 10:34:00</span>
+        <span class="mobile">2022-10-18 10:34</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Computer-Graphics/">Computer Graphics</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CG/">CG</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>计算机图形学 第四章 光栅图形学的相关内容，包括：直线段的扫描转换算法、圆弧的扫描转换算法、多边形区域填充、字符的生成、裁剪、反走样 等</p>
+<h1 id="第四章-光栅图形学"><a href="#第四章-光栅图形学" class="headerlink" title="第四章 光栅图形学"></a>第四章 光栅图形学</h1><p><strong>Def 光栅显示器</strong>：一个像素矩阵（因此，要在光栅显示器上显示的图形逼近真实图形，需要用到下面的算法）</p>
+<h2 id="4-1-直线段的扫描转换算法"><a href="#4-1-直线段的扫描转换算法" class="headerlink" title="4.1 直线段的扫描转换算法"></a>4.1 直线段的扫描转换算法</h2><p><strong>目标</strong>：需要在光栅显示器上画出过两点 $P_0(x_0,\,y_0)$ 和  $P_1(x_1,\,y_1)$ 的直线 $L$ 的最佳逼近</p>
+<p><mark>直线的三个算法轮流考，中点画线法和Bresenham算法一定要写出递推的优化算法</mark></p>
+<h3 id="数值微分法（DDA）"><a href="#数值微分法（DDA）" class="headerlink" title="数值微分法（DDA）"></a>数值微分法（DDA）</h3><p><strong>算法</strong> </p>
+<p>① 当 $k\le1$ 时，以 $L$ 横坐标起点 $x_0$ 向横坐标终点以步长为 1 个像素步进，每次计算当前纵坐标的理论值 $y_i$ 并做四舍五入：令 $y=kx+b$ ，则令 $(x_i,\,round(kx_i+b))$ 作为当前像素的坐标</p>
+<p>② 但是这样每次都要计算 $kx_i+b$ ，比较麻烦，可以使用增量计算：</p>
+<script type="math/tex; mode=display">
+y_{i+1}=kx_{i+1}+b=k(x_i+1)+b=y_i+k</script><p>因此，只需令纵坐标每次递增 $k$ ，再做四舍五入</p>
+<p><strong>代码</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">DDALine</span><span class="params">(<span class="type">int</span> x0, <span class="type">int</span> y0, <span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> color)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    <span class="type">float</span> dx, dy, y, k;</span><br><span class="line">    dx = x1 - x0;	dy = y1 - y0;</span><br><span class="line">    k = dy / dx;	y = y0;</span><br><span class="line">    <span class="keyword">for</span> (x = x0; x &lt; x1; ++x) &#123;</span><br><span class="line">        <span class="built_in">drawPixel</span>(x, <span class="built_in">int</span>(y + <span class="number">0.5</span>), color);</span><br><span class="line">        y += k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：当 $k\ge1$ 时，以 $L$ 纵坐标起点 $y_0$ 向纵坐标终点 $y_1$ 以步长为 1 个像素步进，每次计算当前横坐标的理论值 $x_i$ 并做四舍五入</p>
+<p><strong>注意</strong>：四舍五入后取整不利于硬件实现</p>
+<p><strong>例</strong>：用 DDA 方法扫描转换连接两点 $P_0(0,\,0)$ 和 $P_1(5,\,2)$ 的直线段</p>
+<table style="text-align:center;">
+    <thead>
+        <tr>
+            <th>x</th><th>int(y+0.5)</th><th>y+0.5</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td><td>0</td><td>0</td>
+        </tr>
+        <tr>
+            <td>1</td><td>0</td><td>0.4+0.5</td>
+        </tr>
+        <tr>
+            <td>2</td><td>1</td><td>0.8+0.5</td>
+        </tr>
+        <tr>
+            <td>3</td><td>1</td><td>1.2+0.5</td>
+        </tr>
+        <tr>
+            <td>4</td><td>2</td><td>1.6+0.5</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><img src="https://img-blog.csdnimg.cn/862e1271614641cb8bb2ae24d47e70a9.png" alt="4_7" style="zoom:65%;" /></p>
+<h3 id="中点划线法"><a href="#中点划线法" class="headerlink" title="中点划线法"></a>中点划线法</h3><p><strong>算法</strong></p>
+<p>① 当 $k\le1$ 时，设当前坐标为 $(x_i,\,y_i)$ ，则下一个坐标可以是 $(x_i+1,\,y_i)$ 或 $(x_i+1,y_i+1)$ ，怎么选择呢？令下一点的实际位置为 $Q$ 点，下一位置的两个选择的中点为 $M$ ：</p>
+<ul>
+<li>若 $Q$ 在 $M$ 上方，则选择 $(x_i+1,y_i+1)$ </li>
+<li>若 $Q$ 在 $M$ 下方，则选择 $(x_i+1,y_i)$ </li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/c611b710cd5f4205a0469f32694305a4.png" alt="4_8" style="zoom:80%;" /></p>
+<p>② 如何判别 $Q$ 与 $M$ 的位置关系？设过点 $P_0(x_0,\,y_0)$ 和  $P_1(x_1,\,y_1)$ 的直线 $L$ 方程为：</p>
+<script type="math/tex; mode=display">
+F(x,\,y)=ax+by+c=0;\quad (a=y_0-y_1;\,b=x_1-x_0;\,c=x_0y_1-x_1y_0)</script><p>只需要将 $M$ 带入 $F(x,\,y)$ 即可得到 $M$ 与直线的位置关系：</p>
+<script type="math/tex; mode=display">
+d=F(M)=F(x_i+1,y_i+0.5)=a(x_i+1)+b(y_i+0.5)+c</script><ul>
+<li>当 $d\lt 0$ ，$M$ 在 $Q$ 点（直线 $L$ ）下方，取 $(x_i+1,\,y_i+1)$ 为下一个像素点</li>
+<li>当 $d\gt 0$ ，$M$ 在 $Q$ 点（直线 $L$ ）上方，取 $(x_i+1,\,y_i)$ 为下一个像素点</li>
+<li>当 $d=0$ ，$M$ 和 $Q$ 点重合，约定取 $(x_i+1,\,y_i)$ 为下一个像素点</li>
+</ul>
+<p>③ 每次需要计算下一个 $d$，太麻烦了，同样也可以使用增量计算：</p>
+<ul>
+<li><p>$d$ 的初始值为： </p>
+<script type="math/tex; mode=display">
+F(x_0+1,\,y_0+0.5)=(ax_0+by_0+c)+a+0.5b=F(x_0,\,y_0)+a+0.5b=a+0.5b</script></li>
+<li><p>若 $d_i\gt 0$ ，则 $d_{i+1}=F(x_i+2,\,y_i+0.5)=d_i+a$ ，增量为 $a$ </p>
+</li>
+<li><p>若 $d_i\lt 0$ ，则 $d_{i+1}=F(x_i+2,\,y_i+1.5)=d_i+a+b$ ，增量为 $a+b$ </p>
+</li>
+</ul>
+<p>④ 由于 $a$、$b$ 和 $c$ 都是整数，而加 $0.5b$  又涉及浮点数运算了，所以可以使用 $2d$ 来代替 $d$ 加速</p>
+<p><strong>代码</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MidPointLine</span><span class="params">(<span class="type">int</span> x0, <span class="type">int</span> y0, <span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> color)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a, b, d1, d2, d, x, y;</span><br><span class="line">    a = y0 - y1;	b = x1 - x0;</span><br><span class="line">    d = <span class="number">2</span> * a + b;	d1 = <span class="number">2</span> * a;		d2 = <span class="number">2</span> * (a + b);</span><br><span class="line">    x = x0;			y = y0;</span><br><span class="line">    <span class="keyword">while</span> (x &lt; x1) &#123;</span><br><span class="line">        <span class="keyword">if</span> (d &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            ++x; ++y; d += d2;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ++x; d += d1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">drawPixel</span>(x, y, color);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：当 $k\ge1$ 时，以 $L$ 纵坐标起点 $y_0$ 向纵坐标终点 $y_1$ 以步长为 1 个像素步进，$d$ 的初始值为 $0.5a+b$ ，$d_1=b$ ，$d_2=a+b$ </p>
+<p><strong>例</strong>：用中点画线法扫描转换连接两点 $P_0(0,\,0)$ 和 $P_1(5,\,2)$ 的直线段</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// initialization</span></span><br><span class="line">a = y0 - y1 = <span class="number">-2</span>;	b = x1 - x0 = <span class="number">5</span>;</span><br><span class="line">d0 = <span class="number">2</span> * a + b = <span class="number">1</span>;</span><br><span class="line">d1 = <span class="number">2</span> * a = <span class="number">-4</span>;	d2 = <span class="number">2</span> * (a + b) = <span class="number">6</span>;</span><br></pre></td></tr></table></figure>
+<table style="text-align:center">
+    <thead>
+        <tr>
+            <th>x</th><th>y</th><th>d</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td><td>0</td><td>1</td>
+        </tr>
+        <tr>
+            <td>1</td><td>0</td><td>-3</td>
+        </tr>
+        <tr>
+            <td>2</td><td>1</td><td>3</td>
+        </tr>
+        <tr>
+            <td>3</td><td>1</td><td>-1</td>
+        </tr>
+        <tr>
+            <td>4</td><td>2</td><td>5</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><img src="https://img-blog.csdnimg.cn/a8964c8038fa4e77888d1a1e9f443d5f.png" alt="4_12" style="zoom:70%;" /></p>
+<h3 id="Bresenham-算法"><a href="#Bresenham-算法" class="headerlink" title="Bresenham 算法"></a>Bresenham 算法</h3><p><strong>算法</strong></p>
+<p>①（假设斜率 $k\le0$ ）过各行各列像素中心构造网格线；采用增量计算，计算直线与垂直网格线交点到下一水平网格线的距离 $d$ （误差项），依据 $d$ 的大小判断下一像素点的选取：</p>
+<ul>
+<li>当 $d\gt 0.5$ 时，选取 $(x_i+1,\,y_i+1)$ </li>
+<li>当 $d\le 0.5$ 时，选取 $(x_i+1,\,y_i)$ </li>
+</ul>
+<p>误差项 $d$ 的初值 $d_0=0$ ；当横坐标增加 1 时，误差项 $d$ 的增量为 $k$ ；当 $d$ 大于 1  时，将其减一，保证 $d\in[0,\,1]$ ：</p>
+<p><img src="https://img-blog.csdnimg.cn/5a8c06b50bb44ea4afbb5ab1ca42da95.png" alt="4_14" style="zoom:70%;" /></p>
+<p>② 为了方便计算，可令 $e=d-0.5$ ，$e_0=-0.5$ ，增量为 $k$ ：</p>
+<ul>
+<li>当 $e\gt 0$ 时，选取 $(x_i+1,\,y_i+1)$ </li>
+<li>当 $e\le 0$ 时，选取 $(x_i+1,\,y_i)$ </li>
+</ul>
+<p>（因为只用到误差项 $e$ 的符号，所以可以改用整数 $2e$ 来避免除法）</p>
+<p><strong>代码</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">BresenhamLine</span><span class="params">(<span class="type">int</span> x0, <span class="type">int</span> y0, <span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> color)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> x, y, dx, dy;</span><br><span class="line">    <span class="type">float</span> k, e;</span><br><span class="line">    dx = x1 - x0;	dy = y1 - y0;</span><br><span class="line">    k = dy - dx;	e = <span class="number">-0.5</span>;</span><br><span class="line">    x = x0;			y = y0;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; dx; ++i) &#123;</span><br><span class="line">        <span class="built_in">drawPixel</span>(x, y, color);</span><br><span class="line">        ++x;	e += k;</span><br><span class="line">        <span class="keyword">if</span> (e &gt; <span class="number">0.5</span>)	e -= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (e &gt;= <span class="number">0</span>)		++y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>例</strong>：用Bresenham画线法扫描转换连接两点 $P_0(0,\,0)$ 和 $P_1(5,\,2)$ 的直线段</p>
+<table style="text-align:center">
+    <thead>
+        <tr>
+            <th>x</th><th>y</th><th>e</th><th>d</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td><td>0</td><td>-0.5</td><td>0</td>
+        </tr>
+        <tr>
+            <td>1</td><td>0</td><td>-0.1</td><td>0.4</td>
+        </tr>
+        <tr>
+            <td>2</td><td>1</td><td>0.3</td><td>0.8</td>
+        </tr>
+        <tr>
+            <td>3</td><td>1</td><td>-0.3</td><td>0.2</td>
+        </tr>
+        <tr>
+            <td>4</td><td>2</td><td>0.1</td><td>0.6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><img src="https://img-blog.csdnimg.cn/a8964c8038fa4e77888d1a1e9f443d5f.png" alt="4_12" style="zoom:70%;" /></p>
+<h2 id="4-2-圆弧的扫描转换算法"><a href="#4-2-圆弧的扫描转换算法" class="headerlink" title="4.2 圆弧的扫描转换算法"></a>4.2 圆弧的扫描转换算法</h2><p><strong>目标</strong>：</p>
+<ul>
+<li>需要在光栅显示器上画出以原点 $O(0,\,0)$ 为圆心、以 $R$ （$R$ 为整数）为半径的圆</li>
+<li>需要在光栅显示器上画出以原点 $O(0,\,0)$ 为对称中心、以 $a$ 、$b$ 为椭圆参数的椭圆</li>
+</ul>
+<h3 id="圆"><a href="#圆" class="headerlink" title="圆"></a>圆</h3><table>
+    <tr>
+        <td><strong>特征</strong>：圆具有八对称性，因此只要扫描转换八分之一的圆弧</td><td><img src="https://img-blog.csdnimg.cn/2d0819f381cc4962ba199f07ba72aa52.png" alt="4_18" style="zoom:25%;" /></td>
+    </tr>
+</table>
+#### 简单方程产生圆弧（DDA）
+
+**算法**
+
+利用函数方程直接离散计算：
+$$
+x^2+y^2=R^2 \\
+x_{i+1}=x_i+1,\quad x\in[0,\,\frac{R}{\sqrt{2}}] \\
+y_{i+1}=round(\sqrt{R^2-x_{i+1}^2})
+$$
+
+#### 中点画圆法
+
+**算法**
+
+原方程：$F(x,\,y)=x^2+y^2-R^2$ 
+
+构造判别式：$d=F(M)=F(x_p+1,\,y_p-0.5)=(x_p+1)^2+(y_p+1)^2-R^2$ ：
+
+- 初始值为 $d_0=F(1,\,R-0.5)=1.25-R$ 
+
+- 若 $d\lt 0$ ，取 $P_1$ 为下一像素点，再下一像素的判别式为：
+  $$
+  d=F(x_p+2,\,y_p-0.5)=d+2x_p+3
+  $$
+
+- 若 $d\ge 0$ ，取 $P_2$ 为下一像素点，再下一像素的判别式为：
+  $$
+  d=F(x_p+2,\,y_p-1.5)=d+2(x_p-y_p)+5
+  $$
+
+
+<img src="https://img-blog.csdnimg.cn/39ae0f73e51d49ef8646126818196f35.png" alt="4_22" style="zoom:67%;" />
+
+**代码**
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MidPointCircle</span><span class="params">(<span class="type">int</span> r, <span class="type">int</span> color)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">0</span>, y = r;</span><br><span class="line">    <span class="type">float</span> d = <span class="number">1.25</span> - r;</span><br><span class="line">    <span class="built_in">circlePoint</span>(x, y, color);</span><br><span class="line">    <span class="keyword">while</span> (x &lt;= y) &#123;</span><br><span class="line">        <span class="keyword">if</span> (d &lt; <span class="number">0</span>)	d += <span class="number">2</span> * x + <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">        	d += <span class="number">2</span> * (x - y) + <span class="number">5</span>;</span><br><span class="line">            --y;</span><br><span class="line">        &#125;</span><br><span class="line">        ++x;</span><br><span class="line">        <span class="built_in">circlePoints</span>(x, y, color);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+#### Bresenham算法
+
+<mark>考试不会考</mark>
+
+原理和前面 Bresenham 算法画直线的原理差不多
+
+### 椭圆
+
+<mark>计算量比较大，考的概率较低</mark>
+
+<table>
+    <tr>
+        <td><strong>特征</strong>：椭圆只具有四对称性，并且四分之一椭圆弧上也要分成两段做，因为切线的斜率同时有大于1和小于1发部分，需要分开处理</td><td><img src="https://img-blog.csdnimg.cn/32326ee32b2349d88d7a2e35261f380f.png" alt="4_33" style="zoom:70%;" /></td>
+    </tr>
+</table>
+
+
+<h4 id="中点画椭圆法"><a href="#中点画椭圆法" class="headerlink" title="中点画椭圆法"></a>中点画椭圆法</h4><p><strong>算法</strong></p>
+<p>以 $a\gt b$ 的椭圆为例：</p>
+<p>方程式：$F(x,\,y)=b^2x^2+a^2y^2-a^2b^2=0$ （椭圆外的点，$F(x,\,y)\gt0$ ）</p>
+<p>法向量：$N(x,\,y)=2b^2xi+2a^2yj$ ，因此分界点为 $(\frac{\sqrt2}{2}a,\,\frac{\sqrt2}{2}b)$ </p>
+<p><strong>上半部分</strong></p>
+<p>判别式 $d_1=F(x_i+1,\,y_i-0.5)=b^2(x_i+1)^2+a^2(y_i-0.5)^2-a^2b^2$ ：</p>
+<ul>
+<li>判别式初始值为 $d_{10}=F(1,\,b-0.5)=b^2+a^2(-b+0.25)$ </li>
+<li>若 $d_1\le0$ ，取 $P_u$ 为下一像素点，下一判别式的值为：</li>
+</ul>
+<script type="math/tex; mode=display">
+d_1=F(x_i+2,\,y_i-0.5)=d_1+b^2(2x_i+3)</script><ul>
+<li>若 $d_1\gt0$ ，取 $P_d$ 为下一像素点，下一判别式的值为：</li>
+</ul>
+<script type="math/tex; mode=display">
+d_1=F(x_i+2,\,y_1-1.5)=d_1+b^2(2x_i+3)+a^2(-2y_i+2)</script><p><img src="https://img-blog.csdnimg.cn/e7d136d1cec04ef5993ee67d05400635.png" alt="4_34" style="zoom:20%;" /></p>
+<p><strong>下半部分</strong></p>
+<p>判别式 $d_2=F(x_i+0.5,\,y_i-1)=b^2(x_i+0.5)^2+a^2(y_i-1)^2-a^2b^2$ </p>
+<ul>
+<li>判别式初始值按照上半部分的最后一个点确定</li>
+<li>若 $d_2\gt0$ ，取 $P_l$ 为下一像素点，下一判别式的值为：</li>
+</ul>
+<script type="math/tex; mode=display">
+d_2=F(x_i+0.5,\,y_i-2)=d_2+a^2(-2y_i+3)</script><ul>
+<li>若 $d_2\lt0$ ，取 $P_r$ 为下一像素点，下一判别式的值为：</li>
+</ul>
+<script type="math/tex; mode=display">
+d_2=F(x_i+1.5,\,y_i-2)=d_2+b^2(2x_i+2)+a^2(-2y_i+3)</script><p><img src="https://img-blog.csdnimg.cn/52f2ffaa8eca46b79f60fecc0999a158.png" alt="4_37" style="zoom:20%;" /></p>
+<p>（仔细观察一下，上半部分和下半部分的判别式增量是对称的）</p>
+<h2 id="4-3-多边形区域填充"><a href="#4-3-多边形区域填充" class="headerlink" title="4.3 多边形区域填充"></a>4.3 多边形区域填充</h2><p>两种表示方法：顶点表示和点阵表示</p>
+<h3 id="扫描线算法"><a href="#扫描线算法" class="headerlink" title="扫描线算法"></a>扫描线算法</h3><p><mark><strong>考过好几次。给图形，写出活性边表的迭代过程，还要写出扫描线的四个转换步骤。可能也要写伪代码，或解释活性边表项的内容</strong></mark></p>
+<p><strong>步骤</strong>：</p>
+<ul>
+<li><strong>求交</strong>：计算扫描线与多边形各边的交点</li>
+<li><strong>排序</strong>：把所有交点按照横坐标递增顺序排序</li>
+<li><strong>配对</strong>：排序后的交点序列中相邻的两个进行配对</li>
+<li><strong>着色</strong>：把相交区间内的像素置成多边形颜色，区间外的像素填充为背景色</li>
+</ul>
+<p><strong>算法：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/beaccc60ca0645e597862d0f956801de.png" alt="4_46" style="zoom:20%;" /></p>
+<p><strong>活性边：</strong> 多边形中与当前扫描线相交的边</p>
+<p>（图中每个点代表每个像素）</p>
+<p><strong>活性边表（AET）：</strong> 链表，结点代表多边形的某条边与当前扫描线的脚店情况，按照横坐标递增存放，保存的信息有：</p>
+<ul>
+<li>$x$ ：当前扫描线与边的交点</li>
+<li>$\Delta x$ ：从当前扫描线到下一条扫描线之间的交点的 $x$ 增量</li>
+<li>$y_{max}$ ：该边所交的最高扫描线号（扫描线号就是纵坐标）</li>
+</ul>
+<p>（活性边表只有一个，但是会随着遍历扫描线的过程而动态变化，表里每一项代表多边形的一条边）</p>
+<p>（活性边表代表当前被遍历到的扫描线与多边形各边的交点情况）</p>
+<p>如扫描线 $6$ 和 $7$ 的活性边表（AET）：</p>
+<p><img src="https://img-blog.csdnimg.cn/86b47e9555834bbd95e10dd009d7c822.png" alt="4_48_1" style="zoom:75%;" /></p>
+<p><img src="https://img-blog.csdnimg.cn/3e11115a6b4a421e9fd1dbf2ba6148cc.png" style="zoom:75%;" /></p>
+<p><strong>新边表（NET）：</strong> 每一条扫描线都建立一个新边表，用于存放 第一次出现交点是与当前扫描线相交的多边形的边（若某边的较低端点为 $y_{min}$ ，则该边存放在扫描线 $y_{min}$ 的新边表中）</p>
+<p><img src="https://img-blog.csdnimg.cn/7025d8634a73447db7fe64f6009c701b.png" alt="4_52" style="zoom:17%;" /></p>
+<p><strong>交点取舍：</strong> 扫描线与多边形的顶点相交时，需要做取舍</p>
+<p>方法：检查顶点的两条边的另外两个端点 $y$ 值，按这两个 $y$ 值中大于交点 $y$ 值的个数是 0、1、2 来决定取零个、一个还是两个交点</p>
+<ul>
+<li>共享顶点的两条边落在扫描线两侧，则只取一个交点，如 $P_1$ </li>
+<li>共享顶点的两条边落在扫描线同一侧：<ul>
+<li>若交点是局部最高点，即 $y_i\gt y_{i-1}$ 且 $y_i\gt y_{i+1}$ ，则取零个交点，如 $P_6$ </li>
+<li>若交点是局部最高点，即 $y_i\lt y_{i-1}$ 且 $y_i\lt y_{i+1}$ ，则取两个交点，如 $P_2$ </li>
+</ul>
+</li>
+</ul>
+<p><strong>增量法：</strong> 下一扫描线与多边形某条边的交点横坐标不需要重新计算，只需要 $x_i+\Delta x$ </p>
+<ul>
+<li>若该边的方程为 $ax+by+c=0$ ，则$\Delta x=-\frac{b}{a}$ </li>
+</ul>
+<p><strong>算法步骤：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">polyfill</span><span class="params">(多边形 polygon, <span class="type">int</span> color)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (i : 扫描线) &#123;</span><br><span class="line">        初始化新边表头指针NET[i];</span><br><span class="line">        将 ymin = i 的边放入新边表 NET[i];</span><br><span class="line">    &#125;</span><br><span class="line">    创建空的AET表;</span><br><span class="line">    <span class="keyword">for</span> (i : 扫描线) &#123;</span><br><span class="line">        插入排序法: 将NET[i]中的所有边结点插入AET;	<span class="comment">//保证按横坐标递增顺序排列</span></span><br><span class="line">        <span class="comment">// 此时AET表中除了新边，还有ymax &gt; i 的边结点</span></span><br><span class="line">        遍历AET表，删除 ymax = i的结点;</span><br><span class="line">       	<span class="keyword">for</span>((x, y) : 左闭右开的配对交点区间) &#123;</span><br><span class="line">            <span class="built_in">drawpixel</span>(x, y, color);</span><br><span class="line">            将ymax &gt; i的结点的x值递增dx;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>举例：</strong> 沿用上面的多边形，活性边表 AET 的迭代过程：（加粗代表新增加的边）</p>
+<table>
+    <tr>
+        <td>i = 0</td>
+        <td>AET = null</td>
+    </tr>
+    <tr>
+        <td>i = 1</td>
+        <td>AET = <strong>P1P2 -> P2P3</strong></td>
+    </tr>
+    <tr>
+        <td>i = 2</td>
+        <td>AET = <strong>P6P1</strong> -> P1P2 -> P2P3;<br/>
+        del: P1P2;<br/>
+        left: <strong>P6P1</strong> -> P2P3
+</td>
+    </tr>
+    <tr>
+        <td>i = 3</td>
+        <td>AET = P6P1 -> P2P3 -> <strong>P3P4</strong>;<br/>
+        del: P2P3;<br/>
+            left: P6P1 -> <strong>P3P4</strong></td>
+    </tr>
+    <tr>
+        <td>i = 4</td>
+        <td>AET = P6P1 -> P3P4</td>
+    </tr>
+    <tr>
+        <td>i = 5</td>
+        <td>AET = P6P1 -> <strong>P5P6</strong> -> <strong>P4P5</strong> -> P3P4</td>
+    </tr>
+    <tr>
+        <td>i = 6</td>
+        <td>AET = P6P1 -> P5P6 -> P4P5 -> P3P4</td>
+    </tr>
+    <tr>
+        <td>i = 7</td>
+        <td>AET = P6P1 -> P5P6 -> P4P5 -> P3P4<br/>
+        del: P6P1, P5P6<br/>
+        left: P4P5 -> P3P4</td>
+    </tr>
+    <tr>
+        <td>i = 8</td>
+        <td>AET = P4P5 -> P3P4<br>
+        del: P4P5, P3P4<br/>
+        left: null</td>
+    </tr>
+</table>
+
+
+<h3 id="边界标志算法"><a href="#边界标志算法" class="headerlink" title="边界标志算法"></a>边界标志算法</h3><p>在帧缓冲器中对边界经过的像素打上标志，然后对每行循环每个像素填充颜色</p>
+<p>简单暴力，计算量大，适合硬件实现、对多边形形状没有要求</p>
+<p>（记录一个 flag 用于指示是否在多边形内部，每次遇到多边形的边界就反转 flag）</p>
+<h3 id="种子填充算法"><a href="#种子填充算法" class="headerlink" title="种子填充算法"></a>种子填充算法</h3><p>有点像是 BFS，从区域内某一点（种子点）出发，通过四个（4向连通区域）或八个（8向连通区域）的移动组合来到达区域内的任意像素</p>
+<p>因此要求填充区域是联通的，且初始状态下填充区域内部颜色统一，填充区域边界颜色统一</p>
+<p>原理简单，但递归费时费内存，效率不高</p>
+<h3 id="种子填充的扫描线算法"><a href="#种子填充的扫描线算法" class="headerlink" title="种子填充的扫描线算法"></a>种子填充的扫描线算法</h3><p>从种子点向左右填充直到边界，再从两端向上下找未填充像素作为种子压栈，重复上述过程</p>
+<p>每个区间只需入栈一次</p>
+<h2 id="4-4-字符的生成"><a href="#4-4-字符的生成" class="headerlink" title="4.4 字符的生成"></a>4.4 字符的生成</h2><h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><ul>
+<li><p>美国信息交换标准代码集ASCII码</p>
+</li>
+<li><p>汉字编码国家标准字符集GB2312-80</p>
+<ul>
+<li>字符最高位 0表示ASCII码，1表示汉字编码</li>
+</ul>
+</li>
+</ul>
+<h3 id="字符表达和生成"><a href="#字符表达和生成" class="headerlink" title="字符表达和生成"></a>字符表达和生成</h3><h4 id="点阵式字符"><a href="#点阵式字符" class="headerlink" title="点阵式字符"></a>点阵式字符</h4><p>硬件操作快，可以加粗、旋转90度、斜体、比例缩放等，任意角度旋转比较困难</p>
+<ul>
+<li>加粗：每个像素 $(x_i,\,y)$ 右边相邻的像素 $(x_{i+1},\,y)$ 也被写入</li>
+<li>旋转90°：每个像素先交换 $x$ 和 $y$ 坐标，再改变 $y$ 的符号（先沿对角线翻转，在上下翻转）</li>
+<li>斜体：逐行拷贝像素，每隔 $n$ 行左移一单元</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/c9acaa1490c4419b8cf3a52eddecc321.png" alt="4_68" style="zoom:75%;" /></p>
+<h5 id="压缩技术"><a href="#压缩技术" class="headerlink" title="压缩技术"></a>压缩技术</h5><ul>
+<li><p>黑白段压缩法：简单，还原快，不失真，压缩较差，使用不方便，用于低级文字处理系统</p>
+</li>
+<li><p>部件压缩法：压缩比大，字型质量不能保证</p>
+</li>
+<li><p>轮廓字型法：压缩比大，能保证质量，符合工业标准化方法</p>
+<ul>
+<li>采用直线或二/三次贝塞尔曲线的集合来描述一个字符的轮廓线，加上指示横宽、竖宽、基点、基线等的控制信息（即构成压缩数据），采用适当的区域填充算法；</li>
+<li>TrueType轮廓字型技术由Apple和Microsoft联合开发；</li>
+<li>占领主要电子印刷市场的是北大方正激光照排系统；</li>
+</ul>
+</li>
+</ul>
+<h4 id="矢量式字符"><a href="#矢量式字符" class="headerlink" title="矢量式字符"></a>矢量式字符</h4><table>
+    <tr>
+        <td>
+            <ul>
+                <li>用点坐标的序列表示各个笔划，调用矢量式字符的过程相当于输出一个 polyline</li>
+                <li>存储空间小、美观、变换方便</li>
+            </ul>
+        </td>
+        <td>
+            <img src="https://img-blog.csdnimg.cn/8ce4e78ed2d84036a0dfde1e7104189b.png" alt="4_70" style="zoom:55%;" />
+        </td>
+    </tr>
+</table>
+
+
+<h4 id="方向编码式字符"><a href="#方向编码式字符" class="headerlink" title="方向编码式字符"></a>方向编码式字符</h4><ul>
+<li><p>用若干种方向编码(如8方向编码)来表达一个字符，偶数方向固定长度为 1 ，奇数方向固定长度为 $\sqrt2$ </p>
+<ul>
+<li>字母“B”的方向矢量构成：{0000 123 444 000 123 4444 0 666666}</li>
+</ul>
+</li>
+<li><p>容易填入帧缓存寄存器显示，所占空间小，易放大缩小或45度旋转，但难以进行任意角度的旋转</p>
+</li>
+</ul>
+<table style="text-align: center">
+    <tr>
+        <td><img src="https://img-blog.csdnimg.cn/d4a0f4527d6d465789786e2a1898bf9d.png" alt="![请添加图片描述]()
+_1" style="zoom:80%;" /></td>
+        <td><img src="https://img-blog.csdnimg.cn/c461a55671a5417f8c43e3444a06c9c8.png" alt="4_72_2" style="zoom:80%;" /></td>
+    </tr>
+</table>
+
+
+<h2 id="4-5-裁剪"><a href="#4-5-裁剪" class="headerlink" title="4.5 裁剪"></a>4.5 裁剪</h2><p><mark>三个算法不会同时考</mark></p>
+<p>一般是先裁剪再扫描转换</p>
+<h3 id="直线段裁剪"><a href="#直线段裁剪" class="headerlink" title="直线段裁剪"></a>直线段裁剪</h3><h4 id="Cohen-Sutherland裁剪算法"><a href="#Cohen-Sutherland裁剪算法" class="headerlink" title="Cohen-Sutherland裁剪算法"></a>Cohen-Sutherland裁剪算法</h4><p><mark>考了无数次 [\doge]</mark></p>
+<p>延长窗口四条边，将平面分为九宫格；每个格用四位编码 $C_tC_bC_rC_l$ ：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C_t = y &gt; y_max ? <span class="number">1</span> : <span class="number">0</span>;	<span class="comment">// top</span></span><br><span class="line">C_b = y &gt; y_max ? <span class="number">0</span> : <span class="number">1</span>;	<span class="comment">// bottom</span></span><br><span class="line">C_r = x &gt; x_max ? <span class="number">1</span> : <span class="number">0</span>;	<span class="comment">// right</span></span><br><span class="line">C_l = x &gt; x_max ? <span class="number">0</span> : <span class="number">1</span>;	<span class="comment">// left</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/0a3fe29b7b884accbceaeedb17cefbe9.png" alt="4_80" style="zoom:80%;" /></p>
+<p>裁剪一条线段 $P_1P_2$  时，先求出所在区号 $code_1$ 、$code_2$ ：</p>
+<ul>
+<li>若 $code_1=0$ 且 $code_2=0$ ，则说明线段 $P_1P_2$ 完全在窗口内，不需要裁剪，直接保留</li>
+<li>若 $code_1\,\&amp;\,code_2\not=0$ ，则说明线段 $P_1P_2$ 完全在窗口外，不需要裁剪，直接舍弃</li>
+<li>否则，求出线段与窗口某边的交点，在交点处把线段一分为二，其中必有一段完全在窗口外，舍弃；再对另一段重复上述处理</li>
+</ul>
+<p><strong>注意</strong>：第三种情况求交点时，可以取任意一个编码不为 0 的端点，然后按顺序遍历编码的每一位，取编码不为 0 的那一位对应的窗口边界，求边与此窗口边界的交点</p>
+<h4 id="中点分割方法（求交点的算法）"><a href="#中点分割方法（求交点的算法）" class="headerlink" title="中点分割方法（求交点的算法）"></a>中点分割方法（求交点的算法）</h4><p>Cohen-Sutherland 裁剪算法在的第三种情况需要求出 $P_0P_1$ 与窗口的一个交点，可以用中点分割算法进行求交点的优化：</p>
+<ul>
+<li>首先求出 $P_0P_1$ 的中点 $P_m$ 及其编码<ul>
+<li>若 $P_0P_m$ 不是显然不可见的：（此时已知 $P_0P_1$ 在窗口中有可见部分）则 $P_0P_m$ 中必与窗口有一个交点，所以用 $P_0P_m$ 代替 $P_0P_1$ </li>
+<li>若  $P_0P_m$ 是显然不可见的：则用 $P_mP_1$ 代替 $P_0P_1$ </li>
+</ul>
+</li>
+<li>重复上述过程，直到 $P_0P_1$ 的长度小于给定的常数为止，此时 $P_m$ 收敛于交点</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/1c4208afa397473b8741a817cc028053.png" alt="4_85" style="zoom:50%;" /></p>
+<p>（Cohen-Sutherland 裁剪算法在的第三种情况需要求出 $P_0P_1$ 与窗口的一个交点，而且只需要求出一个交点就够了）</p>
+<p><strong>注意</strong>：由于该算法的主要计算过程只用到加法和除 2 运算，所以特别适合硬件实现和并行计算</p>
+<h4 id="梁友栋－Barskey算法"><a href="#梁友栋－Barskey算法" class="headerlink" title="梁友栋－Barskey算法"></a>梁友栋－Barskey算法</h4><p>设线段 $P_0P_1$ 端点坐标分别为 $(X_1,\,Y_1)$ 和 $(X_2,\,Y_2)$ ；以 $(X_1,\,Y_1)$ 为起点，参数 $0\le\mu\le1$ ，$\Delta X=X_2-X_1$ ，$\Delta Y=Y_1-Y_2$ ，则裁剪的保留条件为：</p>
+<script type="math/tex; mode=display">
+X_L\le X_1+\mu\Delta X\le X_R \\
+Y_B\le Y_1+\mu\Delta Y\le Y_T \\</script><p>可以表示为：$\mu p_k\le q_k$ ，$p_k$ 和 $q_k$ 定义为：</p>
+<script type="math/tex; mode=display">
+p_1=-\Delta X\quad q_1=X_1-X_L\quad\quad p_2=\Delta X\quad q_2=X_R-X_1\\
+p_3=-\Delta Y\quad q_3=Y_1-Y_B\quad\quad p_4=\Delta Y\quad q_4=Y_T-Y_1\\</script><p><strong>位置关系：</strong></p>
+<ul>
+<li>若 $p_k=0$ ，则平行于裁剪边界之一：<ul>
+<li>若同时有 $q_k\lt 0$ ，则线段完全在边界外，舍弃该线段</li>
+<li>若此时 $q_k \ge 0$ ，则线段平行于裁剪边界且在窗口内</li>
+</ul>
+</li>
+<li>若 $p_k\not=0$ ，则可以计算出线段与边界 $k$ 的延长线的交点的 $u$ 值：$u=\frac{q_k}{p_k}$ <ul>
+<li>若 $p_k\lt 0$ ，线段从裁剪边界及延长线的外部延伸到内部，对于不同的边界，有正负不同的 $\Delta X$ 和 $\Delta Y$ </li>
+<li>若 $p_k\gt 0$ ，线段从裁剪边界及延长线的内部延伸到外部，对于不同的边界，有正负不同的 $\Delta X$ 和 $\Delta Y$ </li>
+</ul>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/f7aec4d4c2244bc99e8610d66d80a8c1.png" alt="4_88" style="zoom:15%;" /></p>
+<p><strong>参数计算：</strong>对于每条直线，计算参数 $u_1$ 和 $u_2$ ，它们定义了裁剪矩形的线段部分：</p>
+<ul>
+<li>$u_1$ 代表线段相对于矩形边界从外到内（ $p_k\lt 0$ ），$u_1=max(0,$ 其他从外到内的 $u)$ </li>
+<li>$u_2$ 代表线段相对于矩形边界从内到外（ $p_k\gt 0$ ），$u_2=min(1,$ 其他从内到外的 $u)$ </li>
+</ul>
+<p><strong>交点判断：</strong></p>
+<ul>
+<li><p>若 $u_1 \gt u_2$ ，则线段完全落在裁剪窗口之外，舍弃；</p>
+</li>
+<li><p>否则，裁剪线段可以由参数 $u_1$ 和 $u_2$ 计算出来：</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+(X_1+u_1\Delta X,\,Y_1+u_1\Delta Y)\to(X_1+u_2\Delta X,\,Y_1+u_2\Delta Y)</script><p>（实际算法就是对裁剪矩形上下左右边界都进行判断，只要有一个出现舍弃就舍弃；否则算出参数 $u_1$ 和 $u_2$ ，进而算出裁剪线段）</p>
+<p><strong>注意：</strong> 使用参数化的算法，计算更快</p>
+<h3 id="多边形裁剪"><a href="#多边形裁剪" class="headerlink" title="多边形裁剪"></a>多边形裁剪</h3><h4 id="Sutherland-Hodgeman算法"><a href="#Sutherland-Hodgeman算法" class="headerlink" title="Sutherland-Hodgeman算法"></a>Sutherland-Hodgeman算法</h4><p>考虑窗口的每一条边与线段的关系，设线段 $SP$ 为有向线段，$S\to P$ ：</p>
+<ul>
+<li>若 $S$ 、$P$ 均可见，则输出终点 $P$ </li>
+<li>若 $S$ 、$P$ 均不可见，则不输出</li>
+<li>若 $S$ 可见，$P$ 不可见，则输出 $SP$ 与裁剪线的交点 $I$ </li>
+<li>若 $S$ 不可见，$P$ 可见，则输出 $SP$ 与裁剪线的交点 $I$ 与终点 $P$ </li>
+</ul>
+<p>记忆：输出 = 交点（如果存在）+ 终点（如果可见）</p>
+<p>（即若存在交点，则需输出交点；若终点可见，则需输出终点）</p>
+<p><img src="https://img-blog.csdnimg.cn/067c35a185ea4e8cbd220dd2ef6ea8f9.png" alt="4_92" style="zoom:80%;" /></p>
+<p>遍历窗口四条裁剪线；对于某一条裁剪线，遍历多边形每一条边，将输出的顶点按顺序连接：</p>
+<p><img src="https://img-blog.csdnimg.cn/7fda6118f1bc45e8a0c97f7beb416b2e.png" alt="4_93" style="zoom:22%;" /></p>
+<h3 id="字符串裁剪"><a href="#字符串裁剪" class="headerlink" title="字符串裁剪"></a>字符串裁剪</h3><p><mark>经常考简答题，画出四种裁剪精度下裁剪结果的示意图</mark></p>
+<table style="text-align:center;">
+    <tr>
+        <td colspan=4><img src="https://img-blog.csdnimg.cn/b01c4241a4564a418dfe8c57b3b7a821.png" /></td>
+    </tr>
+    <tr>
+        <td>待裁剪字符串</td><td>串精度裁剪</td><td>字符精度裁剪</td><td>像素精度裁剪</td>
+    </tr>
+</table>
+
+
+<h4 id="字符串精度裁剪"><a href="#字符串精度裁剪" class="headerlink" title="字符串精度裁剪"></a>字符串精度裁剪</h4><ul>
+<li>求出字符串外包盒（box），与窗口裁剪边进行比较：当字符串外包盒完全再窗口内时显示，否则不显示；</li>
+</ul>
+<h4 id="字符精度裁剪"><a href="#字符精度裁剪" class="headerlink" title="字符精度裁剪"></a>字符精度裁剪</h4><ul>
+<li>先以字符串 box 判断字符串是全删、全留或部分留</li>
+<li>对于部分留的字符串，逐个测量字符的 box 与窗口裁剪边关系而决定字符保留或删除</li>
+</ul>
+<h4 id="像素精度裁剪"><a href="#像素精度裁剪" class="headerlink" title="像素精度裁剪"></a>像素精度裁剪</h4><ul>
+<li>先以字符串 box 判断字符串是全删、全留或部分留</li>
+<li>对于部分留的字符串，逐个测量字符的 box 与窗口裁剪边关系而决定字符全删、全留或部分留</li>
+<li>对部分留的字符的每一笔划，用直线裁剪法对窗边裁剪</li>
+</ul>
+<h2 id="4-6-反走样"><a href="#4-6-反走样" class="headerlink" title="4.6 反走样"></a>4.6 反走样</h2><p><strong>Def 走样</strong>：使用离散的光栅显示器显示连续的图形信号，引起失真现象（包括：阶梯状的边界、图形细节失真、狭小图形遗失）</p>
+<p><mark>区域采样可能考简答题</mark></p>
+<h4 id="提高分辨率"><a href="#提高分辨率" class="headerlink" title="提高分辨率"></a>提高分辨率</h4><p>依靠硬件设施，存储器代价和扫描转换时间增加，只能减轻而不能消除锯齿问题</p>
+<h4 id="区域采样"><a href="#区域采样" class="headerlink" title="区域采样"></a>区域采样</h4><p>根据直线段与像素相交区域面积大小确定该像素的亮度值</p>
+<p>将一个像素的面积看作1，则亮度 $=$ 最大亮度 $\times$ 相交面积</p>
+<p>面积可以采用离散估计的方法，即将像素均分为 $n$ 个子像素，计算中心点落在直线段内的子像素个数 $k$ ，则相交区域面积近似值为 $\frac{k}{n}$ </p>
+<h4 id="加权区域采样"><a href="#加权区域采样" class="headerlink" title="加权区域采样"></a>加权区域采样</h4><p>相交区域对像素亮度的贡献依赖于该区域与像素中心的距离</p>
+<p>同样可以使用离散的计算方法，即将像素均分为 $n$ 个子像素，选定一个加权表，则该像素亮度 $=$ 最大亮度 $\times\,\sum\limits_{i=1}^n p_iw_i$ ，其中 $w_i$ 为子像素权重，当子像素中心落在直线段内时，$p_i=1$ ，否则为 $0$；</p>
+<p><strong>例</strong>：将屏幕划分为 $n=3\times3$ 个子象素，加权表可以取作：</p>
+<script type="math/tex; mode=display">
+\left[ \begin{matrix}
+w_1 & w_2 & w_3 \\
+w_4 & w_5 & w_6 \\
+w_7 & w_8 & w_9 \\
+\end{matrix} \right]
+=\frac{1}{16}
+\left[ \begin{matrix}
+1 & 2 & 1 \\
+2 & 4 & 2 \\
+1 & 2 & 1 \\
+\end{matrix} \right]</script><p>8</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/CG/">#CG</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/16/Java%20String%E7%9A%84%E5%AD%98%E5%82%A8/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java String的存储</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%85%89%E6%A0%85%E5%9B%BE%E5%BD%A2%E5%AD%A6"><span class="nav-text">第四章 光栅图形学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E7%9B%B4%E7%BA%BF%E6%AE%B5%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-text">4.1 直线段的扫描转换算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86%E6%B3%95%EF%BC%88DDA%EF%BC%89"><span class="nav-text">数值微分法（DDA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E7%82%B9%E5%88%92%E7%BA%BF%E6%B3%95"><span class="nav-text">中点划线法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bresenham-%E7%AE%97%E6%B3%95"><span class="nav-text">Bresenham 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E5%9C%86%E5%BC%A7%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-text">4.2 圆弧的扫描转换算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%86"><span class="nav-text">圆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E7%82%B9%E7%94%BB%E6%A4%AD%E5%9C%86%E6%B3%95"><span class="nav-text">中点画椭圆法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85"><span class="nav-text">4.3 多边形区域填充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95"><span class="nav-text">扫描线算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E6%A0%87%E5%BF%97%E7%AE%97%E6%B3%95"><span class="nav-text">边界标志算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%8D%E5%AD%90%E5%A1%AB%E5%85%85%E7%AE%97%E6%B3%95"><span class="nav-text">种子填充算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%8D%E5%AD%90%E5%A1%AB%E5%85%85%E7%9A%84%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95"><span class="nav-text">种子填充的扫描线算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E5%AD%97%E7%AC%A6%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-text">4.4 字符的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"><span class="nav-text">字符编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E8%A1%A8%E8%BE%BE%E5%92%8C%E7%94%9F%E6%88%90"><span class="nav-text">字符表达和生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%82%B9%E9%98%B5%E5%BC%8F%E5%AD%97%E7%AC%A6"><span class="nav-text">点阵式字符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E6%8A%80%E6%9C%AF"><span class="nav-text">压缩技术</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%A2%E9%87%8F%E5%BC%8F%E5%AD%97%E7%AC%A6"><span class="nav-text">矢量式字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%90%91%E7%BC%96%E7%A0%81%E5%BC%8F%E5%AD%97%E7%AC%A6"><span class="nav-text">方向编码式字符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E8%A3%81%E5%89%AA"><span class="nav-text">4.5 裁剪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E7%BA%BF%E6%AE%B5%E8%A3%81%E5%89%AA"><span class="nav-text">直线段裁剪</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cohen-Sutherland%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95"><span class="nav-text">Cohen-Sutherland裁剪算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E7%82%B9%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95%EF%BC%88%E6%B1%82%E4%BA%A4%E7%82%B9%E7%9A%84%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-text">中点分割方法（求交点的算法）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%81%E5%8F%8B%E6%A0%8B%EF%BC%8DBarskey%E7%AE%97%E6%B3%95"><span class="nav-text">梁友栋－Barskey算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2%E8%A3%81%E5%89%AA"><span class="nav-text">多边形裁剪</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sutherland-Hodgeman%E7%AE%97%E6%B3%95"><span class="nav-text">Sutherland-Hodgeman算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A3%81%E5%89%AA"><span class="nav-text">字符串裁剪</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B2%BE%E5%BA%A6%E8%A3%81%E5%89%AA"><span class="nav-text">字符串精度裁剪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%B2%BE%E5%BA%A6%E8%A3%81%E5%89%AA"><span class="nav-text">字符精度裁剪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%83%8F%E7%B4%A0%E7%B2%BE%E5%BA%A6%E8%A3%81%E5%89%AA"><span class="nav-text">像素精度裁剪</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E5%8F%8D%E8%B5%B0%E6%A0%B7"><span class="nav-text">4.6 反走样</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E5%88%86%E8%BE%A8%E7%8E%87"><span class="nav-text">提高分辨率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%BA%E5%9F%9F%E9%87%87%E6%A0%B7"><span class="nav-text">区域采样</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E6%9D%83%E5%8C%BA%E5%9F%9F%E9%87%87%E6%A0%B7"><span class="nav-text">加权区域采样</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
