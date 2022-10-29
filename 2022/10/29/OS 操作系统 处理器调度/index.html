@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            OS 操作系统 处理器调度 |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"计院人的2+X就是2+Labs+PJs+Reports🙋‍♂️"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">OS 操作系统 处理器调度</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-29 11:18:00</span>
+        <span class="mobile">2022-10-29 11:18</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/OS/">OS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/OS/">OS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="OS-操作系统-处理器调度"><a href="#OS-操作系统-处理器调度" class="headerlink" title="OS 操作系统 处理器调度"></a>OS 操作系统 处理器调度</h1><p>（这一章的重点是六个短程调度的算法：FCFS、RR、SRN、SRT、HRRN、Feedback；只介绍单处理器的调度）</p>
+<h2 id="调度的种类-Three-Level-Scheduling"><a href="#调度的种类-Three-Level-Scheduling" class="headerlink" title="调度的种类 Three-Level Scheduling"></a>调度的种类 Three-Level Scheduling</h2><h3 id="长程调度-Long-Term-Scheduling"><a href="#长程调度-Long-Term-Scheduling" class="headerlink" title="长程调度 Long-Term Scheduling"></a>长程调度 Long-Term Scheduling</h3><p>当一个新的进程被创建时，需要对是否将其加入进程集做出决策。既然长程调度决定接纳哪一个进程到系统内进行处理，就决定了系统的多道程序度和并发度。</p>
+<p>需要对两类进程的数目和比例作出权衡考虑：</p>
+<ul>
+<li><p><strong>受处理器限制的进程 Processor-bounded processes</strong>：主要做计算工作，偶尔才会用 I/O</p>
+</li>
+<li><p><strong>受 I/O 限制的进程  I/O-bounded processes</strong> ：使用 I/O 设备的时间长于用 CPU 的时间</p>
+</li>
+</ul>
+<h3 id="中程调度-Medium-Term-Scheduling"><a href="#中程调度-Medium-Term-Scheduling" class="headerlink" title="中程调度 Medium-Term Scheduling"></a>中程调度 Medium-Term Scheduling</h3><p>中程调度就是 swapping 的一部分，针对的是内存资源，决定将哪些进程换入、换出内存。swapping 也是基于对多道程序度的管理的需要。</p>
+<h3 id="短程调度-Short-Term-Scheduling"><a href="#短程调度-Short-Term-Scheduling" class="headerlink" title="短程调度 Short-Term Scheduling"></a>短程调度 Short-Term Scheduling</h3><p>短程调度就是 CPU 的分派程序，决定应当将处于就绪态的进程中的哪一个作为 CPU 执行的下一个进程。时三类调度中执行最频繁的调度级别。</p>
+<p><img src="https://img-blog.csdnimg.cn/a909cfb9d77c4fa5b30aeaae140ea091.png" alt="请添加图片描述"></p>
+<h2 id="短程调度-Short-Term-Scheduling-1"><a href="#短程调度-Short-Term-Scheduling-1" class="headerlink" title="短程调度 Short-Term Scheduling"></a>短程调度 Short-Term Scheduling</h2><h3 id="调度准则-Criteria"><a href="#调度准则-Criteria" class="headerlink" title="调度准则 Criteria"></a>调度准则 Criteria</h3><p>调度算法的成功与否取决于，是否能让进程保持 CPU-I/O 脉冲循环：</p>
+<ul>
+<li>进程往往以一个 CPU burst 开始执行，接着是 CPU burst 和 I/O burst 交替出现；最后以一个 CPU burst 调用系统调用，结束进程</li>
+<li>CPU 的速度增长得比磁盘等 I/O 设备要快，因此受 I/O 限制的进程比例越来越大</li>
+</ul>
+<h3 id="抢占式调度-VS-非抢占式调度-Non-preemptive-vs-Preemptive-Scheduling"><a href="#抢占式调度-VS-非抢占式调度-Non-preemptive-vs-Preemptive-Scheduling" class="headerlink" title="抢占式调度 VS 非抢占式调度 Non-preemptive vs Preemptive Scheduling"></a>抢占式调度 VS 非抢占式调度 Non-preemptive vs Preemptive Scheduling</h3><p>CPU 在以下几种情况时需要作出调度决策：</p>
+<ol>
+<li><p>当前正在运行的进程进入阻塞态（可能是在等待 I/O 或者等待其他进程发生动作）</p>
+</li>
+<li><p>当前正在运行的进程结束了</p>
+</li>
+<li><p>当某个（外部）中断出现（可能是某个优先级比较高的进程锁等待的外部事件发生了）</p>
+</li>
+<li><p>当某个进程从阻塞态切换到就绪态（可能它的优先级比较高）</p>
+</li>
+</ol>
+<p><strong>抢占式调度 Preemptive Scheduling：</strong> 当前正在运行的进程可能会被打断进入就绪态（前面提到的四种情况都有可能需要调度）</p>
+<ul>
+<li>优点：没有进程能够垄断处理器，因此可以提供更好的服务</li>
+<li>缺点：开销大，需要更好的调度算法和硬件支持来减少开销</li>
+</ul>
+<p><strong>非抢占式 Nonpreemptive Scheduling：</strong> 只要一个进程在运行就可以一直运行，直到它主动等待、阻塞，或者主动结束时才需要作出调度（只有前面提到的第一、二种情况需要调度）</p>
+<h3 id="调度算法的目标-Scheduling-Algorithm-Goals"><a href="#调度算法的目标-Scheduling-Algorithm-Goals" class="headerlink" title="调度算法的目标 Scheduling Algorithm Goals"></a>调度算法的目标 Scheduling Algorithm Goals</h3><p><strong>所有系统</strong>：</p>
+<ul>
+<li><strong>Fairness</strong>：类似的进程应当被相同地对待，并且不能让任何进程经受 starvation</li>
+<li><strong>Enforcing  Priorities</strong> ：进程间需要有优先级，特权进程需要被优先执行</li>
+<li><strong>Balancing Resources：</strong> 尽量充分利用所有资源，不要空闲</li>
+</ul>
+<p><strong>批处理系统 Batch System：</strong></p>
+<ul>
+<li><strong>Throughput：</strong> 吞吐量，每个单位时间内能够完成多少进程数</li>
+<li><strong>Turnaround Time：</strong> 周转时间，从用户提交作业到产出结果的时间</li>
+<li><strong>Processor Utilization：</strong> 处理器的利用率（这对于共享系统来说更重要，对一些单用户的系统或者实时系统则不是那么重要）</li>
+</ul>
+<p><strong>交互式系统 Interactive System：</strong> </p>
+<ul>
+<li><strong>Response Time：</strong> 响应时间，从用户提交请求到开始有应答的时间；这是最重要的一条标准</li>
+<li><strong>Predictability / Proportionality：</strong> 对于同一作业来说，不论当前系统的繁忙程度如何，其周转时间和相应时间应该是比较均匀的、变化较小的，这样可预测性较好。</li>
+</ul>
+<h3 id="实现策略"><a href="#实现策略" class="headerlink" title="实现策略"></a>实现策略</h3><h4 id="Selection-Function"><a href="#Selection-Function" class="headerlink" title="Selection Function"></a>Selection Function</h4><p>有一个专门的选择函数用于从就绪的进程种选择下一个来执行，选择的标准有：</p>
+<ul>
+<li>优先级 Priority</li>
+<li>资源需求 Resource Requirements</li>
+<li>执行特点 Execution Characteristic<ul>
+<li>w = 该进程存在的时间，包括等待和运行的时间</li>
+<li>e = 该进程已经运行的时间</li>
+<li>s = 该进程要求的总的服务时间，包括 e 在内</li>
+</ul>
+</li>
+</ul>
+<h4 id="优先级-Priorities"><a href="#优先级-Priorities" class="headerlink" title="优先级 Priorities"></a>优先级 Priorities</h4><p>常常使用优先级来实现调度算法：</p>
+<ul>
+<li>调度器总是会优先选择优先级较高的进程来运行</li>
+<li>对于每一个优先级，都有相应的就绪队列用于存放同一登记的、处于就绪态的进程</li>
+<li>问题：低优先级的进程可能会出现 starvation；为了避免 starvation，可以依据等待时间和执行记录来调整的进程的优先级</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/d7acdf7c13614cecbb919cc03676aeca.png" alt="请添加图片描述"></p>
+<h2 id="短程调度策略-Short-Term-Scheduling-Policies"><a href="#短程调度策略-Short-Term-Scheduling-Policies" class="headerlink" title="短程调度策略 Short-Term Scheduling Policies"></a>短程调度策略 Short-Term Scheduling Policies</h2><h3 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h3><p>主要介绍六种短程调度策略，都以以下的进程作为例子：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Process</th>
+<th style="text-align:center">Arrival Time</th>
+<th style="text-align:center">Service Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Turnaround Time（TAT）周转时间：</strong>从进程进入系统到最终完成的时间（Finish Time - Arrival Time）</p>
+<p><strong>Normalized Turnaround Time 归一化周转时间：</strong> TAT / service time（周转时间和处理时间的比例）</p>
+<ul>
+<li>最小值为 1 ：当归一化周转时间为 1 时，代表服务质量最好，越大则服务质量下降；</li>
+<li>归一化周转时间时最常用的评价调度策略的指标，因为需要更长处理时间的进程应当忍受更长的等待时间</li>
+</ul>
+<h3 id="①-First-Come-First-Served-FCFS"><a href="#①-First-Come-First-Served-FCFS" class="headerlink" title="① First-Come-First-Served (FCFS)"></a>① First-Come-First-Served (FCFS)</h3><p><strong>算法：</strong> （非抢占式）使用一个就绪队列，新进入就绪态的进程加入队尾；当前进程停止运行时，选择队头（即等待时间最长）的进程来运行</p>
+<p><img src="https://img-blog.csdnimg.cn/a7bbd8612df04d19ad2f7d143bc024e5.jpeg" alt="请添加图片描述"></p>
+<p><strong>优点：</strong> 实现简单，对处理时间较长的进程表现好；</p>
+<p><strong>缺点：</strong> FCFS 偏爱受 CPU 限制的进程，最终可能导致对 CPU 的使用率和对 IO 设备的使用率都下降。（因为受 IO 限制的进程每次使用 CPU 的时间很短，就又要进行 IO 操作，进入等待队列，导致服务质量下降，进而导致 IO 的利用率也降低；最后当受 CPU 限制的进程运行完后，往往只剩下受IO限制的进程，又导致 CPU 的利用率降低）</p>
+<p>（FCFS 的缺点提醒我们应当让使用资源时间较短的进程拥有更高的优先级）</p>
+<p><strong>总结：</strong> FCFS 对于单处理器来说并不是一个很好的选择，经常用于搭配其他的调度策略（例如 FeedBack）一起使用。</p>
+<h3 id="②-Round-Robin-轮转-Time-Slicing-时间分片"><a href="#②-Round-Robin-轮转-Time-Slicing-时间分片" class="headerlink" title="② Round-Robin(轮转) / Time Slicing(时间分片)"></a>② Round-Robin(轮转) / Time Slicing(时间分片)</h3><p><strong>算法：</strong> （抢占式）也有一个类似 FCFS 的队列机制；当一个进程新进入运行态时启动时钟，退出时关闭；时钟每隔一定时间就产生中断，因此每个进程最多能运行一个定长的时间片。</p>
+<p><strong>关键：</strong> 时间片长度的选择</p>
+<ul>
+<li>如果太长，可以考虑极端情况，那么变得和 FCFS 一样；</li>
+<li>如果太短，可以考虑极端情况，进程间切换的时间比时间片还长，得不偿失。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/7267033c121d42b392c4d482f80f0de3.jpeg" alt="请添加图片描述"></p>
+<p><strong>优点：</strong> RR 在分时系统或者交易处理系统方面尤为高效；</p>
+<p><strong>缺点：</strong> Unfairness，时间片对于 FCFS 的问题解决是不彻底的，受 IO 限制的进程的优先级还是没有得到提升。因此受 IO 限制的进程表现差， IO设备利用率低，进程间的响应时间差距大。</p>
+<h4 id="Virtual-Round-Robin（VRR）"><a href="#Virtual-Round-Robin（VRR）" class="headerlink" title="Virtual Round-Robin（VRR）"></a>Virtual Round-Robin（VRR）</h4><p><strong>算法： </strong>（作为 RR 的改进策略）在原来队列的基础上再引入一条辅助队列，并且让辅助队列比原先的队列优先级更高：</p>
+<ul>
+<li><p>主要队列：当进程从运行态切换到就绪态时，加入该队列；</p>
+</li>
+<li><p>辅助队列：当进程从阻塞态切换到就绪态时，加入该队列。</p>
+</li>
+</ul>
+<h3 id="③-Shortest-Process-Next（SPN）-Shortest-Job-First"><a href="#③-Shortest-Process-Next（SPN）-Shortest-Job-First" class="headerlink" title="③ Shortest Process Next（SPN） / Shortest Job First"></a>③ Shortest Process Next（SPN） / Shortest Job First</h3><p><strong>算法：</strong>（非抢占式）下一个执行的进程为预计使用 CPU 时间最短的进程（即队列变成了一个以时间期望为 key 的优先队列）</p>
+<p><img src="https://img-blog.csdnimg.cn/52edf44d82f64449876d2872d76621af.png" alt="请添加图片描述"></p>
+<p><strong>优点：</strong> 与 FCFS 相比表现好很多；当所有进程同时到达就绪队列时，SPN 所有非抢占式调度算法中最优解（可以证明）；</p>
+<p><strong>缺点：</strong> 对于使用 CPU 时间较长的进程，有可能出现 starvation；对于 FCFS 偏好长进程的优化还不够彻底（主要是因为没有抢占机制）；需要估计每个 busrt 的运行时间。</p>
+<p><strong>关键：</strong> 如何估计运行时间（例如，可以按照运行时间的历史记录，为每个进程保存一个每个 burst 的运行平均时间）</p>
+<h3 id="④-Shortest-Remaining-Time"><a href="#④-Shortest-Remaining-Time" class="headerlink" title="④ Shortest Remaining Time"></a>④ Shortest Remaining Time</h3><p><strong>算法：</strong> （抢占式，相当于是 SPN 的抢占版本）</p>
+<ul>
+<li>抢占时机：新的进程进入就绪队列时</li>
+<li>抢占原则：比较新的进程与当前运行进程的预期剩余时间，谁短谁运行</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/d89b9f29d378467e9dc2f22d6001f093.jpeg" alt="请添加图片描述"></p>
+<p><strong>优点：</strong> 解决了 FCFS 对于长时间进程的偏爱；相比于 RR，SRT 不会产生额外的无用的中断</p>
+<h4 id="Priority-Scheduling-优先级调度"><a href="#Priority-Scheduling-优先级调度" class="headerlink" title="Priority Scheduling 优先级调度"></a>Priority Scheduling 优先级调度</h4><p><strong>算法：</strong> 按照某种优先级进行调度，同种优先级的则按照 FCFS 规则排列；可以是抢占式的也可以是非抢占式的</p>
+<p>SPN 就是优先级调度的一个特例，优先级为下一个 burst 的预计时长；</p>
+<p>受 IO 限制的进程应当拥有更高的优先级。</p>
+<h3 id="⑤-Highest-Response-Ratio-Next"><a href="#⑤-Highest-Response-Ratio-Next" class="headerlink" title="⑤ Highest Response Ratio Next"></a>⑤ Highest Response Ratio Next</h3><p><strong>算法：</strong> （非抢占式）考虑预计响应比，响应比越大的进程先执行（相对等待时间越长的进程越先执行）</p>
+<p><strong>响应比：</strong> $R=\frac{w+s}{s}$ ，$w$ 是进程等待的时间，$s$ 是预计的服务时间（随着 $w$ 的增大，$R$ 增大）（响应比就是归一化周转时间）</p>
+<p><img src="https://img-blog.csdnimg.cn/2207711518a64800a8853adf7ab46c7f.png" alt="请添加图片描述"></p>
+<p><strong>优点：</strong> 相比于 SPN 或 SRT，不会发生 starvation ！</p>
+<p><strong>缺点：</strong> 和 SPN 或 SRT 一样需要估计 service time</p>
+<h3 id="⑥-Feedback-反馈"><a href="#⑥-Feedback-反馈" class="headerlink" title="⑥ Feedback(反馈)"></a>⑥ Feedback(反馈)</h3><p><strong>思想：</strong>（抢占式）SPN、SRT 和 HRRN 对于服务时间的估计并不总是能被实现，于是我们可以根据进程上一次 CPU burst 的表现来及时调整进程的优先级（即关注于进程当前已经运行的时间，而不是预计的剩余时间）最终表现为更偏向于新的、短 burst 的进程。</p>
+<p><strong>算法：</strong> 使用多个队列 RQ0-n，每一级队列内部使用 RR 策略；当某个进程运行时，将当前时间片全部用完，那么它将被下放到下一级队列；新加入系统的进程进入第一级队列，总体情况是越来越往下移动。</p>
+<p>（时间片用完，说明它对 CPU 时间的需求越大，因此要降低它的优先级）</p>
+<p><img src="https://img-blog.csdnimg.cn/c8e2b69d95cf474785ad46bf0ae6975b.jpeg" alt="请添加图片描述"></p>
+<p><strong>缺点：</strong> 长时间的进程会发生 stavation</p>
+<p><strong>变体：</strong> </p>
+<ul>
+<li>优先级越低的队列时间片长度越长，例如 RQi 的时间片长度可以是 $2^i$ 个单位（因为优先级越低说明它对 CPU 时间的需求越大）</li>
+<li>可以用 HRRN 的机制，对当前队列等待时间过长的进程提升其优先级，到上一层队列</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://img-blog.csdnimg.cn/4a718d331ac344529cff2ee25a517ef8.jpeg" alt="请添加图片描述"></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/OS/">#OS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">#操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%20%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%85%89%E6%A0%85%E5%9B%BE%E5%BD%A2%E5%AD%A6/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算机图形学 第四章 光栅图形学</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OS-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6"><span class="nav-text">OS 操作系统 处理器调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E7%9A%84%E7%A7%8D%E7%B1%BB-Three-Level-Scheduling"><span class="nav-text">调度的种类 Three-Level Scheduling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-Long-Term-Scheduling"><span class="nav-text">长程调度 Long-Term Scheduling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E7%A8%8B%E8%B0%83%E5%BA%A6-Medium-Term-Scheduling"><span class="nav-text">中程调度 Medium-Term Scheduling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%AD%E7%A8%8B%E8%B0%83%E5%BA%A6-Short-Term-Scheduling"><span class="nav-text">短程调度 Short-Term Scheduling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E7%A8%8B%E8%B0%83%E5%BA%A6-Short-Term-Scheduling-1"><span class="nav-text">短程调度 Short-Term Scheduling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E5%87%86%E5%88%99-Criteria"><span class="nav-text">调度准则 Criteria</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A2%E5%8D%A0%E5%BC%8F%E8%B0%83%E5%BA%A6-VS-%E9%9D%9E%E6%8A%A2%E5%8D%A0%E5%BC%8F%E8%B0%83%E5%BA%A6-Non-preemptive-vs-Preemptive-Scheduling"><span class="nav-text">抢占式调度 VS 非抢占式调度 Non-preemptive vs Preemptive Scheduling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E7%9B%AE%E6%A0%87-Scheduling-Algorithm-Goals"><span class="nav-text">调度算法的目标 Scheduling Algorithm Goals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%AD%96%E7%95%A5"><span class="nav-text">实现策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Selection-Function"><span class="nav-text">Selection Function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7-Priorities"><span class="nav-text">优先级 Priorities</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5-Short-Term-Scheduling-Policies"><span class="nav-text">短程调度策略 Short-Term Scheduling Policies</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-text">评价指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A0-First-Come-First-Served-FCFS"><span class="nav-text">① First-Come-First-Served (FCFS)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A1-Round-Robin-%E8%BD%AE%E8%BD%AC-Time-Slicing-%E6%97%B6%E9%97%B4%E5%88%86%E7%89%87"><span class="nav-text">② Round-Robin(轮转) &#x2F; Time Slicing(时间分片)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Virtual-Round-Robin%EF%BC%88VRR%EF%BC%89"><span class="nav-text">Virtual Round-Robin（VRR）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A2-Shortest-Process-Next%EF%BC%88SPN%EF%BC%89-Shortest-Job-First"><span class="nav-text">③ Shortest Process Next（SPN） &#x2F; Shortest Job First</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A3-Shortest-Remaining-Time"><span class="nav-text">④ Shortest Remaining Time</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Priority-Scheduling-%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="nav-text">Priority Scheduling 优先级调度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A4-Highest-Response-Ratio-Next"><span class="nav-text">⑤ Highest Response Ratio Next</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A5-Feedback-%E5%8F%8D%E9%A6%88"><span class="nav-text">⑥ Feedback(反馈)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

