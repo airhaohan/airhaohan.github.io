@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            计算机图形学 第五章 曲线与曲面 |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"计院人的2+X就是2+Labs+PJs+Reports🙋‍♂️"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">计算机图形学 第五章 曲线与曲面</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-29 10:33:00</span>
+        <span class="mobile">2022-10-29 10:33</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Computer-Graphics/">Computer Graphics</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CG/">CG</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>计算机图形学 第五章 曲线与曲面的相关内容，包括：曲线与曲面的表示、Bezier曲线/面、B 样条曲线/面、NURBS曲线/面、Coons曲面等</p>
+<h1 id="计算机图形学-第五章-曲线与曲面"><a href="#计算机图形学-第五章-曲线与曲面" class="headerlink" title="计算机图形学 第五章 曲线与曲面"></a>计算机图形学 第五章 曲线与曲面</h1><p><mark>第五章占40分左右</mark></p>
+<h2 id="5-1-曲线曲面的参数表示"><a href="#5-1-曲线曲面的参数表示" class="headerlink" title="5.1 曲线曲面的参数表示"></a>5.1 曲线曲面的参数表示</h2><p>直线段： $P(t)=P_1+(P_2-P_1)t\quad t\in[0,\,1]$ ，端点为 $P_1$ 、$P_2$ </p>
+<p>圆：$P(t)=[\frac{1-t^2}{1+t^2} \, \frac{2t}{1+t^2}]$ </p>
+<h3 id="参数曲线：位置矢量、切矢量、法矢量、曲率和挠率"><a href="#参数曲线：位置矢量、切矢量、法矢量、曲率和挠率" class="headerlink" title="参数曲线：位置矢量、切矢量、法矢量、曲率和挠率"></a>参数曲线：位置矢量、切矢量、法矢量、曲率和挠率</h3><p><mark>这五个量对推导和计算都不作要求，单选择题可能考概念，要理解他们的意义</mark> </p>
+<p><strong>参数表示三维曲线：</strong> 有界点集、带参数、连续的、单值函数 $x=x(t),\, y=y(t),\, z=z(t)$ （往往 $t\in[0,\,1]$ ）</p>
+<p><strong>位置矢量：</strong> 曲线上任意一点位置矢量可表示为 $P(t)=[x(t),\,y(t),\,z(t)]$ ，其 $k$ 阶导数矢量（如果存在的话）可表示为：$P^k(t)=\frac{d^kP}{dt^k}$ </p>
+<p><strong>切矢量：</strong>$T=\frac{P’(t)}{|P’(t)|}$ ，切线方程：$\frac{x-x_0}{x’(t)}=\frac{y-y_0}{y’(t)}=\frac{z-z_0}{z’(t)}$ </p>
+<p><strong>法矢量：</strong></p>
+<ul>
+<li>主法矢： $N=\frac{T’(t)}{|T’(t)|}=\frac{P’’(t)}{|P’’(t)|}$ ，与 $\frac{dT}{ds}$ 平行</li>
+<li>副法矢：$B=T\times N=\frac{P’(t)P’’(t)}{|P’(t)P’’(t)|}$ </li>
+<li>法平面：$N$ 和 $B$ 构成的平面，方程为：$x’(t)(x-x_0)+y’(t)(y-y_0)+z’t(z-z_0)=0$ </li>
+<li>密切平面：$T$ 和 $N$ 构成的平面</li>
+<li>从切平面 / 化直平面：$B$ 和 $T$ 构成的平面</li>
+</ul>
+<table>
+    <tr>
+        <td><img src="https://img-blog.csdnimg.cn/4f8de16f594b4ede80236d4609d1e4b2.png" alt="5_9" style="zoom:100%;" /></td>
+        <td><img src="https://img-blog.csdnimg.cn/b63b412b9b43461884078749d8b56e18.png" alt="5_13" style="zoom:33%;" /></td>
+    </tr>
+</table>
+
+<p><strong>曲率：</strong> $k$  ，其几何意义是曲线的单位切矢对弧长的转动率</p>
+<ul>
+<li><p>曲率越小，曲线越平坦；曲率越大，曲线越弯曲</p>
+</li>
+<li><p>曲率半径 $\rho=\frac{1}{k}$ </p>
+</li>
+</ul>
+<p><strong>挠率：</strong> $\tau$ ，其绝对值等于副法线方向（或密切平面）对于弧长的转动率</p>
+<ul>
+<li>挠率大于0、等于0和小于0分别表示曲线为右旋空间曲线、平面曲线和左旋空间曲线</li>
+</ul>
+<script type="math/tex; mode=display">
+k=\frac{|P'(t)\times P''(t)|}{|P'(t)|^3}\quad\quad\tau=\frac{det(P'(t),P''(t),P'''(t))}{|P'(t)\times P''(t)|^2}</script><h3 id="插值、逼近、拟合和光顺"><a href="#插值、逼近、拟合和光顺" class="headerlink" title="插值、逼近、拟合和光顺"></a>插值、逼近、拟合和光顺</h3><p><mark>（70-80%的概率会考）；要会计算插值曲线；要能写出最小二乘法公式和偏导为0</mark></p>
+<p><strong>插值：</strong>给定一组有序的 <strong>数据点（型值点）</strong> $P_i\,(i=0,1,…,n)$ ，构造一条曲线顺序通过这些数据点：（下面两种插值算法都是在平面上的）</p>
+<ul>
+<li>线性插值：给定函数 $f(x)$ 两个不同点的坐标，用直线 $y=kx+b$ 去近似代替 $f(x)$ （即求过这两点的直线方程，两个未知数两个方程）</li>
+<li>抛物线插值（二次插值）：给定函数 $f(x)$ 三个不同点的坐标，用一个抛物线 $y=ax^2+bx+c$ 去近似代替 $f(x)$ （即求过着三点的直线方程，三个未知数三个方程）</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/2b595e0ea78f49b3a0dc956e827b1a24.png" alt="5_32" style="zoom:75%;" /></p>
+<p><strong>逼近：</strong> 不需要通过所有数据点（型值点），用最小二乘法算出最小误差：给出一组数据点（型值点）$P_i\,(i=0,1,…,n)$ ，构造一个 $m(m\lt n-2)$ 次多项式 $y=F(x)=\sum\limits_{j=0}^ma_jx^j$ 逼近，误差为：</p>
+<script type="math/tex; mode=display">
+\varphi=\sum\limits_{k=0}^nd_k[\sum\limits_{j=0}^ma_jx^j-y_k]^2 \\
+\frac{\partial \varphi}{\partial a_i}=0,\,i=0,1,...,m</script><p>权重 $d_k\ge0$ ，对可靠的点赋予较大的比重；通过偏导为 $0$ 求出每个 $a_i$</p>
+<p><strong>拟合：</strong> 插值和逼近统称为拟合</p>
+<p><strong>光顺：</strong> 指曲线的拐点不能太多，相对光顺的条件是：</p>
+<ul>
+<li>具有二阶集合连续性（$G^2$）</li>
+<li>不存在多余拐点和奇异点</li>
+<li>曲率变化较小</li>
+</ul>
+<h3 id="参数化"><a href="#参数化" class="headerlink" title="参数化"></a>参数化</h3><p>需要在型值点与插值曲线的参数域 $t\in[t_0,\,t_1]$ 之间建立映射关系，每个被映射到的参数值称为节点</p>
+<p><mark>了解概念就可以，要会写累加现场参数化的 $\Delta P_{j-1}$ </mark> </p>
+<ul>
+<li>对型值点参数化</li>
+<li>均匀参数化（等距参数化）：相邻节点区间长度相等</li>
+<li>累加弦长参数化：相邻节点区间长度按弦长分布</li>
+<li>向心参数化法：在累加弦长法的基础上，考虑相邻弦边的拐折情况</li>
+<li>修正弦长参数化法：在累加弦长法的基础上，给弦长加上某一修正系数</li>
+<li>参数区间规格化：将参数区间 $[t_0,\,t_n]$ 变为 $[0,\,1]$ </li>
+</ul>
+<h3 id="参数曲线的代数和几何形式"><a href="#参数曲线的代数和几何形式" class="headerlink" title="参数曲线的代数和几何形式"></a>参数曲线的代数和几何形式</h3><p><mark>（很可能考，给出代数形式，算出几何形式，要现场算并粗略地画出调和函数的示意图，6分简答题）</mark> </p>
+<p>以三次参数曲线为例，其代数形式为：</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{ll}
+x(t)= a_{3x}t^3+a_{2x}t^2+a_{1x}t+a_{0x}\\
+y(t)= a_{3y}t^3+a_{2y}t^2+a_{1y}t+a_{0y}\\
+z(t)= a_{3z}t^3+a_{2z}t^2+a_{1z}t+a_{0z}\\
+\end{array}\right.</script><p>写成矢量式：$P(t)=a_3t^3+a_2t^2+a_1t+a_0$ </p>
+<p>几何形式：用端点位矢 $P(0)$ 、$P(1)$ 和端点切矢 $P’(0)$ 、$P’(1)$ 代替 $a_i$ 来描述：</p>
+<script type="math/tex; mode=display">
+\left \{ \begin{array}{ll}
+P(0)=a_0 \\
+P(1)=a_3+a_2+a_1+a_0 \\
+P'(0)=a_1 \\
+P'(1)=3a_3+2a_2+a_1 \\
+\end{array}\right.
+\quad\quad
+\left \{ \begin{array}{ll}
+a_0=P_0 \\
+a_1=P'_0 \\
+a_2=-3P_0+3P_1-2P'_0-P'_1 \\
+a_3=2P_0-2P_1+P'_0+P'_1 \\
+\end{array}\right.</script><p>带入矢量式中得到：</p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\quad P(t)\\
+=(2t^3-3t^2+1)P_0+(-2t^3+3t^2)P_1+(t^3-2t^2+t)P'_0+(t^3-t^2)P'_1 \quad t\in[0,1] \\
+= F_0(t)P_0+F_1P_1+G_0P'_0+G_1P'_1
+\end{array}</script><p>其中 $F_0$ ，$F_1$ ，$G_0$ ，$G_1$ 被称为调和函数（混合函数、Hermite 基函数），图像大致如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/99b137acd55c4276a61e25fced5e71a4.png" alt="5_47" style="zoom: 67%;" /></p>
+<p>调和函数的性质：（记住图像比较好使）</p>
+<script type="math/tex; mode=display">
+F_i(j)=G'_i(j)=\delta_{ij}=
+\left\{
+\begin{array}{ll}
+1 & i=j \\
+0 & i\not=j
+\end{array}
+\right.
+\quad\quad\quad
+F'_i(j)=G_i(j)=0,\quad i,\,j=0,\,1</script><h3 id="连续性"><a href="#连续性" class="headerlink" title="连续性"></a>连续性</h3><p><mark>简答题，要写出不同连续性的级别及其数学表达式</mark> </p>
+<p>对于两条曲线 $P(t)$ 和 $Q(t)$ $t\in[0,\,1]$ ，在结合处的连续性级别：（逐层递进）</p>
+<ul>
+<li><p>$G_0$ 连续和 $C_0$ 连续：两曲线在结合处位置连续：$P(1)=Q(0)$ </p>
+</li>
+<li><p>$G_1$ 连续：$G_0$ 连续且有方向相同但大小不同的切矢：$aP’(1)=Q’(0)\quad(a\gt0)$ </p>
+</li>
+<li><p>$C_1$ 连续：$G_0$ 连续且有方向和大小均相同的切矢：$P’(1)=Q’(0)$ </p>
+</li>
+<li><p>$G_2$ 连续：$G_1$ 连续且有方向相同但大小不同的曲率矢：$\frac{P’(1)\times P’’(1)}{|P’(1)|^3}=\frac{Q’(0)\times Q’’(0)}{|Q’(0)|^3}$ </p>
+</li>
+<li><p>$C_2$ 连续：$G_1$ 连续且有方向和大小均相同的曲率矢：$Q’’(0)=\alpha^2P’’(1)+\beta P’(1)$ </p>
+<p>（$\beta$ 为任意常数；当 $\alpha=1\,\beta=0$ 时，$G_2$ 连续就成为 $C_2$ 连续）</p>
+</li>
+</ul>
+<h3 id="参数曲面"><a href="#参数曲面" class="headerlink" title="参数曲面"></a>参数曲面</h3><p><mark>简答题：问概念（能说出某一种曲面的定义和例子，或者给一些图进行分类）</mark> </p>
+<h4 id="常见参数曲面表示"><a href="#常见参数曲面表示" class="headerlink" title="常见参数曲面表示"></a>常见参数曲面表示</h4><p><strong>① 参数表示矩形域的三维曲面：</strong> 用双参数的单值函数表示，$x=x(u,\,w)$ ，$y=y(u,\,w)$，$z=z(u,\,w)$ （ $u,\,w\in[0,\,1]$ ），记为 $p(u,\,w)=[x(u,\,w),\,y(u,\,w),\,z(u,\,w)]$ </p>
+<p><img src="https://img-blog.csdnimg.cn/da1bdde1f12a4d64bb2e6c491d5ee26d.png" alt="5_21" style="zoom:20%;" /></p>
+<ul>
+<li><p><strong>角点：</strong> $p(0,\,0)$  ，$p(0,\,1)$ ，$p(1,\,0)$ ，$p(1,\,1)$ </p>
+</li>
+<li><p><strong>边界线：</strong> 指 $p(u,\,0)$  ，$p(u,\,1)$ ，$p(0,\,w)$ ，$p(1,\,w)$ ，简记为 $p_{u0},\,p_{u1},\,p_{0w},\,p_{1w}$ </p>
+</li>
+<li><p><strong>矩形域曲面片上一点：</strong> $p(u_i,\,w_j)$ ，记为 $p_{ij}$ </p>
+</li>
+<li><p><strong>切矢量：</strong> 有两个方向上的切矢量（偏导矢），分别记为</p>
+<script type="math/tex; mode=display">
+p^u_{ij}=\frac{\partial P(u,\,w)}{\partial u} \quad\quad p^w_{ij}=\frac{\partial P(u,\,w)}{\partial w}</script></li>
+<li><p><strong>混合偏导矢 / 扭矢</strong> ：反应 $p^u$ 对 $w$ 的变化率或者 $p^w$ 对 $u$ 的变化率，分别记为：</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+P_{uw}(u,\,w)=\frac{\partial^2P(u,\,w)}{\partial u\partial w} \quad\quad P_{wu}(u,\,w)=\frac{\partial^2P(u,\,w)}{\partial w\partial u}</script><ul>
+<li><strong>法矢量：</strong> 记为 $n_{ij}=\frac{p^u_{ij}\times p^w_{ij}}{|p^u_{ij}\times p^w_{ij}|}$ （就是两个切矢量的叉积方向上的单位向量）</li>
+</ul>
+<p><strong>② $xoy$ 平面上矩形域平面片：</strong> $x=(c-a)u+a$ ，$y=(d-b)w+b$ ，$z=0$（ $u,\,w\in[0,\,1]$ ）</p>
+<p><img src="https://img-blog.csdnimg.cn/8e96156140bc46c087e892451113013b.png" alt="5_22" style="zoom:16%;" /></p>
+<p><strong>③ 球面：</strong> $x=x_0+r\cos(u)\cos(w)$ ， $y=y_0+r\cos(u)\sin(w)$ ， $z=z_0+r\sin(u)$ </p>
+<ul>
+<li>球心：$(x_0,\,y_0,\,z_0,\,)$ ，半径：$r$ </li>
+<li>$u\in[-\frac{\pi}{2},\,\frac{\pi}{2}]$ ，$w\in[0,\,2\pi]$ </li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/1597f28d78614b9ab1d980ba3250d7a7.png" alt="5_23" style="zoom:20%;" /></p>
+<h4 id="双三次参数曲面"><a href="#双三次参数曲面" class="headerlink" title="双三次参数曲面"></a>双三次参数曲面</h4><p>代数形式：$P(u,\,w)=\sum\limits_{i=0}^3\sum\limits_{j=0}^3a_{ij}u^iw^j$ ，$u,\,w\in[0,\,1]$ </p>
+<p>矩阵表示：$P=UAW^T$ （每个$a_{ij}$ 代表一个位矢，例如 Bezier 曲线中的特征网格的网格点）</p>
+<script type="math/tex; mode=display">
+U=\begin{bmatrix} u^3 & u^2 & u & 1 \end{bmatrix} \quad\quad
+W=\begin{bmatrix} w^3 & w^2 & w & 1 \end{bmatrix} \quad\quad
+A=
+\begin{bmatrix}
+a_{33} & a_{32} & a_{31} & a_{30} \\
+a_{23} & a_{22} & a_{21} & a_{20} \\
+a_{13} & a_{12} & a_{11} & a_{10} \\
+a_{03} & a_{02} & a_{01} & a_{00} \\
+\end{bmatrix}</script><h4 id="其他常见参数曲面"><a href="#其他常见参数曲面" class="headerlink" title="其他常见参数曲面"></a>其他常见参数曲面</h4><p><strong>简单回转面：</strong> 由曲线 $[x(u),\,z(u)]$ 绕 $z$ 轴旋转得到的回转面：</p>
+<script type="math/tex; mode=display">
+x=x(u)\cos(w) \quad\quad y=x(u)\sin(w) \quad\quad z=z(u) \quad\quad (w\in[0,\,2\pi])</script><p><img src="https://img-blog.csdnimg.cn/f868966b11ae4639890d05f9c6c0e0bb.png" alt="5_25" style="zoom:20%;" /></p>
+<p><strong>直纹面：</strong> 由直线运动产生的曲面；动直线称为直母线（简称母线）；包括：</p>
+<ul>
+<li>一条直母线：柱面、锥面</li>
+<li>两条直母线：单叶双曲面、双曲抛物面（马鞍面）</li>
+<li>一条空间曲线的全体切线组成的切线曲面也是直纹面</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/acd2244d3d714d6c93d455c4aada2d19.jpeg" alt="5_27" style="zoom:80%;" /></p>
+<h2 id="5-2-Bezier-曲线与曲面"><a href="#5-2-Bezier-曲线与曲面" class="headerlink" title="5.2 Bezier 曲线与曲面"></a>5.2 Bezier 曲线与曲面</h2><p><mark> Bezier和B样条是最重要的两节，据说至少占20分；Bezier 曲线计算量较小，都有可能考</mark> </p>
+<h3 id="Bezier-曲线的定义"><a href="#Bezier-曲线的定义" class="headerlink" title="Bezier 曲线的定义"></a>Bezier 曲线的定义</h3><p><strong>Bezier 曲线</strong>：Bezier 曲线由一系列控制点（记为 $P_i$ ，构成了折线集 / Bezier 特征多边形）来定义</p>
+<p>Bezier 参数曲线上各点坐标的插值公式：$p(t)=\sum\limits_{i=0}^nP_iB_{i,\,n}(t)$ ，其中：</p>
+<ul>
+<li>$P_i\quad (i\in[0,\,n])$ 为控制点，构成了 Bezier 曲线的特征多边形</li>
+<li>$B_{i,\,n}=C_n^i\,t^i(1-t)^{n-i}\quad (t\in[0,\,1])$ ，称为 Berstain 基函数</li>
+</ul>
+<p><strong>特点：</strong> </p>
+<ul>
+<li>起点、终点与特征多边形重合</li>
+<li><p>起点与终点的切线方向和特征多边形第一条边及最后一条边的走向一致</p>
+</li>
+<li><p>曲线形状趋于特征多边形的形状</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/b32af552120248989af999145da0e09e.png" alt="5_53" style="zoom:75%;" /></p>
+<h3 id="Berstain-基函数的性质"><a href="#Berstain-基函数的性质" class="headerlink" title="Berstain 基函数的性质"></a>Berstain 基函数的性质</h3><p><mark>基本每年都考，要求会现场推导，端点性质是最主要的性质</mark> </p>
+<p><strong>正性：</strong>$B_{i,\,n}(t)=<br>\left\{<br>\begin{array}{ll}<br>=0 &amp; t=0,\,1 \\<br>\gt 0 &amp; t\in(0,\,1),\,\,i=1,2,…,n-1<br>\end{array}<br>\right.$ </p>
+<p><strong>端点性质：</strong> （所以 Bezier 曲线的起点、终点与特征多边形的起点和终点（即 $P_0$ 和 $P_n$ ）相重合）</p>
+<script type="math/tex; mode=display">
+B_{i,\,n}(0)=
+\left\{
+\begin{array}{ll}
+1 & i=0 \\
+0 & else
+\end{array}
+\right.
+\quad\quad
+B_{i,\,n}(1)=
+\left\{
+\begin{array}{ll}
+1 & i=n \\
+0 & else
+\end{array}
+\right.</script><p><strong>权性：</strong> 由二项式定理得，$\sum\limits_{i=0}^nB_{i,\,n}(t)=1\quad t\in(0,\,1)$ </p>
+<p><strong>对称性：</strong> $B_{i,\,n}(t)=B_{n-i,\,n}(1-t)$ </p>
+<p><strong>递推性：</strong> $B_{i,\,n}(t)=(1-t)B_{i,\,n-1}(t)+tB_{i-1,\,n-1}(t)$ </p>
+<p><strong>导函数：</strong> $B’_{i,\,n}(t)=n(B_{i-1,\,n-1}(t)-B_{i,\,n-1}(t))$ </p>
+<p><strong>最大值：</strong> $B_{i,\,n}(t)$ 在 $t=\frac{i}{n}$ 处达到最大值</p>
+<p><strong>升阶公式：</strong> $B_{i,\,n}(t)=(1-\frac{i}{n+1})B_{i,\,n+1}(t)+\frac{i+1}{n+1}B_{i+1,\,n+1}(t)$ </p>
+<p><strong>积分：</strong> $\int\limits_0^1B_{i,\,n}(t)dt=\frac{1}{n+1}$ </p>
+<h3 id="Bezier-曲线的性质"><a href="#Bezier-曲线的性质" class="headerlink" title="Bezier 曲线的性质"></a>Bezier 曲线的性质</h3><p><mark>重要性质：端点性质和一阶导矢</mark> </p>
+<p><strong>端点性质：</strong> $\sum\limits_{i=0}^nP_iB_{i,\,n}(0)=P(0)$ ，$\sum\limits_{i=0}^nP_iB_{i,\,n}(1)=P(1)$ ，即 Bezier 曲线的起点、终点与特征多边形的起点和终点重合</p>
+<p><strong>一阶导矢与切矢量：</strong> Bezier 曲线的起点和终点切线方向与特征多边形的第一条边和最后一条鞭走向一致：</p>
+<script type="math/tex; mode=display">
+F'(t)=n\sum\limits_{i=0}^nP_i[B_{i-1,\,n-1}(t)-B_{i,\,n-1}(t)] \quad P'(0)=n(P_1-P_0) \quad P'(1)=n(P_n-P_{n-1})</script><p><strong>二阶导矢与曲率：</strong> </p>
+<script type="math/tex; mode=display">
+F''(t)=n\sum\limits_{i=0}^n(P_{i+2}-2P_{i+1}+P_i)B_{i,\,n-2}(t) \\ 
+P''(0)=n(n-1)(P_2-2P_1+P_0) \quad\quad P''(1)=n(n-1)(P_n-2P_{n-1}+P_{n+2})</script><p>总结：$r$ 阶导矢只与 $r+1$ 个相邻点有关</p>
+<p><strong>k 阶导函数的差分表示：</strong>$\Delta^kP_i=\Delta^{k-1}P_{i+1}-\Delta^{k-1}P_i$ </p>
+<p><strong>对称性：</strong> 令控制点反转顺序，即 $P_i^*=P_{n-i}$ ，则得到的新的  Bezier 曲线与原来形状相同，走向相反</p>
+<p><strong>凸包性：</strong> Bezier 曲线 $P(t)$ 是控制点 $P_i$ 的凸线性组合，即曲线落在 $P_i$ 构成的凸包当中</p>
+<p><img src="https://img-blog.csdnimg.cn/bcd71108ded9494d851ddf59efe93549.png" alt="5_63" style="zoom: 67%;" /></p>
+<p><strong>坐标不变性：</strong> Bezier 曲线的位置与形状与其特征多边形顶点位置有关，而不依赖于坐标系的选择</p>
+<p><strong>变差缩减性：</strong> 平面上任意一条直线与 Bezier 曲线的交点数不多于其与特征多边形的交点数，说明 Bezier 曲线比比起特征多边形的波动小、更光顺</p>
+<p><strong>仿射不变性：</strong> 仿射变换下，$P(t)$ 的形式不变</p>
+<h3 id="Bezier-曲线的矩阵表示"><a href="#Bezier-曲线的矩阵表示" class="headerlink" title="Bezier 曲线的矩阵表示"></a>Bezier 曲线的矩阵表示</h3><p><mark>给出 Bezier 曲线的代数或矩阵表示，推导出曲线的相关性质</mark> </p>
+<p><strong>一次Bezier曲线</strong> ：$P(t)=(1-t)P_0+tP_1$ ，一次 Bezeir 曲线是连接起点 $P_0$ 与终点 $P_1$ 的直线段，其矩阵表示为：</p>
+<script type="math/tex; mode=display">
+P(t)=
+\begin{bmatrix} t & 1 \end{bmatrix}
+\begin{bmatrix} -1 & 1 \\ 1 & 0 \end{bmatrix}
+\begin{bmatrix} P_0 \\ P_1 \end{bmatrix}
+\quad t\in[0,\,1]</script><p><strong>二次Bezier曲线</strong> ：$P(t)=(1-t)^2P_0+2t(1-t)P_1+t^2P_2$ ，二次  Bezier 曲线是起点为 $P_0$ 、终点为 $P_2$ 的抛物线，其矩阵表示为：</p>
+<script type="math/tex; mode=display">
+P(t)=
+\begin{bmatrix} t^2 & t & 1 \end{bmatrix}
+\begin{bmatrix}
+1 & -2 & 1 \\
+-2 & 2 & 0 \\
+1 & 0 & 0 \\
+\end{bmatrix}
+\begin{bmatrix} P_0 \\ P_1 \\ P_2 \end{bmatrix}</script><p><strong>三次Bezier曲线</strong> ：$P(t)=(1-t)^3P_0+3t(1-t)^2P_1+3t^2(1-t)P_2+t^3P_3$ ，其矩阵表示为：</p>
+<script type="math/tex; mode=display">
+P(t)=
+\begin{bmatrix} t^3 & t^2 & t & 1 \end{bmatrix}
+\begin{bmatrix}
+-1 & 3 & -3 & 1 \\
+3 & -6 & 3 & 0 \\
+-3 & 3 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+\end{bmatrix}
+\begin{bmatrix} P_0 \\ P_1 \\ P_2 \\ P_3 \end{bmatrix}</script><p><strong>n 次Bezier曲线</strong> ：$p(t)=\sum\limits_{i=0}^nP_iB_{i,\,n}(t)$ </p>
+<h3 id="Bezier-曲线的递推-de-Casteljau-算法"><a href="#Bezier-曲线的递推-de-Casteljau-算法" class="headerlink" title="Bezier 曲线的递推(de Casteljau)算法"></a>Bezier 曲线的递推(de Casteljau)算法</h3><p><mark>该算法很可能会考，要写出或画出递推关系，以及给出 t 、画出几何作图法的示意图</mark> </p>
+<p><strong>朴素算法：</strong> 给出定义域 $t\in[0,\,1]$ 中离散的若干点，对于每个 $t_i$ ，直接带入方程，求出对应的曲线上的点的坐标（直接带入曲线方程的计算量大，考虑如下的递推算法）di’yi’ji</p>
+<p><strong>de Casteljau 算法原理：</strong> 以二次 Bezier 曲线为例（即抛物线三切线定理）</p>
+<ul>
+<li><p>取 $P_0P_1$ 和 $P_1P_2$ 各一点 $P_0^1$ 和 $P_1^1$ ，使得 $\frac{P_0P_0^1}{P_0^1P_1}=\frac{P_1P_1^1}{P_1^1P_2}=t$ </p>
+</li>
+<li><p>再取 $P_0^1P_1^1$ 上一点 $P_0^2$ ，使得 $\frac{P_0^1P_0^2}{P_0^2P_1^1}=t$ ，则 $P_0^2$ 为抛物线上的点，且 $P_0^1P_1^1$ 为抛物线的切点</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/cd2c503d97f54a8e90068547a8cf8168.png" alt="5_70" style="zoom:75%;" /></p>
+<p><strong>注意：</strong> 右上角的角标代表递推的层次</p>
+<p>（其实直接取抛物线上这样子的三条切线，就可以得到 $\frac{P_0P_0^1}{P_0^1P_1}=\frac{P_1P_1^1}{P_1^1P_2}=\frac{P_0^1P_0^2}{P_0^2P_1^1}$ ；基于抛物线三切线定理，可能根据数学归纳法可以得出 de Casteljau 算法的原理）</p>
+<p><strong>递推计算公式：</strong> </p>
+<script type="math/tex; mode=display">
+P^k_i(t)=
+\left \{
+\begin{array}{ll}
+P_i & k=0 \\
+(1-t)P^{k-1}_i(t)+tP^{k-1}_{i+1}(t) & k=1,2,...,n;\,\,i=0,1,...,n-k
+\end{array}
+\right.</script><p><strong>几何作图：</strong></p>
+<ul>
+<li>给定参数 $t\in[0,\,1]$ </li>
+<li>首先依次对原始控制点执行同样的定比分割，得到第一级递推的中间顶点 $P^i_0\,(i=0,1,…,n-1)$ </li>
+<li>对中间顶点重复如上过程，直到 $n$ 级递推得到唯一的中间顶点 $P_0^n$ ，即为所求的曲线上的点 $P(t)$ </li>
+</ul>
+<p>例如，$n=3$ 时，有如下的递推过程和几何作图过程：</p>
+<table>
+    <tr>
+        <td><img src="https://img-blog.csdnimg.cn/1bde96c0250c4794abc3d0a94d345a5f.png" alt="5_74" style="zoom:20%;" /></td>
+        <td><img src="https://img-blog.csdnimg.cn/6dc89405478249f1bf8f801f86353bdc.png" alt="5_76" style="zoom:15%;" /></td>
+    </tr>
+</table>
+
+<p><strong>注意：</strong> de Casteljau 算法是可以精确计算出 Bezier 曲线上的点的</p>
+<h3 id="Bezier-曲线的拼接"><a href="#Bezier-曲线的拼接" class="headerlink" title="Bezier 曲线的拼接"></a>Bezier 曲线的拼接</h3><p>Bezier 曲线次数的提高会导致计算量增大，但是对描述更为复杂的曲线形状增益不大；所以实际使用中一般不超过 10 次，而是分段设计，然后相互连接起来，并在接合处保持一定的连续条件</p>
+<h3 id="Bezier-曲线的升阶与降阶"><a href="#Bezier-曲线的升阶与降阶" class="headerlink" title="Bezier 曲线的升阶与降阶"></a>Bezier 曲线的升阶与降阶</h3><p><mark>次要，了解概念即可</mark> </p>
+<p><strong>升阶：</strong> 保持 Bezier 曲线的形状与方向不变，增加定义控制定点数，以提高 Bezier 曲线次数</p>
+<ul>
+<li>新的控制顶点 $P^*_i$ 是以参数值 $\frac{i}{n+1}$ 按分段线性插值从原始特征多边形得出的</li>
+<li>升阶后的新的特征多边形在原始特征多边形的凸包内</li>
+<li>新的特征多边形更靠近曲线</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/0d673f9561d74d01ad3ed4e0718efe69.png" alt="5_84" style="zoom:60%;" /></p>
+<p><strong>降阶：</strong> 升阶的逆过程</p>
+<h3 id="Bezier-曲面"><a href="#Bezier-曲面" class="headerlink" title="Bezier 曲面"></a>Bezier 曲面</h3><p><mark>次要，了解概念即可</mark> </p>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p><strong>特征网格：</strong> 取 $P_{ij}\,\,(i=0,1,…m,\,j=0,1,…,n)$ 为 $(m+1)\times(n+1)$ 个空间点列，构成特征网格</p>
+<p><strong>Bezier 曲面：</strong> $m\times n$ 次张量积形式的 Bezier 曲面为：$P(u,\,v)=\sum\limits_{i=0}^m\sum\limits_{j=0}^nP_[ij]B_{i,\,m}(u)B_{j,\,n}(v)$ ，矩阵表示为：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} B_{0,m}(u) & B_{1,m}(u) & ... & B_{m,m}(u) \end{bmatrix}
+\begin{bmatrix}
+P_{00} & P_{01} & ... & P_{0n} \\
+P_{10} & P_{11} & ... & P_{1n} \\
+... & ... & ... & ... \\
+P_{m0} & P_{n1} & ... & P_{mn} \\
+\end{bmatrix}
+\begin{bmatrix} B_{0,n}(v) & B_{1,n}(v) & ... & B_{n,n}(v) \end{bmatrix}</script><h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><p><strong>端点性质</strong>：$P(0,\,0)=P_{00}$ ，$P(1,0)=P_{m0}$ ，$P(0,\,1)=P_{0n}$ ，$P(1,\,1)=P_{mn}$ </p>
+<p><strong>端点法向：</strong> $P_{00}P_{01} \times P_{00}P_{10}$ 是 $P(u,\,v)$ 在 $P_{00}$ 的法向</p>
+<p>边界线位置、结合不变性、端点切平面性质与 Bezier 曲线类似</p>
+<p><img src="https://img-blog.csdnimg.cn/a5593857633447c6915fa2c08ea6321a.png" alt="5_91" style="zoom:60%;" /></p>
+<h4 id="拼接"><a href="#拼接" class="headerlink" title="拼接"></a>拼接</h4><p>设两张 $m\times n$ Bezier 曲面片分别由控制顶点 $P_{ij}$ 和 $Q_{ij}$ 控制</p>
+<ul>
+<li>$G_0$ / $C_0$ 连续：有公共边界，即 $P_{mj}=Q_{0j}$ ，$j=0,1,…,n$ </li>
+<li>$G_1$ 连续：在公共边界上有公共切平面：$Q_u(0,\,v)\times Q_v(0,\,v)=\alpha(v)P_u(1,\,v)\times P_v(1,\,v)$ </li>
+<li>$C_1$ 连续：$G_1$ 连续基础上，$\alpha(v)=1$ </li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/e10e5d9ef01e46b6bbc852e8329b9610.png" alt="5_93" style="zoom:60%;" /></p>
+<h2 id="5-3-B-样条曲线与曲面"><a href="#5-3-B-样条曲线与曲面" class="headerlink" title="5.3 B 样条曲线与曲面"></a>5.3 B 样条曲线与曲面</h2><h3 id="B-样条曲线方程的定义"><a href="#B-样条曲线方程的定义" class="headerlink" title="B 样条曲线方程的定义"></a>B 样条曲线方程的定义</h3><p>Bezier曲线的不足：阶次较大时特征多边形对曲线的控制将会减弱；没有局部性、不能做局部修改；拼接较复杂</p>
+<p><strong>B 样条曲线方程：</strong> $P(t)=\sum\limits_{i=0}^nP_iN_{i,k}(t)$ ，其中：</p>
+<ul>
+<li>$P_i\,(i=0,1,…,n)$ 是控制多边形的顶点</li>
+<li>给定参数 $t$ 轴上的一个分割 $T=\{t_i:\,t_0\le t_i\le…\le t_{n+k}\}$ ，$T$ 称为节点矢量</li>
+<li>$N_{i,k}(t)$ 称为 $T$ 的 $k$ 阶 B 样条基函数（调和函数），是一个 $k$ 阶（ $k-1$ 次）分段多项式样条。其中每一个称为 B 样条，定义为：</li>
+</ul>
+<script type="math/tex; mode=display">
+N_{i,1}(t)=
+\left\{
+\begin{array}{ll}
+1 & t_i\le x\le t_{i+1} \\
+0 & else
+\end{array}
+\right. \\
+N_{i,k}(t)=\frac{t-t_i}{t_{i+k-1}-t_i}N_{i,k-1}(t)+\frac{t_{i+k}-t}{t_{i+k}-t_{i+1}}N_{i+1,k-1}(t)</script><p>欲确定第 $i$ 个 $k$ 阶 B 样条 $N_{i,k}(t)$ ，需要用到 $t_i,t_{i+1},…,t_{i+k}$ 共 $k+1$ 个节点，称区间 $[t_i, t_{i+k}]$ 为 $N_{i,k}(t)$ 的支撑区间；</p>
+<p>曲线方程中，$n+1$ 个控制顶点 $P_i\,(i=0,1,…,n)$ ，要用到 $n+1$ 个 $k$ 阶B样条 $N_{i,k}(t)$ ，它们支撑区间的并集定义了这一组B样条基的节点矢量 $T=[t_0,t_1,…,t_{n+k}]$ ；</p>
+<p><img src="https://img-blog.csdnimg.cn/1ec77b3fbeb147d5b6e5c53e6ce3e357.jpeg" style="zoom:50%;" /></p>
+<h3 id="B-样条基函数的性质"><a href="#B-样条基函数的性质" class="headerlink" title="B 样条基函数的性质"></a>B 样条基函数的性质</h3><p><mark>局部支撑性是最重要的性质</mark> </p>
+<p><strong>局部支撑性：</strong> $N_{i,k}(t)=\left\{\begin{array}{ll}\ge0 &amp; t\in[t_i,t_{i+k}] \\=0 &amp; else \end{array}\right.$ </p>
+<p><strong>权性：</strong> $\sum\limits_{i=0}^nN_{i,k}(t)=1$ ，$t\in[t_{k-1},t_{n+1}]$ </p>
+<p><strong>微分公式：</strong> $N’_{i,k}(t)=\frac{k-1}{t_{i+k-1}-t_i}N_{i,k-1}(t)-\frac{k-1}{t_{i+k}-t_{i+1}}N_{i+1,k-1}(t)$ </p>
+<p><strong>次数：</strong> </p>
+<ul>
+<li>$N_{i,k}(t)$ 在每一段 $[t_i,\,t_{i+k}]$ 上都是次数不高于 $k-1$ 的多项式</li>
+<li>$N_{i,k}(t)$ 在 $l$ 重结点处的连续阶不低于 $k-1-l$ 阶：$t_{i-1}\lt t_i=t_{i+1}=…=t_{i+l-1}\lt t_{i+l}$ </li>
+</ul>
+<h3 id="B-样条曲线的类型划分"><a href="#B-样条曲线的类型划分" class="headerlink" title="B 样条曲线的类型划分"></a>B 样条曲线的类型划分</h3><p>① 按照首末端点是否重合，分为闭曲线和开曲线；闭曲线又区分为周期和非周期两种情形：</p>
+<ul>
+<li>周期闭曲线在首末端点是 $C^2$ 连续的，而非周期闭曲线一般是 $C^0$ 连续的</li>
+<li>非周期闭曲线可以认为是开曲线的特例，按开曲线处理</li>
+</ul>
+<p>② 按照节点矢量中节点的分布情况，分为四种类型：</p>
+<ul>
+<li>均匀 B 样条曲线：节点矢量中节点沿参数轴均匀或等距分布</li>
+<li>准均匀 B 样条曲线：与均匀 B 样条曲线差别在于两端节点具有重复度 k</li>
+<li>分段 Bezier 曲线：节点矢量中，两端点节点具有重复度 k，所有内节点重复度为 k - 1</li>
+<li>非均匀 B 样条曲线：节点矢量中的节点任意分布</li>
+</ul>
+<p>（重复度就是指节点矢量中连续相等的节点数，比如某段区间有 $t_{j-1}\lt t_j=t_{j+1}=…=t_{j+l-1}\lt t_{j+l}$ ，则中间相等的节点称为 $T$ 的 $l$ 重节点 ）</p>
+<h3 id="B-样条曲线的性质"><a href="#B-样条曲线的性质" class="headerlink" title="B 样条曲线的性质"></a>B 样条曲线的性质</h3><p><mark>局部性是最重要的性质，要记住下标</mark> </p>
+<p><strong>局部性：</strong> </p>
+<ul>
+<li>B 样条曲线上参数为 $t\in[t_i,\,t_{i+1}]$ 的点 $P(t)$ 至多与 $k$ 个控制顶点 $P_j\,(i-k+1,…,i)$ 有关，而与其他控制顶点无关；</li>
+<li>移动点该曲线第 $i$ 个控制顶点 $P_i$ 至多影响到定义在区间 $(t_i,\,t_{i+k})$ 上（即 $N_{i,k}(t)$ 支撑区间上）那部分曲线的形状，对曲线其余部分不发生影响</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/33150f38caa941c4aa74bde7c1e2605a.jpeg" alt="5_108" style="zoom: 40%;" /></p>
+<p><strong>连续性：</strong> </p>
+<p><strong>分段参数多项式、导数公式：</strong> </p>
+<p><strong>凸包性、变差缩减性、几何不变性、仿射不变性：</strong> 与 Bezier 曲线相同</p>
+<p><strong>直线保持性：</strong> 控制顶点形成一条直线时，构成的 B 样条曲线也是一条直线</p>
+<p><strong>造型灵活性：</strong> 可以构造直线段、尖点、切线、过定点等特殊情况</p>
+<h3 id="B-样条曲线的矩阵表示"><a href="#B-样条曲线的矩阵表示" class="headerlink" title="B 样条曲线的矩阵表示"></a>B 样条曲线的矩阵表示</h3><p>（这里只研究一次、二次和三次的均匀 B 样条曲线的矩阵表示；<mark>一次没有考过，都是考二次和三次；给出矩阵，写出代数形式，然后推导一阶、二阶的位置矢量和导数矢量，可能会画图</mark>）</p>
+<h4 id="一次-B-样条曲线"><a href="#一次-B-样条曲线" class="headerlink" title="一次 B 样条曲线"></a>一次 B 样条曲线</h4><p>每相邻两个点可构造出一段一次 B 样条曲线<br><img src="https://img-blog.csdnimg.cn/8080eb2fb50847cfa74fe699d9be1ee6.png" alt="请添加图片描述"></p>
+<h4 id="二次-B-样条曲线"><a href="#二次-B-样条曲线" class="headerlink" title="二次 B 样条曲线"></a>二次 B 样条曲线</h4><p>每相邻三个点可构造出一段一次 B 样条曲线<br><img src="https://img-blog.csdnimg.cn/2ec79adf0fa4442a849dd8b5d2dcbc47.png" alt="请添加图片描述"></p>
+<h4 id="三次-B-样条曲线"><a href="#三次-B-样条曲线" class="headerlink" title="三次 B 样条曲线"></a>三次 B 样条曲线</h4><p>每相邻四个点可构造出一段一次 B 样条曲线</p>
+<p><img src="https://img-blog.csdnimg.cn/96ee34f03ae648dc997163acbca42d65.png" alt="请添加图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/4b608840cf7e449aa4c6474815b364fb.png" alt="请添加图片描述"></p>
+<h3 id="de-Boor-算法"><a href="#de-Boor-算法" class="headerlink" title="de Boor 算法"></a>de Boor 算法</h3><p><mark>写出顶点的递推关系；注意下标；只需要画示意图，不需要精确作图</mark></p>
+<p>类似于 Bezier 曲线的 de Casteljau 算法，不用带入方程去求出曲线上的某一点，而是采用递归的方式求出：</p>
+<script type="math/tex; mode=display">
+P_i^{[r]}(t)=
+\left\{
+\begin{array}{ll}
+P_i & r=0,\,i=j-k+1,...,j \\
+\frac{t-t_i}{t_{i+k-r}-t_i}P_i^{[r-1]}(t)+\frac{t_{i+k-r}-t}{t_{i+k-r}-t_i}P_{i-1}^{[r-1]}(t) & else
+\end{array}
+\right. \\\\
+r=1,2,...,k-1;\quad i=j-k+r+1,...,j</script><p>最终迭代 $k$ 次，得到 $P(t)=P_j^{[k-1]}(t)$ </p>
+<table>
+    <tr>
+        <td><img src="https://img-blog.csdnimg.cn/91086b78a1d541ea9f40445946e9e407.png" alt="5_119" style="zoom:100%;" /></td>
+        <td><img src="https://img-blog.csdnimg.cn/06f49566d56245559ab17b81e5912695.png" alt="5_120" style="zoom:30%;" /></td>
+    </tr>
+</table>
+
+<h3 id="节点插入算法"><a href="#节点插入算法" class="headerlink" title="节点插入算法"></a>节点插入算法</h3><p><mark>一般不会考的</mark> </p>
+<h3 id="B-样条曲面"><a href="#B-样条曲面" class="headerlink" title="B 样条曲面"></a>B 样条曲面</h3><p><mark>一般不会考的</mark> </p>
+<h2 id="5-4-NURBS曲线与曲面"><a href="#5-4-NURBS曲线与曲面" class="headerlink" title="5.4 NURBS曲线与曲面"></a>5.4 NURBS曲线与曲面</h2><h3 id="NURBS-曲线的定义"><a href="#NURBS-曲线的定义" class="headerlink" title="NURBS 曲线的定义"></a>NURBS 曲线的定义</h3><p><mark>记住NURBS的全称</mark> </p>
+<p><strong>NURBS</strong>（non-uniform rational B-spline）：非均匀有理 B 样条方法</p>
+<p>（有理曲线就是，比如在平面上用参数方程表示曲线时，$x(t)$ 和 $y(t)$ 都是有理函数）</p>
+<p><strong>优点：</strong> NURBS 既与描述自由型曲线、曲面形状的 B 样条方法相统一，又能精确表示二次胡与二次曲面（初等曲线、曲面）</p>
+<p><strong>定义：</strong> NURBS 曲线是由分段有理 B 样条多项式基函数定义的，给每个控制顶点加上了加上了权重因子（在 B 样条的基础上增加了一个吸引力权重，权重反映了控制顶点对曲线的吸引程度）：</p>
+<script type="math/tex; mode=display">
+P(t)=\frac{\sum\limits_{i=0}^n\omega_iP_iN_{i,k}(t)}{\sum\limits_{j=0}^n\omega_jN_{j,k}(t)}=\sum\limits_{i=0}^nP_iR_{i,k}(t)
+\quad\quad\quad
+R_{i,k}=\frac{\omega_iN_{i,k}(t)}{\sum\limits_{j=0}^n\omega_jN_{j,k}(t)}</script><p> $R_{i,k}(t)\,(i=0,…,n)$ 称为 $k$ 阶有理基函数</p>
+<h3 id="NURBS-曲线的性质"><a href="#NURBS-曲线的性质" class="headerlink" title="NURBS 曲线的性质"></a>NURBS 曲线的性质</h3><p><mark>最重要的还是局部性</mark> </p>
+<p>① NURBS 基函数的性质：</p>
+<p><strong>局部支撑性：</strong> $R_{i,k}(t)=0,\quad t\notin[t_i,\,t_{i+k}]$ </p>
+<p><strong>权性：</strong> $\sum\limits_{i=0}^nR_{i,\,k}(u)=1$ </p>
+<p><strong>可微性：</strong> 若分母不为零，</p>
+<ul>
+<li>在节点区间内无限次连续可微；</li>
+<li>在节点处 $(k-1-r)$ 次连续可微， $r$ 是该节点的重复度；</li>
+</ul>
+<p>② NURBS 曲线的性质：</p>
+<p><strong>局部性质：</strong> </p>
+<ul>
+<li>$k$ 阶 NURBS 曲线上参数为 $t\in[t_i,\,t_{i+k}]\sub[t_{k-1},\,t_{n+1}]$ 的一点 $P(t)$ 至多与 $k$ 个控制顶点 $P_j$ 及权因子 $\omega_j\,(j=i-k+1,…,i)$ 有关，与其他顶点和权因子无关；</li>
+<li>若移动 $k$ 次 NURBS 曲线的一个控制顶点 $P_i$  或改变其对应的权因子 $\omega_i$ ，则仅仅影响定义在区间 $[t_i,\,t_{i+k}]\sub[t_{k-1},\,t_{n+1}]$ 那部分曲线的形状</li>
+</ul>
+<p><strong>变差缩减性、凸包性、仿射与透射变换不变性：</strong> 与 Bezier 曲线相同</p>
+<h3 id="权因子的几何意义"><a href="#权因子的几何意义" class="headerlink" title="权因子的几何意义"></a>权因子的几何意义</h3><p><mark>要记住形状因子和权因子对曲线的影响表现在图上的样子</mark> </p>
+<p>记 $B$ 、$N$ 、$B_i$ 分别为 $\omega_i=0$ 、$\omega_i=1$ 和 $\omega_i\not=0,\,1$ 对应曲线上的点，即：$B=P(t;\,\omega_i=0)$ ，$N=P(t;\,\omega_i=1)$ ，$B_i=P(t;\,\omega_i\not=0,\,1)$ ，$P_i=P(t;\,\omega_i\to\infin)$ </p>
+<p>（$B$ 代表 $P_i$ 完全没有影响时曲线的形状；$N$ 代表 $P_i$ 的影响力和在 B 样条曲线中影响力一样时曲线的形状；$B_i$ 代表在 B 样条曲线的基础上对 $P_i$ 增加或减少影响力时曲线的形状）</p>
+<p>令 $\alpha=R_{i,k}(t;\,\omega_i=1)$ ，$\beta=R_{i,k}(t)$ ，则：</p>
+<script type="math/tex; mode=display">
+N=(1-\alpha)B+\alpha P_i \quad\quad B_i=(1-\beta)B+\beta P_i \\
+N-B=\alpha(P_i-B) \quad\quad B_i-B=\beta(P_i-B)</script><p>$(P_i,\,B_i,\,N,\,B)$ 四点的交比为：</p>
+<script type="math/tex; mode=display">
+\frac{1-\alpha}{\alpha}:\frac{1-\beta}{\beta}=\frac{P_iN}{BN}:\frac{P_iB_i}{BB_i}=\omega_i</script><ul>
+<li>若 $\omega_i$ 增大或减小，则 $\beta$ 页增大或减小，所以曲线被拉向或者推离开 $P_i$ 点</li>
+<li>若 $\omega_i$ 增大或减小，则曲线被推离开或者拉向 $P_j\,(j\not=i)$ 点</li>
+<li>随着 $B_i$ 的运动，它扫描出一条直线 $BP_i$ </li>
+<li>若 $B_i$ 趋向 $P_i$ ，则 $\beta$ 去向 1，$\omega_j$ 趋向正无穷</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/4ae84b049a9e4a9fb23df85279ecda12.png" alt="5_144" style="zoom:60%;" /></p>
+<h3 id="圆锥曲线的-NURBS-表示"><a href="#圆锥曲线的-NURBS-表示" class="headerlink" title="圆锥曲线的 NURBS 表示"></a>圆锥曲线的 NURBS 表示</h3><p>取节点向量为 $T=[0,0,0,1,1,1]$ ，则 NURBS 曲线退化为二次 Bezier 曲线，可以证明这是圆锥曲线弧方程：</p>
+<script type="math/tex; mode=display">
+P(t)=\frac{(1-t^2)\omega_0P_0+2t(1-t)\omega_1P_1+t^2\omega_2P_2}{(1-t^2)\omega_0+2t(1-t)\omega_1+t^2\omega_2}</script><p><strong>形状因子：</strong> $C_{sf}=\frac{\omega_1^2}{\omega_0\omega_2}<br>\quad\quad<br>\begin{array}{|c|c|c|c|c|c|}<br>\hline<br>C_{sf} &amp; 0 &amp; (0,\,1) &amp; 1 &amp; (1,\,+\infin) &amp; \to+\infin \\<br>\hline<br>曲线 &amp; P_0P_2 &amp; 椭圆 &amp; 抛物线 &amp; 双曲线 &amp; P_0P_1和P_1P_2 \\<br>\hline<br>\end{array}$ </p>
+<p><img src="https://img-blog.csdnimg.cn/5fe35655cae04105ae4fc7d3c70d05e8.png" alt="5_146" style="zoom:50%;" /></p>
+<h3 id="NURBS曲线的修改"><a href="#NURBS曲线的修改" class="headerlink" title="NURBS曲线的修改"></a>NURBS曲线的修改</h3><p>常用方法：修改权因子、修改控制点、反插节点</p>
+<h3 id="NURBS曲面"><a href="#NURBS曲面" class="headerlink" title="NURBS曲面"></a>NURBS曲面</h3><p><mark>一般不会考的 </mark> 注意这里权因子的下标变成了 $\omega_{ij}$ </p>
+<h2 id="5-5-Coons曲面"><a href="#5-5-Coons曲面" class="headerlink" title="5.5 Coons曲面"></a>5.5 Coons曲面</h2><h3 id="Coons-曲面的定义"><a href="#Coons-曲面的定义" class="headerlink" title="Coons 曲面的定义"></a>Coons 曲面的定义</h3><p>属于构造插值曲面的方法，用于构造通过给定型值点的曲面</p>
+<p><strong>基本概念：</strong> 假定参数曲面方程为 $P(u,\,v)\,(u,\,v\in[0,\,1])$ </p>
+<ul>
+<li>曲面片的四条边界：$P(u,\,0)$ ，$P(u,\,1)$ ，$P(0,\,v)$ ，$P(1,\,v)$ </li>
+<li>曲面片的四个角点：$P(0,\,0)$ ，$P(0,\,1)$ ，$P(1,\,0)$ ，$P(1,\,1)$ </li>
+</ul>
+<p><strong>要解决的问题：</strong> 给定四条在空间中围成封闭曲边四边形的参数曲线 $P(u,\,0)$ ，$P(u,\,1)$ ，$P(0,\,v)$ ，$P(1,\,v)$ ，构造一张参数曲面 $P(u,\,v)\,(u,\,v\in[0,\,1])$ </p>
+<p><img src="https://img-blog.csdnimg.cn/da8fab83d38042f79b9528d5651a4627.png" alt="5_159" style="zoom:60%;" /></p>
+<p><strong>方法：</strong> 双线性 Coons 曲面和双三次 Coons 曲面</p>
+<h3 id="双线性-Coons-曲面"><a href="#双线性-Coons-曲面" class="headerlink" title="双线性 Coons 曲面"></a>双线性 Coons 曲面</h3><p><mark>这些内容都要记住，给出图形，写出双线性构造的算法；双三次计算量较大，不太可能会考</mark> </p>
+<p><img src="https://img-blog.csdnimg.cn/82ba4de6404742a182317a13a69c2992.png" alt="5_162" style="zoom:70%;" /></p>
+<p>① 首先，在 $u$ 向进行线性插值，得到以 $P(0,\,v)$ 和$P(1,\,v)$ 为边界的直纹面（如图 (b) ）：</p>
+<script type="math/tex; mode=display">
+P_1(u,\,v)=(1-u)P(0,\,v)+uP(1,\,v)</script><p>② 接着，在 $v$ 向进行线性插值，得到以 $P(u,\,0)$ 和$P(u,\,1)$ 为边界的直纹面（如图 (a) ）：</p>
+<script type="math/tex; mode=display">
+P_2(u,\,v)=(1-v)P(u,\,0)+vP(u,\,1)</script><p>③ 再构造两条 $v$ 向的连接端点的直线段：</p>
+<script type="math/tex; mode=display">
+(1-v)P(0,\,0)+vP(0,\,1) \\
+(1-v)P(1,\,0)+vP(0,\,1)</script><p>以这两条直线段为边界，构造直纹面 $P_3(u,\,v)$ ：</p>
+<script type="math/tex; mode=display">
+P_3(u,\,v)=(1-u)[(1-v)P(0,\,0)+vP(0,\,0)]+u[(1-v)P(1,\,0)+vP(1,\,1)] \\=
+\begin{bmatrix}
+1-u & u
+\end{bmatrix}
+\begin{bmatrix}
+P(0,0) & P(0,1) \\
+P(1,0) & P(1,1)
+\end{bmatrix}
+\begin{bmatrix}
+1-v \\
+v
+\end{bmatrix}
+\quad\quad u,\,v\in[0,\,1]</script><p>④ $P(u,\,v)=P_1(u,\,v)+P_2(u,\,v)-P_3(u,\,v)$ 便是所要构造的面，矩阵形式为：</p>
+<script type="math/tex; mode=display">
+P(u,\,v)= -
+\begin{bmatrix}
+-1 & 1-u & u
+\end{bmatrix}
+\begin{bmatrix}
+0 & P(u,0) & P(u,1) \\
+P(0,v) & P(0,0) & P(0,1) \\
+P(1,v) & P(1,0) & P(1,1)
+\end{bmatrix}
+\begin{bmatrix}
+-1 \\
+1-v \\
+v
+\end{bmatrix}
+\quad\quad u,\,v\in[0,\,1]</script><h3 id="双三次-Coons-曲面"><a href="#双三次-Coons-曲面" class="headerlink" title="双三次 Coons 曲面"></a>双三次 Coons 曲面</h3><p><mark>建议直接背诵[流汗]</mark> </p>
+<p>① 使用 Hermite 基函数 $F_0$ 、$F_1$ 、$G_0$ 和 $G_1$ 作为调和函数，构造 $u$ 向和 $v$ 向的曲面：</p>
+<script type="math/tex; mode=display">
+P_1(u,\,v)=F_0(u)P(0,\,v)+F_1(u)P(1,\,v)+G_0(u)P_u(0,\,v)+G_1(u)P_u(1,\,v) \\
+P_2(u,\,v)=F_0(v)P(u,\,0)+F_1(v)P(u,\,1)+G_0(v)P_v(u,\,0)+G_1(v)P_v(u,\,1) \\</script><p>$P_u$ 、$P_v$ 指切矢量，$u,\,v\in[0,\,1]$ </p>
+<p>② 对角点的数据进行插值，可得曲面 $P_3(u,\,v)$ ：（ $u,\,v\in[0,\,1]$ ）</p>
+<script type="math/tex; mode=display">
+P_3(u,\,v)= 
+\begin{bmatrix}
+F_0(u) & F_1(u) & G_0(u) & G_1(u)
+\end{bmatrix}
+\begin{bmatrix}
+P(0,0) & P(0,1) & P_v(0,0) & P_v(0,1) \\
+P(1,0) & P(1,1) & P_v(1,0) & P_v(1,1) \\
+P_u(0,0) & P_u(0,1) & P_{uv}(0,0) & P_{uv}(0,1) \\
+P_u(1,0) & P_u(1,1) & P_{uv}(1,0) & P_{uv}(1,1) \\
+\end{bmatrix}
+\begin{bmatrix}
+F_0(v) \\ F_1(v) \\ G_0(v) \\ G_1(v)
+\end{bmatrix}
+\quad\quad</script><p>③ $P(u,\,v)=P_1(u,\,v)+P_2(u,\,v)-P_3(u,\,v)$ 便是所要构造的面，矩阵形式为：（ $u,\,v\in[0,\,1]$ ）</p>
+<script type="math/tex; mode=display">
+P(u,\,v)= -
+\begin{bmatrix}
+-1 & F_0(u) & F_1(u) & G_0(u) & G_1(u)
+\end{bmatrix}
+\begin{bmatrix}
+0 & P(u,0) & P(u,1) & P_v(u,0) & P_v(u,1) \\
+P(0,v) & P(0,0) & P(0,1) & P_v(0,0) & P_v(0,1) \\
+P(1,v) & P(1,0) & P(1,1) & P_v(1,0) & P_v(1,1) \\
+P_u(0,v) & P_u(0,0) & P_u(0,1) & P_{uv}(0,0) & P_{uv}(0,1) \\
+P_u(1,v) & P_u(1,0) & P_u(1,1) & P_{uv}(1,0) & P_{uv}(1,1) \\
+\end{bmatrix}
+\begin{bmatrix}
+-1 \\ F_0(v) \\ F_1(v) \\ G_0(v) \\ G_1(v)
+\end{bmatrix}
+\quad\quad</script>
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/CG/">#CG</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/10/29/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">OS 操作系统 处理器调度</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%20%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%85%89%E6%A0%85%E5%9B%BE%E5%BD%A2%E5%AD%A6/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算机图形学 第四章 光栅图形学</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2"><span class="nav-text">计算机图形学 第五章 曲线与曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2%E7%9A%84%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-text">5.1 曲线曲面的参数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%9B%B2%E7%BA%BF%EF%BC%9A%E4%BD%8D%E7%BD%AE%E7%9F%A2%E9%87%8F%E3%80%81%E5%88%87%E7%9F%A2%E9%87%8F%E3%80%81%E6%B3%95%E7%9F%A2%E9%87%8F%E3%80%81%E6%9B%B2%E7%8E%87%E5%92%8C%E6%8C%A0%E7%8E%87"><span class="nav-text">参数曲线：位置矢量、切矢量、法矢量、曲率和挠率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E3%80%81%E9%80%BC%E8%BF%91%E3%80%81%E6%8B%9F%E5%90%88%E5%92%8C%E5%85%89%E9%A1%BA"><span class="nav-text">插值、逼近、拟合和光顺</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%8C%96"><span class="nav-text">参数化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BB%A3%E6%95%B0%E5%92%8C%E5%87%A0%E4%BD%95%E5%BD%A2%E5%BC%8F"><span class="nav-text">参数曲线的代数和几何形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="nav-text">连续性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%9B%B2%E9%9D%A2"><span class="nav-text">参数曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%8F%82%E6%95%B0%E6%9B%B2%E9%9D%A2%E8%A1%A8%E7%A4%BA"><span class="nav-text">常见参数曲面表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E4%B8%89%E6%AC%A1%E5%8F%82%E6%95%B0%E6%9B%B2%E9%9D%A2"><span class="nav-text">双三次参数曲面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A7%81%E5%8F%82%E6%95%B0%E6%9B%B2%E9%9D%A2"><span class="nav-text">其他常见参数曲面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-Bezier-%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2"><span class="nav-text">5.2 Bezier 曲线与曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bezier-%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">Bezier 曲线的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Berstain-%E5%9F%BA%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">Berstain 基函数的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bezier-%E6%9B%B2%E7%BA%BF%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">Bezier 曲线的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bezier-%E6%9B%B2%E7%BA%BF%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="nav-text">Bezier 曲线的矩阵表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bezier-%E6%9B%B2%E7%BA%BF%E7%9A%84%E9%80%92%E6%8E%A8-de-Casteljau-%E7%AE%97%E6%B3%95"><span class="nav-text">Bezier 曲线的递推(de Casteljau)算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bezier-%E6%9B%B2%E7%BA%BF%E7%9A%84%E6%8B%BC%E6%8E%A5"><span class="nav-text">Bezier 曲线的拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bezier-%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%8D%87%E9%98%B6%E4%B8%8E%E9%99%8D%E9%98%B6"><span class="nav-text">Bezier 曲线的升阶与降阶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bezier-%E6%9B%B2%E9%9D%A2"><span class="nav-text">Bezier 曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%BC%E6%8E%A5"><span class="nav-text">拼接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-B-%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2"><span class="nav-text">5.3 B 样条曲线与曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%E6%96%B9%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">B 样条曲线方程的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%A0%B7%E6%9D%A1%E5%9F%BA%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">B 样条基函数的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%92%E5%88%86"><span class="nav-text">B 样条曲线的类型划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">B 样条曲线的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="nav-text">B 样条曲线的矩阵表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1-B-%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF"><span class="nav-text">一次 B 样条曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1-B-%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF"><span class="nav-text">二次 B 样条曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1-B-%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF"><span class="nav-text">三次 B 样条曲线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#de-Boor-%E7%AE%97%E6%B3%95"><span class="nav-text">de Boor 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E6%8F%92%E5%85%A5%E7%AE%97%E6%B3%95"><span class="nav-text">节点插入算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%A0%B7%E6%9D%A1%E6%9B%B2%E9%9D%A2"><span class="nav-text">B 样条曲面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-NURBS%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2"><span class="nav-text">5.4 NURBS曲线与曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NURBS-%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">NURBS 曲线的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NURBS-%E6%9B%B2%E7%BA%BF%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">NURBS 曲线的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E5%9B%A0%E5%AD%90%E7%9A%84%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89"><span class="nav-text">权因子的几何意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%86%E9%94%A5%E6%9B%B2%E7%BA%BF%E7%9A%84-NURBS-%E8%A1%A8%E7%A4%BA"><span class="nav-text">圆锥曲线的 NURBS 表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NURBS%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="nav-text">NURBS曲线的修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NURBS%E6%9B%B2%E9%9D%A2"><span class="nav-text">NURBS曲面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-Coons%E6%9B%B2%E9%9D%A2"><span class="nav-text">5.5 Coons曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Coons-%E6%9B%B2%E9%9D%A2%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">Coons 曲面的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E7%BA%BF%E6%80%A7-Coons-%E6%9B%B2%E9%9D%A2"><span class="nav-text">双线性 Coons 曲面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E4%B8%89%E6%AC%A1-Coons-%E6%9B%B2%E9%9D%A2"><span class="nav-text">双三次 Coons 曲面</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
