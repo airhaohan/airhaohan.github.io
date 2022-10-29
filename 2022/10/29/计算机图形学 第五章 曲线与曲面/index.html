@@ -184,8 +184,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-10-29 10:33:00</span>
-        <span class="mobile">2022-10-29 10:33</span>
+        <span class="pc">2022-10-29 19:33:00</span>
+        <span class="mobile">2022-10-29 19:33</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -640,12 +640,12 @@ R_{i,k}=\frac{\omega_iN_{i,k}(t)}{\sum\limits_{j=0}^n\omega_jN_{j,k}(t)}</script
 <p>② NURBS 曲线的性质：</p>
 <p><strong>局部性质：</strong> </p>
 <ul>
-<li>$k$ 阶 NURBS 曲线上参数为 $t\in[t_i,\,t_{i+k}]\sub[t_{k-1},\,t_{n+1}]$ 的一点 $P(t)$ 至多与 $k$ 个控制顶点 $P_j$ 及权因子 $\omega_j\,(j=i-k+1,…,i)$ 有关，与其他顶点和权因子无关；</li>
-<li>若移动 $k$ 次 NURBS 曲线的一个控制顶点 $P_i$  或改变其对应的权因子 $\omega_i$ ，则仅仅影响定义在区间 $[t_i,\,t_{i+k}]\sub[t_{k-1},\,t_{n+1}]$ 那部分曲线的形状</li>
+<li>$k$ 阶 NURBS 曲线上参数为 $t\in[t_i,\,t_{i+k}]\subset[t_{k-1},\,t_{n+1}]$ 的一点 $P(t)$ 至多与 $k$ 个控制顶点 $P_j$ 及权因子 $\omega_j\,(j=i-k+1,…,i)$ 有关，与其他顶点和权因子无关；</li>
+<li>若移动 $k$ 次 NURBS 曲线的一个控制顶点 $P_i$  或改变其对应的权因子 $\omega_i$ ，则仅仅影响定义在区间 $[t_i,\,t_{i+k}]\subset[t_{k-1},\,t_{n+1}]$ 那部分曲线的形状</li>
 </ul>
 <p><strong>变差缩减性、凸包性、仿射与透射变换不变性：</strong> 与 Bezier 曲线相同</p>
 <h3 id="权因子的几何意义"><a href="#权因子的几何意义" class="headerlink" title="权因子的几何意义"></a>权因子的几何意义</h3><p><mark>要记住形状因子和权因子对曲线的影响表现在图上的样子</mark> </p>
-<p>记 $B$ 、$N$ 、$B_i$ 分别为 $\omega_i=0$ 、$\omega_i=1$ 和 $\omega_i\not=0,\,1$ 对应曲线上的点，即：$B=P(t;\,\omega_i=0)$ ，$N=P(t;\,\omega_i=1)$ ，$B_i=P(t;\,\omega_i\not=0,\,1)$ ，$P_i=P(t;\,\omega_i\to\infin)$ </p>
+<p>记 $B$ 、$N$ 、$B_i$ 分别为 $\omega_i=0$ 、$\omega_i=1$ 和 $\omega_i\not=0,\,1$ 对应曲线上的点，即：$B=P(t;\,\omega_i=0)$ ，$N=P(t;\,\omega_i=1)$ ，$B_i=P(t;\,\omega_i\not=0,\,1)$ ，$P_i=P(t;\,\omega_i\to\infty)$ </p>
 <p>（$B$ 代表 $P_i$ 完全没有影响时曲线的形状；$N$ 代表 $P_i$ 的影响力和在 B 样条曲线中影响力一样时曲线的形状；$B_i$ 代表在 B 样条曲线的基础上对 $P_i$ 增加或减少影响力时曲线的形状）</p>
 <p>令 $\alpha=R_{i,k}(t;\,\omega_i=1)$ ，$\beta=R_{i,k}(t)$ ，则：</p>
 <script type="math/tex; mode=display">
@@ -661,7 +661,7 @@ N-B=\alpha(P_i-B) \quad\quad B_i-B=\beta(P_i-B)</script><p>$(P_i,\,B_i,\,N,\,B)$
 <p><img src="https://img-blog.csdnimg.cn/4ae84b049a9e4a9fb23df85279ecda12.png" alt="5_144" style="zoom:60%;" /></p>
 <h3 id="圆锥曲线的-NURBS-表示"><a href="#圆锥曲线的-NURBS-表示" class="headerlink" title="圆锥曲线的 NURBS 表示"></a>圆锥曲线的 NURBS 表示</h3><p>取节点向量为 $T=[0,0,0,1,1,1]$ ，则 NURBS 曲线退化为二次 Bezier 曲线，可以证明这是圆锥曲线弧方程：</p>
 <script type="math/tex; mode=display">
-P(t)=\frac{(1-t^2)\omega_0P_0+2t(1-t)\omega_1P_1+t^2\omega_2P_2}{(1-t^2)\omega_0+2t(1-t)\omega_1+t^2\omega_2}</script><p><strong>形状因子：</strong> $C_{sf}=\frac{\omega_1^2}{\omega_0\omega_2}<br>\quad\quad<br>\begin{array}{|c|c|c|c|c|c|}<br>\hline<br>C_{sf} &amp; 0 &amp; (0,\,1) &amp; 1 &amp; (1,\,+\infin) &amp; \to+\infin \\<br>\hline<br>曲线 &amp; P_0P_2 &amp; 椭圆 &amp; 抛物线 &amp; 双曲线 &amp; P_0P_1和P_1P_2 \\<br>\hline<br>\end{array}$ </p>
+P(t)=\frac{(1-t^2)\omega_0P_0+2t(1-t)\omega_1P_1+t^2\omega_2P_2}{(1-t^2)\omega_0+2t(1-t)\omega_1+t^2\omega_2}</script><p><strong>形状因子：</strong> $C_{sf}=\frac{\omega_1^2}{\omega_0\omega_2}<br>\quad\quad<br>\begin{array}{|c|c|c|c|c|c|}<br>\hline<br>C_{sf} &amp; 0 &amp; (0,\,1) &amp; 1 &amp; (1,\,+\infty) &amp; \to+\infty \\<br>\hline<br>曲线 &amp; P_0P_2 &amp; 椭圆 &amp; 抛物线 &amp; 双曲线 &amp; P_0P_1和P_1P_2 \\<br>\hline<br>\end{array}$ </p>
 <p><img src="https://img-blog.csdnimg.cn/5fe35655cae04105ae4fc7d3c70d05e8.png" alt="5_146" style="zoom:50%;" /></p>
 <h3 id="NURBS曲线的修改"><a href="#NURBS曲线的修改" class="headerlink" title="NURBS曲线的修改"></a>NURBS曲线的修改</h3><p>常用方法：修改权因子、修改控制点、反插节点</p>
 <h3 id="NURBS曲面"><a href="#NURBS曲面" class="headerlink" title="NURBS曲面"></a>NURBS曲面</h3><p><mark>一般不会考的 </mark> 注意这里权因子的下标变成了 $\omega_{ij}$ </p>
@@ -767,29 +767,14 @@ P_u(1,v) & P_u(1,0) & P_u(1,1) & P_{uv}(1,0) & P_{uv}(1,1) \\
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/10/29/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">OS 操作系统 处理器调度</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/10/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%20%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%85%89%E6%A0%85%E5%9B%BE%E5%BD%A2%E5%AD%A6/"
+                           href="/2022/10/29/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">计算机图形学 第四章 光栅图形学</span>
+                                <span class="post-nav-title-item">OS 操作系统 处理器调度</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
