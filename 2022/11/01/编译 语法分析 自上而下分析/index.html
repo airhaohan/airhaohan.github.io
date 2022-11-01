@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            编译 语法分析 自上而下分析 |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"计院人的2+X就是2+Labs+PJs+Reports🙋‍♂️"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">编译 语法分析 自上而下分析</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-11-01 11:17:00</span>
+        <span class="mobile">2022-11-01 11:17</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Compile/">Compile</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Compile/">Compile</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="编译-语法分析-自上而下分析"><a href="#编译-语法分析-自上而下分析" class="headerlink" title="编译 语法分析 自上而下分析"></a>编译 语法分析 自上而下分析</h1><p>主要介绍了如何通过消除左递归和回溯来构造 LL(1) 文法和两种分析方法：递归下降分析和预测分析法</p>
+<h2 id="自顶向下语法分析的思想"><a href="#自顶向下语法分析的思想" class="headerlink" title="自顶向下语法分析的思想"></a>自顶向下语法分析的思想</h2><p><strong>基本思想：</strong> 从文法的开始符号触发，反复使用各种产生式，寻找匹配的推导，使推导出的句子恰好是输入符号串</p>
+<p><strong>面临问题：</strong> 当某个非终结符由多个产生式候选时，可能带来如下问题：</p>
+<ul>
+<li>回溯：当一个非终结符用某个候选匹配成功时，这种匹配可能是暂时的，之后出错时不得不回溯</li>
+<li>左递归：文法含有左递归现象时，分析将进入无限循环（例如 $P\to P\alpha$ 或 $P\to Q\alpha$  $Q\to R\beta$  $R\to P\gamma$ ）</li>
+</ul>
+<h2 id="LL-1-分析法"><a href="#LL-1-分析法" class="headerlink" title="LL(1) 分析法"></a>LL(1) 分析法</h2><h3 id="消除左递归"><a href="#消除左递归" class="headerlink" title="消除左递归"></a>消除左递归</h3><p><strong>直接左递归：</strong> 对于 $P\to P\alpha_1|P\alpha_2|P\alpha_m|\beta_1|\beta_2|…|\beta_n$ （$\beta$ 不以 $P$ 开头），通过以下改写为等价的非直接左递归的形式：</p>
+<script type="math/tex; mode=display">
+P\to \beta_1P'|\beta_2P'|...|\beta_nP' \\
+P' \to\alpha_1P'|\alpha_2P'|...|\alpha_mP'|\varepsilon</script><p><strong>例：</strong> $P\to PaPb|BaP$ 消除直接左递归得到 $P\to BaPP’|$ 和 $P’\to aPbP’|\varepsilon$  </p>
+<p><strong>间接左递归：</strong> 算法描述如下：</p>
+<p>① 将所有非终结符按照某一顺序排列：$P_1$ ，$P_2$ ，$P_3$ …</p>
+<p>② 遍历每个非终结符 $P_i$ ：</p>
+<ul>
+<li>遍历 $j\lt i$ ，对于 $P_j\to\delta_1|\delta_2|…|\delta_k$ ，把所有 $P_i\to P_j\gamma$ 改写为 $P_i\to\delta_1\gamma|\delta_2\gamma|…|\delta_k\gamma$ </li>
+<li>消除关于 $P_i$ 的直接左递归</li>
+</ul>
+<p>③ 化简得到的文法，去除无用符号</p>
+<p>（注意：一般将开始符号排最后，再按照拓扑序从后往前排布，这样效果较好）</p>
+<p><strong>例：</strong> 消除文法 $G(S)$ 的左递归性：</p>
+<script type="math/tex; mode=display">
+S\to Qc|c \\
+Q\to Rb|b \\
+R\to Sa|a</script><ol>
+<li>令排序为 R、Q、S</li>
+<li>对于 R，不存在直接左递归</li>
+<li>对于 Q，把 R 带入 Q，规则变为： $Q\to Sab|ab|b$ ，并且不存在直接左递归</li>
+<li>对于 S ，把 Q 带入 S，规则变为：$S\to Sabc|abc|bc|c$ ，消除左递归后得到 $S\to abcS’|bcS’|cS’$ 和 $S’\to abcS’ |\varepsilon$ </li>
+<li>关于 Q 和 R 的规则是多余的了，因此最终化简为：</li>
+</ol>
+<script type="math/tex; mode=display">
+S\to abcS'|bcS'|cS' \\
+S'\to abcS' |\varepsilon</script><h3 id="消除回溯"><a href="#消除回溯" class="headerlink" title="消除回溯"></a>消除回溯</h3><p><strong>思想：</strong> 产生式规则的首终结符号非常重要，我们采用提取左因子的办法使得同一非终结符所有右部的首终结符号不同，这样就可以保证在分析时选中唯一的产生式</p>
+<p><strong>方法：</strong> 需要构建两个辅助集合（构造方法在预测分析程序的分析表构造中详述）</p>
+<ul>
+<li>$FIRST(\alpha)=\{a|\alpha\Rightarrow a…,\,a\in V_T\}$ （$\alpha$ 代表文法的所有非终结符的每个候选式），代表候选式 $\alpha$ 能够推出的所有句子的首终结符的情况</li>
+<li>$FOLLOW(A)=\{a|S\Rightarrow …Aa…,\,a\in V_T\}$ （$A$ 代表文法的所有非终结符）（当 $S\Rightarrow …A$ 时，规定 $\sharp\in FOLLOW(A)$ ），代表非终结符之后可能跟随的终结符</li>
+</ul>
+<p><strong>提取公共左因子：</strong> 假设关于非终结符 A 的产生式有 $A\to\delta\beta_1|\delta\beta_2|…|\delta\beta_n|\gamma_1|\gamma_2|…|\gamma_m$ （其中 $\gamma$ 不以 $\delta$ 开头），则可以将规则改写为：</p>
+<script type="math/tex; mode=display">
+A\to\delta A'|\gamma_1|\gamma_2|...|\gamma_m \\
+A'\to\beta_1|\beta_2|...|\beta_n</script><p>反复提取，就可以使得非终结符 A 的 FIRST 集两两不相交</p>
+<p><strong>注意：</strong> 当非终结符 A 的 FIRST 集两两不相交，即对 A 的两个不同的候选式 $\alpha_i$ 和 $\alpha_j$ 都有 $FIRST(\alpha_i)\cap FIRST(\alpha_j)=\varnothing$ ，则当要求 A 匹配输入串时，A 就能根据它所面临的 <mark>第一个</mark> 输入符号 a 来准确判断到底应该是哪个候选式去匹配</p>
+<p>（高亮的第一个也代表 LL(1) 文法中的 1 ，即只需要根据下一个输入符号就可以做出动作）</p>
+<h3 id="LL-1-文法"><a href="#LL-1-文法" class="headerlink" title="LL(1) 文法"></a>LL(1) 文法</h3><p><strong>LL(1) 文法：</strong> 为不带回溯的自上而下分析的文法，条件为：</p>
+<ul>
+<li>文法不含左递归</li>
+<li>对于文法中每个非终结符 A 的各个产生候选式的 FIRST 集合两两不相交</li>
+<li>对于文法中每个非终结符，若其右部的某个 FIRST 集存在 $\varepsilon$ ，则需要满足 $FIRST(\alpha_i)\cap FOLLOW(A)=\varnothing$ （$\alpha_i$ 为 A 的非空候选式）</li>
+</ul>
+<p><strong>注意：</strong> LL(1) 文法是无二义的，二义文法一定不是 LL(1) 文法</p>
+<p><strong>LL(1) 分析法：</strong> 对于 LL(1) 文法以及一个输入串，可以进行有效的误会苏的自上而下分析。假设要用非终结符 A 进行匹配且 $A\to\alpha_i$ ，当前输入符号为 a 时：</p>
+<ul>
+<li>若 $a\in FIRST(\alpha_i)$ ，则指派 $\alpha_i$ 执行匹配任务</li>
+<li>若任意 $i$ 都 $a\notin FIRST(\alpha_i)$ ，则：<ul>
+<li>若 $\varepsilon \in FIRST(\alpha_i)$ 且 $a\in FOLLOW(A)$ ，则让 $A$ 与 $\varepsilon$ 自动匹配</li>
+<li>否则，a 的出现就是一种语法错误</li>
+</ul>
+</li>
+</ul>
+<h2 id="递归下降分析程序"><a href="#递归下降分析程序" class="headerlink" title="递归下降分析程序"></a>递归下降分析程序</h2><p><strong>思想：</strong> 对每一个非终结符都写一个函数来处理，当是用某个非终结符进行匹配时调用该非终结符的处理函数；由于处理函数之间可能会相互调用，因此呈现递归的现象</p>
+<p><strong>扩充的巴科斯范式：</strong> 原来的 CFL 的巴科斯 范式中只用到了 $\to$ 和 | ，可以对符号进行扩充：</p>
+<ul>
+<li>用花括号代表闭包运算，即 $\{\alpha\}\iff\alpha^*$ </li>
+<li>用 $\{\alpha\}_n^0$ 表示 $\alpha$ 可以任意重复 0 次至 n 次（左闭右闭）；$\{\alpha\}_0^0=\varepsilon$ </li>
+<li>用方括号 $[\alpha]$ 表示 $\{\alpha\}_0^1$ ，即可有可无</li>
+</ul>
+<p><strong>例：</strong><br><img src="https://img-blog.csdnimg.cn/9bfacd27135b48b4bfc7d5af3bc56f0a.jpeg" alt="4_56" style="zoom:60%;" /><br>可以用语法图来表示：<br><img src="https://img-blog.csdnimg.cn/4c3c1425e009472a8aa89f4b3d3bb942.png" alt="4_55" style="zoom:60%;" /></p>
+<h2 id="预测分析程序"><a href="#预测分析程序" class="headerlink" title="预测分析程序"></a>预测分析程序</h2><p>（递归下降分析器的问题：不是所有高级语言都支持递归函数/递归过程）</p>
+<p>（预测分析程序就是是用栈的方式来消除递归函数）</p>
+<p><strong>预测分析程序：</strong> 由以下部分组成</p>
+<ul>
+<li>总控程序</li>
+<li>分析表 $M[A,\,a]$ 矩阵，$A\in V_N$ ，$a\in V_T$ 或者是 #</li>
+<li>分析栈 STACK 用于存放文法符号</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/9a72fea92af244a993b2c44be660dbd9.jpeg" alt="4_58" style="zoom:60%;" /></p>
+<p><strong>算法：</strong> 总控程序根据当前栈顶符号 $X$ 和当前输入符号 $a$ ，执行下列三种动作之一：</p>
+<ul>
+<li>若 $X=a=\sharp$ ，则分析成功，停止分析</li>
+<li><p>若 $X=a\not= \sharp$ ，则说明当前字符匹配成功，把 $X$ 从 STACK 弹出，让 $a$ 指向下一个输入符号</p>
+</li>
+<li><p>若 $X$ 是非终结符，则查看分析表 $M$ ：</p>
+<ul>
+<li>若 $M[X,\,a]$ 中存放着关于 $X$ 的一个产生式，把 $X$ 弹出，并把产生式有部符号串按照反序一一入栈（若右部为 $\varepsilon$ ，则不入栈）；入栈同时应做这个产生式对应的语义动作</li>
+<li>若 $M[X,\,a]$ 中存放着出错标志，则调用用出错诊察程序</li>
+</ul>
+</li>
+</ul>
+<h3 id="分析表的构造"><a href="#分析表的构造" class="headerlink" title="分析表的构造"></a>分析表的构造</h3><p>需要构建两个辅助集合</p>
+<ul>
+<li>$FIRST(\alpha)=\{a|\alpha\Rightarrow a…,\,a\in V_T\}$ （$\alpha$ 代表文法的所有非终结符的每个候选式），代表候选式 $\alpha$ 能够推出的所有句子的首终结符的情况</li>
+<li>$FOLLOW(A)=\{a|S\Rightarrow …Aa…,\,a\in V_T\}$ （$A$ 代表文法的所有非终结符）（当 $S\Rightarrow …A$ 时，规定 $\sharp\in FOLLOW(A)$ ），代表非终结符之后可能跟随的终结符</li>
+</ul>
+<h4 id="FIRST-alpha-的构造"><a href="#FIRST-alpha-的构造" class="headerlink" title="$FIRST(\alpha)$ 的构造"></a>$FIRST(\alpha)$ 的构造</h4><p>① 首先对每一文法符号 $X\in V_T\cup V_N$ 都构造一个 $FIRST(X)$ </p>
+<p><strong>算法：</strong> 反复遍历每一个文法符号 $X$ ，重复以下过程每个 FIRST 集都不再增大：</p>
+<ul>
+<li><p>若 $X\in V_T$ ，则 $FIRST(X)={X}$ </p>
+</li>
+<li><p>若 $X\in V_N$ ：</p>
+<ul>
+<li><p>若有产生式 $X\to a…$ ，则将 $a$ 加入 $FIRST(X)$ ；</p>
+</li>
+<li><p>若有产生式 $X\to \varepsilon$ ，则将 $\varepsilon$ 加入 $FIRST(X)$ ；</p>
+</li>
+<li><p>若 $X\to Y$ 且 $Y\in V_N$ ，则将 $FIRST(Y)-\{\varepsilon\}$ 加入到 $FIRST(X)$ 中</p>
+</li>
+<li><p>若 $X\to Y_1Y_2…Y_k$ ，$Y_1,…,Y_{i-1}$ 都是非终结符且其 FIRST 集都含有 $\varepsilon$ ，则将 $FIRST(Y_i)-\{\varepsilon\}$ 加入到 $FIRST(X)$ 中；特别地，当 $i-1=k$ 时，将 $\varepsilon$ 加入 $FIRST(X)$ 中</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>② 再对每个右部 $\alpha =X_1X_2…X_n$ 构造集合 $FIRST(\alpha)$ </p>
+<p><strong>算法：</strong> 遍历所有产生式右部 $\alpha$ </p>
+<ul>
+<li>令所有 $FIRST(\alpha)=FIRST(X_1)-\{\varepsilon\}$ ；若 $\alpha=\varepsilon$ 则显然 $FIRST(\alpha)=\{\varepsilon\}$ </li>
+<li>若对任何 $1\le j\le i-1$ 都有 $\varepsilon\in FIRST(X_j)$ ，则把 $FIRST(X_i)-\{\varepsilon\}$ 加入 $FIRST(\alpha)$ 中</li>
+<li>若所有 $FIRST(X_i)$ 中都含有 $\varepsilon$ ，则将 $\varepsilon$ 加入 $FIRST(\alpha)$ </li>
+</ul>
+<p>（实际构造 FIRST 集时，一般只需要构造所有非终结符的 FIRST 集，等到构造分析表时再对右部具体分析）</p>
+<h4 id="FOLLOW-A-的构造"><a href="#FOLLOW-A-的构造" class="headerlink" title="$FOLLOW(A)$ 的构造"></a>$FOLLOW(A)$ 的构造</h4><p>对每一非终结符 $A\in V_T$ 都构造一个 $FOLLOW(A)$ </p>
+<p><strong>算法：</strong> 反复遍历每一个非终结符 $A$ ，直到每一个 FOLLOW 集不再增大为止</p>
+<ul>
+<li>对于开始符号 $S$ ，将 # 加入 $FOLLOW(S)$ 中</li>
+<li>对于产生式 $A\to\alpha B\beta$ ，把 $FIRST(\beta)-\{\varepsilon\}$ 加入 $FOLLOW(B)$ 中</li>
+<li>对于产生式 $A\to\alpha B$ 或 $A\to\alpha B\beta$ 且 $\beta\Rightarrow\varepsilon$ ，则将 $FOLLOW(A)$ 加入 $FOLLOW(B)$ 中</li>
+</ul>
+<h4 id="分析表的构造-1"><a href="#分析表的构造-1" class="headerlink" title="分析表的构造"></a>分析表的构造</h4><p>① 遍历文法 $G$ 的每个产生式 $A\to\alpha$ ：</p>
+<ul>
+<li>对每个终结符 $a\in FIRST(\alpha)$ ，把 $A\to\alpha$ 加入 $M[A,\,a]$ 中；</li>
+<li>若 $\varepsilon\in FIRST(\alpha)$ ，则对任何 $b\in FOLLOW(A)$ 把 $A\to\alpha$ 加入 $M[A,\,b]$ 中</li>
+</ul>
+<p>② 把无定义的 $M[A,\,a]$ 都打上出错标志；</p>
+<p><strong>注意：</strong> 分析表首先是要基于 LL(1) 文法才能构造的</p>
+<p><strong>例</strong> ：对于以下文法，构造相应的分析表：</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+E\to TE' \\
+E'\to+TE'|\varepsilon \\
+T\to FT' \\
+T'\to*FT'|\varepsilon \\
+F\to (E)|i
+\end{array}</script><p>得到 FIRST 集和 FOLLOW 集为：</p>
+<script type="math/tex; mode=display">
+\begin{array}{lll}
+FIRST(E)=\{(,\,i\} & & FOLLOW(E)=\{),\,\sharp\} \\
+FIRST(E')=\{+,\,\varepsilon\} & & FOLLOW(E)=\{),\,\sharp\} \\
+FIRST(T)=\{(,\,i\} & & FOLLOW(E)=\{+,\,),\,\sharp\} \\
+FIRST(T')=\{*,\,\varepsilon\} & & FOLLOW(E)=\{+,\,),\,\sharp\} \\
+FIRST(F)=\{(,\,i\} & & FOLLOW(E)=\{*,\,+,\,),\,\sharp\} \\
+\end{array}</script><p>得到分析表为：<br><img src="https://img-blog.csdnimg.cn/30157528730943d099f7dc6a9fb5e9d6.jpeg" alt="4_73" style="zoom:100%;" /></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Compile/">#Compile</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%20%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算机图形学 第五章 曲线与曲面</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90-%E8%87%AA%E4%B8%8A%E8%80%8C%E4%B8%8B%E5%88%86%E6%9E%90"><span class="nav-text">编译 语法分析 自上而下分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E6%80%9D%E6%83%B3"><span class="nav-text">自顶向下语法分析的思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LL-1-%E5%88%86%E6%9E%90%E6%B3%95"><span class="nav-text">LL(1) 分析法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E9%99%A4%E5%B7%A6%E9%80%92%E5%BD%92"><span class="nav-text">消除左递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E9%99%A4%E5%9B%9E%E6%BA%AF"><span class="nav-text">消除回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LL-1-%E6%96%87%E6%B3%95"><span class="nav-text">LL(1) 文法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F"><span class="nav-text">递归下降分析程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F"><span class="nav-text">预测分析程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-text">分析表的构造</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FIRST-alpha-%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-text">$FIRST(\alpha)$ 的构造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FOLLOW-A-%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-text">$FOLLOW(A)$ 的构造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0-1"><span class="nav-text">分析表的构造</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
