@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            操作系统 MIT6.S081 Lab3 Page |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"计院人的2+X就是2+Labs+PJs+Reports🙋‍♂️"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">操作系统 MIT6.S081 Lab3 Page</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-24 16:32:00</span>
+        <span class="mobile">2022-10-24 16:32</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/OS/">OS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/OS/">OS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="操作系统-MIT6-S081-Lab3-Page"><a href="#操作系统-MIT6-S081-Lab3-Page" class="headerlink" title="操作系统 MIT6.S081 Lab3 Page"></a>操作系统 MIT6.S081 Lab3 Page</h1><h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p>① Xv6 在 64bit Sv39 RISC-V 上运行：</p>
+<ul>
+<li><p>RISC-V 的指令，不论是内核的还是用户的，操作的都是虚拟内存；</p>
+</li>
+<li><p>Sv39 的配置下，只使用了低 39 位地址，其中高 27 位用于查询页表，剩下的 12 位是线性地址，因此一页的大小是 4KB ：</p>
+<ul>
+<li><p>逻辑上页表是一个 $2^{27}$ 项的数组，每一项称为 PTE，PTE 由 44bit PPN 和 10bit 标志位组成。标志位标明了用户对不同页的权限，是一种安全措施；</p>
+</li>
+<li><p>实际上页表被分为三级，每一级大小为 $2^9$ ，前两级的 PPN 包含的是下一级的物理地址，最后一级的 PPN 与 12 位的线性地址组成了物理地址。</p>
+</li>
+</ul>
+</li>
+<li><p>Xv6 的内核使用直接映射（即虚拟地址和物理地址相同）获取与 RAM 和设备通信，简化了读取或写入物理内存的内核代码。</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/e394acc971e042ab815347c34c762ad1.png" alt="riscv_address_translation" style="zoom:61%;" /></p>
+<p>② 每个进程都有一个描述用户空间页表以及描述内核空间的单页表：</p>
+<ul>
+<li><code>struct proc</code> 保存了一个 <code>pagetable_t</code> ，实际上是指向该进程根页表的指针；</li>
+<li>内核在用户地址空间的顶部映射一个带有 <code>trampoline</code> 代码的页面，所有用户的 <code>trampoline</code> 都映射到同一片区域，而且只能由内核访问；</li>
+<li>一些操作系统 (例如Linux) 通过在用户空间和内核之间的只读区域共享数据来加速某些系统调用。</li>
+</ul>
+<p>③ 实用函数：</p>
+<ul>
+<li><code>walk()</code> 是最关键的函数，用于模拟硬件的分页工作，通过虚拟地址查找最后一级页表的物理地址，即能够查找到最终的物理地址；</li>
+<li><code>mappages()</code> 建立从某段虚拟内存到某段物理内存的映射；</li>
+<li>copyout and copyin copy data to and from user virtual addresses provided as<br>system call arguments;</li>
+<li><code>copyin()</code> 和 <code>copyout()</code> 用于从用户提供的虚拟地址参数复制内容到内核中，或者从内核复制内容到用户提供的虚拟地址参数中；</li>
+<li>以 <code>kvm</code> 开头的函数操作内核页表，以 <code>uvm</code> 开头的函数操作用户页表，其他函数可以作用于这两个页表。</li>
+</ul>
+<h2 id="Part-A"><a href="#Part-A" class="headerlink" title="Part A"></a>Part A</h2><p><strong>实验目标：</strong> 加速系统调用 <code>getpid()</code> ，使其直接在用户态下完成，而不需要切换到内核态</p>
+<p><strong>实验步骤：</strong> 涉及到 <code>usyscall</code> 的一共有一下四个过程：为进程分配、释放内存时，也需要对 <code>usyscall</code> 分配、释放内存；为进程的虚拟地址和物理地址建立、解除映射时，也需要对 <code>usyscall</code> 所指空间进行建立和解除映射。于是要对实现这四个过程的函数进行修改：</p>
+<p>① 共享空间中保存的数据结构为 <code>usyscall</code> ，其虚拟地址的起始位置在 <code>kernel/memlayout.h</code> 中定义为 <code>USYSCALL</code> ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/memlayout.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> USYSCALL (TRAPFRAME - PGSIZE)</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">usyscall</span> &#123;</span></span><br><span class="line">  <span class="type">int</span> pid;  <span class="comment">// Process ID</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在 <code>struct proc</code> 中新增一个 <code>struct usyscall*</code> ，指向内核态和用户态共享、用户态下只可读的内存空间，结构体中包含了用户态下完成系统调用需要用到的信息（这里需要保存 PID）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.h</span></span><br><span class="line"><span class="comment">// Per-process state</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">proc</span> &#123;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">usyscall</span>* <span class="title">usyscall</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>② 在 <code>allocproc()</code> 中，为进程分配内存时，也要为 <code>usyscall</code> 分配内存，并且初始化其中的变量：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.c</span></span><br><span class="line"><span class="type">static</span> <span class="keyword">struct</span> proc*</span><br><span class="line"><span class="title function_">allocproc</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">p</span>;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span>((p-&gt;usyscall = (<span class="keyword">struct</span> usyscall*)kalloc()) == <span class="number">0</span>) &#123;</span><br><span class="line">        freeproc(p);</span><br><span class="line">        release(&amp;p-&gt;lock);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	p-&gt;usyscall-&gt;pid = p-&gt;pid;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>③ 在 <code>proc_pagetable()</code> 中为进程创建页表时，将 <code>struct usyscall* usyscall</code> 所指向的虚拟内存和物理内存映射起来：</p>
+<ul>
+<li>要求用户态下可以访问且只读这片内存区域，因此权限设置为 <code>PTE_U</code> 和 <code>PTE_R</code> </li>
+<li>失败的情况下，要将已经映射好的 <code>TRAPOLINE</code> 和 <code>TRAPFRAME</code> 都解除映射，并且释放已经分配给页表的内存（否则会造成内存泄漏）</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.c</span></span><br><span class="line"><span class="type">pagetable_t</span></span><br><span class="line"><span class="title function_">proc_pagetable</span><span class="params">(<span class="keyword">struct</span> proc *p)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">pagetable_t</span> pagetable;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">if</span>(mappages(pagetable, USYSCALL, PGSIZE,</span><br><span class="line">              (uint64)(p-&gt;usyscall), PTE_R | PTE_U ) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    uvmunmap(pagetable, TRAMPOLINE, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    uvmunmap(pagetable, TRAPFRAME, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    uvmfree(pagetable, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> pagetable;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>④ 在 <code>freeproc()</code> 中释放进程内存时，需要将 <code>usyscall</code> 所指的内存一并释放：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.c</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span></span><br><span class="line"><span class="title function_">freeproc</span><span class="params">(<span class="keyword">struct</span> proc *p)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span> (p-&gt;usyscall)</span><br><span class="line">        kfree((<span class="type">void</span>*)p-&gt;usyscall);</span><br><span class="line">    p-&gt;usyscall = <span class="number">0</span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>⑤ 在 <code>proc_freepagetable()</code> 中释放进程页表、解除映射时，需要解除 <code>USYSCALL</code> 位置上的映射（可以观察到，<code>trapframe</code> 和 <code>usyscall</code> 都是解除映射并且释放内存，而 <code>trampoline</code> 只解除映射，创建进程时也没有给 <code>trampoline</code> 分配空间，因为所有 <code>trampoline</code> 指向的是同一片内存空间）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.c</span></span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">proc_freepagetable</span><span class="params">(<span class="type">pagetable_t</span> pagetable, uint64 sz)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    uvmunmap(pagetable, USYSCALL, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    uvmfree(pagetable, sz);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong> 可以看到通过了 <code>getpid</code> 测试，但是 <code>pg_access</code> 还没有实现，所以并未通过：</p>
+<p><img src="https://img-blog.csdnimg.cn/ca8a41b0647646d69a8bc2a9fe34facd.png" alt="1_result" style="zoom:80%;" /></p>
+<h2 id="Part-B"><a href="#Part-B" class="headerlink" title="Part B"></a>Part B</h2><p><strong>实验目标：</strong> 按照页表层级顺序格式化打印第一个进程的页表信息</p>
+<p><strong>实验步骤：</strong> </p>
+<p>① 实现 <code>vmprint()</code> ：</p>
+<ul>
+<li>参考 <code>freewalk()</code> ，采用递归的方法进行打印；</li>
+<li>由于一共有 3 级页表，故递归子程序使用变量 <code>level</code> 检测递归深度；</li>
+<li>需要检测页表入口地址的 <code>PTE_V</code> 标志位来判断此处页表是否有效</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/vm.c</span></span><br><span class="line"><span class="comment">// auxiliary for implimentation of vmprint()</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">aux_vmprint</span><span class="params">(<span class="type">pagetable_t</span> pagetable, <span class="type">int</span> level)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">512</span>; i++)&#123;</span><br><span class="line">        <span class="type">pte_t</span> pte = pagetable[i];</span><br><span class="line">        <span class="keyword">if</span>(pte &amp; PTE_V)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; level; ++i) &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;.. &quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;..%d: pte %p pa %p\n&quot;</span>, i, pte, PTE2PA(pte));</span><br><span class="line">            <span class="keyword">if</span> (level != <span class="number">2</span>) &#123;</span><br><span class="line">                uint64 child = PTE2PA(pte);</span><br><span class="line">                aux_vmprint((<span class="type">pagetable_t</span>)child, level+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">vmprint</span><span class="params">(<span class="type">pagetable_t</span> pagetable)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;page table %p\n&quot;</span>, pagetable);</span><br><span class="line">    aux_vmprint(pagetable, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>② 在 <code>defs.h</code> 中声明 <code>vm.print()</code> ，以供其他文件调用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/defs.h</span></span><br><span class="line"><span class="comment">// vm.c</span></span><br><span class="line"><span class="type">void</span>            <span class="title function_">vmprint</span><span class="params">(<span class="type">pagetable_t</span>)</span>;</span><br></pre></td></tr></table></figure>
+<p>③ 在 <code>exec.c</code> 中，当前进程 <code>PID</code> 为 1（即第一个进程）时，调用 <code>vmprint()</code> ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/exec.c</span></span><br><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">exec</span><span class="params">(<span class="type">char</span> *path, <span class="type">char</span> **argv)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span> (p-&gt;pid == <span class="number">1</span>)</span><br><span class="line">    	vmprint(p-&gt;pagetable);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong> 可以观察到，在 shell 启动前，就已经打印了第一个进程的页表的相关信息：</p>
+<p><img src="https://img-blog.csdnimg.cn/d742ee0a47cb44598a17d8ec605386ff.png" alt="2_result" style="zoom:80%;" /></p>
+<h2 id="Part-C"><a href="#Part-C" class="headerlink" title="Part C"></a>Part C</h2><p><strong>实验目标：</strong> 实现系统调用 <code>pgaccess()</code> ，检测哪些页被访问过</p>
+<p><strong>实验步骤：</strong> </p>
+<p>① 由 <code>book-riscv-rev3</code> 手册可知，标志 <code>PTE_A</code> 在页表地址的第 6 位，需要在 <code>riscv.h</code> 中添加相关宏定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/riscv.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_A (1L &lt;&lt; 6) <span class="comment">// accessed</span></span></span><br></pre></td></tr></table></figure>
+<p>② 实现 <code>sys_pgaccess()</code> ：</p>
+<ul>
+<li>用户态下调用系统调用的函数原型为 <code>int pgaccess(void *base, int len, void *mask);</code> ，需要用 <code>argint()</code> 和 <code>argaddr()</code> 来获得这三个参数；</li>
+<li>使用 <code>uint64</code> 存储掩码，因此检测的页数不能超过 64 个，要求 <code>len &lt; 64</code> ；</li>
+<li>每个页的大小为 <code>PGSIZE=4096</code> ，因此每次地址应当偏移 4096 ；</li>
+<li>使用 <code>walk</code> 函数获得当前所指页的最低一级页表的入口地址，通过该入口地址的标志位判断当前所指页是否被访问过；</li>
+<li>每次检测到页表入口地址 <code>pte</code> 的 <code>PET_A</code> 为 1 时，说明该页被访问过，需要将其对应掩码标志为 1，并且将页表入口地址的 <code>PET_A</code> 清零；</li>
+<li>先将获得的掩码存在局部变量 <code>mask</code> 中，再使用 <code>copyout()</code> 函数复制到用户空间的变量中；</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/sysproc.c</span></span><br><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">sys_pgaccess</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    uint64 base;</span><br><span class="line">    <span class="type">int</span> len;</span><br><span class="line">    uint64 pmask;</span><br><span class="line">    argaddr(<span class="number">0</span>, &amp;base);</span><br><span class="line">    argint(<span class="number">1</span>, &amp;len);</span><br><span class="line">    argaddr(<span class="number">2</span>, &amp;pmask);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (len &gt; <span class="number">64</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    uint64 mask = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">        <span class="type">pte_t</span>* pte = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> ((pte = walk(myproc()-&gt;pagetable, base + i * PGSIZE, <span class="number">0</span>)) == <span class="number">0</span>)</span><br><span class="line">         	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span> (*pte &amp; PTE_A) &#123;</span><br><span class="line">         	mask |= (<span class="number">1</span> &lt;&lt; i);</span><br><span class="line">         	*pte ^= PTE_A;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (copyout(myproc()-&gt;pagetable, pmask, (<span class="type">char</span>*)&amp;mask, <span class="keyword">sizeof</span>(mask)) &lt; <span class="number">0</span>) </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong> 可以观察到正确打印第一个进程的页表信息以及通过了 <code>pgtbltest</code> 测试：</p>
+<p><img src="https://img-blog.csdnimg.cn/b084514352974d138856ab7acb55467f.png" alt="result" style="zoom:80%;" /></p>
+<h2 id="问题回答"><a href="#问题回答" class="headerlink" title="问题回答"></a>问题回答</h2><h4 id="在-Part-A-加速系统调用部分，除了-getpid-系统调用函数，你还能想到哪些系统调用函数可以如此加速？"><a href="#在-Part-A-加速系统调用部分，除了-getpid-系统调用函数，你还能想到哪些系统调用函数可以如此加速？" class="headerlink" title="在 Part A 加速系统调用部分，除了 getpid() 系统调用函数，你还能想到哪些系统调用函数可以如此加速？"></a>在 Part A 加速系统调用部分，除了 <code>getpid()</code> 系统调用函数，你还能想到哪些系统调用函数可以如此加速？</h4><p>比如获取父进程的系统调用 <code>getppid()</code> 也可以通过类似的方法实现。</p>
+<h4 id="虚拟内存有什么用处？"><a href="#虚拟内存有什么用处？" class="headerlink" title="虚拟内存有什么用处？"></a>虚拟内存有什么用处？</h4><p>① 虚拟内存使得每个进程无法直接访问到物理内存，防止恶意进程对内存的破坏，起到隔离作用；</p>
+<p>② 虚拟内存便于编程，使得写程序与具体机器、具体内存设备、当前内存分配情况无关，而总是假定有一块新的、完整连续的空间可以使用；</p>
+<p>③ 虚拟内存便于动态分配内存，不需要在创建进程时就分配一大块连续空间；</p>
+<p>④ 虚拟内存可以使得进程所使用的地址范围比物理内存要大，可以借助与辅存的 swapping 来实现</p>
+<h4 id="为什么现代操作系统采用多级页表？"><a href="#为什么现代操作系统采用多级页表？" class="headerlink" title="为什么现代操作系统采用多级页表？"></a>为什么现代操作系统采用多级页表？</h4><p>① 有利于节省内存，并不是每个进程都会用到虚拟内存的整个范围，因此还未用到的页表可以先不分配内存空间</p>
+<p>② 便于动态分配，因为同一页表内的页表项必须是连续存储的，如果一级页表表示的地址范围过大，就会造成单个页表过大，不利于存储和分配。</p>
+<h4 id="简述-Part-C-的-detect-流程"><a href="#简述-Part-C-的-detect-流程" class="headerlink" title="简述 Part C 的 detect 流程"></a>简述 Part C 的 detect 流程</h4><p>① 当每个页通过虚拟地址被查询（访问）时，硬件会将该页对应的三级页表路径上的页表项的 <code>PTE_A</code> 标志位都置成 1，代表该页被访问过；</p>
+<p>② 用户态下调用系统调用 <code>pgaccess()</code> 时，依据 riscv 的 calling convention，三个函数参数按顺序放入寄存器 <code>a0-2</code> ；</p>
+<p>③ 接着， <code>user/usys.S</code> 根据 calling convention 将对应的系统调用号放入寄存器 <code>a7</code> ；由 <code>usys.pl</code> 提供系统调用的入口，执行 <code>ecall</code> 指令进入内核态；</p>
+<p>④ 内核中，<code>syscall()</code> 函数根据 <code>a7</code> 调用 <code>syscalls[SYS_pgaccess]</code> ，即 <code>kernel/sysproc.c</code> 中的 <code>sys_pgaccess()</code> 函数；</p>
+<p>⑤  <code>sys_pgaccess()</code> 函数通过 <code>argint()</code> 和 <code>argaddr()</code> 来获得三个参数 <code>base</code> <code>len</code> <code>pmask</code> ；接着，以每个页的大小 <code>PGSIZE=4096</code> 为 <code>base</code> 的步长，循环 <code>len</code> 次，执行以下操作：</p>
+<ul>
+<li>使用 <code>walk</code> 函数获得当前所指地址对应的物理页的最低一级页表的入口地址，通过该入口地址的  <code>PTE_A</code> 标志位判断当前所指页是否被访问过；</li>
+<li>每次检测到页表入口地址 <code>pte</code> 的 <code>PET_A</code> 为 1 时，说明该页被访问过，需要将其对应掩码标志为 1，并且将页表入口地址的 <code>PET_A</code> 清零；</li>
+<li>先将获得的掩码存在局部变量 <code>mask</code> 中，再使用 <code>copyout()</code> 函数复制到用户空间的变量中。</li>
+</ul>
+<p>⑥ 执行完后， <code>syscall()</code> 将 <code>sys_pgaccess()</code> 的返回值放入 <code>a0</code> ，并执行指令 <code>sret</code> 返回用户态，用户态根据被修改的 <code>a2</code> 参数就可以得到掩码信息。</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/OS/">#OS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">#操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/10/29/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">OS 操作系统 处理器调度</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%20%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%85%89%E6%A0%85%E5%9B%BE%E5%BD%A2%E5%AD%A6/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算机图形学 第四章 光栅图形学</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-MIT6-S081-Lab3-Page"><span class="nav-text">操作系统 MIT6.S081 Lab3 Page</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="nav-text">实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-A"><span class="nav-text">Part A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-B"><span class="nav-text">Part B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-C"><span class="nav-text">Part C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%9B%9E%E7%AD%94"><span class="nav-text">问题回答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8-Part-A-%E5%8A%A0%E9%80%9F%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E9%83%A8%E5%88%86%EF%BC%8C%E9%99%A4%E4%BA%86-getpid-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%EF%BC%8C%E4%BD%A0%E8%BF%98%E8%83%BD%E6%83%B3%E5%88%B0%E5%93%AA%E4%BA%9B%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E5%A6%82%E6%AD%A4%E5%8A%A0%E9%80%9F%EF%BC%9F"><span class="nav-text">在 Part A 加速系统调用部分，除了 getpid() 系统调用函数，你还能想到哪些系统调用函数可以如此加速？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%E5%A4%84%EF%BC%9F"><span class="nav-text">虚拟内存有什么用处？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%87%87%E7%94%A8%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8%EF%BC%9F"><span class="nav-text">为什么现代操作系统采用多级页表？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0-Part-C-%E7%9A%84-detect-%E6%B5%81%E7%A8%8B"><span class="nav-text">简述 Part C 的 detect 流程</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

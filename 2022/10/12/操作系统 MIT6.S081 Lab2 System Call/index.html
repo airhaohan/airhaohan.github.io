@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            MIT6.S081 Lab2 System Call |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"计院人的2+X就是2+Labs+PJs+Reports🙋‍♂️"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">MIT6.S081 Lab2 System Call</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-12 19:14:00</span>
+        <span class="mobile">2022-10-12 19:14</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/OS/">OS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/OS/">OS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="操作系统-MIT6-S081-Lab2-System-Call"><a href="#操作系统-MIT6-S081-Lab2-System-Call" class="headerlink" title="操作系统 MIT6.S081 Lab2 System Call"></a>操作系统 MIT6.S081 Lab2 System Call</h1><h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p>① Xv6 运行在多核的 RISC-V 微处理器：</p>
+<ul>
+<li>RISC-V 处理器提供硬件级别的隔离，包括三种执行指令的模式：机器模式、内核模式和用户模式；内核模式下，CPU 可以运行如开关中断、读写寄存器等特权指令，并且是在内核空间上运行的，这些程序就是内核；</li>
+<li>RISC-V 为进程提供指令 <code>ecall</code> 用于将用户态转为内核态；执行 <code>ecall</code> 以后，<code>PC</code> 将会知道内核指定的入口。该入口的代码切换到内核栈上运行内核指令；当系统调用结束时，内核通过 <code>sret</code> 指令切换回用户栈和用户空间，继续之前的用户程序。</li>
+</ul>
+<p>② Xv6 的内核组织：</p>
+<ul>
+<li>Xv6 采用单体内核的内核组织形式，内核接口对应操作系统的接口，由内核完成整个操作系统；</li>
+<li>本次实验涉及到的文件（<code>kernel</code> 目录下）：<ul>
+<li><code>defs.h</code> ：模块间的接口；</li>
+<li><code>proc.c</code> ：进程和调度相关的程序；</li>
+<li><code>syscall.c</code> ：用于将系统调用的请求分派给不同的具体实现的函数；</li>
+<li><code>sysfile.c</code>：文件相关的系统调用的实现；</li>
+<li><code>sysproc.c</code>：进程相关的系统调用的实现；</li>
+</ul>
+</li>
+</ul>
+<p>③ Xv6 实现隔离机制的基本单元是进程：</p>
+<ul>
+<li><p>使用一个 <code>struct proc</code> 保存进程的各类信息，系统调用遵循如下 calling convention：</p>
+<ul>
+<li>调用系统调用时， <code>proc</code> 中寄存器 <code>a7</code> 保存的序号确定调用的系统调用序号及对应函数，对应<code>kernel/syscall.c</code> 中保存的一个函数指针数组；将传递个系统调用的参数放在寄存器 <code>a0</code>、<code>a1</code> … 中；</li>
+<li>系统调用结束时，返回值保存在寄存器 <code>a0</code> 中，返回非负整数表示成功，否则失败</li>
+</ul>
+</li>
+<li><p>在一个进程的虚拟空间中，<code>trampoline</code> 保存了进出内核的代码，<code>trapframe</code> 保存了从用户态到内核态转换时的现场：</p>
+<ul>
+<li>系统调用在 <code>trapframe</code> 中查找相关寄存器来得到用户进程传给内核的参数，内核可调用接口 <code>argint</code> ，<code>argaddr</code> 和 <code>argfd</code> 来得到不同类型的参数</li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-A"><a href="#Part-A" class="headerlink" title="Part A"></a>Part A</h2><p><strong>实验目标：</strong>实现系统调用 <code>trace</code> ，用于跟踪系统调用，打印PID、系统调用名称、返回值等信息；通过 <code>usertests</code> 测试。</p>
+<p><strong>实验步骤：</strong></p>
+<p>① 在 <code>Makefile</code> 、<code>user/user.h</code> 和 <code>user/usys.pl</code> 中添加相关声明：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Makefile</span></span><br><span class="line">UPROGS=</span><br><span class="line">	...</span><br><span class="line">	$U/_trace\</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// user/user.h</span></span><br><span class="line"><span class="comment">// systemcalls</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">trace</span><span class="params">(<span class="type">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># user/usys.pl</span></span><br><span class="line">entry(<span class="string">&quot;trace&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p><code>trace()</code> 应当接受一个整数，作为被追踪的系统调用代码的掩码；</p>
+<p>② 在 <code>kernel/proc.h</code> 保存进程信息的结构体中新增 <code>mask</code> 成员变量，用于保存该进程需要追踪的系统调用代码的掩码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.h</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">proc</span> &#123;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="type">int</span> mask;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>③ 在 <code>kernel/sysproc.c</code> 中实现函数 <code>uint64 sys_trace(void)</code> ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/sysproc.c</span></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">sys_trace</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span> mask;</span><br><span class="line">    argint(<span class="number">0</span>, &amp;mask);</span><br><span class="line">    myproc()-&gt;mask = mask;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>系统调用 <code>trace</code> 被调用时需要传递一个整型变量 <code>mask</code> ，使用接口 <code>argint(n, addr)</code> 以整数的形式获得第 0 个参数传到 addr 中，设置成当前进程的 <code>mask</code> </p>
+<p>④ 在 <code>kernel/syscall.h</code> 和 <code>kernel/syscall.c</code> 中添加系统调用 <code>trace</code> 的相关代码；需要增加一个保存所有系统调用名称的字符串数组：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/syscall.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_trace 22</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/syscall.c</span></span><br><span class="line"><span class="keyword">extern</span> uint64 <span class="title function_">sys_trace</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">static</span> <span class="title function_">uint64</span> <span class="params">(*syscalls[])</span><span class="params">(<span class="type">void</span>)</span> = &#123;</span><br><span class="line">    ...</span><br><span class="line">    [SYS_trace]  sys_trace</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">char</span>* syscall_name[] = &#123;</span><br><span class="line">    <span class="string">&quot;fork&quot;</span>,</span><br><span class="line">    <span class="string">&quot;exit&quot;</span>,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span></span><br><span class="line">syscall(<span class="type">void</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span> (((p-&gt;mask) &amp; (<span class="number">1</span> &lt;&lt; num)) &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d: syscall %s -&gt; %d\n&quot;</span>, p-&gt;pid, syscall_name[num - <span class="number">1</span>], p-&gt;trapframe-&gt;a0);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过掩码判断当前系统调用是否需要被追踪；根据 RISC-V 的 C 的 calling convention，系统调用的返回值存在寄存器 <code>a0</code> 中</p>
+<p>⑤ 修改 <code>fork()</code> 使得掩码可以从父进程传递给子进程：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.c</span></span><br><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">fork</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    acquire(&amp;np-&gt;lock);</span><br><span class="line">   	np-&gt;mask = p-&gt;mask;</span><br><span class="line">    acquire(&amp;np-&gt;lock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不清楚是否涉及到临界资源的问题，但是上锁总是安全的</p>
+<p><strong>测试：</strong></p>
+<p>① <code>trace 32 grep hello README</code> 用于跟踪 <code>grep hello README</code> 执行时系统调用 <code>read</code> 的执行情况（$32=2^5$ ，<code>SYS_read</code> = 5）：</p>
+<p><img src="https://img-blog.csdnimg.cn/7654cc178fbd460ea129b93037fd976f.png" alt="请添加图片描述"></p>
+<p>② <code>trace 2147483647 grep hello README</code> 用于跟踪 <code>grep hello README</code> 执行时所有系统调用的执行情况（2147483647 的二进制表示全是 1）：<br><img src="https://img-blog.csdnimg.cn/3c7a6fdec80b410d836867ed501a526f.png" alt="请添加图片描述"></p>
+<p>③ <code>trace 2 usertests forkforkfork</code> 用于跟踪 <code>usertest forkforkfork</code> 执行时系统调用 <code>fork</code> 的执行情况（$2=2^1$ ，<code>SYS_fork</code> = 1）：</p>
+<table style="text-align:center">
+    <tr>
+        <td><img src="https://img-blog.csdnimg.cn/76266fd4178c401da730a0bf337a5f69.png" alt="A_test31" style="zoom:80%;" /></td>
+        <td><img src="https://img-blog.csdnimg.cn/1a20321bc658449e9c653036d993a646.png" alt="A_test32" style="zoom:80%;" /></td>
+    </tr>
+    <tr>
+        <td><img src="https://img-blog.csdnimg.cn/b9a8852e27664905ba6d18e2c6f28f7d.png" alt="A_test33" style="zoom:80%;" /></td>
+        <td><img src="https://img-blog.csdnimg.cn/10695ec802d748819b6bfb0c3fe2e5d0.png" alt="A_test34" style="zoom:80%;" /></td>
+    </tr>
+</table>
+
+
+
+
+<p>其中会出现 -1 的原因是，Xv6 最多允许 64 个进程同时存在，可以在 <code>proc.c</code> 中观察到进程数组值为 <code>NPROC</code> （64）因此当进程数超过 64 时就会 fork 失败，返回 -1 ：</p>
+<p><img src="https://img-blog.csdnimg.cn/d6b5f6db2f5c468f8df33e1dcdaaa693.png" alt="A_NPROC" style="zoom:80%;" /></p>
+<h2 id="Part-B"><a href="#Part-B" class="headerlink" title="Part B"></a>Part B</h2><p><strong>实验目标：</strong>实现系统调用 <code>sysinfo</code> ，实现系统信息收集功能；通过 <code>sysnifotest</code> 测试。</p>
+<p><strong>实验步骤：</strong></p>
+<p>① 在 <code>Makefile</code> 、<code>user/user.h</code> 和 <code>user/usys.pl</code> 中添加相关声明：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Makefile</span></span><br><span class="line">UPROGS=</span><br><span class="line">	...</span><br><span class="line">	$U/_sysinfotest\</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// user/user.h</span></span><br><span class="line"><span class="comment">// systemcalls</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">sysinfo</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sysinfo</span><span class="params">(<span class="keyword">struct</span> sysinfo*)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># user/usys.pl</span></span><br><span class="line">entry(<span class="string">&quot;sysinfo&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>系统调用 <code>sysinfo</code> 接受一个指向 <code>strcut sysinfo</code> 的指针，并将相关信息填充到这个结构体中</p>
+<p>② 在 <code>kernel/kalloc.c</code> 和 <code>kernel/proc.c</code> 中添加辅助函数，用于获得空闲空间的大小以及正在使用的进程的数目，并将接口添加到 <code>kernel/defs.h</code> ，供 <code>sys_sysinfo()</code> 的实现使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/kalloc.c</span></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">free_memory_number</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    uint64 num = <span class="number">0</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">run</span>* <span class="title">r</span>;</span></span><br><span class="line">    acquire(&amp;kmem.lock);</span><br><span class="line">    r = kmem.freelist;</span><br><span class="line">    <span class="keyword">while</span> (r) &#123;</span><br><span class="line">        num += PGSIZE;</span><br><span class="line">        r = r-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    release(&amp;kmem.lock);</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>计算空闲空间的大小，即遍历空闲列表，每块空间的大小为 <code>PGSIZE</code>（4096B）；由于空闲列表是临界资源，因此需要上锁</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.c</span></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">used_process_number</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">	uint64 num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; NPROC; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (proc[i].state != UNUSED) &#123;</span><br><span class="line">            ++num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遍历进程数组中所有进程，统计不为 <code>UNUSED</code> 状态的所有进程数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/defs.h</span></span><br><span class="line"><span class="comment">// kalloc.c</span></span><br><span class="line">uint64 <span class="title function_">free_memory_number</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="comment">// proc.c</span></span><br><span class="line">uint64 <span class="title function_">used_process_number</span><span class="params">(<span class="type">void</span>)</span>;</span><br></pre></td></tr></table></figure>
+<p>③ 在 <code>kernel/sysinfo.h</code> 中添加包含一个字符串类型成员的结构体，包含学号信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/sysinfo.h</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">char</span>* stuID;</span><br><span class="line">&#125; stuinfo = &#123;<span class="string">&quot;xxxxxxxxxxx&quot;</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>④ 在 <code>kernel/sysproc.c</code> 中实现函数 <code>uint64 sys_sysinfo(void)</code> ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/sysproc.c</span></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">sys_sysinfo</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// stuinfo is defined in sysinfo.h</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;my student number is %s\n&quot;</span>, stuinfo.stuID);</span><br><span class="line">    uint64 ps;</span><br><span class="line">    argaddr(<span class="number">0</span>, &amp;ps);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sysinfo</span> <span class="title">temp</span>;</span></span><br><span class="line">    temp.freemem = free_memory_number();</span><br><span class="line">    temp.nproc = used_process_number();</span><br><span class="line">    <span class="keyword">if</span> (copyout(myproc-&gt;pagetable, ps, (<span class="type">char</span>*)(&amp;temp), <span class="keyword">sizeof</span>(temp)) &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>copyout(pagetable_t pagetable, uint64 dstva, char* src, uint64 len)</code> 将来自 <code>src</code> 的内容拷贝到虚拟地址 <code>dstva</code> 中，成功返回 0，失败返回 -1；</p>
+<p>⑤  在 <code>kernel/syscall.h</code> 和 <code>kernel/syscall.c</code> 中添加系统调用 <code>sysinfo</code> 的相关代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/syscall.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_sysinfo 23</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/syscall.c</span></span><br><span class="line"><span class="keyword">extern</span> uint64 <span class="title function_">sys_sysinfo</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">static</span> <span class="title function_">uint64</span> <span class="params">(*syscalls[])</span><span class="params">(<span class="type">void</span>)</span> = &#123;</span><br><span class="line">    ...</span><br><span class="line">    [SYS_sysinfo]  sys_sysinfo</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">char</span>* syscall_name[] = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">&quot;sysinfo&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>测试：</strong></p>
+<p><code>sysinfotest</code> 用于测试系统调用 <code>sysinfo</code> 是否正确，包括测试空闲内存空间大小计算是否正确和 UNUSED 进程数是否正确；每测试一部分就会调用一次 <code>sysinfo</code> ，同时打印一遍学号：</p>
+<p><img src="https://img-blog.csdnimg.cn/64ae85a60ba743d98da6b3b785c07584.png" alt="B_test" style="zoom:80%;" /></p>
+<h2 id="问题回答"><a href="#问题回答" class="headerlink" title="问题回答"></a>问题回答</h2><h4 id="System-calls-Part-A-部分，简述一下-trace-全流程"><a href="#System-calls-Part-A-部分，简述一下-trace-全流程" class="headerlink" title="System calls Part A 部分，简述一下 trace 全流程"></a>System calls Part A 部分，简述一下 trace 全流程</h4><ul>
+<li><p>shell 由 <code>user/sh.c</code> 实现，输入的指令交给 <code>parsecmd()</code> 解析，返回指令类型为 <code>EXEC</code>；再交给 <code>runcmd()</code> 分派，发现是 <code>EXEC</code> 类型，就调用 <code>exec()</code> 并传递相关参数；</p>
+</li>
+<li><p><code>exec()</code> 根据解析出来的第一个字符串为 ”trace“ 而将 <code>user/trace.c</code> 的可执行代码加载到内存中执行，并传递相关参数；</p>
+</li>
+<li><p><code>user/trace.c</code> 检查参数的有效性之后，分为两步：</p>
+<p>① 首先调用 <code>trace()</code> 函数：</p>
+<ul>
+<li><p><code>trace()</code> 函数在 <code>user/user.h</code> 中声明，由 <code>user/usys.pl</code> 提供入口； <code>user/usys.S</code> 根据 calling convention 设置好相关参数，并且执行 <code>ecall</code> 进入内核态：</p>
+<p><img src="https://img-blog.csdnimg.cn/5b7ec5777a3b40db8a6c0de2710f0653.png" alt="usys_pl" style="zoom:80%;" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>在内核中，<code>kernel/syscall.c/syscall()</code> 函数根据 <code>p-&gt;trapframe-&gt;a7</code> 调用 <code>syscalls[SYS_trace]</code> ，即 <code>kernel/sysproc.c</code> 中的 <code>systrace()</code> 函数</p>
+<ul>
+<li><code>kernel/sysproc.c/systrace()</code> 函数通过  <code>p-&gt;trapframe-&gt;a0</code> 获得掩码，并设置为当前进程的掩码；</li>
+</ul>
+<p>执行完后，将返回值放入 <code>p-&gt;trapframe-&gt;a0</code> ，并执行指令 <code>sret</code> 返回用户态</p>
+<p>②  <code>trace()</code> 函数返回后，由返回值判断是否成功；若成功，再获取 <code>argv[2]</code> 中存储的需要被追踪的系统调用名，调用 <code>exec()</code> 调用该系统调用</p>
+</li>
+<li><p><code>kernel/syscall.c/syscall()</code> 中会判断当前掩码中该系统调用的编码位是否为 1；若为 1，则打印出 PID、进程名以及返回值 </p>
+<p><img src="https://img-blog.csdnimg.cn/4c6a4784196944b4bc81b8958616ba52.png" alt="请添加图片描述"></p>
+</li>
+<li><p>每次 fork 出子进程时，子进程将会继承父进程的掩码，因此可以追踪由原系统调用所引起的所有掩码中包含的系统调用</p>
+</li>
+</ul>
+<h4 id="kernel-syscall-h-是干什么的，如何起作用的？"><a href="#kernel-syscall-h-是干什么的，如何起作用的？" class="headerlink" title="kernel/syscall.h 是干什么的，如何起作用的？"></a><code>kernel/syscall.h</code> 是干什么的，如何起作用的？</h4><ul>
+<li><p><code>kernel/syscall.h</code> 对每个系统调用都进行编号；</p>
+</li>
+<li><p>当用户进程需要调用系统调用时，依据 calling convention，把即将调用的系统调用的编号存入寄存器 <code>a7</code>，并将传递个系统调用的参数放在寄存器 <code>a0</code>、<code>a1</code> … 中；接着调用 <code>ecall</code> 指令切换到内核态</p>
+</li>
+<li>进入内核态时，现场被保存在 <code>trapframe</code> 中，因此内核从 <code>trapframe</code> 中获取寄存器 <code>a7</code> 和  <code>a0</code>、<code>a1</code> …</li>
+<li><code>syscall.c</code> 中保存了一个函数指针数组，里边存的是系统调用的具体实现，根据 <code>a7</code> 的值确定实际调用哪个函数</li>
+</ul>
+<h4 id="命令-trace-32-grep-hello-README-中的-trace-字段是用户态下的还是实现的系统调用函数-trace？"><a href="#命令-trace-32-grep-hello-README-中的-trace-字段是用户态下的还是实现的系统调用函数-trace？" class="headerlink" title="命令 trace 32 grep hello README 中的 trace 字段是用户态下的还是实现的系统调用函数 trace？"></a>命令 <code>trace 32 grep hello README</code> 中的 trace 字段是用户态下的还是实现的系统调用函数 trace？</h4><p>用户态下的，在 <code>user/usys.S</code> 中实现；传递给 <code>int trace(int)</code> 的参数（即 mask / 掩码）在寄存器 <code>a0</code> 中，所作的事情是将系统调用 <code>trace</code> 的编码 <code>SYS_trace</code> 放入寄存器 <code>a7</code> 中，然后才调用 <code>ecall</code> 指令进入内核态，所以前面做的事情都是在用户态下完成的。</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/OS/">#OS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">#操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/10/16/Java%20String%E7%9A%84%E5%AD%98%E5%82%A8/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java String的存储</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/10/11/SEEDLabs%20Buffer%20Overflow/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">SEEDLabs Buffer Overflow</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-MIT6-S081-Lab2-System-Call"><span class="nav-text">操作系统 MIT6.S081 Lab2 System Call</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="nav-text">实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-A"><span class="nav-text">Part A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-B"><span class="nav-text">Part B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%9B%9E%E7%AD%94"><span class="nav-text">问题回答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#System-calls-Part-A-%E9%83%A8%E5%88%86%EF%BC%8C%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B-trace-%E5%85%A8%E6%B5%81%E7%A8%8B"><span class="nav-text">System calls Part A 部分，简述一下 trace 全流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kernel-syscall-h-%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%8C%E5%A6%82%E4%BD%95%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84%EF%BC%9F"><span class="nav-text">kernel&#x2F;syscall.h 是干什么的，如何起作用的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-trace-32-grep-hello-README-%E4%B8%AD%E7%9A%84-trace-%E5%AD%97%E6%AE%B5%E6%98%AF%E7%94%A8%E6%88%B7%E6%80%81%E4%B8%8B%E7%9A%84%E8%BF%98%E6%98%AF%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0-trace%EF%BC%9F"><span class="nav-text">命令 trace 32 grep hello README 中的 trace 字段是用户态下的还是实现的系统调用函数 trace？</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
