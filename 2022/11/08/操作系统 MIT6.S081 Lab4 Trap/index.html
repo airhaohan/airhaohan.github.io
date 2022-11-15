@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="airhaohan">
+    
+    <title>
+        
+            操作系统 MIT6.S081 Lab4 Trap |
+        
+        Splendid
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/null">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/profile.jpg","favicon":null,"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"计院人的2+X就是2+Labs+PJs+Reports🙋‍♂️"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Splendid
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">操作系统 MIT6.S081 Lab4 Trap</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">airhaohan</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-11-08 19:04:00</span>
+        <span class="mobile">2022-11-08 19:04</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/OS/">OS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/OS/">OS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="操作系统-MIT6-S081-Lab4-Trap"><a href="#操作系统-MIT6-S081-Lab4-Trap" class="headerlink" title="操作系统 MIT6.S081 Lab4 Trap"></a>操作系统 MIT6.S081 Lab4 Trap</h1><h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p>① <strong>Trap</strong>：系统调用、异常和中断会导致CPU停止当前工作，这三种情况统称为trap</p>
+<p>Xv6 将所有的 Traps 都放在内核中处理：</p>
+<ul>
+<li>对于系统调用，则执行相应的系统调用</li>
+<li>对于中断，则调用相应的设备驱动程序</li>
+<li>对于异常，直接杀死抛出异常的进程</li>
+</ul>
+<p>② RISC-V 的栈和寄存器</p>
+<p>每一个 RISC-V CPU 都有一组寄存器，内核可以从中读取 Trap 的信息，也可以往寄存器中写值以告知 CPU 如何处理 Trap，比较重要的有：</p>
+<ul>
+<li>stvec：处理 Trap 的 handler 入口</li>
+<li>sepc：保存当前进程的 PC</li>
+<li>scause：其中保存的数值反映了 Trap 的类型</li>
+</ul>
+<p><strong>Trampoline</strong>：当 trap 发生时，RISCV并不会切换页表，因此用户空间到stvec应当有着稳定的映射（即trampoline）所有用户的 <code>trampoline</code> 都映射到同一片区域，而且只能由内核访问。</p>
+<p><strong>Trapframe</strong>：保存了当前进程所使用的寄存器的所有值</p>
+<p>RISC-V 的寄存器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">reg    | name  | saver  | description</span><br><span class="line">-------+-------+--------+------------</span><br><span class="line">x0     | zero  |        | hardwired zero</span><br><span class="line">x1     | ra    | caller | return address</span><br><span class="line">x2     | sp    | callee | stack pointer</span><br><span class="line">x3     | gp    |        | global pointer</span><br><span class="line">x4     | tp    |        | thread pointer</span><br><span class="line">x5-7   | t0-2  | caller | temporary registers</span><br><span class="line">x8     | s0/fp | callee | saved register / frame pointer</span><br><span class="line">x9     | s1    | callee | saved register</span><br><span class="line">x10-11 | a0-1  | caller | function arguments / return values</span><br><span class="line">x12-17 | a2-7  | caller | function arguments</span><br><span class="line">x18-27 | s2-11 | callee | saved registers</span><br><span class="line">x28-31 | t3-6  | caller | temporary registers</span><br><span class="line">pc     |       |        | program counter</span><br></pre></td></tr></table></figure>
+<p>RISC-V 的栈结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    +-&gt; |       ...       |   |</span><br><span class="line">    |   +-----------------+   |</span><br><span class="line">    |   | return address  |   |</span><br><span class="line">    |   |   previous fp ------+</span><br><span class="line">    |   | saved registers |</span><br><span class="line">    |   | local variables |</span><br><span class="line">    |   |       ...       | &lt;-+</span><br><span class="line">    |   +-----------------+   |</span><br><span class="line">    |   | return address  |   |</span><br><span class="line">    +------ previous fp   |   |</span><br><span class="line">        | saved registers |   |</span><br><span class="line">        | local variables |   |</span><br><span class="line">$fp --&gt; |       ...       |   |</span><br><span class="line">        +-----------------+   |</span><br><span class="line">        | return address  |   |</span><br><span class="line">        |   previous fp ------+</span><br><span class="line">        | saved registers |</span><br><span class="line">$sp --&gt; | local variables |</span><br><span class="line">        +-----------------+</span><br></pre></td></tr></table></figure>
+<h2 id="Part-1-Backtrace"><a href="#Part-1-Backtrace" class="headerlink" title="Part 1 Backtrace"></a>Part 1 Backtrace</h2><p><strong>实验目的：</strong> 实现 backtrace 功能，用于打印出栈上调用链的所有返回地址</p>
+<p><strong>实验步骤：</strong> </p>
+<p>① 已知当前函数的帧指针存在寄存器 s0 中，因此在 <code>kernel/riscv.h</code> 中添加获得该值的函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/riscv.h</span></span><br><span class="line"><span class="type">static</span> <span class="keyword">inline</span> uint64</span><br><span class="line"><span class="title function_">r_fp</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    uint64 x;</span><br><span class="line">    <span class="keyword">asm</span> <span class="title function_">volatile</span><span class="params">(<span class="string">&quot;mv %0, s0&quot;</span> : <span class="string">&quot;=r&quot;</span> (x) )</span>;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>② 实现 <code>backtrace()</code> ，并在 <code>defs.h</code> 中声明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/defs.h</span></span><br><span class="line"><span class="comment">// printf.c</span></span><br><span class="line"><span class="type">void</span>            <span class="title function_">backtrace</span><span class="params">(<span class="type">void</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/printf.c</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">backtrace</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;backtrace:\n&quot;</span>);</span><br><span class="line">  uint64 retAddr = r_fp();</span><br><span class="line">  <span class="keyword">while</span> (retAddr &lt; PGROUNDUP(retAddr)) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>, *((uint64*)(retAddr - <span class="number">8</span>)));</span><br><span class="line">    retAddr = *((uint64*)(retAddr - <span class="number">16</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>PGUPGROUND()</code> 获得当前栈的顶部地址；由 RISC-V 的栈结构可知，返回地址存放在帧指针的 -8 偏移量处，保存的帧指针存放在帧指针的 -16 偏移量处</p>
+<p>③ 在 <code>sys_sleep()</code> 中调用 <code>backtrace()</code> ，也可以在 <code>panic()</code> 中调用 <code>backtrace()</code> ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/sysproc.c</span></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">sys_sleep</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  backtrace();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/printf.c</span></span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">panic</span><span class="params">(<span class="type">char</span> *s)</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  backtrace();</span><br><span class="line">  <span class="keyword">for</span>(;;) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>实验结果：</strong> </p>
+<p>执行 <code>bttest</code> ，可以看到打印出了三个地址：</p>
+<p><img src="https://img-blog.csdnimg.cn/2388c0ebd70741adb2b6f58218d014ca.png" alt="请添加图片描述"></p>
+<p>执行 <code>addr2line -e kernel/kernel</code> ，查找地址对应的代码：</p>
+<p><img src="https://img-blog.csdnimg.cn/b1c0b6ff2b1b4dc19ad7546f69aa045e.png" alt="请添加图片描述"></p>
+<p>查看源码，可以观察到调用链为：<code>usertrap()</code> $\to$ <code>syscall()</code> $\to$ <code>sys_sleep()</code> </p>
+<h2 id="Part-2-Alarm"><a href="#Part-2-Alarm" class="headerlink" title="Part 2 Alarm"></a>Part 2 Alarm</h2><p><strong>实验目标：</strong> 实现进程时间分片的功能</p>
+<p><strong>实验步骤：</strong> </p>
+<p>① 在 <code>struct proc</code> 中添加相关变量，并添加构造和析构动作，用于辅助 <code>sigalarm()</code> 和 <code>sigreturn()</code> 系统调用实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.h</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">proc</span> &#123;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="type">int</span> interval;			<span class="comment">// 从 sigalarm 开始，该进程能运行多少个 ticks</span></span><br><span class="line">  <span class="type">void</span> (*handler)();	<span class="comment">// 指向处理函数的函数指针</span></span><br><span class="line">  <span class="type">int</span> handler_lock;		<span class="comment">// 自旋锁，防止对处理程序的重入调用（有点像关中断的动作）</span></span><br><span class="line">  <span class="type">int</span> ticks;			<span class="comment">// 从 sigalarm 开始，该进程移进运行了多少个 ticks</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">trapframe</span> *<span class="title">trapframe_copy</span>;</span>	<span class="comment">// 保存现场的一份 copy</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/proc.c</span></span><br><span class="line"><span class="type">static</span> <span class="keyword">struct</span> proc*</span><br><span class="line"><span class="title function_">allocproc</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  p-&gt;interval = <span class="number">0</span>;</span><br><span class="line">  p-&gt;handler = <span class="number">0</span>;</span><br><span class="line">  p-&gt;handler_lock = <span class="number">0</span>;</span><br><span class="line">  p-&gt;ticks = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ((p-&gt;trapframe_copy = (<span class="keyword">struct</span> trapframe*)kalloc()) == <span class="number">0</span>) &#123;</span><br><span class="line">    freeproc(p);</span><br><span class="line">    release(&amp;p-&gt;lock);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">static</span> <span class="type">void</span></span><br><span class="line"><span class="title function_">freeproc</span><span class="params">(<span class="keyword">struct</span> proc *p)</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">if</span> (p-&gt;trapframe_copy)	<span class="comment">// 释放现场的copy的空间</span></span><br><span class="line">    kfree((<span class="type">void</span>*)p-&gt;trapframe_copy);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>② 每个 tick 都会产生一个中断，因此需要在处理这个中断时判断时间片是否到期，如果已经到了的话就要保存现场，并且调用处理函数（即把 PC 值改为 handler 的地址）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/trap.c</span></span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">usertrap</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">  <span class="comment">// give up the CPU if this is a timer interrupt.</span></span><br><span class="line">  <span class="keyword">if</span>(which_dev == <span class="number">2</span>) &#123;</span><br><span class="line">    ++(p-&gt;ticks);</span><br><span class="line">    <span class="keyword">if</span> (p-&gt;interval != <span class="number">0</span> &amp;&amp; p-&gt;ticks == p-&gt;interval) &#123;</span><br><span class="line">      <span class="keyword">if</span> (p-&gt;handler_lock == <span class="number">0</span>) &#123;</span><br><span class="line">        p-&gt;handler_lock = <span class="number">1</span>;</span><br><span class="line">        copy_trapframe(p-&gt;trapframe, p-&gt;trapframe_copy);</span><br><span class="line">        p-&gt;trapframe-&gt;epc = (uint64)p-&gt;handler;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    yield();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>copy_trapframe()</code> 是个辅助函数，只是简单拷贝所有寄存器的值，之后恢复寄存器的值时也会用到，因此抽象成了一个函数；也要在 <code>defs.h</code> 中声明以供外界调用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/trap.c</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">copy_trapframe</span><span class="params">(<span class="keyword">struct</span> trapframe* from, <span class="keyword">struct</span> trapframe* to)</span> &#123;</span><br><span class="line">  to-&gt;kernel_satp = from-&gt;kernel_satp;</span><br><span class="line">  to-&gt;kernel_sp = from-&gt;kernel_sp;</span><br><span class="line">  to-&gt;kernel_trap = from-&gt;kernel_trap;</span><br><span class="line">  to-&gt;epc = from-&gt;epc;</span><br><span class="line">  to-&gt;kernel_hartid = from-&gt;kernel_hartid;</span><br><span class="line">  to-&gt;ra = from-&gt;ra;</span><br><span class="line">  to-&gt;sp = from-&gt;sp;</span><br><span class="line">  to-&gt;gp = from-&gt;gp;</span><br><span class="line">  to-&gt;tp = from-&gt;tp;</span><br><span class="line">  to-&gt;t0 = from-&gt;t0;</span><br><span class="line">  to-&gt;t1 = from-&gt;t1;</span><br><span class="line">  to-&gt;t2 = from-&gt;t2;</span><br><span class="line">  to-&gt;s0 = from-&gt;s0;</span><br><span class="line">  to-&gt;s1 = from-&gt;s1;</span><br><span class="line">  to-&gt;a0 = from-&gt;a0;</span><br><span class="line">  to-&gt;a1 = from-&gt;a1;</span><br><span class="line">  to-&gt;a2 = from-&gt;a2;</span><br><span class="line">  to-&gt;a3 = from-&gt;a3;</span><br><span class="line">  to-&gt;a4 = from-&gt;a4;</span><br><span class="line">  to-&gt;a5 = from-&gt;a5;</span><br><span class="line">  to-&gt;a6 = from-&gt;a6;</span><br><span class="line">  to-&gt;a7 = from-&gt;a7;</span><br><span class="line">  to-&gt;s2 = from-&gt;s2;</span><br><span class="line">  to-&gt;s3 = from-&gt;s3;</span><br><span class="line">  to-&gt;s4 = from-&gt;s4;</span><br><span class="line">  to-&gt;s5 = from-&gt;s5;</span><br><span class="line">  to-&gt;s6 = from-&gt;s6;</span><br><span class="line">  to-&gt;s7 = from-&gt;s7;</span><br><span class="line">  to-&gt;s8 = from-&gt;s8;</span><br><span class="line">  to-&gt;s9 = from-&gt;s9;</span><br><span class="line">  to-&gt;s10 = from-&gt;s10;</span><br><span class="line">  to-&gt;s11 = from-&gt;s11;</span><br><span class="line">  to-&gt;t3 = from-&gt;t3;</span><br><span class="line">  to-&gt;t4 = from-&gt;t4;</span><br><span class="line">  to-&gt;t5 = from-&gt;t5;</span><br><span class="line">  to-&gt;t6 = from-&gt;t6;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/defs.h</span></span><br><span class="line"><span class="comment">// trap.c</span></span><br><span class="line"><span class="type">void</span>            <span class="title function_">copy_trapframe</span><span class="params">(<span class="keyword">struct</span> trapframe*, <span class="keyword">struct</span> trapframe*)</span>;</span><br></pre></td></tr></table></figure>
+<p>③ 为 <code>sigalarm()</code> 和 <code>sigreturn()</code> 系统调用添加相关声明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// user/user.h</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">sigalarm</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>(*)(<span class="type">void</span>))</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">sigreturn</span><span class="params">(<span class="type">void</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># user.usys.pl</span></span><br><span class="line">entry(<span class="string">&quot;sigalarm&quot;</span>);</span><br><span class="line">entry(<span class="string">&quot;sigreturn&quot;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/syscall.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_sigalarm 22</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SYS_sigreturn 23</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/syscall.c</span></span><br><span class="line"><span class="keyword">extern</span> uint64 <span class="title function_">sys_sigalarm</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="keyword">extern</span> uint64 <span class="title function_">sys_sigreturn</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">static</span> <span class="title function_">uint64</span> <span class="params">(*syscalls[])</span><span class="params">(<span class="type">void</span>)</span> = &#123;</span><br><span class="line">...</span><br><span class="line">[SYS_sigalarm] sys_sigalarm,</span><br><span class="line">[SYS_sigreturn] sys_sigreturn,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>④ 实现 <code>sigalarm()</code> 和 <code>sigreturn()</code> 系统调用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sys_proc.c</span></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">sys_sigalarm</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="type">int</span> interval;</span><br><span class="line">  uint64 handler;</span><br><span class="line">  argint(<span class="number">0</span>, &amp;interval);</span><br><span class="line">  argaddr(<span class="number">1</span>, &amp;handler);</span><br><span class="line">  myproc()-&gt;interval = interval;</span><br><span class="line">  myproc()-&gt;handler = (<span class="type">void</span>(*)(<span class="type">void</span>))handler;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">sys_sigreturn</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  copy_trapframe(myproc()-&gt;trapframe_copy, myproc()-&gt;trapframe);</span><br><span class="line">  myproc()-&gt;ticks = <span class="number">0</span>;</span><br><span class="line">  myproc()-&gt;handler_lock = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> myproc()-&gt;trapframe-&gt;a0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>sys_sigalarm()</code> 从 a0 和 a1 获得用户调用系统调用时传入的 ticks 数和处理函数，并且用这些值更新 <code>struct proc</code> 里的成员；</p>
+<p><code>sys_sigreturn()</code> 需要恢复现场、清除刚刚设置的成员、解除对处理函数的锁；由于中断处理对用户来说应当是透明的，当 <code>sys_sigreturn()</code> 返回值时会更新 a0 寄存器的值，因此直接让其返回当前 a0 的值以保证不变。</p>
+<p>⑤ 在 <code>Makefile</code> 中添加 <code>alarmtest</code> 的指令声明：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Makefile</span></span><br><span class="line">UPROGS=\</span><br><span class="line">	...</span><br><span class="line">	$U/_alarmtest\</span><br></pre></td></tr></table></figure>
+<p><strong>实验结果：</strong> 通过了 <code>alarmtest</code> 和 <code>usertests -q</code> 测试：</p>
+<p><img src="https://img-blog.csdnimg.cn/6668c2d780474aa1b987f23aed19b98c.png" alt="3_result_1" style="zoom:80%;" /></p>
+<p>| <img src="https://img-blog.csdnimg.cn/24e8ae3624a945a19f62863a1dc8d704.png" alt="请添加图片描述"> | <img src="https://img-blog.csdnimg.cn/73f6e54304904afd8c6e3c034e51a774.png" alt="请添加图片描述"> |<br>| —————————————————————————————— | —————————————————————————————— |</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/OS/">#OS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">#操作系统</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/11/01/%E7%BC%96%E8%AF%91%20%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%20%E8%87%AA%E4%B8%8A%E8%80%8C%E4%B8%8B%E5%88%86%E6%9E%90/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">编译 语法分析 自上而下分析</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">airhaohan</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-MIT6-S081-Lab4-Trap"><span class="nav-text">操作系统 MIT6.S081 Lab4 Trap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="nav-text">实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-1-Backtrace"><span class="nav-text">Part 1 Backtrace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-2-Alarm"><span class="nav-text">Part 2 Alarm</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
