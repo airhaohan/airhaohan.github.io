@@ -1,0 +1,6 @@
+---
+layout: post
+title:  "Test"
+date:   2025-01-17 16:13:36 +0530
+---
+I’ve been studying technologies in ML Systems, especially focusing on LLM inference acceleration. As we all know, decoder-only Transformers have become dominant, thanks to their self-attention mechanism that enables each token to semantically connect with every other token. During inference, a decoder exhibits an autoregressive feature, meaning we need to input context (including the prompt and the tokens generated so far) to predict the next token. Fortunately, researchers discovered that most parts of the Key (K) and Value (V) matrices remain unchanged between two adjacent iterations. By exploiting this, we can save computation by caching K and V from the previous iteration and updating them incrementally—this is called KVCache.
