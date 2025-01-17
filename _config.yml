@@ -14,7 +14,7 @@ sass:
 
 permalink: /posts/:title/
 texture:
-  title: Adam Denisov
+  title: Yongsheng Yan
   tagline: Student. Researcher
   date_format: "%b %-d, %Y"
   style: blue
