@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
-title                    : "Yongsheng Yan / Research Portfolio"
+title                    : "Research Portfolio"
 title_separator          : "-"
 name                     : &name "Yongsheng Yan"
 description              : &description "Yongsheng Yan's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
@@ -23,7 +23,7 @@ repository               : "airhaohan/airhaohan.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "profile.jpg"
   name             : "Yongsheng Yan"
   pronouns         : # example: "she/her"  
   bio              : "MPhil student at Fudan University"
@@ -51,7 +51,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "https://github.com/airhaohan"
+  github           : "airhaohan"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
