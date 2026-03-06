@@ -1,0 +1,112 @@
+[
+  {
+    "bvid": "BV1UjiuBFECB",
+    "title": "[LLM推理] 深入理解大模型量化：GPTQ 原理解析",
+    "description": "在大模型（LLM）落地过程中，量化是绕不开的核心技术。为什么百亿参数的模型能在普通显卡上运行？这背后的数学魔法究竟是什么？\n本期视频将深入浅出地拆解大模型量化的底层逻辑。我们不仅会讨论最基础的量化概念，还会重点解析目前常见的后量化（PTQ）算法 GPTQ。",
+    "cover": "/figures/quantization.jpg",
+    "pubdate": "2025-12-31",
+    "duration": "26:02",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV1XFZJYoEGV",
+    "title": "[LLM训练] DeepSeek V3 的 MTP 技术解析：提升数据效率与预测能力",
+    "description": "本期视频介绍 DeepSeek V3 训练时采用的 MTP（MultiToken Prediction） 技术。MTP 通过让模型一次预测多个 Token，使训练信号更加密集，从而提升数据效率。同时，它还能帮助模型组织语言，使其更好地预测未来 Token。",
+    "cover": "/figures/deepseek_mtp.jpg",
+    "pubdate": "2025-03-31",
+    "duration": "06:32",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV1HkovYnEWT",
+    "title": "[LLM训练] Megatron-LM里的张量并行：Attention、FFN和Embedding全拆解",
+    "description": "本期视频带大家一起拆解 Megatron-LM 这篇经典论文中的核心技术——Tensor Parallelism。\n我会详细讲解 Attention、FFN 和 Embedding 三大模块是如何拆分并行的，以及背后的设计思路和挑战。\n如果你也对大模型训练中的并行机制感兴趣，欢迎一起交流讨论，互相学习！",
+    "cover": "/figures/megatron_lm.jpg",
+    "pubdate": "2025-03-26",
+    "duration": "10:31",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV1n8XwY1EW7",
+    "title": "[LLM推理] FlashDecoding 解析：用 FlashAttention 加速长上下文推理",
+    "description": "本期视频介绍了 FlashDecoding 的原理和实现思路，该技术来源于博客（链接：https://crfm.stanford.edu/2023/10/12/flashdecoding.html）。\n 视频将带大家了解如何借助 FlashAttention 的思想，优化 LLM 在长上下文场景下的推理速度，提升并行度，减少不必要的计算开销。\n 欢迎一起讨论交流，探索更多推理加速的可能性！",
+    "cover": "/figures/flashdecoding.jpg",
+    "pubdate": "2025-03-20",
+    "duration": "06:15",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV1cRQJYbEdE",
+    "title": "[LLM服务] DeepSeek开源项目EPLB与混合专家模型解析",
+    "description": "在本视频中，我首先介绍了 DeepSeek V3 的混合专家模型（MoE）的基本结构，该模型通过激活部分专家节点来提高计算效率。随后，深入讲解了其开源的 Expert Parallelism Load Balancer（EPLB）算法，该算法旨在优化专家节点的负载均衡，提升模型的整体性能。希望通过本视频，您能对这些技术有更深入的了解。",
+    "cover": "/figures/deepseek_eplb.jpg",
+    "pubdate": "2025-03-12",
+    "duration": "12:12",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV1QaR4YMEAC",
+    "title": "[LLM服务] Orca系统解析：Continuous Batching助力Transformer分布式推理",
+    "description": "在本视频中，我将详细解析 Orca 这套专为 Transformer 生成模型设计的分布式服务系统。视频重点介绍其三大核心技术：\nContinuous Batching：动态聚合请求以提升整体吞吐量；\nSelective Batching：智能筛选与组合请求，实现延迟与效率的平衡；\n调度算法：高效协调各模块，确保资源的最优利用。\n通过这段讲解，你将更深入地了解 Orca 如何在实际应用中突破性能瓶颈。欢迎大家在评论区交流讨论，共同探索更多技术细节！",
+    "cover": "/figures/orca.jpg",
+    "pubdate": "2025-03-09",
+    "duration": "09:54",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV1hy94YKEun",
+    "title": "[LLM服务] Chunked Prefills 与 Prefill-Decoding 分离的内在逻辑",
+    "description": "在本视频中，我深入探讨了 LLM 服务中 prefill 和 decode 阶段各自的特点，以及它们如何相互影响推理性能。同时，我详细解读了两种推理服务架构策略——Chunked Prefills 与 Prefill-Decoding Disaggregation，分析各自的优势和适用场景，帮助大家更好地理解如何在实际应用中进行选择和优化。",
+    "cover": "/figures/pd_dist.jpg",
+    "pubdate": "2025-03-05",
+    "duration": "09:25",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV14T9iYpE6h",
+    "title": "[LLM原理] 投机解码原理：预测执行的加速之道",
+    "description": "在本视频中，我首先回顾了生成模型中常用的采样算法，详细解析其工作原理；随后重点介绍 speculative decoding 的核心思想，探讨它如何实现生成过程的加速。希望这段复习与讲解能帮助你更好地理解相关技术，欢迎大家在评论区交流讨论！",
+    "cover": "/figures/speculative_decoding.jpg",
+    "pubdate": "2025-03-03",
+    "duration": "07:55",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV19DPJe5EJQ",
+    "title": "[LLM原理] FlashAttention 内部机制解析：探索高效注意力计算实现原理",
+    "description": "在本期视频中，我将从伪代码和手绘图的角度详细解析 FlashAttention 的内部原理。通过直观的图示和代码示例，希望帮助大家更好地理解其在高效注意力计算中的关键实现机制。欢迎大家在观看后讨论交流，共同深入探讨这一技术细节！",
+    "cover": "/figures/flash_attention.jpg",
+    "pubdate": "2025-02-27",
+    "duration": "15:20",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV1fAPceeE7n",
+    "title": "[LLM 原理] MQA、GQA、DeepSeek MLA 是什么？——KVCache 相关技术解析",
+    "description": "上个视频聊了 KVCache 的原理，这次继续探索它相关的优化技术，比如 MQA、GQA 以及 DeepSeek 的 MLA。它们各自怎么运作？又是如何提升推理效率的？一起从基础出发，看看这些技术的核心思路。\n我是个还在学习的学生，做这个频道也是为了记录和分享自己的理解，欢迎一起讨论、交流！",
+    "cover": "/figures/why_can_we_do_kv_cache_2.jpg",
+    "pubdate": "2025-02-21",
+    "duration": "08:28",
+    "view": 0,
+    "tags": []
+  },
+  {
+    "bvid": "BV19LwReMEVH",
+    "title": "[LLM原理] 为什么能做KVCache？——从基础推导看其推理优化",
+    "description": "我是个不太擅长整活的学生，所以选择了老老实实做知识分享。这个视频从基础推导 KVCache 的原理，聊聊它是怎么优化推理的。希望对你有帮助，欢迎一起学习交流！",
+    "cover": "/figures/why_can_we_do_kv_cache_2.jpg",
+    "pubdate": "2025-02-17",
+    "duration": "09:38",
+    "view": 0,
+    "tags": []
+  }
+]
