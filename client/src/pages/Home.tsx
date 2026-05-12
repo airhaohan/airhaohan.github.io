@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import ProfileSidebar from "@/components/ProfileSidebar";
-import { aboutContent, educationData, newsData } from "@/data/homeContent";
+import { aboutContent, educationData, newsData, experienceData } from "@/data/homeContent";
 import { siteConfig } from "@/lib/siteConfig";
 import {
   User,
@@ -14,6 +14,7 @@ import {
   ChevronRight,
   ExternalLink,
   Sparkles,
+  Briefcase,
 } from "lucide-react";
 
 // ─── About Section ────────────────────────────────────────────────
@@ -167,6 +168,74 @@ function EducationSection() {
                 {edu.description}
               </p>
             </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ─── Experience Section ───────────────────────────────────────────
+function ExperienceSection() {
+  return (
+    <section className="glass-card fade-in-up delay-75" style={{ padding: "1.75rem", marginBottom: "1.5rem" }}>
+      <h2 className="section-heading">
+        <Briefcase size={18} style={{ color: "#4AADE8" }} />
+        Experience
+      </h2>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        {experienceData.map((exp, i) => (
+          <div
+            key={i}
+            className="rounded-xl p-3.5 transition-all duration-200"
+            style={{
+              background: "rgba(255,255,255,0.08)",
+              border: "1px solid rgba(255,255,255,0.15)",
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.13)";
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
+            }}
+          >
+            <div className="flex items-start justify-between gap-2 flex-wrap">
+              <div>
+                <h3
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.95rem",
+                    color: "white",
+                    marginBottom: "0.15rem",
+                  }}
+                >
+                  {exp.role}
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "#7DD3FC", fontWeight: 600 }}>
+                  {exp.company} {exp.location && `· ${exp.location}`}
+                </p>
+              </div>
+              <span
+                style={{
+                  fontSize: "0.78rem",
+                  color: "rgba(255,255,255,0.5)",
+                  fontFamily: "'Nunito', sans-serif",
+                  fontWeight: 700,
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  borderRadius: "2rem",
+                  padding: "0.15rem 0.6rem",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {exp.period}
+              </span>
+            </div>
+            <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.65)", marginTop: "0.4rem", lineHeight: 1.5 }}>
+              {exp.description}
+            </p>
           </div>
         ))}
       </div>
@@ -334,6 +403,7 @@ export default function Home() {
           <main style={{ flex: 1, minWidth: 0 }}>
             <AboutSection />
             <EducationSection />
+            <ExperienceSection />
             <NewsSection />
           </main>
         </div>

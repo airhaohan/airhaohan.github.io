@@ -31,8 +31,9 @@ function extractField(entry: string, field: string): string {
 
 function parseAuthors(authorStr: string): string[] {
   if (!authorStr) return [];
+  const separator = authorStr.includes(' and ') ? ' and ' : ',';
   return authorStr
-    .split(' and ')
+    .split(separator)
     .map(a => a.trim())
     .filter(Boolean);
 }

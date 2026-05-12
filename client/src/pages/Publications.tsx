@@ -71,6 +71,14 @@ import { FileText, ExternalLink, ChevronDown, ChevronUp, Award, BookOpen, FileCo
 //   abstract  = {We present OpFusion, a compiler-level framework that automatically identifies and fuses operator patterns in neural networks to reduce memory bandwidth consumption and improve inference throughput on mobile NPUs.}
 // }
 const bibContent = `
+@inproceedings{arxiv2026ef,
+  title     = {EdgeFlow: Fast Cold Starts for LLMs on Mobile Devices},
+  author    = {Yongsheng Yan, Jiacheng Shen, Xuchuan Luo, Yangfan Zhou},
+  booktitle = {arXiv},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2604.09083},
+  abstract  = {Deploying large language models (LLMs) on mobile devices is an emerging trend to enable data privacy and offline accessibility of LLM applications. Modern mobile neural processing units (NPUs) make such deployment increasingly feasible. However, existing mobile LLM inference frameworks suffer from high start-up latency due to their inevitable cold starts, i.e., launching LLM inferences when the model is not hosted in device memory. In this paper, we identify the key bottleneck of mobile LLM cold starts as the waste of flash bandwidth on unimportant model parameters. We design EdgeFlow, a mobile LLM inference framework that mitigates the cold start issue by adaptively adjusting the precisions of LLM parameters. Specifically, EdgeFlow leverages 1) an NPU-aware adaptive quantization algorithm that assigns different precisions to weights in a finer granularity according to their importance and NPU constraints, 2) an SIMD-friendly packing format that accelerates the transformation of various-precision weights into fixed-sized NPU-native data types, and 3) a synergistic granular pipeline that coordinates CPU and NPU computation in a fine-grained and dynamic manner. Experimental results show that EdgeFlow reduces cold-start latency by up to 4.07x compared with three state-of-the-art mobile LLM inference frameworks, i.e., llama.cpp, MNN, and llm.npu, under comparable model accuracy.}
+}
 `;
 
 function AuthorList({ authors, highlightName }: { authors: string[]; highlightName: string }) {
@@ -79,7 +87,7 @@ function AuthorList({ authors, highlightName }: { authors: string[]; highlightNa
     <span>
       {highlighted.map((a, i) => (
         <span key={i}>
-          {i > 0 && ", "}
+          {i > 0 && <span style={{ color: "rgba(255,255,255,0.7)" }}>, </span>}
           {a.isHighlighted ? (
             <strong
               style={{

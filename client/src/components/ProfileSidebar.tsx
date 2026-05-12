@@ -9,6 +9,7 @@ import {
   MapPin,
   Github,
   ExternalLink,
+  NotebookText,
   GraduationCap,
   Microscope,
   Youtube,
@@ -189,6 +190,15 @@ export default function ProfileSidebar() {
             {siteConfig.email}
           </a>
         </div>
+        <div className="flex items-center gap-2">
+          <Mail size={14} style={{ color: "rgba(74,173,232,0.9)", flexShrink: 0 }} />
+          <a
+            href={`mailto:${siteConfig.email}`}
+            style={{ fontSize: "0.82rem", color: "rgba(74,173,232,0.9)", textDecoration: "none" }}
+          >
+            {siteConfig.email1}
+          </a>
+        </div>
       </div>
 
       {/* Research Interests */}
@@ -241,6 +251,14 @@ export default function ProfileSidebar() {
             label="Bilibili · 我是小小升"
           />
         )}
+        { siteConfig.social.csdn && (
+            <SocialLink
+              href={siteConfig.social.csdn}
+              icon={<NotebookText size={14} />}
+              label="CSDN · Ryansior"
+            />
+          )
+        }
       </div>
     </aside>
   );

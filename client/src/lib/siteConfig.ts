@@ -18,6 +18,7 @@ export const siteConfig = {
   address: "Fudan University, Shanghai, China",
   address1: "Duke Kunshan University, Suzhou, China",
   email: "ysyan24@m.fudan.edu.cn",
+  email1: "yongsheng.yan@dukekunshan.edu.cn",
   bilibiliId: "bili_73334196959",
   bilibiliUid: "365866880",
   bilibiliName: "我是小小升",
@@ -25,6 +26,7 @@ export const siteConfig = {
   social: {
     github: "https://github.com/airhaohan",
     bilibili: "https://space.bilibili.com/365866880",
+    csdn: "https://blog.csdn.net/Ryansior",
     googleScholar: "",
     twitter: "",
     linkedin: "",

@@ -4,19 +4,11 @@
  */
 
 export const aboutContent = `
+I am a PhD sudent at Fudan University and a research assistant at Duke Kunshan University, where I am fortunate to work under the guidance of Prof. Yangfan Zhou and Prof. Jiacheng Shen.
 I am a researcher specializing in **AI Infrastructure and ML Systems**, with a primary focus on 
-**inference system optimization for mobile devices**. My work sits at the intersection of 
-systems engineering and artificial intelligence, aiming to make large AI models practical and 
-efficient on resource-constrained edge hardware.
-
-My research explores hardware-software co-design strategies, neural network compression 
-(quantization, pruning, knowledge distillation), and runtime scheduling for heterogeneous 
-mobile SoCs. I am passionate about bridging the gap between cutting-edge AI research and 
-real-world deployment constraints.
-
-Previously, I have worked on quantization for LLMs, 
-dynamic shceduling of operators across CPU/NPU, and compuing-efficient mobile agents. I actively share 
-my research journey and technical insights through blog posts and video tutorials on Bilibili.
+**inference system optimization for mobile devices**. My work sits at the intersection of systems engineering and artificial intelligence, aiming to make large AI models practical and efficient on resource-constrained edge hardware.
+My research explores hardware-software co-design strategies, neural network compression, and runtime scheduling for heterogeneous mobile SoCs.
+I actively share my research journey and technical insights through blog posts on CSDN and video tutorials on Bilibili.
 `;
 
 // TAG: Home Content
@@ -42,6 +34,39 @@ export const educationData = [
     description: "Graduated with Honors. Focus on automated software engineering and log analysis.",
     current: false,
   },
+];
+
+export const experienceData = [
+  {
+    role: "Baidu Online Network Technology (Beijing) Co., Ltd",
+    company: "Intern - C++/PHP/Go C++/PHP/GO Software Development Intern",
+    location: "Shanghai, China",
+    period: "Jun 2023 - Aug 2023",
+    description: "Baiqingteng Resource View Script Refactoring and Optimization. Developed MapReduce tasks for parallel processing of runtime logs, mitigating calculation errors potentially caused by sampling rates. Abstracted different combinations of advertising categories' dimensions into script parameters, facilitating the enabling or disabling of viewing resource utilization for various dimensions.",
+  },
+  {
+    role: "Shanghai Heji Fund",
+    company: "Intern - Front End",
+    location: "Shanghai, China",
+    period: "Sep 2022 - Dec 2022",
+    description: "Developed a Dashboard for server monitoring (hardware and policy status) on Linux environment. Built a single-page application based on React with react-router v5 for page routing. Employed scientific computing libraries such as numpy and scipy.stats to perform statistical analysis and visualization of securities prices.",
+  },
+  {
+    role: "Outstanding graduate of Fudan University",
+    period: "Apr 2024",
+  },
+  {
+    role: "Huawei 2024 CodeCraft Regional Third Prize",
+    period: "Mar 2024",
+  },
+  {
+    role: "National Encouragement Scholarship",
+    period: "Sep 2022",
+  },
+  {
+    role: "Lanqiao Cup 2022 C/C++ Programing Shanghai First Award",
+    period: "May 2022",
+  }
 ];
 
 export const newsData = [
